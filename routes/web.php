@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, ComentarioController};
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', [ProdutosController::class, 'index']);
+Route::get('/painel/admin', [PainelController::class, 'index']);
+
+Route::get('/adicionar/marca', [MarcaController::class, 'create']);
+Route::post('/adicionar/marca', [MarcaController::class, 'store']);
+
+Route::get('/produtos', [ProdutoController::class, 'index']);
+Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
+
+Route::get('/adicionar/comentario', [ComentarioController::class, 'create']);

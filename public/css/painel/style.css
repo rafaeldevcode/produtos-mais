@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body,
+html{
+    background: rgb(190, 190, 190);
+}
+
+.image-header{
+    width: 250px;
+    height: auto;
+}
+
+.image-header img{
+    width: 100%;
+    height: auto;
+}
+
+.adiconar-marca span{
+    font-size: .8em;
+    color: rgb(121, 121, 121);
+}
+
+#pai label{
+    font-size: .8em;
+}

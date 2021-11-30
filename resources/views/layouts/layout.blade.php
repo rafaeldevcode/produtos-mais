@@ -81,19 +81,19 @@
                 <ul class="list-group">
                     <li class="list-group-item border-0 p-0">
                         <a class="text-decoration-none" href="#">
-                            <i class="fas fa-arrow-circle-right"></i>
+                            <i class="fab fa-facebook-square"></i>
                             Facebook
                         </a>
                     </li>
                     <li class="list-group-item border-0 p-0">
                         <a class="text-decoration-none" href="#">
-                            <i class="fas fa-arrow-circle-right"></i>
+                            <i class="fab fa-instagram-square"></i>
                             Instagram
                         </a>
                     </li>
                     <li class="list-group-item border-0 p-0">
                         <a class="text-decoration-none" href="#">
-                            <i class="fas fa-arrow-circle-right"></i>
+                            <i class="fab fa-twitter-square"></i>
                             Twitter
                         </a>
                     </li>
