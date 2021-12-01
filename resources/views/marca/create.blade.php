@@ -11,7 +11,8 @@
                 </a>
             </div>
 
-            <form action="?" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+            <form action="/adicionar/marca" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+                @csrf
 
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="col-12 col-md-5">
@@ -27,12 +28,12 @@
 
                     <div class="col-12 col-md-5 mt-5">
                         <label for="logomarca" class="form-label">Imagem do logo</label>
-                        <input id="logomarca" name="logomarca" type="file" class="form-control"">
+                        <input id="logomarca" name="logomarca" type="text" class="form-control"">
                     </div>
 
                     <div class="col-12 col-md-5 mt-5">
                         <label for="favicon" class="form-label">Favicon Da Marca</label>
-                        <input id="favicon" name="favicon" type="file" class="form-control">
+                        <input id="favicon" name="favicon" type="text" class="form-control">
                     </div>
 
                     <div class="col-12 col-md-5 mt-5">
@@ -48,25 +49,35 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_1" class="form-label">Banner 1</label>
-                            <input id="banner_1" name="banner_1" type="file" class="form-control" placeholder="Valor Unitário">
+                            <input id="banner_1" name="banner_1" type="text" class="form-control" placeholder="Valor Unitário">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_2" class="form-label">Banner 2</label>
-                            <input id="banner_2" name="banner_2" type="file" class="form-control" placeholder="Valor Cheio">
+                            <input id="banner_2" name="banner_2" type="text" class="form-control" placeholder="Valor Cheio">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_3" class="form-label">Banner 3</label>
-                            <input id="banner_3" name="banner_3" type="file" class="form-control" placeholder="Valor Parcelado">
+                            <input id="banner_3" name="banner_3" type="text" class="form-control" placeholder="Valor Parcelado">
                         </div>
                     </div>
                 </div>
 
                 <div class="border border-2 rounded p-3 mt-5">
-                    <h3>Pixel | Tagmanager</h3>
+                    <h3>Tagmanager | Pixel</h3>
 
-                    <div class="d-flex flex-wrap justify-content-between">
+                    <div class="mt-5">
+                        <label for="tagmanager">Tagmanager</label>
+                        <textarea name="tagmanager" id="tagmanager" class="form-control" placeholder="agmanager Aqui"></textarea>
+                    </div>
+
+                    <div class="mt-5">
+                        <label for="pixel">Pixel</label>
+                        <textarea name="pixel" id="pixel" class="form-control" placeholder="Pixel Aqui"></textarea>
+                    </div>
+
+                    {{-- <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="tagmanager" class="form-label">Tagmanager</label>
                             <input id="tagmanager" name="tagmanager" type="text" class="form-control" placeholder="Digite o Tagmanager">
@@ -83,7 +94,7 @@
 
                             <div id="pai"></div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div>
@@ -97,7 +108,7 @@
         </section>
     </main>
 
-    <script>
+    {{-- <script>
 
         let indice = 1;
         
@@ -147,6 +158,6 @@
             }
         }
         
-    </script>
+    </script> --}}
 
 @endsection

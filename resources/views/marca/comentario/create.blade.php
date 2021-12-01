@@ -34,7 +34,7 @@
 
                     <div class="col-12 mt-5">
                         <label for="image_cliente" class="form-label">Idade Do Cliente</label>
-                        <input id="image_cliente" name="image_cliente" type="file" class="form-control">
+                        <input id="image_cliente" name="image_cliente" type="text" class="form-control">
                     </div>
                 </div>
 

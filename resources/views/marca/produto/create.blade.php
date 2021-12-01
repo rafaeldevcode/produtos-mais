@@ -39,7 +39,7 @@
 
                     <div class="col-12 col-md-5 mt-5">
                         <label for="image_produto" class="form-label">Imagem do Produto</label>
-                        <input id="image_produto" name="image_produto" type="file" class="form-control">
+                        <input id="image_produto" name="image_produto" type="text" class="form-control">
                     </div>
                 </div>
 

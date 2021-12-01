@@ -10,4 +10,9 @@ class MarcaController extends Controller
     {
         return view('marca/create');
     }
+
+    public function store(Request $request)
+    {
+        print_r($request->nome_marca);
+    }
 }
