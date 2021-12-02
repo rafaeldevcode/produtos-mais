@@ -129,7 +129,7 @@
                     </span>
                 </li>
                 <li class="list-group-item border-0 d-flex flex-column flex-sm-row align-items-center">
-                    <i class="fas fa-shield-alt me-2 fs-1"></i>
+                    <i class="fas fa-award me-2 fs-1"></i>
                     <span>GARANTIA <br>
                         <b>TOTAL</b>
                     </span>

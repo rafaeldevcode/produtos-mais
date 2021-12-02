@@ -3,7 +3,11 @@
 @section('conteudo')
     
     <main class="container my-5 pt-3 bg-white rounded">
-        <section class="container px-2">
+        @if (!empty($mensagem))
+            @include('layouts/mensagem', [$mensagem])
+        @endif
+
+        <section class="container p-0">
             <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                 <h2>Adicionar Produto</h2>
                 <a href="/painel/admin" class="btn btn-info d-flex align-items-center mb-3 py-2">
@@ -18,7 +22,9 @@
                         <label for="marca" class="form-label">Selecione a Marca</label>
                         <input list="marca" class="form-control" />
                             <datalist id="marca">
-                                <option value="teste">
+                                @foreach ($marcas as $marca)
+                                    <option value="{{ $marca->nome_marca }}">
+                                @endforeach
                             </datalist>
                     </div>
 
@@ -80,8 +86,8 @@
                     </div>
                 </div>
 
-                <div>
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5">
+                <div class="col-12 col-sm-3">
+                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 w-100">
                         Adicionar
                         <i class="fas fa-plus-circle ms-2"></i>
                     </button>

@@ -13,8 +13,9 @@ class AdicionarMarca extends Migration
      */
     public function up()
     {
-        Schema::create('marca', function(Blueprint $table)
+        Schema::create('marcas', function(Blueprint $table)
         {
+            $table->increments('id');
             $table->string('nome_marca');
             $table->string('slug_marca');
             $table->string('logomarca');
@@ -22,9 +23,11 @@ class AdicionarMarca extends Migration
             $table->string('banner_1');
             $table->string('banner_2');
             $table->string('banner_3');
+            $table->string('image_desc');
+            $table->string('titulo_desc');
             $table->string('cor_principal');
-            $table->string('pixel');
             $table->string('tagmanager');
+            $table->string('pixel_1');
             $table->timestamps();
         });
     }
@@ -36,6 +39,6 @@ class AdicionarMarca extends Migration
      */
     public function down()
     {
-        Schema::drop('marca');
+        Schema::drop('marcas');
     }
 }

@@ -14,16 +14,19 @@ use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, 
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/painel/admin', [PainelController::class, 'index']);
 
 Route::get('/adicionar/marca', [MarcaController::class, 'create']);
 Route::post('/adicionar/marca', [MarcaController::class, 'store']);
+Route::get('/marca/{marcaId}/editar', [MarcaController::class, 'index']);
+Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarDados']);
 
-Route::get('/produtos', [ProdutoController::class, 'index']);
+Route::get('/', [ProdutoController::class, 'index']);
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
+Route::get('/listar/produtos', [ProdutoController::class, 'listarProdutos']);
 
 Route::get('/adicionar/comentario', [ComentarioController::class, 'create']);

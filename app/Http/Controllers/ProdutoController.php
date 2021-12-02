@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Marca;
 
 class ProdutoController extends Controller
 {
@@ -10,9 +11,18 @@ class ProdutoController extends Controller
     {
         return view('marca/produto/index');
     }
-
-    public function create()
+ 
+    public function create(Request $request)
     {
-        return view('marca/produto/create');
+        $marcas = Marca::all();
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('marca/produto/create', compact('mensagem', 'marcas'));
+    }
+
+    public function listarProdutos(Request $request)
+    {
+
+        return view('marca/produto/listarProdutos');
     }
 }
