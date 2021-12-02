@@ -33,3 +33,6 @@ Route::get('/produto/{produtoId}/listarDados', [ProdutoController::class, 'lista
 Route::post('/produto/{produtoId}/editar', [ProdutoController::class, 'editarDados']);
 
 Route::get('/adicionar/comentario', [ComentarioController::class, 'create']);
+Route::post('/adicionar/comentario', [ComentarioController::class, 'store']);
+Route::get('/comentario/{comentarioId}/listarDados', [ComentarioController::class, 'listarDados']);
+Route::post('/comentario/{comentarioId}/editar', [ComentarioController::class, 'editarDados']);

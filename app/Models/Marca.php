@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Produto;
+use App\Models\{Produto, Comentario};
 
 class Marca extends Model
 {
@@ -27,5 +27,10 @@ class Marca extends Model
     public function produtos()
     {
         return $this->hasMany(Produto::class);
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
     }
 }

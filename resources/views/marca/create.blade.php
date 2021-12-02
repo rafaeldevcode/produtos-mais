@@ -128,10 +128,10 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3 col-12">
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 w-100">
-                        Adicionar
-                        <i class="fas fa-plus-circle ms-2"></i>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-sm-3 col-12">
+                        Salvar
+                        <i class="fas fa-save ms-2"></i>
                     </button>
                 </div>
 

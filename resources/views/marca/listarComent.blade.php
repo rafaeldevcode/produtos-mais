@@ -8,7 +8,7 @@
         @endif
 
         <div class="border-bottom border-success border-2 d-flex justify-content-between">
-            <h2>Produtos {{ $nome_marca }}</h2>
+            <h2>Comentários {{ $nome_marca }}</h2>
             <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                 <i class="fas fa-reply"></i>
             </a>
@@ -16,12 +16,12 @@
 
         <section>
             <ul class="list-group mt-5">
-                @foreach ($produtos as $produto)
+                @foreach ($comentarios as $comentario)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $produto->nome_produto }}
+                        {{ $comentario->nome_cliente }}
 
                         <span>
-                            <a href="/produto/{{ $produto->id }}/listarDados" class="btn btn-success">
+                            <a href="/comentario/{{ $comentario->id }}/listarDados" class="btn btn-success">
                                 <i class="fas fa-clipboard-list"></i>
                             </a>
         
@@ -35,8 +35,8 @@
         </section>
 
         <section class="border-top border-success border-2 mt-5 d-flex justify-content-between">
-            <a href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                Novo Produto
+            <a href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                Novo Comentário
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
         </section>

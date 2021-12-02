@@ -93,10 +93,15 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-3">
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 w-100">
-                        Adicionar
+                <div class="col-12 d-flex flex-wrap justify-content-between">
+                    <a href="/adicionar/marca" class="btn btn-primary mt-3 py-3 px-5 col-12 col-sm-3">
+                        Nova Marca
                         <i class="fas fa-plus-circle ms-2"></i>
+                    </a>
+
+                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-12 col-sm-3">
+                        Salvar
+                        <i class="fas fa-save ms-2"></i>
                     </button>
                 </div>
 

@@ -11,8 +11,8 @@
         <section>
             <ul class="list-group">
                 @foreach ($marcas as $marca)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        {{ $marca->nome_marca }}
+                    <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
+                        <h5>{{ $marca->nome_marca }}</h5>
 
                         <span>
                             <a href="#" class="btn btn-info">

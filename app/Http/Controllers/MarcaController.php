@@ -72,4 +72,16 @@ class MarcaController extends Controller
 
         return view('/marca/listarProdutos', compact('produtos', 'nome_marca', 'mensagem'));
     }
+
+    public function listarComentarios(Request $request, int $comentarioId)
+    {
+
+        $marca = Marca::find($comentarioId);
+        $nome_marca = $marca->nome_marca;
+        $comentarios = $marca->comentarios()->get();
+
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('/marca/listarComent', compact('comentarios', 'nome_marca', 'mensagem'));
+    }
 }

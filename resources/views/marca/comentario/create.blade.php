@@ -3,6 +3,9 @@
 @section('conteudo')
         
     <main class="container my-5 pt-1 bg-white rounded">
+        @if (!empty($mensagem))
+            @include('layouts/mensagem', [$mensagem])
+        @endif
         <section class="container p-0">
             <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                 <h2>Adicionar Comentário</h2>
@@ -11,7 +14,8 @@
                 </a>
             </div>
 
-            <form action="?" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+            <form action="/adicionar/comentario" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+                @csrf
 
                 <div class="border border-2 rounded p-3 mt-1">
                     <h3>Marca do produto</h3>
@@ -35,8 +39,8 @@
                         </div>
 
                         <div class="col-12 col-md-5 mt-5 mt-md-0">
-                            <label for="idade_cliente" class="form-label">Idade Do Cliente</label>
-                            <input name="idade_cliente" type="number" class="form-control" placeholder="Idade do Cliente">
+                            <label for="coment_desc" class="form-label">Descrição</label>
+                            <input name="coment_desc" type="text" class="form-control" placeholder="Descrição do comentário">
                         </div>
 
                         <div class="col-12 mt-5">
@@ -54,10 +58,10 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-3">
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 w-100">
-                        Adicionar
-                        <i class="fas fa-plus-circle ms-2"></i>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-12 col-sm-3">
+                        Salvar
+                        <i class="fas fa-save ms-2"></i>
                     </button>
                 </div>
 

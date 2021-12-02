@@ -41,6 +41,7 @@ class ProdutoController extends Controller
     {
         $id = $produtoId - 1;
         $dados = Produto::find($produtoId)->all();
+        
         return view('marca/produto/listarDados', compact('dados', 'id', 'produtoId'));
     }
 
@@ -58,8 +59,10 @@ class ProdutoController extends Controller
         $produto->exibir_produto = $request->exibir_produto;
         $produto->save();
 
+        // echo $produto->marca_id;
+
         $request->session()->flash("mensagem", "{$request->nome_produto} alterado com sucesso!");
 
-        return redirect("marca/{$produtoId}/produtos");
+        return redirect("/marca/{$produto->marca_id}/produtos");
     }
 }
