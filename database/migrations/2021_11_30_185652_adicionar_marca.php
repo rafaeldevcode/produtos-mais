@@ -26,8 +26,8 @@ class AdicionarMarca extends Migration
             $table->string('image_desc');
             $table->string('titulo_desc');
             $table->string('cor_principal');
-            $table->string('tagmanager');
-            $table->string('pixel_1');
+            $table->string('tagmanager')->nullable();
+            $table->string('pixel_1')->nullable();
             $table->timestamps();
         });
     }

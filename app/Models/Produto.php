@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Marca;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     protected $fillable = [
+        'id',
         'nome_produto',
         'link_compra',
         'quant_produto',

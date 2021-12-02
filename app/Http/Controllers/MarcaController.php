@@ -7,6 +7,14 @@ use App\Models\Marca;
 
 class MarcaController extends Controller
 {
+    public function index(Request $request)
+    {
+        $marcas = Marca::all();
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('marca/index', compact('marcas', 'mensagem'));
+    }
+
     public function create()
     {
         return view('marca/create');
@@ -20,17 +28,16 @@ class MarcaController extends Controller
         return redirect('/adicionar/produto');
     }
 
-    public function index(int $marcaId)
+    public function listarDados(int $marcaId)
     {
 
         $id = $marcaId - 1;
-
         $dados = Marca::find($marcaId)->all();
 
-        return view('marca/index' , compact('dados', 'id', 'marcaId'));
+        return view('marca/listarDados' , compact('dados', 'id', 'marcaId'));
     }
 
-    public function editarDados(Request $request, int $marcaId)
+    public function editarMarca(Request $request, int $marcaId)
     {
 
         $marca = Marca::find($marcaId);
@@ -50,7 +57,19 @@ class MarcaController extends Controller
 
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
 
-        return redirect('/painel/admin');
+        return redirect('/marcas');
 
+    }
+
+    public function listarProdutos(Request $request, int $marcaId)
+    {
+
+        $marca = Marca::find($marcaId);
+        $nome_marca = $marca->nome_marca;
+        $produtos = $marca->produtos()->get();
+
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('/marca/listarProdutos', compact('produtos', 'nome_marca', 'mensagem'));
     }
 }

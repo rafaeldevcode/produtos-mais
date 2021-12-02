@@ -15,15 +15,17 @@ class AdicionarProduto extends Migration
     {
         Schema::create('produtos', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('marca_id');
+            $table->foreign('marca_id')->references('id')->on('marcas');
             $table->string('nome_produto');
             $table->string('link_compra');
             $table->integer('quant_produto');
             $table->string('image_produto');
-            $table->float('valor_unit');
-            $table->float('valor_cheio');
-            $table->float('valor_parcelado');
+            $table->string('valor_unit');
+            $table->string('valor_cheio');
+            $table->string('valor_parcelado');
             $table->integer('parcelas');
-            $table->boolean('exibir_produto');
+            $table->boolean('exibir_produto')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +37,6 @@ class AdicionarProduto extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('produtos');
     }
 }

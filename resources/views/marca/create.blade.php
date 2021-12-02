@@ -2,11 +2,11 @@
 
 @section('conteudo')
     
-    <main class="container my-5 pt-3 bg-white rounded">
+    <main class="container my-5 pt-1 bg-white rounded">
         <section class="container p-0">
             <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                 <h2>Adicionar Marca</h2>
-                <a href="/painel/admin" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>

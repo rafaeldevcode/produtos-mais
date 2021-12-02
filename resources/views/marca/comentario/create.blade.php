@@ -2,45 +2,56 @@
 
 @section('conteudo')
         
-    <main class="container my-5 pt-3 bg-white rounded">
+    <main class="container my-5 pt-1 bg-white rounded">
         <section class="container p-0">
             <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                 <h2>Adicionar Comentário</h2>
-                <a href="/painel/admin" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
 
             <form action="?" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
 
-                <div class="d-flex flex-wrap justify-content-between">
-                    <div class="col-12 mb-5">
-                        <label for="marca" class="form-label">Selecione a Marca</label>
-                        <input list="marca" class="form-control" />
-                            <datalist id="marca">
-                                <option value="teste">
-                            </datalist>
-                    </div>
-                    
-                    <div class="col-12 col-md-5">
-                        <label for="nome_cliente" class="form-label">Nome Do Cliente</label>
-                        <input id="nome_cliente" name="nome_cliente" type="text" class="form-control" placeholder="Nome do Cliente">
-                    </div>
-
-                    <div class="col-12 col-md-5 mt-5 mt-md-0">
-                        <label for="idade_cliente" class="form-label">Idade Do Cliente</label>
-                        <input id="idade_cliente" name="idade_cliente" type="number" class="form-control" placeholder="Idade do Cliente">
-                    </div>
-
+                <div class="border border-2 rounded p-3 mt-1">
+                    <h3>Marca do produto</h3>
                     <div class="col-12 mt-5">
-                        <label for="image_cliente" class="form-label">Idade Do Cliente</label>
-                        <input id="image_cliente" name="image_cliente" type="text" class="form-control">
+                        <select name="id" class="form-select">
+                            <option value="0">Selecione o nome da marca</option>
+
+                            @foreach ($marcas as $marca)
+                                <option value="{{ $marca->id }}">{{ $marca->nome_marca }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
-                <div class="mt-5">
-                    <label for="comentario">Comentário</label>
-                    <textarea name="comentario" id="comentario" class="form-control" placeholder="Adicione o comentário aqui"></textarea>
+                <div class="border border-2 rounded p-3 mt-1">
+                    <h3>Dados do usuário</h3>
+                    <div class="d-flex flex-wrap justify-content-between mt-5">
+                        <div class="col-12 col-md-5">
+                            <label for="nome_cliente" class="form-label">Nome Do Cliente</label>
+                            <input name="nome_cliente" type="text" class="form-control" placeholder="Nome do Cliente">
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5 mt-md-0">
+                            <label for="idade_cliente" class="form-label">Idade Do Cliente</label>
+                            <input name="idade_cliente" type="number" class="form-control" placeholder="Idade do Cliente">
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <label for="image_cliente" class="form-label">Imagem do Cliente</label>
+                            <input name="image_cliente" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-1">
+                    <h3>Comentário</h3>
+                    <div class="mt-5">
+                        <label for="comentario">Comentário</label>
+                        <textarea name="comentario" class="form-control" placeholder="Adicione o comentário aqui"></textarea>
+                    </div>
                 </div>
 
                 <div class="col-12 col-sm-3">

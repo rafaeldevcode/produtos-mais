@@ -14,19 +14,22 @@ use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, 
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 
-Route::get('/painel/admin', [PainelController::class, 'index']);
+Route::get('/marcas', [MarcaController::class, 'index']);
 
 Route::get('/adicionar/marca', [MarcaController::class, 'create']);
 Route::post('/adicionar/marca', [MarcaController::class, 'store']);
-Route::get('/marca/{marcaId}/editar', [MarcaController::class, 'index']);
-Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarDados']);
+Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados']);
+Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca']);
+Route::get('/marca/{marcaId}/produtos', [MarcaController::class, 'listarProdutos']);
+Route::get('/marca/{marcaId}/comentarios', [MarcaController::class, 'listarComentarios']);
 
-Route::get('/', [ProdutoController::class, 'index']);
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
-Route::get('/listar/produtos', [ProdutoController::class, 'listarProdutos']);
+Route::post('/adicionar/produto', [ProdutoController::class, 'store']);
+Route::get('/produto/{produtoId}/listarDados', [ProdutoController::class, 'listarDados']);
+Route::post('/produto/{produtoId}/editar', [ProdutoController::class, 'editarDados']);
 
 Route::get('/adicionar/comentario', [ComentarioController::class, 'create']);
