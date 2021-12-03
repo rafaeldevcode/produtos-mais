@@ -1,67 +1,62 @@
 require('./bootstrap');
 
+let remover = document.querySelectorAll('.remover');
 
-let indice = 1;
+for(let i = 0; i < remover.length; i++){
+    remover[i].addEventListener('click', ()=>{
+
+        let i = document.createElement('i');
+            i.setAttribute('class', 'fas fa-trash');
+
+        let button = document.createElement('button');
+            button.setAttribute('type', 'submit');
+            button.setAttribute('class', 'btn btn-danger');
+            button.innerHTML = 'Excluir';
+            button.appendChild(i);
         
-document.getElementById('adicionarItem').addEventListener('click', ()=>{
-    let pai = document.getElementById('paiLista');
+        let i_a = document.createElement('i');
+            i_a.setAttribute('class', 'fas fa-ban');
 
-    let i = document.createElement('i');
-        i.setAttribute('class', 'fas fa-minus fs-6'); 
+        let a = document.createElement('a');
+            a.setAttribute('id', 'cancelar');
+            a.setAttribute('class', 'btn btn-primary');
+            a.innerHTML = 'Cancelar';
+            a.appendChild(i_a);
 
-    let a = document.createElement('a');
-        a.setAttribute('class', 'btn btn-danger removerItem');
-        a.appendChild(i);
+        let form = document.createElement('form');
+            form.setAttribute('action', '/comentario/{{ $comentario->id }}/remover');
+            form.setAttribute('method', 'POST');
+            form.setAttribute('class', 'text-center');
+            form.innerHTML = '@csrf';
+            form.appendChild(button);
+            form.appendChild(a);
 
-    let input = document.createElement('input');
-        input.setAttribute('name', `item_${indice}`);
-        input.setAttribute('type', 'number');
-        input.setAttribute('class', 'form-control mx-2');
-        input.setAttribute('placeholder', `Digite o Item ${indice}`)
+        let p = document.createElement('p');
+            p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
+            p.innerHTML = 'Certeza que deseja excluir o comentário de {{ $comentario->nome_cliente }}';
 
-    let label = document.createElement('label');
-        label.setAttribute('class', 'form-label m-0');
-        label.setAttribute('for', `item_${indice}`)
-        label.innerHTML = `item_${indice}`;
+        let div = document.createElement('div');
+            div.setAttribute('class', 'alert alert-danger col-12 col-sm-3');
+            div.appendChild(form);
+            div.appendChild(p);
+        
+        let section = document.createElement('section');
+            section.setAttribute('class', 'w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
+            section.setAttribute(div);
 
-    let div = document.createElement('div');
-        div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 filhoLista');
-        div.appendChild(label);
-        div.appendChild(input);
-        div.appendChild(a);
+        cancelar();
+    })
+}
 
-    pai.appendChild(div);
-
-    indice++;
-
-    removerPixel();
-})
-
-function  removerPixel(){
-    let remover = document.querySelectorAll('.removerItem');
-    let filho = document.querySelectorAll('.filhoLista');
-
-    for(let i = 0; i < remover.length; i++){
-        remover[i].addEventListener('click', ()=>{
-            filho[i].remove(filho[i]);
-        })
-    }
+function cancelar(){
+    document.getElementById('cancelar').addEventListener('click', ()=>{
+        document.querySelector('.removerComentario').classList.remove('d-flex');
+        document.querySelector('.removerComentario').classList.add('d-none');
+    })
 }
 
 
-document.getElementById('abilitar').addEventListener('click', ()=>{
 
-    let tagmanager = document.querySelector('.disabled');
-    let abilitar = document.getElementById('abilitar');
 
-    if(tagmanager.disabled){
-        tagmanager.removeAttribute('disabled');
-        abilitar.innerHTML = 'Desabilitar Tagmanager <i class="fas fa-ban"></i>'
-    }else{
-        tagmanager.disabled = true;
-        abilitar.innerHTML = 'Abilitar Tagmanager <i class="fas fa-circle"></i>'
-    }
-
-})
 
 

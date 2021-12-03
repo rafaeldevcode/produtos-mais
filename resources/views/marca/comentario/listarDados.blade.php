@@ -5,8 +5,8 @@
     <main class="container bg-white my-5 rounded p-3">
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
-                <h2>Editar {{ $dados[$id]->nome_cliente }}</h2>
-                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <h2>Editar {{ $dados->nome_cliente }}</h2>
+                <a href="/marca/{{ $dados->marca_id }}/comentarios" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
@@ -15,23 +15,10 @@
 
                 <ul class="list-group mt-5">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="nome_cliente" type="text" value="{{ $dados[$id]->nome_cliente }}">
+                        <input hidden class="form-control w-25 inputEditar" name="nome_cliente" type="text" value="{{ $dados->nome_cliente }}">
 
 
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome do cliente:</b>{{ $dados[$id]->nome_cliente }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="coment_desc" type="text" value="{{ $dados[$id]->coment_desc }}">
-
-
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Descrição do comentário:</b>{{ $dados[$id]->coment_desc }}</span>
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome do cliente:</b>{{ $dados->nome_cliente }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -41,9 +28,10 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="image_cliente" type="text" value="{{ $dados[$id]->image_cliente }}">
+                        <input hidden class="form-control w-25 inputEditar" name="coment_desc" type="text" value="{{ $dados->coment_desc }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados[$id]->image_cliente }}</span>
+
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Descrição do comentário:</b>{{ $dados->coment_desc }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -53,9 +41,21 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="comentario" type="text" value="{{ $dados[$id]->comentario }}">
+                        <input hidden class="form-control w-25 inputEditar" name="image_cliente" type="text" value="{{ $dados->image_cliente }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Comentário:</b>{{ $dados[$id]->comentario }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados->image_cliente }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="comentario" type="text" value="{{ $dados->comentario }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Comentário:</b>{{ $dados->comentario }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">

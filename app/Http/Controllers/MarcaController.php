@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\{Marca, Comentario, Produto};
 use Illuminate\Http\Request;
-use App\Models\Marca;
 
 class MarcaController extends Controller
 {
@@ -83,5 +83,26 @@ class MarcaController extends Controller
         $mensagem = $request->session()->get('mensagem');
 
         return view('/marca/listarComent', compact('comentarios', 'nome_marca', 'mensagem'));
+    }
+
+    public function destroy(int $marcaId, Request $request)
+    {
+
+        $nome_marca = Marca::find($marcaId)->nome_marca;
+        $marca = Marca::find($marcaId);
+        
+        $marca->comentarios->each(function(Comentario $comentario, $marca){
+            $comentario->delete();
+        });
+
+        $marca->produtos->each(function(Produto $produto){
+            $produto->delete();
+        });
+
+        $marca->delete();
+
+        $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
+
+        return redirect('/marcas');
     }
 }

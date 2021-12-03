@@ -32,3 +32,7 @@ html{
 #pai label{
     font-size: .8em;
 }
+
+.sessao-excluir{
+    background: rgba(0, 0, 0, 0.363);
+}

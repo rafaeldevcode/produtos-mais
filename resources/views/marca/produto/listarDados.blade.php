@@ -3,7 +3,7 @@
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
-        @if ($dados[$id]->exibir_produto == 'on')
+        @if ($dados->exibir_produto == 'on')
             {{ $checked = 'checked' }}
         @else
             {{ $checked = '' }}
@@ -11,8 +11,8 @@
 
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
-                <h2>Editar {{ $dados[$id]->nome_produto }}</h2>
-                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <h2>Editar {{ $dados->nome_produto }}</h2>
+                <a href="/marca/{{ $dados->marca_id }}/produtos" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
@@ -21,22 +21,10 @@
 
                 <ul class="list-group mt-5">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="nome_produto" type="text" value="{{ $dados[$id]->nome_produto }}">
+                        <input hidden class="form-control w-25 inputEditar" name="nome_produto" type="text" value="{{ $dados->nome_produto }}">
 
 
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados[$id]->nome_produto }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="link_compra" type="text" value="{{ $dados[$id]->link_compra }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link de checkout:</b>{{ $dados[$id]->link_compra }}</span>
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados->nome_produto }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -46,21 +34,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="quant_produto" type="text" value="{{ $dados[$id]->quant_produto }}">
+                        <input hidden class="form-control w-25 inputEditar" name="link_compra" type="text" value="{{ $dados->link_compra }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade:</b>{{ $dados[$id]->quant_produto }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="image_produto" type="text" value="{{ $dados[$id]->image_produto }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados[$id]->image_produto }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link de checkout:</b>{{ $dados->link_compra }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -70,21 +46,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="valor_unit" type="text" value="{{ $dados[$id]->valor_unit }}">
+                        <input hidden class="form-control w-25 inputEditar" name="quant_produto" type="text" value="{{ $dados->quant_produto }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor por únidade:</b>{{ $dados[$id]->valor_unit }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="valor_cheio" type="text" value="{{ $dados[$id]->valor_cheio }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor total:</b>{{ $dados[$id]->valor_cheio }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade:</b>{{ $dados->quant_produto }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -94,9 +58,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="valor_parcelado" type="text" value="{{ $dados[$id]->valor_parcelado }}">
+                        <input hidden class="form-control w-25 inputEditar" name="image_produto" type="text" value="{{ $dados->image_produto }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor das parcelas:</b>{{ $dados[$id]->valor_parcelado }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados->image_produto }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -106,9 +70,45 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="parcelas" type="text" value="{{ $dados[$id]->parcelas }}">
+                        <input hidden class="form-control w-25 inputEditar" name="valor_unit" type="text" value="{{ $dados->valor_unit }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade de parcelas:</b>{{ $dados[$id]->parcelas }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor por únidade:</b>{{ $dados->valor_unit }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="valor_cheio" type="text" value="{{ $dados->valor_cheio }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor total:</b>{{ $dados->valor_cheio }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="valor_parcelado" type="text" value="{{ $dados->valor_parcelado }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor das parcelas:</b>{{ $dados->valor_parcelado }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="parcelas" type="text" value="{{ $dados->parcelas }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade de parcelas:</b>{{ $dados->parcelas }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">

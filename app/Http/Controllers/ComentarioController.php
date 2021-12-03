@@ -33,10 +33,10 @@ class ComentarioController extends Controller
 
     public function listarDados(int $comentarioId)
     {
-        $id = $comentarioId - 1;
-        $dados = Comentario::find($comentarioId)->all();
 
-        return view('/marca/comentario/listarDados', compact('id', 'dados', 'comentarioId'));
+        $dados = Comentario::find($comentarioId);
+
+        return view('/marca/comentario/listarDados', compact('dados', 'comentarioId'));
     }
 
     public function editarDados(Request $request, int $comentarioId)
@@ -52,5 +52,18 @@ class ComentarioController extends Controller
         $request->session()->flash("mensagem", "Comentário de {$request->nome_cliente} editado com sucesso!");
 
         return redirect("/marca/{$comentario->marca_id}/comentarios");
+    }
+
+    public function destroy(Request $request)
+    {
+
+        $nome_cliente = Comentario::find($request->comentarioId)->nome_cliente;
+        $marca_id = Comentario::find($request->comentarioId)->marca_id;
+        Comentario::destroy($request->comentarioId);
+
+        $request->session()->flash("mensagem", "Comentário de {$nome_cliente} removido com sucesso!");
+
+        return redirect("/marca/{$marca_id}/comentarios");
+
     }
 }
