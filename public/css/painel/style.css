@@ -15,7 +15,7 @@ html{
 }
 
 .image-header{
-    width: 250px;
+    width: 150px;
     height: auto;
 }
 
@@ -27,6 +27,14 @@ html{
 .adiconar-marca span{
     font-size: .8em;
     color: rgb(121, 121, 121);
+}
+
+.btn-info{
+    color: #FFF;
+}
+
+.btn-info:hover{
+    color: #FFF;
 }
 
 #pai label{

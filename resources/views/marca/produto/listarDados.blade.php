@@ -3,12 +3,6 @@
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
-        @if ($dados->exibir_produto == 'on')
-            {{ $checked = 'checked' }}
-        @else
-            {{ $checked = '' }}
-        @endif
-
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
                 <h2>Editar {{ $dados->nome_produto }}</h2>
@@ -124,7 +118,13 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 form-check form-switch">
                             <label for="exibir_produto" class="form-check-label">Mostrar na Página?</label>
-                            <input {{ $checked }} name="exibir_produto" type="checkbox" class="form-check-input">
+                            <input
+                                @if ($dados->exibir_produto == 'on')
+                                    {{ $checked = 'checked' }}
+                                @else
+                                    {{ $checked = '' }}
+                                @endif
+                             name="exibir_produto" type="checkbox" class="form-check-input">
                         </div>
                     </div>
                 </div>

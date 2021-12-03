@@ -11,8 +11,9 @@ class ComentarioController extends Controller
     {
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
+        $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
 
-        return view('marca/comentario/create', compact('marcas', 'mensagem'));
+        return view('marca/comentario/create', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
     public function store(Request $request)

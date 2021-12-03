@@ -25,7 +25,7 @@
                 <img src="https://recomendacao.formoney.com.br/assets/images/logo.png" alt="Logo">
             </div>
     
-            <a href="#" class="btn btn-secondary px-4 pt-2 d-sm-block d-none">
+            <a href="#" class="btn px-4 pt-2 d-sm-block d-none btn-principal">
                 <i class="fas fa-arrow-circle-right"></i>
                 Comprar Agora
             </a>
@@ -34,10 +34,10 @@
     
     @yield('conteudo')
 
-    <footer class="container-fluid pb-5">
+    <footer class="container-fluid pb-5 bg-principal">
         <section class="links-rodape container d-flex flex-wrap justify-content-between">
             <div class="m-3">
-                <h5>EMPRESA</h5>
+                <h5 class="fw-bolder">EMPRESA</h5>
 
                 <ul class="list-group">
                     <li class="list-group-item border-0 p-0">Nullius Saúde Natural</li>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="m-3">
-                <h5>ATENDIMENTO</h5>
+                <h5 class="fw-bolder">ATENDIMENTO</h5>
 
                 <ul class="list-group">
                     <li class="list-group-item border-0 p-0">
@@ -57,13 +57,13 @@
                     </li>
                     <li class="list-group-item border-0 p-0">
                         <i class="fas fa-arrow-circle-right"></i>
-                        E-mail: sac@nullius.com.br
+                        <a href="#" class="text-decoration-none">E-mail: sac@nullius.com.br </a>
                     </li>
                 </ul>
             </div>
 
             <div class="m-3">
-                <h5>LINKS</h5>
+                <h5 class="fw-bolder">LINKS</h5>
 
                 <ul class="list-group">
                     <li class="list-group-item border-0 p-0">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="m-3">
-                <h5>SOCIAL</h5>
+                <h5 class="fw-bolder">SOCIAL</h5>
 
                 <ul class="list-group">
                     <li class="list-group-item border-0 p-0">
@@ -101,10 +101,17 @@
             </div>
         </section>
 
-        <p class="pt-5 text-center">&copy; 2021 Produto - Todos os direitos reservados</p>
+        <p class="pt-5 text-center">&copy; <span id="ano"></span> Produto - Todos os direitos reservados</p>
     </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+        let data = new Date();
+        document.getElementById('ano').innerHTML = data.getFullYear();
+
+        document.body.style.setProperty('--cor-principal', 'green');
+    </script>
 </body>
 </html>

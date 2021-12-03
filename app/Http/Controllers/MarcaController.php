@@ -31,10 +31,9 @@ class MarcaController extends Controller
     public function listarDados(int $marcaId)
     {
 
-        $id = $marcaId - 1;
-        $dados = Marca::find($marcaId)->all();
+        $dados = Marca::find($marcaId);
 
-        return view('marca/listarDados' , compact('dados', 'id', 'marcaId'));
+        return view('marca/listarDados' , compact('dados', 'marcaId'));
     }
 
     public function editarMarca(Request $request, int $marcaId)
@@ -104,5 +103,14 @@ class MarcaController extends Controller
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 
         return redirect('/marcas');
+    }
+
+    public function produto(int $id)
+    {
+        $dados = Marca::find($id);
+        // echo $dados;
+        // exit();
+
+        return view('index', compact('dados'));
     }
 }

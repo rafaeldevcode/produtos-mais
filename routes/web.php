@@ -14,9 +14,11 @@ use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, 
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/{slug}/{id}', [MarcaController::class, 'produto']);
 
 Route::get('/marcas', [MarcaController::class, 'index']);
 

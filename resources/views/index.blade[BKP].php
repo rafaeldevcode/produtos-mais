@@ -2,7 +2,6 @@
 
 @section('conteudo')
     <main class="my-5">
-        {{ $dados->nome_marca }}
         <section class="container-fluid mb-5">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">

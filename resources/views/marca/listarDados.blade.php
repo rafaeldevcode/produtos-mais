@@ -6,7 +6,7 @@
 
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
-                <h2>Editar {{ $dados[$id]->nome_marca }}</h2>
+                <h2>Editar {{ $dados->nome_marca }}</h2>
                 <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
@@ -16,22 +16,10 @@
 
                 <ul class="list-group mt-5">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="nome_marca" type="text" value="{{ $dados[$id]->nome_marca }}">
+                        <input hidden class="form-control w-25 inputEditar" name="nome_marca" type="text" value="{{ $dados->nome_marca }}">
 
 
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados[$id]->nome_marca }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="slug_marca" type="text" value="{{ $dados[$id]->slug_marca }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Slug:</b>{{ $dados[$id]->slug_marca }}</span>
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados->nome_marca }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -41,21 +29,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="logomarca" type="text" value="{{ $dados[$id]->logomarca }}">
+                        <input hidden class="form-control w-25 inputEditar" name="slug_marca" type="text" value="{{ $dados->slug_marca }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b>{{ $dados[$id]->logomarca }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="favicon" type="text" value="{{ $dados[$id]->favicon }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Favicon:</b>{{ $dados[$id]->favicon }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Slug:</b>{{ $dados->slug_marca }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -65,21 +41,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="cor_principal" type="text" value="{{ $dados[$id]->cor_principal }}">
+                        <input hidden class="form-control w-25 inputEditar" name="logomarca" type="text" value="{{ $dados->logomarca }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cor principal da página:</b>{{ $dados[$id]->cor_principal }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_1" type="text" value="{{ $dados[$id]->banner_1 }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 1:</b>{{ $dados[$id]->banner_1 }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b>{{ $dados->logomarca }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -89,21 +53,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_2" type="text" value="{{ $dados[$id]->banner_2 }}">
+                        <input hidden class="form-control w-25 inputEditar" name="favicon" type="text" value="{{ $dados->favicon }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 2:</b>{{ $dados[$id]->banner_2 }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_3" type="text" value="{{ $dados[$id]->banner_3 }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 3:</b>{{ $dados[$id]->banner_3 }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Favicon:</b>{{ $dados->favicon }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -113,21 +65,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="image_desc" type="text" value="{{ $dados[$id]->image_desc }}">
+                        <input hidden class="form-control w-25 inputEditar" name="cor_principal" type="text" value="{{ $dados->cor_principal }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagen da descrição:</b>{{ $dados[$id]->image_desc }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="titulo_desc" type="text" value="{{ $dados[$id]->titulo_desc }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Título da descrição:</b>{{ $dados[$id]->titulo_desc }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cor principal da página:</b>{{ $dados->cor_principal }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -137,9 +77,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <textarea hidden class="form-control w-75 inputEditar" name="tagmanager" type="text">{{ $dados[$id]->tagmanager }}</textarea>
+                        <input hidden class="form-control w-25 inputEditar" name="banner_1" type="text" value="{{ $dados->banner_1 }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager:</b>{{ $dados[$id]->tagmanager }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 1:</b>{{ $dados->banner_1 }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -149,9 +89,69 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <textarea hidden class="form-control w-75 inputEditar" name="pixel_1" type="text">{{ $dados[$id]->pixel_1 }}</textarea>
+                        <input hidden class="form-control w-25 inputEditar" name="banner_2" type="text" value="{{ $dados->banner_2 }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel:</b>{{ $dados[$id]->pixel_1 }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 2:</b>{{ $dados->banner_2 }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="banner_3" type="text" value="{{ $dados->banner_3 }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 3:</b>{{ $dados->banner_3 }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="image_desc" type="text" value="{{ $dados->image_desc }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagen da descrição:</b>{{ $dados->image_desc }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="titulo_desc" type="text" value="{{ $dados->titulo_desc }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Título da descrição:</b>{{ $dados->titulo_desc }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <textarea hidden class="form-control w-75 inputEditar" name="tagmanager" type="text">{{ $dados->tagmanager }}</textarea>
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager:</b>{{ $dados->tagmanager }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <textarea hidden class="form-control w-75 inputEditar" name="pixel_1" type="text">{{ $dados->pixel_1 }}</textarea>
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel:</b>{{ $dados->pixel_1 }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">

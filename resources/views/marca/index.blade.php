@@ -15,7 +15,7 @@
                         <h5 class="item">{{ $marca->nome_marca }}</h5>
 
                         <span>
-                            <a href="#" class="btn btn-info">
+                            <a href="/{{ $marca->slug_marca }}/{{ $marca->id }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
