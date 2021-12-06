@@ -14,7 +14,9 @@
             <form action="/marca/{{ $marcaId }}/editar" method="POST">
                 @csrf
 
-                <ul class="list-group mt-5">
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
+
+                <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="nome_marca" type="text" value="{{ $dados->nome_marca }}">
 
@@ -41,6 +43,123 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="cor_principal" type="text" value="{{ $dados->cor_principal }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cor principal da página:</b>{{ $dados->cor_principal }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="cnpj" type="text" value="{{ $dados->cnpj }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cnpj:</b>{{ $dados->cnpj }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="cidade" type="text" value="{{ $dados->cidade }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cidade:</b>{{ $dados->cidade }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="rua" type="text" value="{{ $dados->rua }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Rua:</b>{{ $dados->rua }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Contato e Redes Sociais</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="telefone" type="text" value="{{ $dados->telefone }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Telefone:</b>{{ $dados->telefone }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="email" type="text" value="{{ $dados->email }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">E-mail:</b>{{ $dados->email }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="facebook" type="text" value="{{ $dados->facebook }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Facebook:</b>{{ $dados->facebook }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="instagram" type="text" value="{{ $dados->instagram }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Instagram:</b>{{ $dados->instagram }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="twitter" type="text" value="{{ $dados->twitter }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Twitter:</b>{{ $dados->twitter }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Benners e Imagens</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="logomarca" type="text" value="{{ $dados->logomarca }}">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b>{{ $dados->logomarca }}</span>
@@ -63,19 +182,7 @@
                             </a>
                         </span>
                     </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="cor_principal" type="text" value="{{ $dados->cor_principal }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cor principal da página:</b>{{ $dados->cor_principal }}</span>
-
-                        <span>
-                            <a class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
+                    
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="banner_1" type="text" value="{{ $dados->banner_1 }}">
 
@@ -123,7 +230,11 @@
                             </a>
                         </span>
                     </li>
+                </ul>
 
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Itens da Lista de Descrição</h5>
+
+                <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="titulo_desc" type="text" value="{{ $dados->titulo_desc }}">
 
@@ -136,10 +247,17 @@
                         </span>
                     </li>
 
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <textarea hidden class="form-control w-75 inputEditar" name="tagmanager" type="text">{{ $dados->tagmanager }}</textarea>
+                    @include('layouts/itensLista', [$dados])
+                </ul>
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager:</b>{{ $dados->tagmanager }}</span>
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Tagmanager e Pixel</h5>
+
+                <ul class="list-group">
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <textarea hidden class="form-control w-75 inputEditar" name="tag_head" type="text">{{ $dados->tag_head }}</textarea>
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager Head:</b>{{ $dados->tag_head }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">
@@ -149,9 +267,33 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <textarea hidden class="form-control w-75 inputEditar" name="pixel_1" type="text">{{ $dados->pixel_1 }}</textarea>
+                        <textarea hidden class="form-control w-75 inputEditar" name="tag_body" type="text">{{ $dados->tag_body }}</textarea>
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel:</b>{{ $dados->pixel_1 }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager Body:</b>{{ $dados->tag_body }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <textarea hidden class="form-control w-75 inputEditar" name="pixel_head" type="text">{{ $dados->pixel_head }}</textarea>
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel Head:</b>{{ $dados->pixel_head }}</span>
+
+                        <span>
+                            <a class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <textarea hidden class="form-control w-75 inputEditar" name="pixel_body" type="text">{{ $dados->pixel_body }}</textarea>
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel Body:</b>{{ $dados->pixel_body }}</span>
 
                         <span>
                             <a class="btn btn-info btnEditar">

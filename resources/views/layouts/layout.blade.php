@@ -10,22 +10,22 @@
     
     {{-- ///////// FONTAWESOME ///////// --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
+    <link rel="shortcut icon" href="{{ asset("images/$marca->favicon") }}" type="image/x-icon">
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
-    <title>Produtos</title>
+    <title>{{ $marca->nome_marca }}</title>
 </head>
 <body>
 
     <header class="cabecalho">
         <section class="container d-flex justify-content-sm-between justify-content-center align-items-center p-3 ">
             <div class="image-header">
-                <img src="https://recomendacao.formoney.com.br/assets/images/logo.png" alt="Logo">
+                <img src="{{ asset("images/$marca->logomarca") }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
             </div>
     
-            <a href="#" class="btn px-4 pt-2 d-sm-block d-none btn-principal">
+            <a href="#compra-agora" class="btn px-4 pt-2 d-sm-block d-none btn-principal">
                 <i class="fas fa-arrow-circle-right"></i>
                 Comprar Agora
             </a>
@@ -40,7 +40,7 @@
                 <h5 class="fw-bolder">EMPRESA</h5>
 
                 <ul class="list-group">
-                    <li class="list-group-item border-0 p-0">Nullius Saúde Natural</li>
+                    <li class="list-group-item border-0 p-0">{{ $marca->nome_marca }}</li>
                     <li class="list-group-item border-0 p-0">CNPJ 11.587.093/0001-19</li>
                     <li class="list-group-item border-0 p-0">Rua Marina Ciufuli Zanfelice, 280 – Lapa</li>
                     <li class="list-group-item border-0 p-0">São Paulo/SP – Cep 05040-000</li>
@@ -101,8 +101,9 @@
             </div>
         </section>
 
-        <p class="pt-5 text-center">&copy; <span id="ano"></span> Produto - Todos os direitos reservados</p>
+        <p class="pt-5 text-center">&copy; <span id="ano"></span> {{ $marca->nome_marca }} - Todos os direitos reservados</p>
     </footer>
+    <span hidden id="corPrincipal">{{ $marca->cor_principal }}</span>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -111,7 +112,8 @@
         let data = new Date();
         document.getElementById('ano').innerHTML = data.getFullYear();
 
-        document.body.style.setProperty('--cor-principal', 'green');
+        let corPrincipal = document.getElementById('corPrincipal').innerHTML;
+        document.body.style.setProperty('--cor-principal', corPrincipal);
     </script>
 </body>
 </html>

@@ -13,7 +13,9 @@
             <form action="/comentario/{{ $comentarioId }}/editar" method="POST">
                 @csrf
 
-                <ul class="list-group mt-5">
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
+
+                <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="nome_cliente" type="text" value="{{ $dados->nome_cliente }}">
 

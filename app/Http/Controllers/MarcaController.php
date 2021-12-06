@@ -10,9 +10,10 @@ class MarcaController extends Controller
     public function index(Request $request)
     {
         $marcas = Marca::all();
+        $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $mensagem = $request->session()->get('mensagem');
 
-        return view('marca/index', compact('marcas', 'mensagem'));
+        return view('marca/index', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
     public function create()
@@ -50,8 +51,23 @@ class MarcaController extends Controller
         $marca->banner_3 = $request->banner_3;
         $marca->image_desc = $request->image_desc;
         $marca->titulo_desc = $request->titulo_desc;
-        $marca->pixel_1 = $request->pixel_1;
-        $marca->tagmanager = $request->tagmanager;
+        $marca->item_1 = $request->item_1;
+        $marca->item_2 = $request->item_2;
+        $marca->item_3 = $request->item_3;
+        $marca->item_4 = $request->item_4;
+        $marca->item_5 = $request->item_5;
+        $marca->tag_head = $request->tag_head;
+        $marca->tag_body = $request->tag_body;
+        $marca->pixel_head = $request->pixel_head;
+        $marca->pixel_body = $request->pixel_body;
+        $marca->cnpj = $request->cnpj;
+        $marca->cidade = $request->cidade;
+        $marca->rua = $request->rua;
+        $marca->telefone = $request->telefone;
+        $marca->email = $request->email;
+        $marca->facebook = $request->facebook;
+        $marca->instagram = $request->instagram;
+        $marca->twitter = $request->twitter;
         $marca->save();
 
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
@@ -107,10 +123,10 @@ class MarcaController extends Controller
 
     public function produto(int $id)
     {
-        $dados = Marca::find($id);
-        // echo $dados;
-        // exit();
+        $marca = Marca::find($id);
+        $comentarios = $marca->comentarios()->get();
+        $produtos = $marca->produtos()->get();
 
-        return view('index', compact('dados'));
+        return view('index', compact('marca', 'comentarios', 'produtos'));
     }
 }

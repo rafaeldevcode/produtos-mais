@@ -19,9 +19,24 @@ class Marca extends Model
         'banner_3', 
         'image_desc',
         'titulo_desc',
+        'item_1',
+        'item_2',
+        'item_3',
+        'item_4',
+        'item_5',
         'cor_principal', 
-        'tagmanager', 
-        'pixel_1'
+        'tag_head',
+        'tag_body', 
+        'pixel_head',
+        'pixel_body',
+        'cnpj',
+        'cidade',
+        'rua',
+        'telefone',
+        'email',
+        'facebook',
+        'instagram',
+        'twitter'
     ];
 
     public function produtos()

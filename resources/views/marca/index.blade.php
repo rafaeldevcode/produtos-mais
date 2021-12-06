@@ -1,12 +1,19 @@
 @extends('layouts/painel/layout')
 
 @section('conteudo')
-    
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
             @include('layouts/mensagem', [$mensagem])
         @endif
         <h2 class="border-bottom border-success border-2 pb-3">Marcas Cadastradas</h2>
+
+        @if (empty($nome_marca))
+
+                <section class="alert alert-danger mt-5">
+                    <h2 class="fs-4 text-center">Você ainda não tem nenhuma marca cadastrada!</h2>
+                </section>
+            
+        @endif
 
         <section>
             <ul class="list-group">
@@ -15,7 +22,7 @@
                         <h5 class="item">{{ $marca->nome_marca }}</h5>
 
                         <span>
-                            <a href="/{{ $marca->slug_marca }}/{{ $marca->id }}" class="btn btn-info">
+                            <a href="/produto/{{ $marca->id }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
                             <a href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">

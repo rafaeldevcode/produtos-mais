@@ -18,7 +18,7 @@ use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, 
 //     return view('index');
 // });
 
-Route::get('/{slug}/{id}', [MarcaController::class, 'produto']);
+Route::get('/produto/{id}', [MarcaController::class, 'produto']);
 
 Route::get('/marcas', [MarcaController::class, 'index']);
 

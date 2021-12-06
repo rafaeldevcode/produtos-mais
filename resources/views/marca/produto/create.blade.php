@@ -60,7 +60,7 @@
                                 <input name="nome_produto" type="text" class="form-control" placeholder="Nome do Produto">
                             </div>
 
-                            <div class="col-12 col-md-5 mt-5">
+                            <div class="col-12 col-md-5">
                                 <label for="link_compra" class="form-label">Link de Compra</label>
                                 <input name="link_compra" type="text" class="form-control" placeholder="Link de Compra">
                             </div>

@@ -52,6 +52,12 @@
     color: rgb(0, 119, 255);
 }
 
+.comentario img{
+    width: 120px;
+    height: auto;
+    border-radius: 100%;
+}
+
 .btn-comentarios{
     background: var(--cor-principal);
     border: 1px solid var(--cor-principal);
@@ -71,10 +77,6 @@
 
 .texto-cor-principal-hover{
     color: var(--cor-principal);
-}
-
-.texto-cor-principal-hover:hover{
-    color: rgb(51, 51, 51);
 }
 
 body,

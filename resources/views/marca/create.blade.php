@@ -15,7 +15,7 @@
                 @csrf
 
                 <div class="border border-2 rounded p-3">
-                    <h3>Informações Principais</h3>
+                    <h3>Informações Da Marca</h3>
 
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5  mt-5">
@@ -33,6 +33,52 @@
                             <label for="cor_principal" class="form-label">Digite a Cor Principal Da Página</label>
                             <input name="cor_principal" type="text" class="form-control" placeholder="Cor Principal Da Página">
                             <span>Em exadecimal - EX: #FFFFFF</span>
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="cnpj" class="form-label">Digite o CNPJ</label>
+                            <input name="cnpj" type="text" class="form-control" placeholder="CNPJ">
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="cidade" class="form-label">Digite o endereço</label>
+                            <input name="cidade" type="text" class="form-control" placeholder="Nome da cidade/Estado CEP">
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="rua" class="form-label">Digite a rua</label>
+                            <input name="rua" type="text" class="form-control" placeholder="Nome da rua, número - Bairro">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-5">
+                    <h3>Contato e Mídias sociais</h3>
+
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input name="telefone" type="text" class="form-control" placeholder="Digite o telefone de contato">
+                        </div>
+    
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input name="email" type="text" class="form-control" placeholder="Digite o e-mail">
+                        </div>
+    
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="facebook" class="form-label">Facebook</label>
+                            <input name="facebook" type="text" class="form-control" placeholder="Facebook">
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="instagram" class="form-label">Instagram</label>
+                            <input name="instagram" class="form-control" type="text" placeholder="Instagram">
+                        </div>
+    
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="twitter" class="form-label">Twitter</label>
+                            <input name="twitter" class="form-control" type="text" placeholder="Twitter">
                         </div>
                     </div>
                 </div>
@@ -93,7 +139,11 @@
                             </div>
 
 
-                            <div id="paiLista"></div>
+                            <div id="paiLista">
+                                <div hidden class="alert alert-danger" id="avisoItem">
+                                    Você pode adicionar no máximo 5 itens!
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,28 +152,26 @@
                     <h3>Tagmanager | Pixel</h3>
 
                     <div class="col-12 d-flex flex-wrap justify-content-between align-items-end mt-5">
-                        <div class="col-12 col-sm-8">
-                            <label for="tagmanager" class="form-label">Tagmanager</label>
-                            <input disabled name="tagmanager" type="text" class="form-control disabled" placeholder="Digite o Tagmanager">
+                        <div class="col-12 col-md-5">
+                            <label for="tag_head" class="form-label">Tagmanager Head</label>
+                            <textarea name="tag_head" type="text" class="form-control" placeholder="Tagmanager Head"></textarea>
                         </div>
 
-                        <a class="btn btn-primary col-12 col-sm-3 mt-2 mt-sm-0" id="abilitar">
-                            Abilitar Tagmanager
-                            <i class="fas fa-circle"></i>
-                        </a>
+                        <div class="col-12 col-md-5 mt-5 mt-md-0">
+                            <label for="tag_body" class="form-label">Tagmanager Body</label>
+                            <textarea name="tag_body" type="text" class="form-control" placeholder="Tagmanager Body"></textarea>
+                        </div>
                     </div>
 
-                    <div class="d-flex flex-wrap justify-content-between">
-                        <div class="col-12 col-md-5 mt-5">
-                            <div class="d-flex flex-row align-items-center justify-content-between mb-2">
-                                <h6 class="mb-0">Adicionar Pixel</h6>
-                                <a class="btn btn-primary" id="adicionarPixel">
-                                    <i class="fas fa-plus fs-6"></i>
-                                </a>
-                            </div>
+                    <div class="col-12 d-flex flex-wrap justify-content-between align-items-end mt-5">
+                        <div class="col-12 col-md-5">
+                            <label for="pixel_head" class="form-label">Pixel Head</label>
+                            <textarea name="pixel_head" type="text" class="form-control" placeholder="Pixel Head"></textarea>
+                        </div>
 
-
-                            <div id="paiPixel"></div>
+                        <div class="col-12 col-md-5 mt-5 mt-md-0">
+                            <label for="pixel_body" class="form-label">Pixel Body</label>
+                            <textarea name="pixel_body" type="text" class="form-control" placeholder="Pixel Body"></textarea>
                         </div>
                     </div>
                 </div>
@@ -142,97 +190,70 @@
     <script>
 
         let indice = 1;
-        let indice_2 = 1;
+        // let indice_2 = 1;
         
         document.getElementById('adicionarItem').addEventListener('click', ()=>{
             let pai = document.getElementById('paiLista');
-        
-            let i = document.createElement('i');
-                i.setAttribute('class', 'fas fa-minus fs-6'); 
-        
-            let a = document.createElement('a');
-                a.setAttribute('class', 'btn btn-danger remover');
-                a.appendChild(i);
-        
-            let input = document.createElement('input');
-                input.setAttribute('name', `item_${indice}`);
-                input.setAttribute('type', 'number');
-                input.setAttribute('class', 'form-control mx-2');
-                input.setAttribute('placeholder', `Digite o Item ${indice}`)
-        
-            let label = document.createElement('label');
-                label.setAttribute('class', 'form-label m-0');
-                label.setAttribute('for', `item_${indice}`)
-                label.innerHTML = `item_${indice}`;
-        
-            let div = document.createElement('div');
-                div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 filho');
-                div.appendChild(label);
-                div.appendChild(input);
-                div.appendChild(a);
-        
-            pai.appendChild(div);
+            let item = document.querySelectorAll('.item');
+            let avisoItem = document.getElementById('avisoItem');
+
+            if(item.length < 5){
+                let i = document.createElement('i');
+                    i.setAttribute('class', 'fas fa-minus fs-6'); 
+            
+                let a = document.createElement('a');
+                    a.setAttribute('class', 'btn btn-danger remover disabled');
+                    a.appendChild(i);
+            
+                let input = document.createElement('input');
+                    input.setAttribute('name', `item_${indice}`);
+                    input.setAttribute('type', 'text');
+                    input.setAttribute('class', 'form-control mx-2 item');
+                    input.setAttribute('placeholder', `Digite o Item ${indice}`)
+            
+                let label = document.createElement('label');
+                    label.setAttribute('class', 'form-label m-0');
+                    label.setAttribute('for', `item_${indice}`)
+                    label.innerHTML = `item_${indice}`;
+            
+                let div = document.createElement('div');
+                    div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 filho');
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    div.appendChild(a);
+            
+                pai.appendChild(div);
+            }else if(item.length == 5){
+                avisoItem.removeAttribute('hidden');
+            }
         
             indice++;
-        
-            removerInput();
+            removerInput(avisoItem);
         })
         
-        document.getElementById('adicionarPixel').addEventListener('click', ()=>{
-            let pai = document.getElementById('paiPixel');
-        
-            let i = document.createElement('i');
-                i.setAttribute('class', 'fas fa-minus fs-6'); 
-        
-            let a = document.createElement('a');
-                a.setAttribute('class', 'btn btn-danger remover');
-                a.appendChild(i);
-        
-            let input = document.createElement('input');
-                input.setAttribute('name', `pixel_${indice_2}`);
-                input.setAttribute('type', 'number');
-                input.setAttribute('class', 'form-control mx-2');
-                input.setAttribute('placeholder', `Digite o Pixel ${indice_2}`)
-        
-            let label = document.createElement('label');
-                label.setAttribute('class', 'form-label m-0');
-                label.setAttribute('for', `pixel_${indice_2}`)
-                label.innerHTML = `pixel_${indice_2}`;
-        
-            let div = document.createElement('div');
-                div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 filho');
-                div.appendChild(label);
-                div.appendChild(input);
-                div.appendChild(a);
-        
-            pai.appendChild(div);
-        
-            indice_2++;
-        
-            removerInput();
-        })
-        
-        function  removerInput(){
+        function  removerInput(aviso){
             let remover = document.querySelectorAll('.remover');
             let filho = document.querySelectorAll('.filho');
         
             for(let i = 0; i < remover.length; i++){
                 remover[i].addEventListener('click', ()=>{
+                    aviso.hidden = true;
                     filho[i].remove(filho[i]);
+                    indice--;
                 })
             }
         }
         
+        document.getElementById('abilitarTag').addEventListener('click', ()=>{
         
-        document.getElementById('abilitar').addEventListener('click', ()=>{
-        
-            let tagmanager = document.querySelector('.disabled');
-            let abilitar = document.getElementById('abilitar');
+            let tagmanager = document.querySelector('.disabled')[0];
+            let abilitar = document.getElementById('abilitarTag');
         
             if(tagmanager.disabled){
                 tagmanager.removeAttribute('disabled');
                 abilitar.innerHTML = 'Desabilitar Tagmanager <i class="fas fa-ban"></i>'
             }else{
+                document.getElementById('tagmanager').value = '';
                 tagmanager.disabled = true;
                 abilitar.innerHTML = 'Abilitar Tagmanager <i class="fas fa-circle"></i>'
             }
