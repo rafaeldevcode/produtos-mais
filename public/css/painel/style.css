@@ -29,12 +29,18 @@ html{
     color: rgb(121, 121, 121);
 }
 
-.btn-info{
+.btn-info,
+.btn-warning{
     color: #FFF;
 }
 
-.btn-info:hover{
-    color: #FFF;
+.btn-info:hover,
+.btn-warning:hover,
+.btn-danger:hover,
+.btn-success:hover,
+.btn-primary:hover,
+.btn-secondary:hover{
+    color: #000;
 }
 
 #pai label{
@@ -43,4 +49,22 @@ html{
 
 .sessao-excluir{
     background: rgba(0, 0, 0, 0.363);
+}
+
+.btnRemoverErro{
+    cursor: pointer;
+    font-size: .9em;
+}
+
+.removerErro{
+    font-size: .9em;
+}
+
+.image-list{
+    width: 150px;
+}
+
+.image-list img{
+    width: 100%;
+    height: auto;
 }

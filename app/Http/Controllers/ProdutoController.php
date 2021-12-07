@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacaoProduto;
 use Illuminate\Http\Request;
 use App\Models\{Marca, Produto};
+use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller
 { 
@@ -16,23 +18,27 @@ class ProdutoController extends Controller
         return view('marca/produto/create', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
-    public function store(Request $request)
+    public function store(ValidacaoProduto $request)
     {
 
         $marca = Marca::find($request->id);
-        $marca->produtos()->create([
-            'nome_produto'    => $request->nome_produto,
-            'link_compra'     => $request->link_compra,
-            'quant_produto'   => $request->quant_produto,
-            'image_produto'   => $request->image_produto,
-            'valor_unit'      => $request->valor_unit,
-            'valor_cheio'     => $request->valor_cheio,
-            'valor_parcelado' => $request->valor_parcelado,
-            'parcelas'        => $request->parcelas,
-            'exibir_produto'  => $request->exibir_produto
-        ]);
+        DB::transaction(function() use($request, $marca){
+            $marca->produtos()->create([
+                'nome_produto'    => $request->nome_produto,
+                'link_compra'     => $request->link_compra,
+                'quant_produto'   => $request->quant_produto,
+                'image_produto'   => $request->image_produto,
+                'valor_unit'      => $request->valor_unit,
+                'valor_cheio'     => $request->valor_cheio,
+                'valor_parcelado' => $request->valor_parcelado,
+                'parcelas'        => $request->parcelas,
+                'exibir_produto'  => $request->exibir_produto
+            ]);
+        });
 
-        $request->session()->flash("mensagem", "Produto adicionado com sucesso à {$marca->nome_marca}!");
+        $nome_produto = $request->nome_produto;
+
+        $request->session()->flash("mensagem", "{$nome_produto} adicionado com sucesso à {$marca->nome_marca}!");
 
         return redirect('/adicionar/produto');
 
@@ -49,16 +55,19 @@ class ProdutoController extends Controller
     public function editarDados(Request $request, int $produtoId)
     {
         $produto = Produto::find($produtoId);
-        $produto->nome_produto = $request->nome_produto;
-        $produto->link_compra = $request->link_compra;
-        $produto->quant_produto = $request->quant_produto;
-        $produto->image_produto = $request->image_produto;
-        $produto->valor_unit = $request->valor_unit;
-        $produto->valor_cheio = $request->valor_cheio;
-        $produto->valor_parcelado = $request->valor_parcelado;
-        $produto->parcelas = $request->parcelas;
-        $produto->exibir_produto = $request->exibir_produto;
-        $produto->save();
+
+        DB::transaction(function() use($request, $produto){
+            $produto->nome_produto = $request->nome_produto;
+            $produto->link_compra = $request->link_compra;
+            $produto->quant_produto = $request->quant_produto;
+            $produto->image_produto = $request->image_produto;
+            $produto->valor_unit = $request->valor_unit;
+            $produto->valor_cheio = $request->valor_cheio;
+            $produto->valor_parcelado = $request->valor_parcelado;
+            $produto->parcelas = $request->parcelas;
+            $produto->exibir_produto = $request->exibir_produto;
+            $produto->save();
+        });
 
         $request->session()->flash("mensagem", "{$request->nome_produto} alterado com sucesso!");
 
@@ -69,7 +78,10 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($produtoId)->nome_produto;
         $marca_id = Produto::find($produtoId)->marca_id;
-        Produto::destroy($produtoId);
+        
+        DB::transaction(function() use($produtoId){
+            Produto::destroy($produtoId);
+        });
 
         $request->session()->flash("mensagem", "{$produto} removido com sucesso!");
         

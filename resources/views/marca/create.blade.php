@@ -11,6 +11,17 @@
                 </a>
             </div>
 
+            @if ($errors->any())
+                <div class="mt-3">
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li class="p-1 m-1 alert alert-danger d-flex justify-content-between align-items-center removerErro">{{ $error }} <i class="fas fa-times btnRemoverErro"></i></li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
             <form action="/adicionar/marca" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
                 @csrf
 
@@ -31,7 +42,7 @@
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="cor_principal" class="form-label">Digite a Cor Principal Da Página</label>
-                            <input name="cor_principal" type="text" class="form-control" placeholder="Cor Principal Da Página">
+                            <input name="cor_principal" type="color" class="form-control" placeholder="Cor Principal Da Página">
                             <span>Em exadecimal - EX: #FFFFFF</span>
                         </div>
 
@@ -58,27 +69,27 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="telefone" class="form-label">Telefone</label>
-                            <input name="telefone" type="text" class="form-control" placeholder="Digite o telefone de contato">
+                            <input name="telefone" type="tel" class="form-control" placeholder="Digite o telefone de contato">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="email" class="form-label">E-mail</label>
-                            <input name="email" type="text" class="form-control" placeholder="Digite o e-mail">
+                            <input name="email" type="email" class="form-control" placeholder="Digite o e-mail">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="facebook" class="form-label">Facebook</label>
-                            <input name="facebook" type="text" class="form-control" placeholder="Facebook">
+                            <input name="facebook" type="url" class="form-control" placeholder="Facebook">
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
                             <label for="instagram" class="form-label">Instagram</label>
-                            <input name="instagram" class="form-control" type="text" placeholder="Instagram">
+                            <input name="instagram" class="form-control" type="url" placeholder="Instagram">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="twitter" class="form-label">Twitter</label>
-                            <input name="twitter" class="form-control" type="text" placeholder="Twitter">
+                            <input name="twitter" class="form-control" type="url" placeholder="Twitter">
                         </div>
                     </div>
                 </div>
@@ -187,10 +198,9 @@
         </section>
     </main>
 
-    <script>
+    <script type="text/javascript">
 
         let indice = 1;
-        // let indice_2 = 1;
         
         document.getElementById('adicionarItem').addEventListener('click', ()=>{
             let pai = document.getElementById('paiLista');
@@ -243,23 +253,15 @@
                 })
             }
         }
-        
-        document.getElementById('abilitarTag').addEventListener('click', ()=>{
-        
-            let tagmanager = document.querySelector('.disabled')[0];
-            let abilitar = document.getElementById('abilitarTag');
-        
-            if(tagmanager.disabled){
-                tagmanager.removeAttribute('disabled');
-                abilitar.innerHTML = 'Desabilitar Tagmanager <i class="fas fa-ban"></i>'
-            }else{
-                document.getElementById('tagmanager').value = '';
-                tagmanager.disabled = true;
-                abilitar.innerHTML = 'Abilitar Tagmanager <i class="fas fa-circle"></i>'
-            }
-        
-        })
 
+        let removerErro = document.querySelectorAll('.removerErro');
+        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
+
+        for(let i = 0; i < btnRemoverErro.length; i++){
+            btnRemoverErro[i].addEventListener('click', ()=>{
+                removerErro[i].remove(removerErro[i])
+            })
+        }
     </script>
 
 @endsection

@@ -36,6 +36,16 @@
                     </a>
                 </div>
 
+                @if ($errors->any())
+                    <div class="mt-3">
+                        <ul class="m-0">
+                            @foreach ($errors->all() as $error)
+                                <li class="p-1 m-1 alert alert-danger d-flex justify-content-between align-items-center removerErro">{{ $error }} <i class="fas fa-times btnRemoverErro"></i></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3">
                     @csrf
                     <div class="border border-2 rounded p-3 mt-1">
@@ -62,7 +72,7 @@
 
                             <div class="col-12 col-md-5">
                                 <label for="link_compra" class="form-label">Link de Compra</label>
-                                <input name="link_compra" type="text" class="form-control" placeholder="Link de Compra">
+                                <input name="link_compra" type="url" class="form-control" placeholder="Link de Compra">
                             </div>
 
                             <div class="col-12 col-md-5 mt-5">
@@ -129,6 +139,17 @@
                 </form>
             </section>
         </main>
+
+        <script type="text/javascript">
+            let removerErro = document.querySelectorAll('.removerErro');
+            let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
+
+            for(let i = 0; i < btnRemoverErro.length; i++){
+                btnRemoverErro[i].addEventListener('click', ()=>{
+                    removerErro[i].remove(removerErro[i])
+                })
+            }
+        </script>
     @endif
 
 @endsection

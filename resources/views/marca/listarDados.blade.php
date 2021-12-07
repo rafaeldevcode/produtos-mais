@@ -318,7 +318,7 @@
         </section>
     </main>
 
-    <script>
+    <script type="text/javascript">
         let btnEditar = document.querySelectorAll('.btnEditar');
         let textEditar = document.querySelectorAll('.textEditar');
         let inputEditar = document.querySelectorAll('.inputEditar');

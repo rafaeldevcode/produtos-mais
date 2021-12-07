@@ -22,7 +22,9 @@
     
     <header class="container-fluid bg-white p-3 d-flex justify-content-center">
         <div class="image-header">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
+            <a href="/marcas">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
+            </a>
         </div>
     </header>
 
@@ -33,7 +35,7 @@
         <p class="m-0">Developer | <b><a class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
     </footer>
 
-    <script>
+    <script type="text/javascript">
         let data = new Date();
         document.getElementById('ano').innerHTML = data.getFullYear();
     </script>

@@ -103,22 +103,40 @@
                     <h2 class="display-6 lh-1">{{ $marca->titulo_desc }}</h2>
     
                     <ul class="list-group">
-                        <li class="list-group-item border-0">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="fs-5">Estimule articulações e cartilagens saudáveis</span>
-                        </li>
-                        <li class="list-group-item border-0">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="fs-5">Sinta-se mais jovem e disposto</span>
-                        </li>
-                        <li class="list-group-item border-0">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="fs-5">Ajudar a reparar as articulações e cartilagem</span>
-                        </li>
-                        <li class="list-group-item border-0">
-                            <i class="fas fa-check-circle"></i>
-                            <span class="fs-5 fs-md-6">Apoio a flexibilidade e mobilidade articulares saudáveis</span>
-                        </li>
+                        @if (!empty($marca->item_1))
+                            <li class="list-group-item border-0">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="fs-5">{{ $marca->item_1 }}</span>
+                            </li>
+                        @endif
+
+                        @if (!empty($marca->item_2))
+                            <li class="list-group-item border-0">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="fs-5">{{ $marca->item_2 }}</span>
+                            </li>
+                        @endif
+
+                        @if (!empty($marca->item_3))
+                            <li class="list-group-item border-0">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="fs-5">{{ $marca->item_3 }}</span>
+                            </li>
+                        @endif
+
+                        @if (!empty($marca->item_4))
+                            <li class="list-group-item border-0">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="fs-5">{{ $marca->item_4 }}</span>
+                            </li>
+                        @endif
+
+                        @if (!empty($marca->item_5))
+                            <li class="list-group-item border-0">
+                                <i class="fas fa-check-circle"></i>
+                                <span class="fs-5">{{ $marca->item_5 }}</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
 

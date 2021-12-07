@@ -20,8 +20,8 @@ use App\Http\Controllers\{PainelController, MarcaController, ProdutoController, 
 
 Route::get('/produto/{id}', [MarcaController::class, 'produto']);
 
-Route::get('/marcas', [MarcaController::class, 'index']);
-
+Route::get('/', [MarcaController::class, 'index']);
+Route::get('/marcas', [MarcaController::class, 'listarMarcas']);
 Route::get('/adicionar/marca', [MarcaController::class, 'create']);
 Route::post('/adicionar/marca', [MarcaController::class, 'store']);
 Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados']);

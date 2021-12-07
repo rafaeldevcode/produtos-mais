@@ -4,16 +4,27 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\{Marca, Comentario, Produto};
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidacaoMarca;
+use Illuminate\Support\Facades\DB;
 
 class MarcaController extends Controller
 {
-    public function index(Request $request)
+
+    public function index()
+    {
+        $marcas = Marca::all();
+        $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
+
+        return view('marca/index', compact('marcas', 'nome_marca'));
+    }
+
+    public function listarMarcas(Request $request)
     {
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $mensagem = $request->session()->get('mensagem');
 
-        return view('marca/index', compact('marcas', 'mensagem', 'nome_marca'));
+        return view('marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
     public function create()
@@ -21,10 +32,15 @@ class MarcaController extends Controller
         return view('marca/create');
     }
 
-    public function store(Request $request)
+    public function store(ValidacaoMarca $request)
     {
-        $marca = Marca::create($request->all());
-        $request->session()->flash("mensagem", "{$marca->nome_marca} adicionado ao banco com sucesso!");
+
+        DB::transaction(function() use($request){
+            Marca::create($request->all());
+        });
+
+        $marca = $request->nome_marca;
+        $request->session()->flash("mensagem", "{$marca} adicionado ao banco com sucesso!");
 
         return redirect('/adicionar/produto');
     }
@@ -40,35 +56,37 @@ class MarcaController extends Controller
     public function editarMarca(Request $request, int $marcaId)
     {
 
-        $marca = Marca::find($marcaId);
-        $marca->nome_marca = $request->nome_marca;
-        $marca->slug_marca = $request->slug_marca;
-        $marca->logomarca = $request->logomarca;
-        $marca->favicon = $request->favicon;
-        $marca->cor_principal = $request->cor_principal;
-        $marca->banner_1 = $request->banner_1;
-        $marca->banner_2 = $request->banner_2;
-        $marca->banner_3 = $request->banner_3;
-        $marca->image_desc = $request->image_desc;
-        $marca->titulo_desc = $request->titulo_desc;
-        $marca->item_1 = $request->item_1;
-        $marca->item_2 = $request->item_2;
-        $marca->item_3 = $request->item_3;
-        $marca->item_4 = $request->item_4;
-        $marca->item_5 = $request->item_5;
-        $marca->tag_head = $request->tag_head;
-        $marca->tag_body = $request->tag_body;
-        $marca->pixel_head = $request->pixel_head;
-        $marca->pixel_body = $request->pixel_body;
-        $marca->cnpj = $request->cnpj;
-        $marca->cidade = $request->cidade;
-        $marca->rua = $request->rua;
-        $marca->telefone = $request->telefone;
-        $marca->email = $request->email;
-        $marca->facebook = $request->facebook;
-        $marca->instagram = $request->instagram;
-        $marca->twitter = $request->twitter;
-        $marca->save();
+        DB::transaction(function() use($request, $marcaId){
+            $marca = Marca::find($marcaId);
+            $marca->nome_marca = $request->nome_marca;
+            $marca->slug_marca = $request->slug_marca;
+            $marca->logomarca = $request->logomarca;
+            $marca->favicon = $request->favicon;
+            $marca->cor_principal = $request->cor_principal;
+            $marca->banner_1 = $request->banner_1;
+            $marca->banner_2 = $request->banner_2;
+            $marca->banner_3 = $request->banner_3;
+            $marca->image_desc = $request->image_desc;
+            $marca->titulo_desc = $request->titulo_desc;
+            $marca->item_1 = $request->item_1;
+            $marca->item_2 = $request->item_2;
+            $marca->item_3 = $request->item_3;
+            $marca->item_4 = $request->item_4;
+            $marca->item_5 = $request->item_5;
+            $marca->tag_head = $request->tag_head;
+            $marca->tag_body = $request->tag_body;
+            $marca->pixel_head = $request->pixel_head;
+            $marca->pixel_body = $request->pixel_body;
+            $marca->cnpj = $request->cnpj;
+            $marca->cidade = $request->cidade;
+            $marca->rua = $request->rua;
+            $marca->telefone = $request->telefone;
+            $marca->email = $request->email;
+            $marca->facebook = $request->facebook;
+            $marca->instagram = $request->instagram;
+            $marca->twitter = $request->twitter;
+            $marca->save();
+        });
 
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
 
@@ -106,15 +124,17 @@ class MarcaController extends Controller
         $nome_marca = Marca::find($marcaId)->nome_marca;
         $marca = Marca::find($marcaId);
         
-        $marca->comentarios->each(function(Comentario $comentario, $marca){
-            $comentario->delete();
+        DB::transaction(function() use($marca){
+            $marca->comentarios->each(function(Comentario $comentario){
+                $comentario->delete();
+            });
+    
+            $marca->produtos->each(function(Produto $produto){
+                $produto->delete();
+            });
+    
+            $marca->delete();
         });
-
-        $marca->produtos->each(function(Produto $produto){
-            $produto->delete();
-        });
-
-        $marca->delete();
 
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 

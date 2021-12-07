@@ -1,41 +1,51 @@
 @extends('layouts/painel/layout')
 
 @section('conteudo')
-    
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
             @include('layouts/mensagem', [$mensagem])
         @endif
-
         <div class="border-bottom border-success border-2 d-flex flex-wrap justify-content-md-between justify-content-center">
-            <h2>Produtos {{ $nome_marca }}</h2>
-
-            <span class="d-flex mb-3">
-                <form action="?" class="d-flex ms-1">
-                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar produto">
-                    <button type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-    
-                <a href="/marcas" class="btn btn-info d-flex align-items-center ms-2 py-2">
-                    <i class="fas fa-reply"></i>
-                </a>
-            </span>
+            <h2>Marcas Cadastradas</h2>
+            <form action="?" class="d-flex mb-3 ms-1">
+                <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar marca">
+                <button type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
         </div>
+
+        @if (empty($nome_marca))
+
+                <section class="alert alert-danger mt-5">
+                    <h2 class="fs-4 text-center">Você ainda não tem nenhuma marca cadastrada!</h2>
+                </section>
+            
+        @endif
 
         <section>
             <ul class="list-group mt-5">
-                @foreach ($produtos as $produto)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <h5 class="item">{{ $produto->nome_produto }}</h5>
+                @foreach ($marcas as $marca)
+                    <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
+                        <h5 class="item">{{ $marca->nome_marca }}</h5>
 
                         <span>
-                            <a href="/produto/{{ $produto->id }}/listarDados" class="btn btn-success">
+                            <a href="/produto/{{ $marca->id }}" class="btn btn-info">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="/marca/{{ $marca->id }}/config" class="btn btn-warning disabled">
+                                <i class="fas fa-cog"></i>
+                            </a>
+                            <a href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
+                                <i class="fas fa-external-link-square-alt"></i>
+                            </a>
+                            <a href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
                                 <i class="fas fa-clipboard-list"></i>
                             </a>
-        
-                            <a id="{{ $produto->id }}" class="btn btn-danger remover">
+                            <a href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
+                                <i class="fas fa-comments"></i>
+                            </a>
+                            <a id="{{ $marca->id }}" class="btn btn-danger remover">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </span>
@@ -44,15 +54,25 @@
             </ul>
         </section>
 
-        <section class="border-top border-success border-2 mt-5 d-flex justify-content-between">
-            <a href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+        <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-evenly justify-content-lg-between">
+            <a href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+                Nova Marca
+                <i class="fas fa-plus-circle ms-2"></i>
+            </a>
+
+            <a href="/adicionar/produto" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
                 Novo Produto
+                <i class="fas fa-plus-circle ms-2"></i>
+            </a>
+
+            <a href="/adicionar/comentario" class="btn btn-info mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+                Novo Comentário
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
         </section>
     </main>
 
-    <script  type="text/javascript">
+    <script type="text/javascript">
         let remover = document.querySelectorAll('.remover');
 
         for(let i = 0; i < remover.length; i++){
@@ -81,7 +101,7 @@
                     a.appendChild(i_a);
 
                 let form = document.createElement('form');
-                    form.setAttribute('action', `/produto/${id}/remover`);
+                    form.setAttribute('action', `/marca/${id}/remover`);
                     form.setAttribute('method', 'POST');
                     form.setAttribute('class', 'text-center d-flex justify-content-evenly');
                     form.innerHTML = '@csrf';
@@ -90,7 +110,7 @@
 
                 let p = document.createElement('p');
                     p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                    p.innerHTML = `Certeza que deseja excluir o produto ${item}?`;
+                    p.innerHTML = `Certeza que deseja excluir a marca ${item}?`;
 
                 let div = document.createElement('div');
                     div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
@@ -98,7 +118,7 @@
                     div.appendChild(form);
                 
                 let section = document.createElement('section');
-                    section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerProduto');
+                    section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerMarca');
                     section.appendChild(div);
 
                 main.appendChild(section);
@@ -109,7 +129,7 @@
 
         function cancelar(){
             document.getElementById('cancelar').addEventListener('click', ()=>{
-                document.querySelector('.removerProduto').remove('section')
+                document.querySelector('.removerMarca').remove('section')
             })
         }
     </script>
