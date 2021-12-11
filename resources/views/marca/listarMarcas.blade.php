@@ -3,9 +3,9 @@
 @section('conteudo')
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
-            @include('layouts/mensagem', [$mensagem])
+            @include('layouts/componentes/mensagem', [$mensagem])
         @endif
-        <div class="border-bottom border-success border-2 d-flex flex-wrap justify-content-md-between justify-content-center">
+        <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Marcas Cadastradas</h2>
             <form action="?" class="d-flex mb-3 ms-1">
                 <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar marca">
@@ -33,14 +33,14 @@
                             <a href="/produto/{{ $marca->id }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="/marca/{{ $marca->id }}/config" class="btn btn-warning disabled">
+                            <a href="/marca/{{ $marca->id }}/config" class="btn btn-warning">
                                 <i class="fas fa-cog"></i>
                             </a>
                             <a href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
                                 <i class="fas fa-external-link-square-alt"></i>
                             </a>
                             <a href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
-                                <i class="fas fa-clipboard-list"></i>
+                                <i class="fas fa-pen-square"></i>
                             </a>
                             <a href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
                                 <i class="fas fa-comments"></i>
@@ -110,7 +110,7 @@
 
                 let p = document.createElement('p');
                     p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                    p.innerHTML = `Certeza que deseja excluir a marca ${item}?`;
+                    p.innerHTML = `Certeza que deseja excluir a marca \"${item}\"? Também serão excluidos os produtos e comentários relacionados a ela!`;
 
                 let div = document.createElement('div');
                     div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');

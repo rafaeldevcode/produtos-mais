@@ -24,7 +24,8 @@ html{
     height: auto;
 }
 
-.adiconar-marca span{
+.adiconar-marca span,
+.adiconar-produto span{
     font-size: .8em;
     color: rgb(121, 121, 121);
 }

@@ -5,10 +5,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacaoProduto;
 use Illuminate\Http\Request;
 use App\Models\{Marca, Produto};
-use Illuminate\Support\Facades\DB;
+use App\Services\{Adicionar, Remover, Editar, Duplicar};
 
 class ProdutoController extends Controller
 { 
+
+    ///// LISTAR PRODUTOS COM ÍCONE DE OPÇÕES /////
     public function create(Request $request)
     {
         $marcas = Marca::all();
@@ -18,73 +20,66 @@ class ProdutoController extends Controller
         return view('marca/produto/create', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
-    public function store(ValidacaoProduto $request)
+    ///// GIARDAR PRODUTOS NO BANCO /////
+    public function store(ValidacaoProduto $request, Adicionar $adicionar)
     {
 
         $marca = Marca::find($request->id);
-        DB::transaction(function() use($request, $marca){
-            $marca->produtos()->create([
-                'nome_produto'    => $request->nome_produto,
-                'link_compra'     => $request->link_compra,
-                'quant_produto'   => $request->quant_produto,
-                'image_produto'   => $request->image_produto,
-                'valor_unit'      => $request->valor_unit,
-                'valor_cheio'     => $request->valor_cheio,
-                'valor_parcelado' => $request->valor_parcelado,
-                'parcelas'        => $request->parcelas,
-                'exibir_produto'  => $request->exibir_produto
-            ]);
-        });
-
+        $adicionar->adicionarProduto($request, $marca);
         $nome_produto = $request->nome_produto;
-
         $request->session()->flash("mensagem", "{$nome_produto} adicionado com sucesso à {$marca->nome_marca}!");
 
         return redirect('/adicionar/produto');
 
     }
 
+    ///// LISTAR TODOS OS PRODUTOS DA MARCA /////
+    public function listarProdutos(Request $request, int $marcaId)
+    {
+        $marca = Marca::find($marcaId);
+        $nome_marca = $marca->nome_marca;
+        $produtos = $marca->produtos()->get();
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('/marca/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem'));
+    }
+
+        ///// LISTAR PRODUTOS PARA EDIÇÃO /////
     public function listarDados(int $produtoId)
     {
-
         $dados = Produto::find($produtoId);
         
         return view('marca/produto/listarDados', compact('dados', 'produtoId'));
     }
 
-    public function editarDados(Request $request, int $produtoId)
+    ///// GUARDAR PRODUTOS EDITADOS /////
+    public function editarDados(Request $request, int $produtoId, Editar $editar)
     {
         $produto = Produto::find($produtoId);
-
-        DB::transaction(function() use($request, $produto){
-            $produto->nome_produto = $request->nome_produto;
-            $produto->link_compra = $request->link_compra;
-            $produto->quant_produto = $request->quant_produto;
-            $produto->image_produto = $request->image_produto;
-            $produto->valor_unit = $request->valor_unit;
-            $produto->valor_cheio = $request->valor_cheio;
-            $produto->valor_parcelado = $request->valor_parcelado;
-            $produto->parcelas = $request->parcelas;
-            $produto->exibir_produto = $request->exibir_produto;
-            $produto->save();
-        });
-
+        $editar->editarProduto($request, $produto);
         $request->session()->flash("mensagem", "{$request->nome_produto} alterado com sucesso!");
 
         return redirect("/marca/{$produto->marca_id}/produtos");
     }
 
-    public function destroy(int $produtoId, Request $request)
+    ///// REMOVER PRODUTO /////
+    public function destroy(int $produtoId, Request $request, Remover $remover)
     {
         $produto = Produto::find($produtoId)->nome_produto;
         $marca_id = Produto::find($produtoId)->marca_id;
-        
-        DB::transaction(function() use($produtoId){
-            Produto::destroy($produtoId);
-        });
-
+        $remover->removerProduto($produtoId);
         $request->session()->flash("mensagem", "{$produto} removido com sucesso!");
         
         return redirect("/marca/{$marca_id}/produtos");
+    }
+
+    ////// DUPLICAR PRODUTO /////
+    public function duplicar(int $produtoId, Request $request, Duplicar $duplicar)
+    {
+        $produto = Produto::find($produtoId);
+        $duplicar->duplicarProduto($produto);
+        $request->session()->flash("mensagem", "{$produto->nome_produto} clonado com sucesso!");
+
+        return redirect("/marca/{$produto->marca_id}/produtos");
     }
 }

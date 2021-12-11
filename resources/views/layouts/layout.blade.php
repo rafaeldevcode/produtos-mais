@@ -23,7 +23,9 @@
 
     @if (!empty($marca->tag_head))
         {{ $marca->tag_head }}
-    @elseif(!empty($marca->pixel_head))
+    @else
+    
+    @if(!empty($marca->pixel_head))
         {{ $marca->pixel_head }}
     @endif
 </head>
@@ -31,7 +33,9 @@
 
     @if (!empty($marca->tag_body))
         {{ $marca->tag_body }}
-    @elseif(!empty($marca->pixel_body))
+    @else
+    
+    @if(!empty($marca->pixel_body))
         {{ $marca->pixel_body }}
     @endif
 
@@ -56,47 +60,61 @@
 
     <footer class="container-fluid pb-5 bg-principal">
         <section class="links-rodape container d-flex flex-wrap justify-content-between">
-            <div class="m-3">
-                <h5 class="fw-bolder">EMPRESA</h5>
+            @if ($config[0]->empresa == 'on')
+                <div class="m-3">
+                    <h5 class="fw-bolder">EMPRESA</h5>
 
-                <ul class="list-group">
-                    @if (!empty($marca->nome_marca))
-                        <li class="list-group-item border-0 p-0">{{ $marca->nome_marca }}</li>
-                    @endif
-                    
-                    @if (!empty($marca->cnpj))
-                        <li class="list-group-item border-0 p-0">CNPJ: {{ $marca->cnpj }}</li>
-                    @endif
-                    
-                    @if (!empty($marca->rua))
-                        <li class="list-group-item border-0 p-0">Rua: {{ $marca->rua }}</li>
-                    @endif
-                    
-                    @if (!empty($marca->cidade))
-                        <li class="list-group-item border-0 p-0">Cidade: {{ $marca->cidade }}</li>
-                    @endif
-                </ul>
-            </div>
+                    <ul class="list-group">
+                        @if (!empty($marca->nome_marca))
+                            <li class="list-group-item border-0 p-0">{{ $marca->nome_marca }}</li>
+                        @endif
+                        
+                        @if ($config[0]->cnpj == 'on')
+                            @if (!empty($marca->cnpj))
+                                <li class="list-group-item border-0 p-0">CNPJ: {{ $marca->cnpj }}</li>
+                            @endif
+                        @endif
+                        
+                        @if ($config[0]->rua == 'on')
+                            @if (!empty($marca->rua))
+                                <li class="list-group-item border-0 p-0">Rua: {{ $marca->rua }}</li>
+                            @endif
+                        @endif
+                        
+                        @if ($config[0]->cidade == 'on')
+                            @if (!empty($marca->cidade))
+                                <li class="list-group-item border-0 p-0">Cidade: {{ $marca->cidade }}</li>
+                            @endif
+                        @endif
+                    </ul>
+                </div>
+            @endif
 
-            <div class="m-3">
-                <h5 class="fw-bolder">ATENDIMENTO</h5>
+            @if ($config[0]->atendimento == 'on')
+                <div class="m-3">
+                    <h5 class="fw-bolder">ATENDIMENTO</h5>
 
-                <ul class="list-group">
-                    @if (!empty($marca->telefone))
-                        <li class="list-group-item border-0 p-0">
-                            <i class="fas fa-phone-square"></i>
-                            Telefone: {{ $marca->telefone }}
-                        </li>
-                    @endif
+                    <ul class="list-group">
+                        @if ($config[0]->telefone == 'on')
+                            @if (!empty($marca->telefone))
+                                <li class="list-group-item border-0 p-0">
+                                    <i class="fas fa-phone-square"></i>
+                                    Telefone: {{ $marca->telefone }}
+                                </li>
+                            @endif
+                        @endif
 
-                    @if (!empty($marca->email))
-                        <li class="list-group-item border-0 p-0">
-                            <i class="fas fa-envelope-square"></i>
-                            <a href="mailto:{{ $marca->email }}" class="text-decoration-none">E-mail: {{ $marca->email }} </a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                        @if ($config[0]->email == 'on')
+                            @if (!empty($marca->email))
+                                <li class="list-group-item border-0 p-0">
+                                    <i class="fas fa-envelope-square"></i>
+                                    <a href="mailto:{{ $marca->email }}" class="text-decoration-none">E-mail: {{ $marca->email }} </a>
+                                </li>
+                            @endif
+                        @endif
+                    </ul>
+                </div>
+            @endif
 
             <div class="m-3">
                 <h5 class="fw-bolder">LINKS</h5>
@@ -111,41 +129,54 @@
                 </ul>
             </div>
 
-            <div class="m-3">
-                <h5 class="fw-bolder">SOCIAL</h5>
+            @if ($config[0]->social == 'on')
+                <div class="m-3">
+                    <h5 class="fw-bolder">SOCIAL</h5>
 
-                <ul class="list-group">
-                    @if (!empty($marca->facebook))
-                        <li class="list-group-item border-0 p-0">
-                            <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->facebook }}">
-                                <i class="fab fa-facebook-square"></i>
-                                Facebook
-                            </a>
-                        </li>
-                    @endif
+                    <ul class="list-group">
+                        @if ($config[0]->facebook == 'on')
+                            @if (!empty($marca->facebook))
+                                <li class="list-group-item border-0 p-0">
+                                    <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->facebook }}">
+                                        <i class="fab fa-facebook-square"></i>
+                                        Facebook
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
 
-                    @if (!empty($marca->instagram))
-                        <li class="list-group-item border-0 p-0">
-                            <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->instagram }}">
-                                <i class="fab fa-instagram-square"></i>
-                                Instagram
-                            </a>
-                        </li>
-                    @endif
+                        @if ($config[0]->instagram == 'on')
+                            @if (!empty($marca->instagram))
+                                <li class="list-group-item border-0 p-0">
+                                    <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->instagram }}">
+                                        <i class="fab fa-instagram-square"></i>
+                                        Instagram
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
 
-                    @if (!empty($marca->twitter))
-                        <li class="list-group-item border-0 p-0">
-                            <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->twitter }}">
-                                <i class="fab fa-twitter-square"></i>
-                                Twitter
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                        @if ($config[0]->twitter == 'on')
+                            @if (!empty($marca->twitter))
+                                <li class="list-group-item border-0 p-0">
+                                    <a target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->twitter }}">
+                                        <i class="fab fa-twitter-square"></i>
+                                        Twitter
+                                    </a>
+                                </li>
+                            @endif
+                        @endif
+                    </ul>
+                </div>
+            @endif
         </section>
 
         <p class="pt-5 text-center">&copy; <span id="ano"></span> {{ $marca->nome_marca }} - Todos os direitos reservados</p>
+
+        @if ($config[0]->modal == 'on')
+            @include('layouts/componentes/modal')
+        @endif
+
     </footer>
     <span hidden id="corPrincipal">{{ $marca->cor_principal }}</span>
 

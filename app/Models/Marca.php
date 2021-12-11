@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Produto, Comentario};
+use App\Models\{Produto, Comentario, Configuracao, Modal};
 
 class Marca extends Model
 {
+
     protected $fillable = [
         'id',
         'nome_marca', 
@@ -36,7 +37,7 @@ class Marca extends Model
         'email',
         'facebook',
         'instagram',
-        'twitter'
+        'twitter',
     ];
 
     public function produtos()
@@ -47,5 +48,15 @@ class Marca extends Model
     public function comentarios()
     {
         return $this->hasMany(Comentario::class);
+    }
+
+    public function configuracoes()
+    {
+        return $this->hasMany(Configuracao::class);
+    }
+
+    public function modals()
+    {
+        return $this->hasMany(Modal::class);
     }
 }

@@ -80,16 +80,19 @@
                         <div class="col-12 col-md-5 mt-5">
                             <label for="facebook" class="form-label">Facebook</label>
                             <input name="facebook" type="url" class="form-control" placeholder="Facebook">
+                            <span>Ex: https://facebook.com</span>
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
                             <label for="instagram" class="form-label">Instagram</label>
                             <input name="instagram" class="form-control" type="url" placeholder="Instagram">
+                            <span>Ex: https://instagram.com</span>
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="twitter" class="form-label">Twitter</label>
                             <input name="twitter" class="form-control" type="url" placeholder="Twitter">
+                            <span>Ex: https://twitter.com</span>
                         </div>
                     </div>
                 </div>

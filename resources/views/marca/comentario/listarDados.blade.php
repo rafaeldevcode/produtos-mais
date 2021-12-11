@@ -55,7 +55,7 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="comentario" type="text" value="{{ $dados->comentario }}">
+                        <textarea hidden class="form-control w-75 inputEditar" name="comentario">{{ $dados->comentario }}</textarea>
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Comentário:</b>{{ $dados->comentario }}</span>
 

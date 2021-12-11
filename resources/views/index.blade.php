@@ -38,10 +38,12 @@
                         <div class="card-header text-center border-0 p-0 m-0 bg-white">
                             <div class="bg-principal m-0 p-2 fs-4">
                                 <h2 class="fs-4">{{ $produto->quant_produto }} UNIDADES</h2>
-                                <div class="detalhes-produto bg-secondary px-2 rounded-top">
-                                    <span class="fs-6">Frete para todo Brasil</span>
-                                    <i class="fas fa-truck-moving"></i>
-                                </div>
+                                @if ($config[0]->icone_produto == 'on')
+                                    <div class="detalhes-produto bg-secondary px-2 rounded-top">
+                                        <span class="fs-6">Frete para todo Brasil</span>
+                                        <i class="fas fa-truck-moving"></i>
+                                    </div>
+                                @endif
                             </div>
                             <p class="my-2 fs-6">Cada unidade sai por <b class="texto-cor-principal">R${{ $produto->valor_unit }}</b></p>
                         </div>

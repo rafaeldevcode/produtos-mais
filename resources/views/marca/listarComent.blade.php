@@ -7,21 +7,11 @@
             @include('layouts/mensagem', [$mensagem])
         @endif
 
-        <div class="border-bottom border-success border-2 d-flex flex-wrap justify-content-md-between justify-content-center">
+        <div class="border-bottom border-success border-2 d-flex justify-content-between">
             <h2>Comentários {{ $nome_marca }}</h2>
-
-            <span class="d-flex mb-3">
-                <form action="?" class="d-flex ms-1">
-                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar comentario">
-                    <button type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-    
-                <a href="/marcas" class="btn btn-info d-flex align-items-center ms-2 py-2">
-                    <i class="fas fa-reply"></i>
-                </a>
-            </span>
+            <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <i class="fas fa-reply"></i>
+            </a>
         </div>
 
         <section>
@@ -52,7 +42,7 @@
         </section>
     </main>
 
-    <script type="text/javascript">
+    <script>
         let remover = document.querySelectorAll('.remover');
 
         for(let i = 0; i < remover.length; i++){

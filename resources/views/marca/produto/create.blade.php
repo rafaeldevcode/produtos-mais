@@ -25,7 +25,7 @@
         
         <main class="container my-5 pt-1 bg-white rounded">
             @if (!empty($mensagem))
-                @include('layouts/mensagem', [$mensagem])
+                @include('layouts/componentes/mensagem', [$mensagem])
             @endif
 
             <section class="container p-0">
@@ -46,7 +46,7 @@
                     </div>
                 @endif
 
-                <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3">
+                <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3 adiconar-produto">
                     @csrf
                     <div class="border border-2 rounded p-3 mt-1">
                         <h3>Marca do produto</h3>
@@ -73,6 +73,7 @@
                             <div class="col-12 col-md-5">
                                 <label for="link_compra" class="form-label">Link de Compra</label>
                                 <input name="link_compra" type="url" class="form-control" placeholder="Link de Compra">
+                                <span>Ex: https://produto.com</span>
                             </div>
 
                             <div class="col-12 col-md-5 mt-5">

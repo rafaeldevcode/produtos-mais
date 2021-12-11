@@ -5,10 +5,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacaoComentario;
 use Illuminate\Http\Request;
 use App\Models\{Marca, Comentario};
-use Illuminate\Support\Facades\DB;
+use App\Services\{Adicionar, Duplicar, Remover, Editar};
 
 class ComentarioController extends Controller
 {
+
+    ///// LISTAR COMENTÁRIOS COM ÍCONES DE OPÇÕES /////
     public function create(Request $request)
     {
         $marcas = Marca::all();
@@ -18,64 +20,63 @@ class ComentarioController extends Controller
         return view('marca/comentario/create', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
-    public function store(ValidacaoComentario $request)
+    ///// GUARDAR COMENTÁRIOS NO BANCO /////
+    public function store(ValidacaoComentario $request, Adicionar $adicionar)
     {
-
-        $marca = Marca::find($request->id);
-
-        DB::transaction(function() use($request, $marca){
-            $marca->comentarios()->create([
-                'nome_cliente' => $request->nome_cliente, 
-                'coment_desc' => $request->coment_desc, 
-                'image_cliente' => $request->image_cliente, 
-                'comentario' => $request->comentario
-            ]);
-        });
-
+        $adicionar->adicionarComentario($request);
         $request->session()->flash("mensagem", "Comentário de {$request->nome_cliente} adicionado com sucesso!");
 
         return redirect('/adicionar/comentario');
     }
 
+    ///// LISTAR TODOS OS COMENTÁRIOS DA MARCA /////
+    public function listarComentarios(Request $request, int $comentarioId)
+    {
+        $marca = Marca::find($comentarioId);
+        $nome_marca = $marca->nome_marca;
+        $comentarios = $marca->comentarios()->get();
+
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('/marca/comentario/listarComent', compact('comentarios', 'nome_marca', 'mensagem'));
+    }
+
+    ///// LISTAR COMENTÁRIOS PARA EDIÇÃO /////
     public function listarDados(int $comentarioId)
     {
-
         $dados = Comentario::find($comentarioId);
 
         return view('/marca/comentario/listarDados', compact('dados', 'comentarioId'));
     }
 
-    public function editarDados(Request $request, int $comentarioId)
+    ///// GUARDAR COMENTÁRIOS EDITADO /////
+    public function editarDados(Request $request, int $comentarioId, Editar $editar)
     {
-
         $comentario = Comentario::find($comentarioId);
-
-        DB::transaction(function() use($request, $comentario){
-            $comentario->nome_cliente = $request->nome_cliente;
-            $comentario->coment_desc = $request->coment_desc;
-            $comentario->image_cliente = $request->image_cliente;
-            $comentario->comentario = $request->comentario;
-            $comentario->save();
-        });
-
+        $editar->editarComentario($request, $comentario);
         $request->session()->flash("mensagem", "Comentário de {$request->nome_cliente} editado com sucesso!");
 
         return redirect("/marca/{$comentario->marca_id}/comentarios");
     }
 
-    public function destroy(Request $request)
+    ///// REMOVER COMENTÁRIO //////
+    public function destroy(Request $request, Remover $remover)
     {
-
         $nome_cliente = Comentario::find($request->comentarioId)->nome_cliente;
         $marca_id = Comentario::find($request->comentarioId)->marca_id;
-        
-        DB::transaction(function() use($request){
-            Comentario::destroy($request->comentarioId);
-        });
-
+        $remover->removerComentario($request);
         $request->session()->flash("mensagem", "Comentário de {$nome_cliente} removido com sucesso!");
 
         return redirect("/marca/{$marca_id}/comentarios");
+    }
 
+    ///// DUPLICAR COMENTÁRIO /////
+    public function duplicar(int $comentarioId, Request $request, Duplicar $duplicar)
+    {
+        $comentario = Comentario::find($comentarioId);
+        $duplicar->duplicarComentario($comentario);
+        $request->session()->flash("mensagem", "Comentário de {$comentario->nome_cliente} clonado com sucesso!");
+
+        return redirect("/marca/{$comentario->marca_id}/comentarios");
     }
 }

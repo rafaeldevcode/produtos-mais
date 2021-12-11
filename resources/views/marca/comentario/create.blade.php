@@ -26,7 +26,7 @@
         
         <main class="container my-5 pt-1 bg-white rounded">
             @if (!empty($mensagem))
-                @include('layouts/mensagem', [$mensagem])
+                @include('layouts/componentes/mensagem', [$mensagem])
             @endif
             <section class="container p-0">
                 <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
@@ -102,6 +102,8 @@
         </main>
 
         <script type="text/javascript">
+
+            ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
             let removerErro = document.querySelectorAll('.removerErro');
             let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
 

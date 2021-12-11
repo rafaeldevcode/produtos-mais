@@ -14,4 +14,9 @@ class Comentario extends Model
         'image_cliente', 
         'comentario'
     ];
+
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class);
+    }
 }

@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
-use App\Models\{Marca, Comentario, Produto};
+use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacaoMarca;
-use Illuminate\Support\Facades\DB;
+use App\Services\{Adicionar, Remover, Editar};
 
 class MarcaController extends Controller
 {
 
+    ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////
     public function index()
     {
         $marcas = Marca::all();
@@ -18,6 +20,7 @@ class MarcaController extends Controller
         return view('marca/index', compact('marcas', 'nome_marca'));
     }
 
+    ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 
     public function listarMarcas(Request $request)
     {
         $marcas = Marca::all();
@@ -27,126 +30,58 @@ class MarcaController extends Controller
         return view('marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca'));
     }
 
+    ///// CHARMAR ARQUIVO PARA ADICIONAR MARCA AO BONCO /////
     public function create()
     {
         return view('marca/create');
     }
 
-    public function store(ValidacaoMarca $request)
+    ///// GUARDAR DADOS NO BANCO /////
+    public function store(ValidacaoMarca $request, Adicionar $adicionar)
     {
-
-        DB::transaction(function() use($request){
-            Marca::create($request->all());
-        });
-
+        $adicionar->adicionarMarca($request);
         $marca = $request->nome_marca;
         $request->session()->flash("mensagem", "{$marca} adicionado ao banco com sucesso!");
 
         return redirect('/adicionar/produto');
     }
 
+    ///// LISTAR DADOS DA MARCA PARA EDIÇÃO /////
     public function listarDados(int $marcaId)
     {
-
         $dados = Marca::find($marcaId);
 
         return view('marca/listarDados' , compact('dados', 'marcaId'));
     }
 
-    public function editarMarca(Request $request, int $marcaId)
+    ///// ENVIAR DADOS EDITADO /////
+    public function editarMarca(Request $request, int $marcaId, Editar $editar)
     {
-
-        DB::transaction(function() use($request, $marcaId){
-            $marca = Marca::find($marcaId);
-            $marca->nome_marca = $request->nome_marca;
-            $marca->slug_marca = $request->slug_marca;
-            $marca->logomarca = $request->logomarca;
-            $marca->favicon = $request->favicon;
-            $marca->cor_principal = $request->cor_principal;
-            $marca->banner_1 = $request->banner_1;
-            $marca->banner_2 = $request->banner_2;
-            $marca->banner_3 = $request->banner_3;
-            $marca->image_desc = $request->image_desc;
-            $marca->titulo_desc = $request->titulo_desc;
-            $marca->item_1 = $request->item_1;
-            $marca->item_2 = $request->item_2;
-            $marca->item_3 = $request->item_3;
-            $marca->item_4 = $request->item_4;
-            $marca->item_5 = $request->item_5;
-            $marca->tag_head = $request->tag_head;
-            $marca->tag_body = $request->tag_body;
-            $marca->pixel_head = $request->pixel_head;
-            $marca->pixel_body = $request->pixel_body;
-            $marca->cnpj = $request->cnpj;
-            $marca->cidade = $request->cidade;
-            $marca->rua = $request->rua;
-            $marca->telefone = $request->telefone;
-            $marca->email = $request->email;
-            $marca->facebook = $request->facebook;
-            $marca->instagram = $request->instagram;
-            $marca->twitter = $request->twitter;
-            $marca->save();
-        });
-
+        $editar->editarMarca($request, $marcaId);
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
 
         return redirect('/marcas');
-
     }
 
-    public function listarProdutos(Request $request, int $marcaId)
+    ///// REMOVER A TABELA MARCA /////
+    public function destroy(int $marcaId, Request $request, Remover $remover)
     {
-
-        $marca = Marca::find($marcaId);
-        $nome_marca = $marca->nome_marca;
-        $produtos = $marca->produtos()->get();
-
-        $mensagem = $request->session()->get('mensagem');
-
-        return view('/marca/listarProdutos', compact('produtos', 'nome_marca', 'mensagem'));
-    }
-
-    public function listarComentarios(Request $request, int $comentarioId)
-    {
-
-        $marca = Marca::find($comentarioId);
-        $nome_marca = $marca->nome_marca;
-        $comentarios = $marca->comentarios()->get();
-
-        $mensagem = $request->session()->get('mensagem');
-
-        return view('/marca/listarComent', compact('comentarios', 'nome_marca', 'mensagem'));
-    }
-
-    public function destroy(int $marcaId, Request $request)
-    {
-
         $nome_marca = Marca::find($marcaId)->nome_marca;
-        $marca = Marca::find($marcaId);
-        
-        DB::transaction(function() use($marca){
-            $marca->comentarios->each(function(Comentario $comentario){
-                $comentario->delete();
-            });
-    
-            $marca->produtos->each(function(Produto $produto){
-                $produto->delete();
-            });
-    
-            $marca->delete();
-        });
-
+        $nome_marca = $remover->removerMarca($marcaId);
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 
         return redirect('/marcas');
     }
 
+    ///// EXIBIR A PAGINA DA MARCA /////
     public function produto(int $id)
     {
         $marca = Marca::find($id);
         $comentarios = $marca->comentarios()->get();
         $produtos = $marca->produtos()->get();
+        $config = $marca->configuracoes()->get();
+        $modal = $marca->modals()->get();
 
-        return view('index', compact('marca', 'comentarios', 'produtos'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal'));
     }
 }

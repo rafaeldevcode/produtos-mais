@@ -126,11 +126,7 @@
                         <div class="col-12 form-check form-switch">
                             <label for="exibir_produto" class="form-check-label">Mostrar na Página?</label>
                             <input
-                                @if ($dados->exibir_produto == 'on')
-                                    {{ $checked = 'checked' }}
-                                @else
-                                    {{ $checked = '' }}
-                                @endif
+                                {{ $dados->exibir_produto == 'on' ? 'checked' : '' ; }}
                              name="exibir_produto" type="checkbox" class="form-check-input">
                         </div>
                     </div>

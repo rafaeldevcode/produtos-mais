@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: Anton;
+    src: url(../fonts/Anton-Regular.ttf);
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -11,6 +16,39 @@
 
 :root{
     --cor-principal: #000;
+}
+
+body,
+html{
+    background: rgb(190, 190, 190);
+}
+
+.cabecalho{
+    background: #FFF;
+}
+
+.image-header{
+    width: 250px;
+    height: auto;
+}
+
+.image-header img{
+    width: 100%;
+    height: auto;
+}
+
+.card{
+    width: 100%;
+    max-width: 350px;
+}
+
+.card-header h2{
+    color: #FFF;
+}
+
+.lista-detalhes li span{
+    font-size: .8em;
+    line-height: 1;
 }
 
 .bg-principal{
@@ -79,39 +117,6 @@
     color: var(--cor-principal);
 }
 
-body,
-html{
-    background: rgb(190, 190, 190);
-}
-
-.cabecalho{
-    background: #FFF;
-}
-
-.image-header{
-    width: 250px;
-    height: auto;
-}
-
-.image-header img{
-    width: 100%;
-    height: auto;
-}
-
-.card{
-    width: 100%;
-    max-width: 350px;
-}
-
-.card-header h2{
-    color: #FFF;
-}
-
-.lista-detalhes li span{
-    font-size: .8em;
-    line-height: 1;
-}
-
 /* //////// ICONES /////// */
 .fa-shield-alt,
 .lista-detalhes .list-group-item:nth-child(1) span b{
@@ -151,6 +156,7 @@ html{
     height: auto;
 }
 
+/* ///// RODAPÉ ///// */
 footer .list-group li{
     color: #FFF;
     background: var(--cor-principal);
@@ -166,6 +172,122 @@ footer .list-group li a:hover{
     color: rgb(146, 146, 146);
 }
 
+
+/* ///// MODAL ///// */
+.componente-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.conteudo-modal{
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    background: #FFF;
+}
+
+.header-modal{
+    position: relative;
+    height: 80px;
+    background: #FFB300;
+}
+
+.header-modal p{
+    font-family: Anton;
+    line-height: 1;
+    font-size: 1.9em;
+    color: rgb(255, 0, 0);
+    font-weight: bolder;
+}
+
+.header-modal i{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: rgb(255, 0, 0);
+}
+
+.image-modal{
+    width: 100%;
+    max-width: 500px;
+    height: 220px;
+    margin: auto;
+}
+
+.image-modal img{
+    width: 100%;
+    height: auto;
+}
+
+.satisfacao{
+    width: 30%;
+    height: 200px;
+}
+
+.satisfacao i{
+    font-size: 150px;
+    filter: drop-shadow(2px 2px 5px #000);
+}
+.preco{
+    height: 200px;
+}
+
+.preco-btn{
+    width: 70%;
+}
+
+.preco{
+    width: 100%;
+    height: 130px;
+}
+
+.preco p{
+    font-family: Anton;
+    line-height: 1;
+    font-size: 3em;
+    color: rgb(255, 0, 0);
+    font-weight: bolder;
+    margin-right: 5px;
+}
+
+.preco span,
+.preco small{
+    font-family: Anton;
+    font-weight: bolder;
+}
+
+.preco p small{
+    font-size: .9em;
+    color: rgb(82, 82, 82);
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+.btn-modal{
+    height: 55px;
+}
+
+.btn-modal a{
+    font-family: Anton;
+    font-size: 1.8em;
+    font-weight: bolder;
+    background: rgb(0, 240, 80);
+    transition: background .4s;
+}
+
+.btn-modal a:hover{
+    background: #CCC;
+}
+
+/* ///// MEDIA QUERIES ///// */
 @media only screen and (max-width: 995px){
     .descricao-produto div h2{
         font-size: 1.8em;
@@ -182,5 +304,66 @@ footer .list-group li a:hover{
 
     footer section > div{
         text-align: center;
+    }
+}
+
+
+/* ///// KEYFRAMES ///// */
+.pulse{
+    animation: pulse .6s ease-out infinite ;
+}
+
+.abrir-modal{
+    animation: abrir-modal 0.8s linear forwards;
+}
+
+.fechar-modal{
+    animation: fechar-modal 0.8s linear forwards;
+}
+
+@keyframes pulse{
+    0% {
+      transform: scale(0.9);
+      opacity: 0.9;
+  }
+  50% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(0.9);
+      opacity: 0.9;
+  }
+}
+
+@keyframes abrir-modal {
+    0%{
+        transform: scale(0);
+    }
+    33%{
+        transform: scale(1);
+    }
+    66%{
+        transform: scale(1.05);
+    }
+    100%{
+        transform: scale(1);
+        background: rgba(0, 0, 0, 0.514);
+    }
+}
+
+@keyframes fechar-modal {
+    0%{
+        transform: scale(1);
+        background: rgba(0, 0, 0, 0.514);
+    }
+    33%{
+        transform: scale(1.05);
+    }
+    66%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
     }
 }

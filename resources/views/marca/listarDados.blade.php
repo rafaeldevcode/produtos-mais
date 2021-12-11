@@ -247,7 +247,7 @@
                         </span>
                     </li>
 
-                    @include('layouts/itensLista', [$dados])
+                    @include('layouts/componentes/itensLista', [$dados])
                 </ul>
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Tagmanager e Pixel</h5>
