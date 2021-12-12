@@ -17,12 +17,12 @@ use App\Http\Controllers\{MarcaController, ProdutoController, ComentarioControll
 Route::get('/produto/{id}', [MarcaController::class, 'produto']);
 
 Route::get('/', [MarcaController::class, 'index']);
-Route::get('/marcas', [MarcaController::class, 'listarMarcas'])->middleware('auth');
-Route::get('/adicionar/marca', [MarcaController::class, 'create'])->middleware('auth');
-Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('auth');
-Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('auth');
-Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])->middleware('auth');
-Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('auth');
+Route::get('/marcas', [MarcaController::class, 'listarMarcas'])->middleware('autenticador');
+Route::get('/adicionar/marca', [MarcaController::class, 'create'])->middleware('autenticador');
+Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('autenticador');
+Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('autenticador');
+Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])->middleware('autenticador');
+Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('autenticador');
 
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
 Route::post('/adicionar/produto', [ProdutoController::class, 'store']);

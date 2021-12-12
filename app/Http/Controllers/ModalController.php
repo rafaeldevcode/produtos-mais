@@ -11,7 +11,7 @@ class ModalController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('autenticador');
     }
     
     ///// ROTA PARA EDITAR MODAL /////

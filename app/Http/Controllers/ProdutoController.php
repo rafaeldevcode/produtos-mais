@@ -12,7 +12,7 @@ class ProdutoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('autenticador');
     }
     
     ///// LISTAR PRODUTOS COM ÍCONE DE OPÇÕES /////

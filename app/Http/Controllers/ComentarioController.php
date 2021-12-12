@@ -12,7 +12,7 @@ class ComentarioController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('autenticador');
     }
 
     ///// LISTAR COMENTÁRIOS COM ÍCONES DE OPÇÕES /////
