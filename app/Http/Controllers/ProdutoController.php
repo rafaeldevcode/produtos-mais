@@ -10,6 +10,11 @@ use App\Services\{Adicionar, Remover, Editar, Duplicar};
 class ProdutoController extends Controller
 { 
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     ///// LISTAR PRODUTOS COM ÍCONE DE OPÇÕES /////
     public function create(Request $request)
     {

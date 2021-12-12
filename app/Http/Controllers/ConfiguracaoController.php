@@ -8,6 +8,13 @@ use App\Services\Editar;
 
 class ConfiguracaoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    ///// LISTAR CONFIGURAÇÕES /////
     public function index(int $marcaId, Request $request)
     {
         $marca  = Marca::find($marcaId);
@@ -18,6 +25,7 @@ class ConfiguracaoController extends Controller
         return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem'));
     }
 
+    ///// EDITAR CONFIGURAÇÕES //////
     public function editarDados(int $configId, Request $request, Editar $editar)
     {
         $marcaId = $request->marca_id;

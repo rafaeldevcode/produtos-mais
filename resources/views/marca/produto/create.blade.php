@@ -24,9 +24,7 @@
     @else
         
         <main class="container my-5 pt-1 bg-white rounded">
-            @if (!empty($mensagem))
-                @include('marca/layouts/componentes/mensagem', [$mensagem])
-            @endif
+            @include('marca/layouts/componentes/mensagem', [$mensagem])
 
             <section class="container p-0">
                 <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
@@ -36,15 +34,7 @@
                     </a>
                 </div>
 
-                @if ($errors->any())
-                    <div class="mt-3">
-                        <ul class="m-0">
-                            @foreach ($errors->all() as $error)
-                                <li class="p-1 m-1 alert alert-danger d-flex justify-content-between align-items-center removerErro">{{ $error }} <i class="fas fa-times btnRemoverErro"></i></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                @include('marca/layouts/componentes/errors', [$errors])
 
                 <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3 adiconar-produto">
                     @csrf

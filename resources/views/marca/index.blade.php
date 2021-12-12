@@ -13,7 +13,7 @@
                     </button>
                 </form>
     
-                <a href="/login" class="btn btn-info d-flex align-items-center ms-2 py-2">
+                <a href="/entrar" class="btn btn-info d-flex align-items-center ms-2 py-2">
                     <i class="fas fa-sign-in-alt"></i>
                 </a>
             </span>

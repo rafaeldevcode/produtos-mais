@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{MarcaController, ProdutoController, ComentarioController, ConfiguracaoController, ModalController};
+use App\Http\Controllers\{MarcaController, ProdutoController, ComentarioController, ConfiguracaoController, ModalController, EntrarController, RegistroController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +17,12 @@ use App\Http\Controllers\{MarcaController, ProdutoController, ComentarioControll
 Route::get('/produto/{id}', [MarcaController::class, 'produto']);
 
 Route::get('/', [MarcaController::class, 'index']);
-Route::get('/marcas', [MarcaController::class, 'listarMarcas']);
-Route::get('/adicionar/marca', [MarcaController::class, 'create']);
-Route::post('/adicionar/marca', [MarcaController::class, 'store']);
-Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados']);
-Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca']);
-Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy']);
+Route::get('/marcas', [MarcaController::class, 'listarMarcas'])->middleware('auth');
+Route::get('/adicionar/marca', [MarcaController::class, 'create'])->middleware('auth');
+Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('auth');
+Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('auth');
+Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])->middleware('auth');
+Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('auth');
 
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
 Route::post('/adicionar/produto', [ProdutoController::class, 'store']);
@@ -48,6 +48,13 @@ Route::post('/marca/{marcaId}/modal/adicionar', [ModalController::class, 'store'
 Route::get('/marca/{marcaId}/modal/listarDados', [ModalController::class, 'listar']);
 Route::post('/marca/{marcaId}/modal/editar', [ModalController::class, 'editar']);
 Route::post('/modal/{modalId}/remover', [ModalController::class, 'destroy']);
+
+Route::get('/entrar', [EntrarController::class, 'index']);
+Route::post('/entrar', [EntrarController::class, 'entrar']);
+Route::get('/sair', [EntrarController::class, 'logout']);
+
+Route::get('/registrar', [RegistroController::class, 'index']);
+Route::post('/registrar', [RegistroController::class, 'store']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

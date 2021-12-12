@@ -2,9 +2,8 @@
 
 @section('conteudo')
     <main class="container bg-white my-5 rounded p-3">
-        @if (!empty($mensagem))
-            @include('marca/layouts/componentes/mensagem', [$mensagem])
-        @endif
+        @include('marca/layouts/componentes/mensagem', [$mensagem])
+
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Marcas Cadastradas</h2>
             <form action="?" class="d-flex mb-3 ms-1">
@@ -16,11 +15,9 @@
         </div>
 
         @if (empty($nome_marca))
-
-                <section class="alert alert-danger mt-5">
-                    <h2 class="fs-4 text-center">Você ainda não tem nenhuma marca cadastrada!</h2>
-                </section>
-            
+            <section class="alert alert-danger mt-5">
+                <h2 class="fs-4 text-center">Você ainda não tem nenhuma marca cadastrada!</h2>
+            </section>
         @endif
 
         <section>

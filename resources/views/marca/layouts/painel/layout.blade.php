@@ -20,12 +20,22 @@
 </head>
 <body>
     
-    <header class="container-fluid bg-white p-3 d-flex justify-content-center">
+    <header class="container-fluid bg-white p-3 d-flex flex-column align-items-center">
         <div class="image-header">
             <a href="/marcas">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
             </a>
         </div>
+
+        <nav class="container-fluid d-flex justify-content-end">
+            @auth
+                <a class="text-danger" href="/sair">Sair</a>
+            @endauth
+
+            @guest
+                <a href="/entrar">Entrar</a>
+            @endguest
+        </nav>
     </header>
 
     @yield('conteudo')

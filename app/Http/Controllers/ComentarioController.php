@@ -10,6 +10,11 @@ use App\Services\{Adicionar, Duplicar, Remover, Editar};
 class ComentarioController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     ///// LISTAR COMENTÁRIOS COM ÍCONES DE OPÇÕES /////
     public function create(Request $request)
     {

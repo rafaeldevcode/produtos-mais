@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ModalController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     ///// ROTA PARA EDITAR MODAL /////
     public function create(int $marcaId)
     {

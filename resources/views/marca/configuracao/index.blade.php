@@ -3,9 +3,8 @@
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
-        @if (!empty($mensagem))
-            @include('marca/layouts/componentes/mensagem', [$mensagem])
-        @endif
+        @include('marca/layouts/componentes/mensagem', [$mensagem])
+        
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
                 <h2>Configurações {{ $marca->nome_marca }}</h2>
