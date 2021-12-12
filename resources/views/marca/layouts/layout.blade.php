@@ -23,7 +23,7 @@
 
     @if (!empty($marca->tag_head))
         {{ $marca->tag_head }}
-    @else
+    @endif
     
     @if(!empty($marca->pixel_head))
         {{ $marca->pixel_head }}
@@ -33,7 +33,7 @@
 
     @if (!empty($marca->tag_body))
         {{ $marca->tag_body }}
-    @else
+    @endif
     
     @if(!empty($marca->pixel_body))
         {{ $marca->pixel_body }}
@@ -174,7 +174,7 @@
         <p class="pt-5 text-center">&copy; <span id="ano"></span> {{ $marca->nome_marca }} - Todos os direitos reservados</p>
 
         @if ($config[0]->modal == 'on')
-            @include('layouts/componentes/modal')
+            @include('marca/layouts/componentes/modal')
         @endif
 
     </footer>

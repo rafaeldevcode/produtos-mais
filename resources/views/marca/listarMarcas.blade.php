@@ -1,9 +1,9 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
-            @include('layouts/componentes/mensagem', [$mensagem])
+            @include('marca/layouts/componentes/mensagem', [$mensagem])
         @endif
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Marcas Cadastradas</h2>

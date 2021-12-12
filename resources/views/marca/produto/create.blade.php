@@ -1,4 +1,4 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     @if (empty($nome_marca))
@@ -25,7 +25,7 @@
         
         <main class="container my-5 pt-1 bg-white rounded">
             @if (!empty($mensagem))
-                @include('layouts/componentes/mensagem', [$mensagem])
+                @include('marca/layouts/componentes/mensagem', [$mensagem])
             @endif
 
             <section class="container p-0">

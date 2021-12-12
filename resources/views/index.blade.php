@@ -1,4 +1,4 @@
-@extends('layouts/layout')
+@extends('marca/layouts/layout')
 
 @section('conteudo')
     <main class="my-5">

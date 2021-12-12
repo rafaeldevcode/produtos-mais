@@ -1,4 +1,4 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     
@@ -247,7 +247,7 @@
                         </span>
                     </li>
 
-                    @include('layouts/componentes/itensLista', [$dados])
+                    @include('marca/layouts/componentes/itensLista', [$dados])
                 </ul>
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Tagmanager e Pixel</h5>

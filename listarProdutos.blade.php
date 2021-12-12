@@ -1,14 +1,14 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
-            @include('layouts/mensagem', [$mensagem])
+            @include('marca/layouts/mensagem', [$mensagem])
         @endif
 
         <div class="border-bottom border-success border-2 d-flex justify-content-between">
-            <h2>Comentários {{ $nome_marca }}</h2>
+            <h2>Produtos {{ $nome_marca }}</h2>
             <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                 <i class="fas fa-reply"></i>
             </a>
@@ -16,16 +16,16 @@
 
         <section>
             <ul class="list-group mt-5">
-                @foreach ($comentarios as $comentario)
+                @foreach ($produtos as $produto)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <h5 class="item">{{ $comentario->nome_cliente }}</h5>
+                        <h5 class="item">{{ $produto->nome_produto }}</h5>
 
                         <span>
-                            <a href="/comentario/{{ $comentario->id }}/listarDados" class="btn btn-success">
+                            <a href="/produto/{{ $produto->id }}/listarDados" class="btn btn-success">
                                 <i class="fas fa-clipboard-list"></i>
                             </a>
         
-                            <a id="{{ $comentario->id }}" class="btn btn-danger remover">
+                            <a id="{{ $produto->id }}" class="btn btn-danger remover">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </span>
@@ -35,8 +35,8 @@
         </section>
 
         <section class="border-top border-success border-2 mt-5 d-flex justify-content-between">
-            <a href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                Novo Comentário
+            <a href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                Novo Produto
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
         </section>
@@ -71,7 +71,7 @@
                     a.appendChild(i_a);
 
                 let form = document.createElement('form');
-                    form.setAttribute('action', `/comentario/${id}/remover`);
+                    form.setAttribute('action', `/produto/${id}/remover`);
                     form.setAttribute('method', 'POST');
                     form.setAttribute('class', 'text-center d-flex justify-content-evenly');
                     form.innerHTML = '@csrf';
@@ -80,7 +80,7 @@
 
                 let p = document.createElement('p');
                     p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                    p.innerHTML = `Certeza que deseja excluir o comentário de ${item}?`;
+                    p.innerHTML = `Certeza que deseja excluir o produto ${item}?`;
 
                 let div = document.createElement('div');
                     div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
@@ -88,7 +88,7 @@
                     div.appendChild(form);
                 
                 let section = document.createElement('section');
-                    section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
+                    section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerProduto');
                     section.appendChild(div);
 
                 main.appendChild(section);
@@ -99,7 +99,7 @@
 
         function cancelar(){
             document.getElementById('cancelar').addEventListener('click', ()=>{
-                document.querySelector('.removerComentario').remove('section')
+                document.querySelector('.removerProduto').remove('section')
             })
         }
     </script>

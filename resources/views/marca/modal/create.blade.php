@@ -1,4 +1,4 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     <main class="container bg-white my-5 rounded p-3">

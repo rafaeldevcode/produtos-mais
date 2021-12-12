@@ -1,10 +1,10 @@
-@extends('layouts/painel/layout')
+@extends('marca/layouts/painel/layout')
 
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
         @if (!empty($mensagem))
-            @include('layouts/componentes/mensagem', [$mensagem])
+            @include('marca/layouts/componentes/mensagem', [$mensagem])
         @endif
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
