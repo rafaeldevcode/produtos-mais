@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidacaoProduto extends FormRequest
+class ValidacaoModal extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,10 @@ class ValidacaoProduto extends FormRequest
     public function rules()
     {
         return [
-            'nome_produto'    => 'required',
-            'id'              => 'required',
-            'link_compra'     => 'required',
-            'quant_produto'   => 'required',
-            'image_produto'   => 'required',
-            'valor_unit'      => 'required',
-            'valor_cheio'     => 'required',
-            'valor_parcelado' => 'required',
-            'parcelas'        => 'required',
+            'produto_modal'      => 'required',
+            'preco_sem_desconto' => 'required',
+            'preco_com_desconto' => 'required',
+            'link_compra'        => 'required',
         ];
     }
 

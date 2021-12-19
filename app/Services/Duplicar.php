@@ -9,7 +9,7 @@
 
         public function duplicarProduto($produto)
         {
-            DB::transaction(function() use($produto){
+            DB::beginTransaction();
                 $marca = Marca::find($produto->marca_id);
 
                 $marca->produtos()->create([
@@ -23,12 +23,12 @@
                     'parcelas'        => $produto->parcelas,
                     'exibir_produto'  => $produto->exibir_produto
                 ]);
-            });
+            DB::commit();
         }
 
         public function duplicarComentario($comentario)
         {
-            DB::transaction(function() use($comentario){
+            DB::beginTransaction();
                 $marca = Marca::find($comentario->marca_id);
 
                 $marca->comentarios()->create([
@@ -37,6 +37,6 @@
                     'image_cliente' => $comentario->image_cliente, 
                     'comentario'    => $comentario->comentario
                 ]);
-            });
+            DB::commit();
         }
     }

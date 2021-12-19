@@ -20,34 +20,107 @@
 </head>
 <body>
     
-    <header class="container-fluid bg-white p-3 d-flex flex-column align-items-center">
+    <header class="container-fluid bg-white p-3 d-flex align-items-center justify-content-between">
         <div class="image-header">
-            <a href="/marcas">
+            <a title="Listar Marcas" href="/marcas">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
             </a>
         </div>
+        
+        <div class="navegacao d-flex flex-column justify-content-between p-0" id="navegacao">
+            <span>
+                <div class="menu">
+                    <i class="fas fa-arrow-circle-left fs-2 text-dark" id="rotacao"></i>
+                </div>
+    
+                <div class="text-end usuario p-2">
+                    <i class="fas fa-user-circle fs-1"></i>
 
-        <nav class="container-fluid d-flex justify-content-end">
-            @auth
-                <a class="text-danger" href="/sair">Sair</a>
-            @endauth
+                    <p>{{ $usuario }}</p>
+                </div>
+    
+                <nav class="text-end">
+                    <ul class="list-group">
+                        @auth
+                            <li class="list-group-item nav-item">
+                                <a title="Inicio" class="nav-link p-0" href="/marcas">Inicio</a>
+                            </li>
 
-            @guest
-                <a href="/entrar">Entrar</a>
-            @endguest
-        </nav>
+                            <li class="list-group-item nav-item">
+                                <a title="Listar Usuários" class="nav-link p-0" href="/usuarios">Usuarios</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Usuário" class="nav-link p-0" href="/registrar">Novo usuário</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Marca" class="nav-link p-0" href="/adicionar/marca">Nova marca</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Produto" class="nav-link p-0" href="/adicionar/produto">Novo produto</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Comentário" class="nav-link p-0" href="/adicionar/comentario">Novo comentário</a>
+                            </li>
+                        @endauth
+
+                        <li class="list-group-item nav-item">
+                            @auth
+                                <a title="Sair" class="text-danger nav-link p-0" href="/sair">
+                                    Sair
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                            @endauth
+            
+                            @guest
+                                <a title="Entrar" class="text-info nav-link p-0" href="/entrar">
+                                    Entrar
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </a>
+                            @endguest
+                        </li>
+                    </ul>
+                </nav>
+            </span>
+
+            <span>
+                <p class="m-0 text-center"><b><a title="Perfil Git Hub" class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
+            </span>
+        </div>
     </header>
 
     @yield('conteudo')
 
     <footer class="container-fluid bg-white p-3 d-flex flex-column justify-content-center align-items-center">
         <p class="m-0 text-center">&copy; <span id="ano"></span> Produtos + | Todos os direitos reservados</p>
-        <p class="m-0">Developer | <b><a class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
+        <p class="m-0">Developer | <b><a title="Perfil Git Hub" class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
     </footer>
 
     <script type="text/javascript">
         let data = new Date();
         document.getElementById('ano').innerHTML = data.getFullYear();
+
+        let menu = false;
+        document.getElementById('rotacao').addEventListener('click', ()=>{
+            menu = !menu;
+
+            if(menu == true){
+                document.getElementById('rotacao').classList.remove('rotacaoInversa');
+                document.getElementById('rotacao').classList.add('rotacao');
+
+                document.getElementById('navegacao').classList.remove('fecharMenu');
+                document.getElementById('navegacao').classList.add('abrirMenu');
+            }else{
+                document.getElementById('rotacao').classList.remove('rotacao');
+                document.getElementById('rotacao').classList.add('rotacaoInversa');
+
+                document.getElementById('navegacao').classList.remove('abrirMenu');
+                document.getElementById('navegacao').classList.add('fecharMenu');
+            }
+        })
     </script>
 </body>
 </html>

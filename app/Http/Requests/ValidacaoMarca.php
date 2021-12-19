@@ -24,13 +24,15 @@ class ValidacaoMarca extends FormRequest
     public function rules()
     {
         return [
-            'nome_marca' => 'required',
-            'slug_marca' => 'required',
-            'banner_1' => 'required',
-            'banner_2' => 'required',
-            'banner_3' => 'required',
-            'image_desc' => 'required',
+            'nome_marca'  => 'required',
+            'slug_marca'  => 'required',
+            'banner_1'    => 'required',
+            'banner_2'    => 'required',
+            'banner_3'    => 'required',
+            'image_desc'  => 'required',
             'titulo_desc' => 'required',
+            'cor_titulo'  => 'required',
+            'cor_texto'   => 'required',
         ];
     }
 

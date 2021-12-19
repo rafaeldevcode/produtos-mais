@@ -8,7 +8,7 @@
             <h2>Marcas Cadastradas</h2>
             <form action="?" class="d-flex mb-3 ms-1">
                 <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar marca">
-                <button type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
+                <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
                     <i class="fas fa-search"></i>
                 </button>
             </form>
@@ -27,22 +27,22 @@
                         <h5 class="item">{{ $marca->nome_marca }}</h5>
 
                         <span>
-                            <a href="/produto/{{ $marca->id }}" class="btn btn-info">
+                            <a title="Ver Página" href="/produto/{{ $marca->id }}" class="btn btn-info">
                                 <i class="fas fa-eye"></i>
                             </a>
-                            <a href="/marca/{{ $marca->id }}/config" class="btn btn-warning">
+                            <a title="Configurações da Página" href="/marca/{{ $marca->id }}/config" class="btn btn-warning">
                                 <i class="fas fa-cog"></i>
                             </a>
-                            <a href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
+                            <a title="Produtos da Página" href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
                                 <i class="fas fa-external-link-square-alt"></i>
                             </a>
-                            <a href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
+                            <a title="Editar Dados" href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
                                 <i class="fas fa-pen-square"></i>
                             </a>
-                            <a href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
+                            <a title="Comentários da Página" href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
                                 <i class="fas fa-comments"></i>
                             </a>
-                            <a id="{{ $marca->id }}" class="btn btn-danger remover">
+                            <a title="Remover Página" id="{{ $marca->id }}" class="btn btn-danger remover">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </span>
@@ -52,17 +52,17 @@
         </section>
 
         <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-evenly justify-content-lg-between">
-            <a href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+            <a title="Adicionar Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
                 Nova Marca
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
 
-            <a href="/adicionar/produto" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+            <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
                 Novo Produto
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
 
-            <a href="/adicionar/comentario" class="btn btn-info mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+            <a title="Adicionar Comantário" href="/adicionar/comentario" class="btn btn-info mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
                 Novo Comentário
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>

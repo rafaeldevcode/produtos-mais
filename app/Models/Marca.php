@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Produto, Comentario, Configuracao, Modal};
+use App\Models\{Produto, Comentario, Configuracao, Modal, Coutdown};
 
 class Marca extends Model
 {
@@ -26,10 +26,9 @@ class Marca extends Model
         'item_4',
         'item_5',
         'cor_principal', 
-        'tag_head',
-        'tag_body', 
-        'pixel_head',
-        'pixel_body',
+        'tagmanager',
+        'pixel',
+        'evento',
         'cnpj',
         'cidade',
         'rua',
@@ -38,6 +37,9 @@ class Marca extends Model
         'facebook',
         'instagram',
         'twitter',
+        'cor_titulo',
+        'cor_texto',
+        'disclaimer'
     ];
 
     public function produtos()
@@ -58,5 +60,10 @@ class Marca extends Model
     public function modals()
     {
         return $this->hasMany(Modal::class);
+    }
+
+    public function coutdown()
+    {
+        return $this->hasMany(Coutdown::class);
     }
 }

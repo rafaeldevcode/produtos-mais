@@ -5,11 +5,13 @@
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Configurações Modal</h2>
     
-            <a href="/marca/{{ $marcaId }}/config" class="btn btn-info d-flex align-items-center ms-2 py-2">
+            <a title="Voltar" href="/marca/{{ $marcaId }}/config" class="btn btn-info d-flex align-items-center ms-2 py-2">
                 <i class="fas fa-reply"></i>
             </a>
         </div>
 
+        @include('marca/layouts/componentes/errors', [$errors])
+        
         <section class="d-flex flex-wrap">
             <form method="POST" action="/marca/{{ $marcaId }}/modal/adicionar" class="my-5 col-12 col-md-6 adiconar-produto">
                 @csrf
@@ -41,7 +43,7 @@
                 </div>
 
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-12">
+                    <button title="Salvar" type="submit" class="btn btn-success mt-3 py-3 px-5 col-12">
                         Salvar
                         <i class="fas fa-save ms-2"></i>
                     </button>
@@ -53,4 +55,16 @@
             </div>
         </section>
     </main>
+
+    <script type="text/javascript">
+        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
+        let removerErro = document.querySelectorAll('.removerErro');
+        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
+
+        for(let i = 0; i < btnRemoverErro.length; i++){
+            btnRemoverErro[i].addEventListener('click', ()=>{
+                removerErro[i].remove(removerErro[i])
+            })
+        }
+    </script>
 @endsection

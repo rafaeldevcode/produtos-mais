@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Marca, Configuracao};
 use Illuminate\Http\Request;
 use App\Services\Editar;
+use Illuminate\Support\Facades\Auth;
 
 class ConfiguracaoController extends Controller
 {
@@ -21,8 +22,9 @@ class ConfiguracaoController extends Controller
         $config = $marca->configuracoes()->get();
         $modal = $marca->modals()->get();
         $mensagem = $request->session()->get('mensagem');
+        $usuario = Auth::user()->name;
 
-        return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem'));
+        return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario'));
     }
 
     ///// EDITAR CONFIGURAÇÕES //////

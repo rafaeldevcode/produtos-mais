@@ -15,7 +15,9 @@
 }
 
 :root{
-    --cor-principal: #000;
+    --cor-principal: rgb(0, 0, 0);
+    --titulo-rodape: rgb(104, 104, 104);
+    --texto-rodape: #FFF;
 }
 
 body,
@@ -156,15 +158,27 @@ html{
     height: auto;
 }
 
+/* //////// POLÍTICAS ///////// */
+.politicas h1{
+    background: var(--cor-principal);
+    color: var(--texto-rodape);
+}
+
+.politicas h2{
+    color: var(--cor-principal);
+    font-weight: bolder;
+    margin-top: 50px;
+}
+
 /* ///// RODAPÉ ///// */
 footer .list-group li{
-    color: #FFF;
+    color: var(--texto-rodape);
     background: var(--cor-principal);
 }
 
 
 footer .list-group li a{
-    color: #FFF;
+    color: var(--texto-rodape);
     transition: color .3s;
 }
 
@@ -172,6 +186,17 @@ footer .list-group li a:hover{
     color: rgb(146, 146, 146);
 }
 
+footer h5{
+    color: var(--titulo-rodape);
+}
+
+footer p{
+    color: var(--titulo-rodape);
+}
+
+footer .links > div{
+    border-bottom: 2px solid var(--texto-rodape);
+}
 
 /* ///// MODAL ///// */
 .componente-modal{
@@ -191,6 +216,10 @@ footer .list-group li a:hover{
     max-width: 500px;
     height: 500px;
     background: #FFF;
+}
+
+.conteudo-modal > div > span{
+    font-size: .7em;
 }
 
 .header-modal{
@@ -306,7 +335,6 @@ footer .list-group li a:hover{
         text-align: center;
     }
 }
-
 
 /* ///// KEYFRAMES ///// */
 .pulse{

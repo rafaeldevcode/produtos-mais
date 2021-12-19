@@ -18,6 +18,7 @@ class AdicionarMarca extends Migration
             $table->increments('id');
             $table->string('nome_marca');
             $table->string('slug_marca');
+            $table->string('disclaimer')->nullable();
             $table->string('logomarca')->nullable();
             $table->string('favicon')->nullable();
             $table->string('banner_1');
@@ -31,10 +32,11 @@ class AdicionarMarca extends Migration
             $table->string('item_4')->nullable();
             $table->string('item_5')->nullable();
             $table->string('cor_principal');
-            $table->string('tag_head')->nullable();
-            $table->string('tag_body')->nullable();
-            $table->string('pixel_head')->nullable();
-            $table->string('pixel_body')->nullable();
+            $table->string('cor_titulo');
+            $table->string('cor_texto');
+            $table->string('tagmanager')->nullable();
+            $table->string('pixel')->nullable();
+            $table->string('evento')->nullable();
             $table->string('cnpj')->nullable();
             $table->string('cidade')->nullable();
             $table->string('rua')->nullable();

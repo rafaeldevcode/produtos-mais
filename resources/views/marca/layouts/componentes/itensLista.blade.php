@@ -5,7 +5,7 @@
     <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Item 1:</b>{{ $dados->item_1 }}</span>
 
     <span>
-        <a class="btn btn-info btnEditar">
+        <a title="Editar" class="btn btn-info btnEditar">
             <i class="fas fa-edit"></i>
         </a>
     </span>
@@ -17,7 +17,7 @@
     <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Item 2:</b>{{ $dados->item_2 }}</span>
 
     <span>
-        <a class="btn btn-info btnEditar">
+        <a title="Editar" class="btn btn-info btnEditar">
             <i class="fas fa-edit"></i>
         </a>
     </span>
@@ -29,7 +29,7 @@
     <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Item 3:</b>{{ $dados->item_3 }}</span>
 
     <span>
-        <a class="btn btn-info btnEditar">
+        <a title="Editar" class="btn btn-info btnEditar">
             <i class="fas fa-edit"></i>
         </a>
     </span>
@@ -41,7 +41,7 @@
     <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Item 4:</b>{{ $dados->item_4 }}</span>
 
     <span>
-        <a class="btn btn-info btnEditar">
+        <a title="Editar" class="btn btn-info btnEditar">
             <i class="fas fa-edit"></i>
         </a>
     </span>
@@ -53,7 +53,7 @@
     <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Item 5:</b>{{ $dados->item_5 }}</span>
 
     <span>
-        <a class="btn btn-info btnEditar">
+        <a title="Editar" class="btn btn-info btnEditar">
             <i class="fas fa-edit"></i>
         </a>
     </span>

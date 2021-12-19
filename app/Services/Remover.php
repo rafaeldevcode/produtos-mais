@@ -2,7 +2,7 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal};
+    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User};
     use Illuminate\Support\Facades\DB;
     
     class Remover {
@@ -11,7 +11,7 @@
         {
             $marca = Marca::find($marcaId);
 
-            DB::transaction(function() use($marca){
+            DB::beginTransaction();
                 $marca->comentarios->each(function(Comentario $comentario){
                     $comentario->delete();
                 });
@@ -29,27 +29,33 @@
                 });
         
                 $marca->delete();
-            });
+            DB::commit();
         }
 
         public function removerProduto ($produtoId)
         {
-            DB::transaction(function() use($produtoId){
+            DB::beginTransaction();
                 Produto::destroy($produtoId);
-            });
+            DB::commit();
         }
 
         public function removerComentario($request)
         {
-            DB::transaction(function() use($request){
+            DB::beginTransaction();
                 Comentario::destroy($request->comentarioId);
-            });
+            DB::commit();
         }
 
         public function removerModal($request)
         {
-            DB::transaction(function() use($request){
+            DB::beginTransaction();
                 Modal::destroy($request->modalId);
-            });
+            DB::commit();
+        }
+
+        public function removerUsuario($request){
+            DB::beginTransaction();
+                User::destroy($request->usuarioId);
+            DB::commit();
         }
     }

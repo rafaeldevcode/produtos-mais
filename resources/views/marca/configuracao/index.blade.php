@@ -7,8 +7,8 @@
         
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
-                <h2>Configurações {{ $marca->nome_marca }}</h2>
-                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <h2>Configurações <span class="text-primary">{{ $marca->nome_marca }}</span></h2>
+                <a title="Voltar" href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
@@ -30,14 +30,68 @@
                         </span>
 
                         @if (empty($modal[0]))
-                            <a href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
+                            <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
                                 <i class="fas fa-plus-square"></i>
                             </a>
                         @else
-                            <a href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
+                            <a title="Editar Modal" href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         @endif
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Coutdown</h4>
+                    <div class="col-12 form-check form-switch">
+                        <span>
+                            <label for="coutdown" class="form-check-label">Abilitar</label>
+                            <input id="coutdown"
+                                {{ $config[0]->coutdown == 'on' ? 'checked' : '' ; }}
+                                name="coutdown" type="checkbox" class="form-check-input">
+                        </span>
+                    </div>
+
+                    <div class="{{ $config[0]->coutdown == 'on' ? 'd-flex' : '' ; }} flex-column flex-md-row justify-content-between align-items-end mt-5 coutdown" 
+                    {{ $config[0]->coutdown == 'on' ? '' : 'hidden' ; }}>
+                        @csrf
+                        <input id="marcaId" type="hidden" value="{{ $config[0]->marca_id }}">
+                        <span class="col-md-3 col-12">
+                            <label for="data">Data de expiração</label>
+                            <input id="data" name="data" class="form-control" type="date">
+                        </span>
+
+                        <span class="col-md-3 col-12 mt-4 mt-md-0">
+                            <label for="time">Hora da expiração</label>
+                            <input id="time" name="time" class="form-control" type="time">
+                        </span>
+
+                        <span class="col-md-3 col-12 mt-4 mt-md-0">
+                            <a id="salvar" class="btn btn-success py-2 px-5 w-100">
+                                Salvar
+                                <i class="fas fa-save ms-2"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Tagmanager</h4>
+                    <div class="col-12 form-check form-switch">
+                        <label for="tagmanager" class="form-check-label">Abilitar</label>
+                        <input
+                            {{ $config[0]->tagmanager == 'on' ? 'checked' : '' ; }}
+                            name="tagmanager" type="checkbox" class="form-check-input">
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Pixel</h4>
+                    <div class="col-12 form-check form-switch">
+                        <label for="pixel" class="form-check-label">Abilitar</label>
+                        <input
+                            {{ $config[0]->pixel == 'on' ? 'checked' : '' ; }}
+                            name="pixel" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -52,6 +106,26 @@
                 </div>
 
                 <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Comentários</h4>
+                    <div class="col-12 form-check form-switch">
+                        <label for="comentarios" class="form-check-label">Abilitar</label>
+                        <input
+                            {{ $config[0]->comentarios == 'on' ? 'checked' : '' ; }}
+                            name="comentarios" type="checkbox" class="form-check-input">
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Disclaimer</h4>
+                    <div class="col-12 form-check form-switch">
+                        <label for="disclaimer" class="form-check-label">Abilitar</label>
+                        <input
+                            {{ $config[0]->disclaimer == 'on' ? 'checked' : '' ; }}
+                            name="disclaimer" type="checkbox" class="form-check-input">
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
                     <h4>Informações da empresa</h4>
                     <div class="col-12 form-check form-switch">
                         <label for="empresa" class="form-check-label">Abilitar</label>
@@ -60,7 +134,7 @@
                             name="empresa" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->empresa == 'on' ? 'd-flex' : '' ; }} justify-content-between empresa" 
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->empresa == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row empresa" 
                         {{ $config[0]->empresa == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>CNPJ</h6>
@@ -72,7 +146,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-4 mt-sm-0">
                             <h6>RUA</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="rua" class="form-check-label">Abilitar</label>
@@ -82,7 +156,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-4 mt-sm-0">
                             <h6>CIDADE</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="cidade" class="form-check-label">Abilitar</label>
@@ -103,7 +177,7 @@
                             name="atendimento" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->atendimento == 'on' ? 'd-flex' : '' ; }} justify-content-between atendimento" 
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->atendimento == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row atendimento" 
                         {{ $config[0]->atendimento == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>TELEFONE</h6>
@@ -115,7 +189,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-4 mt-sm-0">
                             <h6>E-MAIL</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="email" class="form-check-label">Abilitar</label>
@@ -136,7 +210,7 @@
                             name="social" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->social == 'on' ? 'd-flex' : '' ; }} justify-content-between social" 
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->social == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row social" 
                         {{ $config[0]->social == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>FACEBOOK</h6>
@@ -148,7 +222,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-4 mt-sm-0">
                             <h6>INSTAGRAM</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="instagram" class="form-check-label">Abilitar</label>
@@ -158,7 +232,7 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="mt-4 mt-sm-0">
                             <h6>TWITTER</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="twitter" class="form-check-label">Abilitar</label>
@@ -171,12 +245,12 @@
                 </div>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                    <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
                         Novo Marca
                         <i class="fas fa-plus-circle ms-2"></i>
                     </a>
 
-                    <button type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
                         Salvar
                         <i class="fas fa-save ms-2"></i>
                     </button>
@@ -186,6 +260,13 @@
     </main>
 
     <script>
+        ///// ABILITAR CONFIGURAÇÕES PARA COUTDOWN /////
+        document.getElementById('coutdown').addEventListener('click', ()=>{
+            let coutdown = document.querySelector('.coutdown')
+            
+            abilitarConfig(coutdown);
+        })
+
         ///// ABILITAR CONFIGURAÇÕES PARA MODAL /////
         document.getElementById('modal-config').addEventListener('click', ()=>{
             let modal = document.querySelector('.modal-config')
@@ -217,7 +298,8 @@
         ///// FUNÇÃO ABILITAR /////
         function abilitarConfig(elemento){
 
-            if(elemento.classList.value == 'btn btn-warning modal-config'){
+            if((elemento.classList.value == 'btn btn-warning modal-config')) {
+            // || (elemento.classList.value == 'd-flex flex-column flex-md-row justify-content-between align-items-end mt-5 coutdown')){
                 if(elemento.hasAttribute('hidden')){
                     elemento.removeAttribute('hidden');
                 }else{
@@ -233,6 +315,27 @@
                 }
             }
         }
+    </script>
+
+    <script>
+        document.getElementById('salvar').addEventListener('click', ()=>{
+            let formData = new FormData();
+            let marcaId = document.getElementById('marcaId').value;
+            let data = document.getElementById('data').value;
+            let time = document.getElementById('time').value;
+            let token = document.querySelector('input[name="_token"').value
+
+            formData.append('data', data);
+            formData.append('time', time);
+            formData.append('_token', token);
+
+            fetch(`/marca/${marcaId}/coutdown`, {
+                body: formData,
+                method: 'POST'
+            }).then(()=>{
+                console.log('Ok');
+            })
+        });
     </script>
 
 @endsection

@@ -9,7 +9,9 @@ class EntrarController extends Controller
 {
     public function index()
     {
-        return view('entrar/index');
+        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
+        
+        return view('entrar/index', compact('usuario'));
     }
 
     public function entrar(Request $request)

@@ -14,6 +14,33 @@ html{
     background: rgb(190, 190, 190);
 }
 
+input[type="checkbox"]{
+    cursor: pointer;
+}
+
+/* ////// MENU DE NAVEGAÇÃO ////// */
+.navegacao{
+    position: fixed;
+    top: 0;
+    right: -200px;
+    background: #FFF;
+    width: 200px;
+    height: 100%;
+    padding: 10px;
+    z-index: 1;
+}
+
+.navegacao .menu{
+    margin-left: -50px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.navegacao .usuario{
+    margin-top: -40px;
+}
+
+/* /////////////////// */
 .image-header{
     width: 150px;
     height: auto;
@@ -68,4 +95,57 @@ html{
 .image-list img{
     width: 100%;
     height: auto;
+}
+
+/* //////// KEYFRAMES ///////// */
+.rotacao{
+    animation: rotacao .3s linear forwards;
+}
+
+.rotacaoInversa{
+    animation: rotacaoInversa .3s linear forwards;
+}
+
+.abrirMenu{
+    animation: abrirMenu .3s linear forwards;
+}
+
+.fecharMenu{
+    animation: fecharMenu .3s linear forwards;
+}
+
+@keyframes rotacao {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes rotacaoInversa {
+    0%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: rotate(0);
+    }
+}
+
+@keyframes abrirMenu {
+    0%{
+        right: -200px;
+    }
+    100%{
+        right: 0;
+    }
+}
+
+@keyframes fecharMenu {
+    0%{
+        right: 0;
+    }
+    100%{
+        right: -200px;
+    }
 }

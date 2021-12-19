@@ -6,7 +6,7 @@
         <section class="container p-0">
             <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                 <h2>Adicionar Marca</h2>
-                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <a title="Voltar" href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
@@ -35,7 +35,16 @@
                         <div class="col-12 col-md-5 mt-5">
                             <label for="cor_principal" class="form-label">Digite a Cor Principal Da Página</label>
                             <input name="cor_principal" type="color" class="form-control" placeholder="Cor Principal Da Página">
-                            <span>Em exadecimal - EX: #FFFFFF</span>
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="cor_titulo" class="form-label">Digite a Cor dos Títulos do Rodapé</label>
+                            <input name="cor_titulo" type="color" class="form-control" placeholder="dos Títulos do Rodapé">
+                        </div>
+
+                        <div class="col-12 col-md-5 mt-5">
+                            <label for="cor_texto" class="form-label">Digite a Cor dos Textos do Rodapé</label>
+                            <input name="cor_texto" type="color" class="form-control" placeholder="Cor dos Textos do Rodapé">
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
@@ -51,6 +60,11 @@
                         <div class="col-12 col-md-5 mt-5">
                             <label for="rua" class="form-label">Digite a rua</label>
                             <input name="rua" type="text" class="form-control" placeholder="Nome da rua, número - Bairro">
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <label for="disclaimer" class="form-label">Disclaimer</label>
+                            <textarea name="disclaimer" class="form-control" placeholder="Disclaimer"></textarea>
                         </div>
                     </div>
                 </div>
@@ -139,9 +153,16 @@
                         <div class="col-12 col-md-5 mt-5">
                             <div class="d-flex flex-row align-items-center justify-content-between mb-2">
                                 <h6 class="mb-0">Adicionar Itens da lista</h6>
-                                <a class="btn btn-primary" id="adicionarItem">
-                                    <i class="fas fa-plus fs-6"></i>
-                                </a>
+
+                                <span>
+                                    <a title="Remover Item" class="btn btn-danger disabled" id="removerItem">
+                                        <i class="fas fa-minus fs-6"></i>
+                                    </a>
+
+                                    <a title="Adicionar Item" class="btn btn-primary" id="adicionarItem">
+                                        <i class="fas fa-plus fs-6"></i>
+                                    </a>
+                                </span>
                             </div>
 
 
@@ -159,31 +180,28 @@
 
                     <div class="col-12 d-flex flex-wrap justify-content-between align-items-end mt-5">
                         <div class="col-12 col-md-5">
-                            <label for="tag_head" class="form-label">Tagmanager Head</label>
-                            <textarea name="tag_head" type="text" class="form-control" placeholder="Tagmanager Head"></textarea>
-                        </div>
-
-                        <div class="col-12 col-md-5 mt-5 mt-md-0">
-                            <label for="tag_body" class="form-label">Tagmanager Body</label>
-                            <textarea name="tag_body" type="text" class="form-control" placeholder="Tagmanager Body"></textarea>
+                            <label for="tagmanager" class="form-label">Tagmanager</label>
+                            <input name="tagmanager" type="text" class="form-control" placeholder="Tagmanager">
                         </div>
                     </div>
 
                     <div class="col-12 d-flex flex-wrap justify-content-between align-items-end mt-5">
                         <div class="col-12 col-md-5">
-                            <label for="pixel_head" class="form-label">Pixel Head</label>
-                            <textarea name="pixel_head" type="text" class="form-control" placeholder="Pixel Head"></textarea>
+                            <label for="pixel" class="form-label">Pixel</label>
+                            <textarea name="pixel" type="text" class="form-control" placeholder="0123456789,0123456789..."></textarea>
+                            <span>Se for mais de 1 pixel separar por ',' sem espaços!</span>
                         </div>
 
                         <div class="col-12 col-md-5 mt-5 mt-md-0">
-                            <label for="pixel_body" class="form-label">Pixel Body</label>
-                            <textarea name="pixel_body" type="text" class="form-control" placeholder="Pixel Body"></textarea>
+                            <label for="evento" class="form-label">Marcar evento</label>
+                            <input name="evento" type="text" class="form-control" placeholder="Marcar evento">
+                            <span>Ex: Lead | PageView | BannerView...</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-sm-3 col-12">
+                    <button title="Salvar" type="submit" class="btn btn-success mt-3 py-3 px-5 col-sm-3 col-12">
                         Salvar
                         <i class="fas fa-save ms-2"></i>
                     </button>
@@ -198,18 +216,13 @@
         let indice = 1;
         
         document.getElementById('adicionarItem').addEventListener('click', ()=>{
+            document.getElementById('removerItem').classList.remove('disabled');
+
             let pai = document.getElementById('paiLista');
             let item = document.querySelectorAll('.item');
             let avisoItem = document.getElementById('avisoItem');
 
             if(item.length < 5){
-                let i = document.createElement('i');
-                    i.setAttribute('class', 'fas fa-minus fs-6'); 
-            
-                let a = document.createElement('a');
-                    a.setAttribute('class', 'btn btn-danger remover disabled');
-                    a.appendChild(i);
-            
                 let input = document.createElement('input');
                     input.setAttribute('name', `item_${indice}`);
                     input.setAttribute('type', 'text');
@@ -222,33 +235,35 @@
                     label.innerHTML = `item_${indice}`;
             
                 let div = document.createElement('div');
-                    div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 filho');
+                    div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 remover');
                     div.appendChild(label);
                     div.appendChild(input);
-                    div.appendChild(a);
             
                 pai.appendChild(div);
             }else if(item.length == 5){
                 avisoItem.removeAttribute('hidden');
+                document.getElementById('adicionarItem').classList.add('disabled');
             }
         
             indice++;
-            removerInput(avisoItem);
         })
-        
-        function  removerInput(aviso){
-            let remover = document.querySelectorAll('.remover');
-            let filho = document.querySelectorAll('.filho');
-        
-            for(let i = 0; i < remover.length; i++){
-                remover[i].addEventListener('click', ()=>{
-                    aviso.hidden = true;
-                    filho[i].remove(filho[i]);
-                    indice--;
-                })
-            }
-        }
 
+        document.getElementById('removerItem').addEventListener('click', ()=>{
+            document.getElementById('adicionarItem').classList.remove('disabled');
+            let remover = document.querySelectorAll('.remover');
+            let item = remover[remover.length - 1];
+            avisoItem.hidden = true;
+            item.remove();
+
+            if(remover.length == 1){
+                document.getElementById('removerItem').classList.add('disabled');
+            }else{
+                document.getElementById('removerItem').classList.remove('disabled');
+            }
+            indice--;
+        });
+
+        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
         let removerErro = document.querySelectorAll('.removerErro');
         let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
 

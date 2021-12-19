@@ -23,12 +23,12 @@
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-between mt-2 flex-column-reverse flex-sm-row">
-                    <a href="/registrar" class="btn btn-secondary py-2 px-5 col-12 col-sm-4 mt-2 mt-sm-0">
+                    <a title="Registrar Usuário" href="/registrar" class="btn btn-secondary py-2 px-5 col-12 col-sm-4 mt-2 mt-sm-0">
                         Registrar
                         <i class="fas fa-plus-circle"></i>
                     </a>
 
-                    <button type="submit" class="py-2 px-5 btn btn-primary col-12 col-sm-4">
+                    <button title="Entrar" type="submit" class="py-2 px-5 btn btn-primary col-12 col-sm-4">
                         Entrar
                         <i class="fas fa-sign-in-alt"></i>
                     </button>

@@ -6,7 +6,7 @@
         <main class="container my-5 px-5 pb-5 pt-1 bg-white rounded text-center">
             <div class="border-bottom border-success border-2 my-5 d-flex justify-content-between">
                 <h2>Adicionar Produto</h2>
-                <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <a title="Voltar" href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
@@ -15,7 +15,7 @@
                 <h2 class="fs-4 text-center">Para adicionar um produdo você deve primeiro adicionar uma marca!</h2>
             </section>
 
-            <a href="/adicionar/marca" class="btn btn-primary mt-3 py-3 px-5 col-12 col-sm-3">
+            <a title="Adicionar Marca" href="/adicionar/marca" class="btn btn-primary mt-3 py-3 px-5 col-12 col-sm-3">
                 Nova Marca
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
@@ -29,7 +29,7 @@
             <section class="container p-0">
                 <div class="border-bottom border-success border-2 mt-5 d-flex justify-content-between">
                     <h2>Adicionar Produto</h2>
-                    <a href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                    <a title="Adicionar Produto" href="/marcas" class="btn btn-info d-flex align-items-center mb-3 py-2">
                         <i class="fas fa-reply"></i>
                     </a>
                 </div>
@@ -116,12 +116,12 @@
                     </div>
 
                     <div class="col-12 d-flex flex-wrap justify-content-between">
-                        <a href="/adicionar/marca" class="btn btn-primary mt-3 py-3 px-5 col-12 col-sm-3">
+                        <a title="Adidionar Marca" href="/adicionar/marca" class="btn btn-primary mt-3 py-3 px-5 col-12 col-sm-3">
                             Nova Marca
                             <i class="fas fa-plus-circle ms-2"></i>
                         </a>
 
-                        <button type="submit" class="btn btn-success mt-3 py-3 px-5 col-12 col-sm-3">
+                        <button title="Salvar" type="submit" class="btn btn-success mt-3 py-3 px-5 col-12 col-sm-3">
                             Salvar
                             <i class="fas fa-save ms-2"></i>
                         </button>
@@ -132,6 +132,7 @@
         </main>
 
         <script type="text/javascript">
+            ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
             let removerErro = document.querySelectorAll('.removerErro');
             let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
 

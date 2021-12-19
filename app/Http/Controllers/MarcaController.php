@@ -7,6 +7,7 @@ use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacaoMarca;
 use App\Services\{Adicionar, Remover, Editar};
+use Illuminate\Support\Facades\Auth;
 
 class MarcaController extends Controller
 {
@@ -16,8 +17,9 @@ class MarcaController extends Controller
     {
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
+        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
 
-        return view('marca/index', compact('marcas', 'nome_marca'));
+        return view('marca/index', compact('marcas', 'nome_marca', 'usuario'));
     }
 
     ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 
@@ -26,14 +28,17 @@ class MarcaController extends Controller
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $mensagem = $request->session()->get('mensagem');
+        $usuario = Auth::user()->name;
 
-        return view('marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca'));
+        return view('marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// CHARMAR ARQUIVO PARA ADICIONAR MARCA AO BONCO /////
     public function create()
     {
-        return view('marca/create');
+        $usuario = Auth::user()->name;
+
+        return view('marca/create', compact('usuario'));
     }
 
     ///// GUARDAR DADOS NO BANCO /////
@@ -50,12 +55,13 @@ class MarcaController extends Controller
     public function listarDados(int $marcaId)
     {
         $dados = Marca::find($marcaId);
+        $usuario = Auth::user()->name;
 
-        return view('marca/listarDados' , compact('dados', 'marcaId'));
+        return view('marca/listarDados' , compact('dados', 'marcaId', 'usuario'));
     }
 
     ///// ENVIAR DADOS EDITADO /////
-    public function editarMarca(Request $request, int $marcaId, Editar $editar)
+    public function editarMarca(ValidacaoMarca $request, int $marcaId, Editar $editar)
     {
         $editar->editarMarca($request, $marcaId);
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
@@ -76,12 +82,14 @@ class MarcaController extends Controller
     ///// EXIBIR A PAGINA DA MARCA /////
     public function produto(int $id)
     {
+        $politicas = false;
         $marca = Marca::find($id);
         $comentarios = $marca->comentarios()->get();
         $produtos = $marca->produtos()->get();
         $config = $marca->configuracoes()->get();
         $modal = $marca->modals()->get();
+        $pixels = explode(',', $marca->pixel);
 
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels'));
     }
 }

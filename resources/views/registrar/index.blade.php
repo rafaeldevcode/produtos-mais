@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="d-flex flex-wrap justify-content-end mt-2">
-                    <button type="submit" class="py-2 px-5 btn btn-primary col-12 col-sm-4">
+                    <button title="Registrar" type="submit" class="py-2 px-5 btn btn-primary col-12 col-sm-4">
                         Registrar
                         <i class="fas fa-plus-circle"></i>
                     </button>

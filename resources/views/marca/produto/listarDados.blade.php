@@ -5,13 +5,17 @@
     <main class="container bg-white my-5 rounded p-3">
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
-                <h2>Editar {{ $dados->nome_produto }}</h2>
-                <a href="/marca/{{ $dados->marca_id }}/produtos" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <h2>Editar <span class="text-primary">{{ $dados->nome_produto }}</span></h2>
+                <a title="Voltar" href="/marca/{{ $dados->marca_id }}/produtos" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
+
+            @include('marca/layouts/componentes/errors', [$errors])
+
             <form action="/produto/{{ $produtoId }}/editar" method="POST">
                 @csrf
+                <input type="hidden" name="id" value="{{ $dados->marca_id }}">
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
 
@@ -23,7 +27,7 @@
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados->nome_produto }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -35,7 +39,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link de checkout:</b>{{ $dados->link_compra }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -47,7 +51,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade:</b>{{ $dados->quant_produto }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -59,7 +63,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados->image_produto }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -76,7 +80,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor por únidade:</b>{{ $dados->valor_unit }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -88,7 +92,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor total:</b>{{ $dados->valor_cheio }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -100,7 +104,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Valor das parcelas:</b>{{ $dados->valor_parcelado }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -112,7 +116,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Quantidade de parcelas:</b>{{ $dados->parcelas }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -133,12 +137,12 @@
                 </div>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                    <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
                         Novo Produto
                         <i class="fas fa-plus-circle ms-2"></i>
                     </a>
 
-                    <button type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
                         Salvar
                         <i class="fas fa-save ms-2"></i>
                     </button>
@@ -163,6 +167,16 @@
                     textEditar[i].hidden = true;
                 }
 
+            })
+        }
+
+        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
+        let removerErro = document.querySelectorAll('.removerErro');
+        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
+
+        for(let i = 0; i < btnRemoverErro.length; i++){
+            btnRemoverErro[i].addEventListener('click', ()=>{
+                removerErro[i].remove(removerErro[i])
             })
         }
     </script>

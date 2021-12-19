@@ -6,6 +6,7 @@ use App\Http\Requests\ValidacaoProduto;
 use Illuminate\Http\Request;
 use App\Models\{Marca, Produto};
 use App\Services\{Adicionar, Remover, Editar, Duplicar};
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 { 
@@ -21,8 +22,9 @@ class ProdutoController extends Controller
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
+        $usuario = Auth::user()->name;
 
-        return view('marca/produto/create', compact('marcas', 'mensagem', 'nome_marca'));
+        return view('marca/produto/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// GIARDAR PRODUTOS NO BANCO /////
@@ -45,20 +47,22 @@ class ProdutoController extends Controller
         $nome_marca = $marca->nome_marca;
         $produtos = $marca->produtos()->get();
         $mensagem = $request->session()->get('mensagem');
+        $usuario = Auth::user()->name;
 
-        return view('/marca/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem'));
+        return view('/marca/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem', 'usuario'));
     }
 
         ///// LISTAR PRODUTOS PARA EDIÇÃO /////
     public function listarDados(int $produtoId)
     {
         $dados = Produto::find($produtoId);
+        $usuario = Auth::user()->name;
         
-        return view('marca/produto/listarDados', compact('dados', 'produtoId'));
+        return view('marca/produto/listarDados', compact('dados', 'produtoId', 'usuario'));
     }
 
     ///// GUARDAR PRODUTOS EDITADOS /////
-    public function editarDados(Request $request, int $produtoId, Editar $editar)
+    public function editarDados(ValidacaoProduto $request, int $produtoId, Editar $editar)
     {
         $produto = Produto::find($produtoId);
         $editar->editarProduto($request, $produto);

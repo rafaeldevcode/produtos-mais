@@ -24,10 +24,10 @@ class ValidacaoComentario extends FormRequest
     public function rules()
     {
         return [
-            'nome_cliente' => 'required',
-            'coment_desc' => 'required',
+            'nome_cliente'  => 'required',
+            'coment_desc'   => 'required',
             'image_cliente' => 'required',
-            'comentario' => 'required',
+            'comentario'    => 'required',
         ];
     }
 

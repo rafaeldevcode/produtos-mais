@@ -15,6 +15,8 @@ class Configuracao extends Model
         'id',
         'modal',
         'icone_produto',
+        'comentarios',
+        'disclaimer',
         'empresa',
         'cnpj',
         'rua',
@@ -25,7 +27,10 @@ class Configuracao extends Model
         'social',
         'facebook',
         'instagram',
-        'twitter'
+        'twitter',
+        'coutdown',
+        'tagmanager',
+        'pixel'
     ];
 
     public function marca()

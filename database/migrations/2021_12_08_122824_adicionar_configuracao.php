@@ -19,6 +19,8 @@ class AdicionarConfiguracao extends Migration
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->boolean('modal')->nullable();
             $table->boolean('icone_produto')->nullable();
+            $table->boolean('comentarios')->nullable();
+            $table->boolean('disclaimer')->nullable();
             $table->boolean('empresa')->nullable();
             $table->boolean('cnpj')->nullable();
             $table->boolean('rua')->nullable();
@@ -30,6 +32,9 @@ class AdicionarConfiguracao extends Migration
             $table->boolean('facebook')->nullable();
             $table->boolean('instagram')->nullable();
             $table->boolean('twitter')->nullable();
+            $table->boolean('coutdown')->nullable();
+            $table->boolean('tagmanager')->nullable();
+            $table->boolean('pixel')->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,7 @@ use App\Http\Requests\ValidacaoComentario;
 use Illuminate\Http\Request;
 use App\Models\{Marca, Comentario};
 use App\Services\{Adicionar, Duplicar, Remover, Editar};
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -21,8 +22,9 @@ class ComentarioController extends Controller
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
+        $usuario = Auth::user()->name;
 
-        return view('marca/comentario/create', compact('marcas', 'mensagem', 'nome_marca'));
+        return view('marca/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// GUARDAR COMENTÁRIOS NO BANCO /////
@@ -40,22 +42,23 @@ class ComentarioController extends Controller
         $marca = Marca::find($comentarioId);
         $nome_marca = $marca->nome_marca;
         $comentarios = $marca->comentarios()->get();
-
         $mensagem = $request->session()->get('mensagem');
+        $usuario = Auth::user()->name;
 
-        return view('/marca/comentario/listarComent', compact('comentarios', 'nome_marca', 'mensagem'));
+        return view('/marca/comentario/listarComent', compact('comentarios', 'nome_marca', 'mensagem', 'usuario'));
     }
 
     ///// LISTAR COMENTÁRIOS PARA EDIÇÃO /////
     public function listarDados(int $comentarioId)
     {
         $dados = Comentario::find($comentarioId);
+        $usuario = Auth::user()->name;
 
-        return view('/marca/comentario/listarDados', compact('dados', 'comentarioId'));
+        return view('/marca/comentario/listarDados', compact('dados', 'comentarioId', 'usuario'));
     }
 
     ///// GUARDAR COMENTÁRIOS EDITADO /////
-    public function editarDados(Request $request, int $comentarioId, Editar $editar)
+    public function editarDados(ValidacaoComentario $request, int $comentarioId, Editar $editar)
     {
         $comentario = Comentario::find($comentarioId);
         $editar->editarComentario($request, $comentario);

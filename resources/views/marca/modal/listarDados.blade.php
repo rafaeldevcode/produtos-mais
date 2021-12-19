@@ -6,10 +6,13 @@
         <section>
             <div class="border-bottom border-success border-2 d-flex justify-content-between">
                 <h2>Editar Modal</h2>
-                <a href="/marca/{{ $marcaId }}/config" class="btn btn-info d-flex align-items-center mb-3 py-2">
+                <a title="Voltar" href="/marca/{{ $marcaId }}/config" class="btn btn-info d-flex align-items-center mb-3 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
+
+            @include('marca/layouts/componentes/errors', [$errors])
+            
             <form action="/marca/{{ $marcaId }}/modal/editar" method="POST">
                 @csrf
 
@@ -23,7 +26,7 @@
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem de produto:</b>{{ $dados[0]->produto_modal }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -36,7 +39,7 @@
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Porcentagem do desconto:</b>{{ $dados[0]->porcentagem }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -48,7 +51,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço sem desconto:</b>{{ $dados[0]->preco_sem_desconto }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -60,7 +63,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço com desconto:</b>{{ $dados[0]->preco_com_desconto }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -72,7 +75,7 @@
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link do checkout:</b>{{ $dados[0]->link_compra }}</span>
 
                         <span>
-                            <a class="btn btn-info btnEditar">
+                            <a title="Editar"class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>
@@ -80,12 +83,12 @@
                 </ul>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a id="{{ $dados[0]->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
+                    <a title="Remover Modal" id="{{ $dados[0]->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
                         Remover Modal
                         <i class="fas fa-trash-alt ms-2"></i>
                     </a>
 
-                    <button type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
                         Salvar
                         <i class="fas fa-save ms-2"></i>
                     </button>
@@ -164,6 +167,16 @@
         function cancelar(){
             document.getElementById('cancelar').addEventListener('click', ()=>{
                 document.querySelector('.removerMarca').remove('section')
+            })
+        }
+
+        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
+        let removerErro = document.querySelectorAll('.removerErro');
+        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
+
+        for(let i = 0; i < btnRemoverErro.length; i++){
+            btnRemoverErro[i].addEventListener('click', ()=>{
+                removerErro[i].remove(removerErro[i])
             })
         }
     </script>

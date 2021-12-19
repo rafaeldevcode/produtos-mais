@@ -5,9 +5,9 @@
         <section class="container mb-5 pb-5">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button title="Slide" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button title="Slide" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button title="Slide" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -20,11 +20,11 @@
                     <img src="{{ asset("images/$marca->banner_3") }}" class="d-block w-100" alt="Banner 3">
                 </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button title="Anterior" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button title="Próximo" class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
                 </button>
@@ -34,14 +34,14 @@
         <section class="container d-flex justify-content-evenly flex-wrap" id="compra-agora">
             @foreach ($produtos as $produto)
                 @if ($produto->exibir_produto == 'on')
-                    <div class="card shadow d-flex border-0 mb-2">
+                    <div class="card shadow d-flex border-0 mb-5">
                         <div class="card-header text-center border-0 p-0 m-0 bg-white">
                             <div class="bg-principal m-0 p-2 fs-4">
                                 <h2 class="fs-4">{{ $produto->quant_produto }} UNIDADES</h2>
                                 @if ($config[0]->icone_produto == 'on')
-                                    <div class="detalhes-produto bg-secondary px-2 rounded-top">
-                                        <span class="fs-6">Frete para todo Brasil</span>
-                                        <i class="fas fa-truck-moving"></i>
+                                    <div class="detalhes-produto px-2 rounded-top w-75 text-end">
+                                        <span class="fs-6 span"></span>
+                                        <span class="icone"></span>
                                     </div>
                                 @endif
                             </div>
@@ -59,7 +59,7 @@
                             </ul>
 
                             <div class="row px-3 pt-3">
-                                <a href="{{ $produto->link_compra }}" class="btn btn-comprar">
+                                <a title="Comprar Agora" href="{{ $produto->link_compra }}" class="btn btn-comprar">
                                     <i class="fas fa-arrow-circle-right"></i>
                                     Comprar Agora
                                 </a>
@@ -148,37 +148,39 @@
             </div>
 
             <div class="text-center mt-3 d-flex justify-content-center">
-                <a href="#compra-agora" class="btn btn-light btn-outline-secondary py-3 px-5 btn-principal">
+                <a title="Comprar Agora" href="#compra-agora" class="btn btn-light btn-outline-secondary py-3 px-5 btn-principal comprarAgora">
                     <i class="fas fa-arrow-circle-right"></i>
                     Comprar Agora
                 </a>
             </div>
         </section>
 
-        <section class="container-fluid bg-white py-5">
-            <h2 class="display-5 py-5 text-center">Quem já experimentou</h2>
-            <div class="d-flex flex-wrap justify-content-evenly">
+        @if ($config[0]->comentarios == 'on')
+            <section class="container-fluid bg-white py-5">
+                <h2 class="display-5 py-5 text-center fw-bolder">Comentários</h2>
+                <div class="d-flex flex-wrap justify-content-evenly">
 
-                @foreach ($comentarios as $comentario)
-                    <div class="card shadow d-flex border-0 mb-2 pt-3">
-                        <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
-                            <img src="{{ asset("images/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
-                            <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
-                            <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                    @foreach ($comentarios as $comentario)
+                        <div class="card shadow d-flex border-0 mb-2 pt-3">
+                            <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
+                                <img src="{{ asset("images/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
+                                <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
+                                <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                            </div>
+            
+                            <div class="card-body text-center">
+                                <p>{{ $comentario->comentario }}</p>
+                            </div>
                         </div>
+                    @endforeach
         
-                        <div class="card-body text-center">
-                            <p>{{ $comentario->comentario }}</p>
-                        </div>
-                    </div>
-                @endforeach
-    
-            </div>
+                </div>
 
-            <div class="text-center">
-                <a href="#" class="btn mt-5 py-3 px-5 btn-comentarios">Carregar mais comentários</a>
-            </div>
-        </section>
+                <div class="text-center">
+                    <a title="Mais Comentários" class="btn mt-5 py-3 px-5 btn-comentarios disabled">Carregar mais comentários</a>
+                </div>
+            </section>
+        @endif
 
         <section class="container-fluid bg-white py-3 mt-1">
             <div class="container d-flex flex-wrap justify-content-sm-between justify-content-evenly align-items-center">
@@ -199,9 +201,15 @@
                 </div>
             </div>
 
-            <div class="col-md-9 col-12 py-3 px-5 my-5 mx-auto border border-2">
-                <p class="text-center m-0">Este produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença. As opiniões e conselhos nutricionais expressos pela Nullius Health não se destinam ao objetivo de fornecer aconselhamento médico. Por favor, sempre consulte seu médico se estiver tomando algum medicamento ou tiver algum problema de saúde. Os resultados individuais podem variar.​</p>
-            </div>
+            @if ($config[0]->disclaimer == 'on')
+                <div class="col-md-9 col-12 py-3 px-5 my-5 mx-auto border border-2">
+                    <p class="text-center m-0">{{ $marca->disclaimer }}</p>
+                </div>
+            @endif
         </section>
-    </main>   
+    </main>  
+    
+    @if ($config[0]->modal == 'on')
+        @include('marca/layouts/componentes/modal')
+    @endif
 @endsection

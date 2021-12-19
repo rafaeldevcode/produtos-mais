@@ -8,14 +8,22 @@
             <span class="d-flex mb-3">
                 <form action="?" class="d-flex ms-1">
                     <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar marca">
-                    <button type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
+                    <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
     
-                <a href="/entrar" class="btn btn-info d-flex align-items-center ms-2 py-2">
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
+                @auth
+                    <a title="Sair" href="/sair" title="Deslogar" class="btn btn-danger d-flex align-items-center ms-2 py-2">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                @endauth
+
+                @guest
+                    <a title="Entrar" href="/entrar" title="Logar" class="btn btn-info d-flex align-items-center ms-2 py-2">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                @endguest
             </span>
         </div>
 
@@ -32,7 +40,7 @@
                 @foreach ($marcas as $marca)
                     <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
                         <div class="image-list">
-                            <a href="/produto/{{ $marca->id }}">
+                            <a title="Ver Página" href="/produto/{{ $marca->id }}">
                                 @if (!empty($marca->logomarca))
                                     <img src="{{ asset("images/$marca->logomarca") }}" alt="{{ $marca->nome_marca }}">
                                 @else
