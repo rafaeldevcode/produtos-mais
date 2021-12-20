@@ -9,7 +9,7 @@
 
             <span class="d-flex mb-3">
                 <form action="?" class="d-flex ms-1">
-                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar produto">
+                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar usuário">
                     <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
                         <i class="fas fa-search"></i>
                     </button>
@@ -24,18 +24,56 @@
         <section>
             <ul class="list-group mt-5">
                 @foreach ($dados as $dado)
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <h5 class="item">{{ $dado->name }}</h5>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="item d-flex">
+                                <h5>{{ $dado->name }}</h5>
+    
+                                @if ($email == $dado->email)
+                                    <h6 class="ms-2 badge bg-success">Logado</h6>
+                                @endif
+                            </span>
+    
+                            <span>
+                                @if ($email == $dado->email)
+                                    <a id="editar" title="Editar usuário" class="btn btn-success" >
+                                        <i class="fas fa-key"></i>
+                                    </a>
+                                @else
+                                    <a title="Remover Usuário" id="{{ $dado->id }}" class="btn btn-danger remover">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                @endif
+                            </span>
+                        </div>
 
-                        <span>
-                            <a title="Redefinir Senha" href="/usuario/{{ $dado->id }}/redefinir/senha" class="btn btn-success disabled">
-                                <i class="fas fa-key"></i>
-                            </a>
-        
-                            <a title="Remover Usuário" id="{{ $dado->id }}" class="btn btn-danger remover">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </span>
+                        @if ($email == $dado->email)
+                            <form action="?" id="formulario" hidden>
+                                <span class="d-flex flex-wrap justify-content-between">
+                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
+                                        <label for="name" class="form-label">Nome</label>
+                                        <input type="text" name="name" value="{{ $dado->name }}" class="form-control">
+                                    </div>
+    
+                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
+                                        <label for="password_antiga" class="form-label">Senha Antiga</label>
+                                        <input type="password" name="password_antiga" class="form-control">
+                                    </div>
+    
+                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
+                                        <label for="password" class="form-label">Nova Senha</label>
+                                        <input type="password" name="password" class="form-control">
+                                    </div>
+                                </span>
+
+                                <span class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-success mt-3">
+                                        Salvar
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                </span>
+                            </form>
+                        @endif
                     </li>
                 @endforeach
             </ul>
@@ -102,6 +140,17 @@
                 document.querySelector('.removerProduto').remove('section')
             })
         }
+
+        ///// ABILITAR FORMULÁRIO /////
+        document.getElementById('editar').addEventListener('click', ()=>{
+            let formulario = document.getElementById('formulario');
+
+            if(formulario.hasAttribute('hidden')){
+                formulario.removeAttribute('hidden');
+            }else{
+                formulario.hidden = true;
+            }
+        })
     </script>
 
 @endsection

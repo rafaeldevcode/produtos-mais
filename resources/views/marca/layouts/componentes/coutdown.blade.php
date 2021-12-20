@@ -1,6 +1,6 @@
 <section class="container-fluid bg-danger py-2 px-3 d-flex flex-md-row flex-column  justify-content-between text-warning align-items-center">
     <div>
-        <p class="m-0fw-bolder fs-4 text-center text-md-left" id="texto-desc">Todo o site em promoção, mas por tempo limitado, APROVEITE!</p>
+        <p class="m-0fw-bolder fs-4 text-center text-md-left" id="texto-desc">{{ $coutdown[0]->texto }}</p>
     </div>
 
     <div>
@@ -39,7 +39,7 @@
 
 <script>
     let dataFinal = new Date();
-        dataFinal = new Date("Dec 17, 2021 11:26:25").getTime();
+        dataFinal = new Date("{{ $coutdown[0]->data }} {{ $coutdown[0]->time }}").getTime();
     let dia = document.getElementById('dia');
     let hora = document.getElementById('hora');
     let minuto = document.getElementById('minuto');

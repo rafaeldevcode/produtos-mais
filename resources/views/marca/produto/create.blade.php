@@ -35,11 +35,12 @@
                 </div>
 
                 @include('marca/layouts/componentes/errors', [$errors])
+                <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
                 <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3 adiconar-produto">
                     @csrf
                     <div class="border border-2 rounded p-3 mt-1">
-                        <h3>Marca do produto</h3>
+                        <h3>Marca do produto <span class="fs-5 text-danger">*</span></h3>
                         <div class="col-12 mt-5">
                             <select name="id" class="form-select">
                                 <option value="0">Selecione o nome da marca</option>
@@ -56,23 +57,23 @@
 
                         <div class="d-flex flex-wrap justify-content-between mt-5">
                             <div class="col-12 col-md-5">
-                                <label for="nome_produto" class="form-label">Nome Do Produto</label>
+                                <label for="nome_produto" class="form-label">Nome Do Produto <span class="fs-5 text-danger">*</span></label>
                                 <input name="nome_produto" type="text" class="form-control" placeholder="Nome do Produto">
                             </div>
 
                             <div class="col-12 col-md-5">
-                                <label for="link_compra" class="form-label">Link de Compra</label>
+                                <label for="link_compra" class="form-label">Link de Compra <span class="fs-5 text-danger">*</span></label>
                                 <input name="link_compra" type="url" class="form-control" placeholder="Link de Compra">
                                 <span>Ex: https://produto.com</span>
                             </div>
 
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="quant_produto" class="form-label">Quantidade do Produto</label>
+                                <label for="quant_produto" class="form-label">Quantidade do Produto <span class="fs-5 text-danger">*</span></label>
                                 <input name="quant_produto" type="number" class="form-control" placeholder="Quantidade do Produto">
                             </div>
 
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="image_produto" class="form-label">Imagem do Produto</label>
+                                <label for="image_produto" class="form-label">Imagem do Produto <span class="fs-5 text-danger">*</span></label>
                                 <input name="image_produto" type="text" class="form-control">
                             </div>
                         </div>
@@ -83,22 +84,22 @@
 
                         <div class="d-flex flex-wrap justify-content-between">
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="valor_unit" class="form-label">Valor Unitário</label>
+                                <label for="valor_unit" class="form-label">Valor Unitário <span class="fs-5 text-danger">*</span></label>
                                 <input name="valor_unit" type="text" class="form-control" placeholder="Valor Unitário">
                             </div>
         
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="valor_cheio" class="form-label">Valor Cheio</label>
+                                <label for="valor_cheio" class="form-label">Valor Cheio <span class="fs-5 text-danger">*</span></label>
                                 <input name="valor_cheio" type="text" class="form-control" placeholder="Valor Cheio">
                             </div>
         
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="valor_parcelado" class="form-label">Valor Parcelado</label>
+                                <label for="valor_parcelado" class="form-label">Valor Parcelado <span class="fs-5 text-danger">*</span></label>
                                 <input name="valor_parcelado" type="text" class="form-control" placeholder="Valor Parcelado">
                             </div>
         
                             <div class="col-12 col-md-5 mt-5">
-                                <label for="parcelas" class="form-label">Quantidade de Parcelas</label>
+                                <label for="parcelas" class="form-label">Quantidade de Parcelas <span class="fs-5 text-danger">*</span></label>
                                 <input name="parcelas" type="number" class="form-control" placeholder="Quantidade de Parcelas">
                             </div>
                         </div>

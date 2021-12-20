@@ -12,7 +12,7 @@
             </div>
 
             @include('marca/layouts/componentes/errors', [$errors])
-
+            <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
             <form action="/adicionar/marca" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
                 @csrf
@@ -22,12 +22,12 @@
 
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5  mt-5">
-                            <label for="nome_marca" class="form-label">Nome Da Marca</label>
+                            <label for="nome_marca" class="form-label">Nome Da Marca <span class="fs-5 text-danger">*</span></label>
                             <input name="nome_marca" type="text" class="form-control" placeholder="Nome da Marca">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="slug_marca" class="form-label">Slug Da Marca</label>
+                            <label for="slug_marca" class="form-label">Slug Da Marca <span class="fs-5 text-danger">*</span></label>
                             <input name="slug_marca" type="text" class="form-control" placeholder="Slug da Marca">
                             <span>Nao deve conter espaços ou acentos</span>
                         </div>
@@ -108,17 +108,17 @@
 
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="banner_1" class="form-label">Banner 1</label>
+                            <label for="banner_1" class="form-label">Banner 1 <span class="fs-5 text-danger">*</span></label>
                             <input name="banner_1" type="text" class="form-control">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="banner_2" class="form-label">Banner 2</label>
+                            <label for="banner_2" class="form-label">Banner 2 <span class="fs-5 text-danger">*</span></label>
                             <input name="banner_2" type="text" class="form-control">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="banner_3" class="form-label">Banner 3</label>
+                            <label for="banner_3" class="form-label">Banner 3 <span class="fs-5 text-danger">*</span></label>
                             <input name="banner_3" type="text" class="form-control">
                         </div>
 
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="image_desc" class="form-label">Imagen da Descrição</label>
+                            <label for="image_desc" class="form-label">Imagen da Descrição <span class="fs-5 text-danger">*</span></label>
                             <input name="image_desc" class="form-control" type="text">
                         </div>
                     </div>
@@ -144,7 +144,7 @@
 
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
-                            <label for="titulo_desc" class="form-label">Título da descrição</label>
+                            <label for="titulo_desc" class="form-label">Título da descrição <span class="fs-5 text-danger">*</span></label>
                             <input name="titulo_desc" type="text" class="form-control">
                         </div>
                     </div>

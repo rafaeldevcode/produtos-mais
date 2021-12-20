@@ -13,12 +13,13 @@ class AdicionarCoutdown extends Migration
      */
     public function up()
     {
-        Schema::create('coutdown', function(Blueprint $table){
+        Schema::create('coutdowns', function(Blueprint $table){
             $table->increments('id');
             $table->integer('marca_id');
-            $table->foreign('marca_id')->references('marcas')->on('id');
+            $table->foreign('marca_id')->references('id')->on('marcas');
             $table->string('data');
             $table->string('time');
+            $table->string('texto');
             $table->timestamps();
         });
     }

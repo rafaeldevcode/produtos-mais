@@ -16,7 +16,7 @@ class AdicionarModal extends Migration
         Schema::create('modals', function(Blueprint $table){
             $table->increments('id');
             $table->integer('marca_id');
-            $table->foreign('marca_id')->references('marcas')->on('id');
+            $table->foreign('marca_id')->references('id')->on('marcas');
             $table->string('produto_modal');
             $table->string('porcentagem')->nullable();
             $table->string('preco_sem_desconto');

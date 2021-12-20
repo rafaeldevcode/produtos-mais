@@ -11,6 +11,7 @@ class Modal extends Model
     protected $table = 'modals';
 
     protected $fillable = [
+        'id',
         'produto_modal',
         'porcentagem',
         'preco_sem_desconto',

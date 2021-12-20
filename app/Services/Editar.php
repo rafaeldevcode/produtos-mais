@@ -104,11 +104,22 @@
 
             DB::beginTransaction();
                 $modal[0]->produto_modal      = $request->produto_modal;
-                $modal[0]->porcentagem           = $request->porcentagem;
+                $modal[0]->porcentagem        = $request->porcentagem;
                 $modal[0]->preco_sem_desconto = $request->preco_sem_desconto;
                 $modal[0]->preco_com_desconto = $request->preco_com_desconto;
                 $modal[0]->link_compra        = $request->link_compra;
                 $modal[0]->save();
+            DB::commit();
+        }
+
+        public function editarCoutdown($marcaId, $request){
+            $coutdown = Marca::find($marcaId)->coutdown()->get();
+
+            DB::begintransaction();
+                $coutdown[0]->data  = $request->data;
+                $coutdown[0]->time  = $request->time;
+                $coutdown[0]->texto = $request->texto;
+                $coutdown[0]->save();
             DB::commit();
         }
     }

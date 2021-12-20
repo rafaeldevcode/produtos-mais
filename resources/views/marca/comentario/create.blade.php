@@ -36,12 +36,13 @@
                 </div>
 
                 @include('marca/layouts/componentes/errors', [$errors])
+                <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
                 <form action="/adicionar/comentario" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
                     @csrf
 
                     <div class="border border-2 rounded p-3 mt-1">
-                        <h3>Marca do produto</h3>
+                        <h3>Marca do produto <span class="fs-5 text-danger">*</span></h3>
                         <div class="col-12 mt-5">
                             <select name="id" class="form-select">
                                 <option value="0">Selecione o nome da marca</option>
@@ -57,17 +58,17 @@
                         <h3>Dados do usuário</h3>
                         <div class="d-flex flex-wrap justify-content-between mt-5">
                             <div class="col-12 col-md-5">
-                                <label for="nome_cliente" class="form-label">Nome Do Cliente</label>
+                                <label for="nome_cliente" class="form-label">Nome Do Cliente <span class="fs-5 text-danger">*</span></label>
                                 <input name="nome_cliente" type="text" class="form-control" placeholder="Nome do Cliente">
                             </div>
 
                             <div class="col-12 col-md-5 mt-5 mt-md-0">
-                                <label for="coment_desc" class="form-label">Descrição</label>
+                                <label for="coment_desc" class="form-label">Descrição <span class="fs-5 text-danger">*</span></label>
                                 <input name="coment_desc" type="text" class="form-control" placeholder="Descrição do comentário">
                             </div>
 
                             <div class="col-12 mt-5">
-                                <label for="image_cliente" class="form-label">Imagem do Cliente</label>
+                                <label for="image_cliente" class="form-label">Imagem do Cliente <span class="fs-5 text-danger">*</span></label>
                                 <input name="image_cliente" type="text" class="form-control">
                             </div>
                         </div>
@@ -76,7 +77,7 @@
                     <div class="border border-2 rounded p-3 mt-1">
                         <h3>Comentário</h3>
                         <div class="mt-5">
-                            <label for="comentario">Comentário</label>
+                            <label for="comentario">Comentário <span class="fs-5 text-danger">*</span></label>
                             <textarea name="comentario" class="form-control" placeholder="Adicione o comentário aqui"></textarea>
                         </div>
                     </div>

@@ -72,6 +72,7 @@ Route::get('/politicas/privacidade/{id}', [PoliticasController::class, 'privacid
 Route::get('/politicas/termos/{id}', [PoliticasController::class, 'termos']);
 
 Route::post('/marca/{marcaId}/coutdown', [CoutdownController::class, 'store']);
+Route::post('/marca/{marcaId}/coutdown/editar', [CoutdownController::class, 'editar']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

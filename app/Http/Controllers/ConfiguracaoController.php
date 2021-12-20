@@ -21,10 +21,11 @@ class ConfiguracaoController extends Controller
         $marca  = Marca::find($marcaId);
         $config = $marca->configuracoes()->get();
         $modal = $marca->modals()->get();
+        $coutdown = $marca->coutdown()->get();
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
 
-        return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario'));
+        return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario', 'coutdown'));
     }
 
     ///// EDITAR CONFIGURAÇÕES //////

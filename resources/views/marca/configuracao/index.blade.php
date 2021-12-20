@@ -3,6 +3,7 @@
 @section('conteudo')
     
     <main class="container bg-white my-5 rounded p-3">
+
         @include('marca/layouts/componentes/mensagem', [$mensagem])
         
         <section>
@@ -12,6 +13,9 @@
                     <i class="fas fa-reply"></i>
                 </a>
             </div>
+
+            <small class="fs-6 text-secondary">* Compos obrigatório</small>
+
             <form action="/config/{{ $config[0]->id }}/editar" method="POST">
                 @csrf
                 <input type="hidden" name="marca_id" value="{{ $config[0]->marca_id }}">
@@ -52,26 +56,40 @@
                         </span>
                     </div>
 
-                    <div class="{{ $config[0]->coutdown == 'on' ? 'd-flex' : '' ; }} flex-column flex-md-row justify-content-between align-items-end mt-5 coutdown" 
-                    {{ $config[0]->coutdown == 'on' ? '' : 'hidden' ; }}>
+                    <div class="coutdown mt-4" {{ $config[0]->coutdown == 'on' ? '' : 'hidden' ; }}>
+                        <span id="mensagem"></span>
                         @csrf
                         <input id="marcaId" type="hidden" value="{{ $config[0]->marca_id }}">
-                        <span class="col-md-3 col-12">
-                            <label for="data">Data de expiração</label>
-                            <input id="data" name="data" class="form-control" type="date">
+                        
+                        @if (empty($coutdown[0]))
+                            <input id="opcao" type="hidden" value="salvar">
+                        @else
+                            <input id="opcao" type="hidden" value="editar">
+                        @endif
+
+                        <span class="col-12">
+                            <label for="texto">Texto descritivo <span class="fs-5 text-danger">*</span></label>
+                            <input id="texto" name="texto" placeholder="Texto descritivo" class="form-control" type="text" value="{{ empty($coutdown[0]->texto) ? '' : $coutdown[0]->texto }}">
                         </span>
 
-                        <span class="col-md-3 col-12 mt-4 mt-md-0">
-                            <label for="time">Hora da expiração</label>
-                            <input id="time" name="time" class="form-control" type="time">
-                        </span>
-
-                        <span class="col-md-3 col-12 mt-4 mt-md-0">
-                            <a id="salvar" class="btn btn-success py-2 px-5 w-100">
-                                Salvar
-                                <i class="fas fa-save ms-2"></i>
-                            </a>
-                        </span>
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
+                            <span class="col-md-3 col-12 mt-4">
+                                <label for="data">Data de expiração <span class="fs-5 text-danger">*</span></label>
+                                <input id="data" name="data" class="form-control" type="date" value="{{ empty($coutdown[0]->data) ? '' : $coutdown[0]->data }}">
+                            </span>
+    
+                            <span class="col-md-3 col-12 mt-4">
+                                <label for="time">Hora da expiração <span class="fs-5 text-danger">*</span></label>
+                                <input id="time" name="time" class="form-control" type="time" value="{{ empty($coutdown[0]->time) ? '' : $coutdown[0]->time }}">
+                            </span>
+    
+                            <span class="col-md-3 col-12 mt-4">
+                                <a id="salvar" class="btn btn-success py-2 px-5 w-100">
+                                    Salvar
+                                    <i class="fas fa-save ms-2"></i>
+                                </a>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -246,7 +264,7 @@
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
                     <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                        Novo Marca
+                        Nova Marca
                         <i class="fas fa-plus-circle ms-2"></i>
                     </a>
 
@@ -299,7 +317,6 @@
         function abilitarConfig(elemento){
 
             if((elemento.classList.value == 'btn btn-warning modal-config')) {
-            // || (elemento.classList.value == 'd-flex flex-column flex-md-row justify-content-between align-items-end mt-5 coutdown')){
                 if(elemento.hasAttribute('hidden')){
                     elemento.removeAttribute('hidden');
                 }else{
@@ -307,34 +324,48 @@
                 }
             }else{
                 if(elemento.hasAttribute('hidden')){
-                    elemento.classList.add('d-flex');
                     elemento.removeAttribute('hidden');
                 }else{
-                    elemento.classList.remove('d-flex');
                     elemento.hidden = true;
                 }
             }
         }
-    </script>
 
-    <script>
         document.getElementById('salvar').addEventListener('click', ()=>{
             let formData = new FormData();
+            let opcao = document.getElementById('opcao').value;
             let marcaId = document.getElementById('marcaId').value;
             let data = document.getElementById('data').value;
             let time = document.getElementById('time').value;
+            let texto = document.getElementById('texto').value;
             let token = document.querySelector('input[name="_token"').value
+            let url = opcao == 'salvar' ? `/marca/${marcaId}/coutdown` : `/marca/${marcaId}/coutdown/editar`;
+            let mensagem = opcao == 'salvar' ? 'Coutdown adicionado com sucesso!' : 'Coutdown atualizado com sucesso!'
+
+            if((time == '') || (data == '') || (texto == '')){
+                adicionarAlerta('Todos os campos devem ser preenchidos!', 'danger');
+                return;
+            }
 
             formData.append('data', data);
             formData.append('time', time);
+            formData.append('texto', texto);
             formData.append('_token', token);
 
-            fetch(`/marca/${marcaId}/coutdown`, {
+            fetch(url, {
                 body: formData,
                 method: 'POST'
             }).then(()=>{
-                console.log('Ok');
+                document.querySelector('.alert-danger').remove();;
+                adicionarAlerta(mensagem, 'success');
             })
+
+            function adicionarAlerta(texto, cor){
+                let div = document.createElement('div');
+                    div.setAttribute('class', `alert alert-${cor}`);
+                    div.innerHTML = texto;
+                    document.getElementById('mensagem').appendChild(div);
+            }
         });
     </script>
 

@@ -88,8 +88,9 @@ class MarcaController extends Controller
         $produtos = $marca->produtos()->get();
         $config = $marca->configuracoes()->get();
         $modal = $marca->modals()->get();
+        $coutdown = $marca->coutdown()->get();
         $pixels = explode(',', $marca->pixel);
 
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown'));
     }
 }

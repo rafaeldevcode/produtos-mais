@@ -32,16 +32,17 @@ class RegistroController extends Controller
     {
         $dados = User::all();
         $usuario = Auth::user()->name;
+        $email = Auth::user()->email;
         $mensagem = $request->session()->get('mensagem');
 
-        return view('registrar/listar', compact('usuario', 'dados', 'mensagem'));
+        return view('registrar/listar', compact('usuario', 'dados', 'mensagem', 'email'));
     }
 
     public function destroy(int $usuarioId, Request $request, Remover $remover)
     {
         $usuario = User::find($usuarioId)->name;
         $remover->removerUsuario($request);
-        $request->session()->flash('mensagem', "{$usuario} rmovido com sucesso!");
+        $request->session()->flash('mensagem', "{$usuario} removido com sucesso!");
 
         return redirect('/usuarios');
     }

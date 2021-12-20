@@ -42,4 +42,14 @@
                 $marca->modals()->create($request->all());
             DB::commit();
         }
+
+        public function adicionarCoutdown($marcaId, $request)
+        {
+            $marca = Marca::find($marcaId);
+            $coutdown = $request->except('_token');
+    
+            DB::begintransaction();
+                $marca->coutdown()->create($coutdown);
+            DB::commit();
+        }
     }

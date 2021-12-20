@@ -13,11 +13,12 @@
         @include('marca/layouts/componentes/errors', [$errors])
         
         <section class="d-flex flex-wrap">
-            <form method="POST" action="/marca/{{ $marcaId }}/modal/adicionar" class="my-5 col-12 col-md-6 adiconar-produto">
+            <form method="POST" action="/marca/{{ $marcaId }}/modal/adicionar" class="mb-5 col-12 col-md-6 adiconar-produto">
+                <small class="fs-6 text-secondary mb-5">* Compos obrigatório</small>
                 @csrf
 
-                <div>
-                    <label for="produto_modal">Imagen do produto</label>
+                <div class="mt-5">
+                    <label for="produto_modal">Imagen do produto <span class="fs-5 text-danger">*</span></label>
                     <input type="text" name="produto_modal" class="form-control">
                 </div>
 
@@ -27,17 +28,17 @@
                 </div>
 
                 <div class="mt-5">
-                    <label for="preco_sem_desconto">Preço sem desconto</label>
+                    <label for="preco_sem_desconto">Preço sem desconto <span class="fs-5 text-danger">*</span></label>
                     <input type="text" name="preco_sem_desconto" class="form-control" placeholder="Preço sem desconto">
                 </div>
 
                 <div class="mt-5">
-                    <label for="preco_com_desconto">Preço com desconto</label>
+                    <label for="preco_com_desconto">Preço com desconto <span class="fs-5 text-danger">*</span></label>
                     <input type="text" name="preco_com_desconto" class="form-control" placeholder="Preço com desconto">
                 </div>
 
                 <div class="mt-5">
-                    <label for="link_compra">Link para checkout</label>
+                    <label for="link_compra">Link para checkout <span class="fs-5 text-danger">*</span></label>
                     <input type="url" name="link_compra" class="form-control" placeholder="Link para checkout">
                     <span>Ex: https://produto.com</span>
                 </div>

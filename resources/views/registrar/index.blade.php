@@ -11,19 +11,20 @@
             @include('marca/layouts/componentes/errors', [$errors])
 
             <form method="POST">
+                <small class="fs-6 text-secondary">* Compos obrigatório</small>
                 @csrf
                 <div class="mt-5">
-                    <label for="name" class="form-label">Nome</label>
+                    <label for="name" class="form-label">Nome <span class="fs-5 text-danger">*</span></label>
                     <input type="text" name="name" id="name" placeholder="Nome" class="form-control">
                 </div>
 
                 <div class="mt-3">
-                    <label for="email" class="form-label">E-mail</label>
+                    <label for="email" class="form-label">E-mail <span class="fs-5 text-danger">*</span></label>
                     <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
                 </div>
 
                 <div class="mt-3">
-                    <label for="password" class="form-label">Senha</label>
+                    <label for="password" class="form-label">Senha <span class="fs-5 text-danger">*</span></label>
                     <input type="password" name="password" id="password" placeholder="Senha" class="form-control">
                 </div>
 

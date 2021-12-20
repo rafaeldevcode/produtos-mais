@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Marca;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Marca;
 
 class Coutdown extends Model
 {
-    protected $table = 'coutdown';
+    protected $table = 'coutdowns';
     
     protected $fillable = [
+        'id',
         'data',
-        'time'
+        'time',
+        'texto'
     ];
 
     public function marca()
