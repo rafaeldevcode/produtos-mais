@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Marca, Comentario};
 use App\Services\{Adicionar, Duplicar, Remover, Editar};
 use Illuminate\Support\Facades\Auth;
+use App\Events\NovoComentario;
 
 class ComentarioController extends Controller
 {
@@ -31,6 +32,15 @@ class ComentarioController extends Controller
     public function store(ValidacaoComentario $request, Adicionar $adicionar)
     {
         $adicionar->adicionarComentario($request);
+
+        event(new NovoComentario(
+            Marca::find($request->id)->nome_marca,
+            $request->nome_cliente,
+            $request->coment_desc,
+            $request->image_cliente,
+            $request->comentario,
+        ));
+
         $request->session()->flash("mensagem", "Comentário de {$request->nome_cliente} adicionado com sucesso!");
 
         return redirect('/adicionar/comentario');
