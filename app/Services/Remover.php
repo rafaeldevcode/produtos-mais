@@ -2,7 +2,7 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User};
+    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown};
     use Illuminate\Support\Facades\DB;
     
     class Remover {
@@ -26,6 +26,10 @@
 
                 $marca->modals->each(function(Modal $modal){
                     $modal->delete();
+                });
+
+                $marca->coutdown->each(function(Coutdown $coutdown){
+                    $coutdown->delete();
                 });
         
                 $marca->delete();

@@ -316,7 +316,8 @@
         ///// FUNÇÃO ABILITAR /////
         function abilitarConfig(elemento){
 
-            if((elemento.classList.value == 'btn btn-warning modal-config')) {
+            if((elemento.classList.value == 'btn btn-warning modal-config')
+               || (elemento.classList.value == 'coutdown mt-4')) {
                 if(elemento.hasAttribute('hidden')){
                     elemento.removeAttribute('hidden');
                 }else{
@@ -325,7 +326,9 @@
             }else{
                 if(elemento.hasAttribute('hidden')){
                     elemento.removeAttribute('hidden');
+                    elemento.classList.add('d-flex');
                 }else{
+                    elemento.classList.remove('d-flex');
                     elemento.hidden = true;
                 }
             }
@@ -356,11 +359,13 @@
                 body: formData,
                 method: 'POST'
             }).then(()=>{
-                document.querySelector('.alert-danger').remove();;
+                document.getElementById('mensagem').innerHTML = '';
                 adicionarAlerta(mensagem, 'success');
             })
 
             function adicionarAlerta(texto, cor){
+                document.getElementById('mensagem').innerHTML = '';
+
                 let div = document.createElement('div');
                     div.setAttribute('class', `alert alert-${cor}`);
                     div.innerHTML = texto;

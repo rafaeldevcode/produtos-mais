@@ -11,13 +11,13 @@
                 </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset("images/$marca->banner_1") }}" class="d-block w-100" alt="Banner 1">
+                    <img src="{{ asset("storage/$marca->banner_1") }}" class="d-block w-100" alt="Banner 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("images/$marca->banner_2") }}" class="d-block w-100" alt="Banner 2">
+                    <img src="{{ asset("storage/$marca->banner_2") }}" class="d-block w-100" alt="Banner 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("images/$marca->banner_3") }}" class="d-block w-100" alt="Banner 3">
+                    <img src="{{ asset("storage/$marca->banner_2") }}" class="d-block w-100" alt="Banner 3">
                 </div>
                 </div>
                 <button title="Anterior" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -50,7 +50,7 @@
 
                         <div class="card-body text-center">
                             <div>
-                                <img class="img-fluid" src="{{ asset("images/$produto->image_produto") }}" alt="{{ $produto->nome_produto }}">
+                                <img class="img-fluid" src="{{ asset("storage/$produto->image_produto") }}" alt="{{ $produto->nome_produto }}">
                             </div>
 
                             <ul class="list-group mt-4">
@@ -143,7 +143,7 @@
                 </div>
 
                 <div class="container-fluid col-xl-6 col-md-6 col-sm-12">
-                    <img class="img-fluid" src="{{ asset("images/$marca->image_desc") }}" alt="Produto {{ $marca->nome_marca }}">
+                    <img class="img-fluid" src="{{ asset("storage/$marca->image_desc") }}" alt="Produto {{ $marca->nome_marca }}">
                 </div>
             </div>
 

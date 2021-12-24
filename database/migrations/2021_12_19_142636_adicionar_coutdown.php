@@ -31,6 +31,6 @@ class AdicionarCoutdown extends Migration
      */
     public function down()
     {
-        Schema::drop('coutdown');
+        Schema::drop('coutdowns');
     }
 }

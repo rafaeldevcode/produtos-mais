@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
     @if (!empty($marca->favicon))
-        <link rel="shortcut icon" href="{{ asset("images/$marca->favicon") }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset("storage/$marca->favicon") }}" type="image/x-icon">
     @else
         <link rel="shortcut icon" href="{{ asset("images/favicon.png") }}" type="image/x-icon">
     @endif
@@ -61,7 +61,7 @@
         <section class="container d-flex justify-content-sm-between justify-content-center align-items-center p-3 ">
             <div class="image-header">
                 @if (!empty($marca->logomarca))
-                    <img src="{{ asset("images/$marca->logomarca") }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
+                    <img src="{{ asset("storage/$marca->logomarca") }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
                 @else
                     <img src="{{ asset("images/logo.png") }}" alt="Logo Produtos +">
                 @endif

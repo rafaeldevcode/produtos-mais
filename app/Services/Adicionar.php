@@ -13,8 +13,8 @@
                 $marca = Marca::create([
                     'nome_marca'    => $request->nome_marca,
                     'slug_marca'    => $request->slug_marca,
-                    'logomarca'     => $request->empty(file('logomarca')) ? null : $request->file('logomarca')->store('marca'),
-                    'favicon'       => $request->empty(file('favicon')) ? null : $request->file('favicon')->store('marca'),
+                    'logomarca'     => empty($request->file('logomarca')) ? null : $request->file('logomarca')->store('marca'),
+                    'favicon'       => empty($request->file('favicon')) ? null : $request->file('favicon')->store('marca'),
                     'cor_principal' => $request->cor_principal,
                     'cor_titulo'    => $request->cor_titulo,
                     'cor_texto'     => $request->cor_texto,

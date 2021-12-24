@@ -35,7 +35,8 @@
                     'nome_cliente'  => "{$comentario->nome_cliente} - Cópia", 
                     'coment_desc'   => $comentario->coment_desc, 
                     'image_cliente' => $comentario->image_cliente, 
-                    'comentario'    => $comentario->comentario
+                    'comentario'    => $comentario->comentario,
+                    'exibir_coment' => $comentario->exibir_coment
                 ]);
             DB::commit();
         }
