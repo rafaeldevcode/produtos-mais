@@ -12,7 +12,8 @@ class Comentario extends Model
         'nome_cliente', 
         'coment_desc', 
         'image_cliente', 
-        'comentario'
+        'comentario',
+        'exibir_coment'
     ];
 
     public function marca()

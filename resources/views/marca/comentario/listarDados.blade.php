@@ -13,7 +13,7 @@
 
             @include('marca/layouts/componentes/errors', [$errors])
 
-            <form action="/comentario/{{ $comentarioId }}/editar" method="POST">
+            <form action="/comentario/{{ $comentarioId }}/editar" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
@@ -46,18 +46,6 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="image_cliente" type="text" value="{{ $dados->image_cliente }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagem:</b>{{ $dados->image_cliente }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <textarea hidden class="form-control w-75 inputEditar" name="comentario">{{ $dados->comentario }}</textarea>
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Comentário:</b>{{ $dados->comentario }}</span>
@@ -69,6 +57,37 @@
                         </span>
                     </li>
                 </ul>
+
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Imagens</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="image_cliente" type="file">
+
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem cliente:</b> <br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_cliente}") }}" alt="{{ $dados->nome_cliente }}">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+
+                <div class="border border-2 rounded p-3 mt-5">
+                    <h3>Selecione essa opção para exibir o comentário na página</h3>
+
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="col-12 form-check form-switch">
+                            <label for="exibir_coment" class="form-check-label">Mostrar na Página?</label>
+                            <input
+                                {{ $dados->exibir_coment == 'on' ? 'checked' : '' ; }}
+                             name="exibir_coment" type="checkbox" class="form-check-input">
+                        </div>
+                    </div>
+                </div>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
                     <a title="Novo Comentário" href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">

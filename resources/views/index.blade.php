@@ -161,17 +161,19 @@
                 <div class="d-flex flex-wrap justify-content-evenly">
 
                     @foreach ($comentarios as $comentario)
-                        <div class="card shadow d-flex border-0 mb-2 pt-3">
-                            <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
-                                <img src="{{ asset("images/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
-                                <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
-                                <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                        @if ($produto->exibir_produto == 'on')
+                            <div class="card shadow d-flex border-0 mb-2 pt-3">
+                                <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
+                                    <img src="{{ asset("storage/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
+                                    <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
+                                    <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                                </div>
+                
+                                <div class="card-body text-center">
+                                    <p>{{ $comentario->comentario }}</p>
+                                </div>
                             </div>
-            
-                            <div class="card-body text-center">
-                                <p>{{ $comentario->comentario }}</p>
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
         
                 </div>

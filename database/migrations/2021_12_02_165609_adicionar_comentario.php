@@ -21,6 +21,7 @@ class AdicionarComentario extends Migration
             $table->string('coment_desc');
             $table->string('image_cliente');
             $table->string('comentario');
+            $table->boolean('exibir_coment')->nullable();
             $table->timestamps();
         });
     }

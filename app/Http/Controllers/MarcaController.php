@@ -61,7 +61,7 @@ class MarcaController extends Controller
     }
 
     ///// ENVIAR DADOS EDITADO /////
-    public function editarMarca(ValidacaoMarca $request, int $marcaId, Editar $editar)
+    public function editarMarca(Request $request, int $marcaId, Editar $editar)
     {
         $editar->editarMarca($request, $marcaId);
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");

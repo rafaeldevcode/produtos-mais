@@ -68,7 +68,7 @@ class ComentarioController extends Controller
     }
 
     ///// GUARDAR COMENTÁRIOS EDITADO /////
-    public function editarDados(ValidacaoComentario $request, int $comentarioId, Editar $editar)
+    public function editarDados(Request $request, int $comentarioId, Editar $editar)
     {
         $comentario = Comentario::find($comentarioId);
         $editar->editarComentario($request, $comentario);

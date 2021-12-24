@@ -44,7 +44,7 @@ class ModalController extends Controller
     }
 
     ////// GUARDADR DADOS EDITADO /////
-    public function editar(ValidacaoModal $request, int $marcaId, Editar $editar)
+    public function editar(Request $request, int $marcaId, Editar $editar)
     {
         $editar->editarModal($request, $marcaId);
         $request->session()->flash('mensagem', 'Modal Editado com sucesso!');

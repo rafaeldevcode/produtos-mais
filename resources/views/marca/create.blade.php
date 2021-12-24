@@ -14,7 +14,7 @@
             @include('marca/layouts/componentes/errors', [$errors])
             <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
-            <form action="/adicionar/marca" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+            <form action="/adicionar/marca" method="POST" enctype="multipart/form-data" class="adiconar-marca border border-2 rounded p-3 my-3">
                 @csrf
 
                 <div class="border border-2 rounded p-3">
@@ -109,32 +109,32 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_1" class="form-label">Banner 1 <span class="fs-5 text-danger">*</span></label>
-                            <input name="banner_1" type="text" class="form-control">
+                            <input name="banner_1" type="file" class="form-control">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_2" class="form-label">Banner 2 <span class="fs-5 text-danger">*</span></label>
-                            <input name="banner_2" type="text" class="form-control">
+                            <input name="banner_2" type="file" class="form-control">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="banner_3" class="form-label">Banner 3 <span class="fs-5 text-danger">*</span></label>
-                            <input name="banner_3" type="text" class="form-control">
+                            <input name="banner_3" type="file" class="form-control">
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
                             <label for="logomarca" class="form-label">Imagem do logo</label>
-                            <input name="logomarca" class="form-control" type="text">
+                            <input name="logomarca" class="form-control" type="file">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
                             <label for="favicon" class="form-label">Favicon Da Marca</label>
-                            <input name="favicon" class="form-control" type="text">
+                            <input name="favicon" class="form-control" type="file">
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
                             <label for="image_desc" class="form-label">Imagen da Descrição <span class="fs-5 text-danger">*</span></label>
-                            <input name="image_desc" class="form-control" type="text">
+                            <input name="image_desc" class="form-control" type="file">
                         </div>
                     </div>
                 </div>

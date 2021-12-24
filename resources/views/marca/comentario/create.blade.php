@@ -38,7 +38,7 @@
                 @include('marca/layouts/componentes/errors', [$errors])
                 <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
-                <form action="/adicionar/comentario" method="POST" class="adiconar-marca border border-2 rounded p-3 my-3">
+                <form action="/adicionar/comentario" method="POST" enctype="multipart/form-data" class="adiconar-marca border border-2 rounded p-3 my-3">
                     @csrf
 
                     <div class="border border-2 rounded p-3 mt-1">
@@ -69,7 +69,7 @@
 
                             <div class="col-12 mt-5">
                                 <label for="image_cliente" class="form-label">Imagem do Cliente <span class="fs-5 text-danger">*</span></label>
-                                <input name="image_cliente" type="text" class="form-control">
+                                <input name="image_cliente" type="file" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -79,6 +79,17 @@
                         <div class="mt-5">
                             <label for="comentario">Comentário <span class="fs-5 text-danger">*</span></label>
                             <textarea name="comentario" class="form-control" placeholder="Adicione o comentário aqui"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="border border-2 rounded p-3 mt-5">
+                        <h3>Selecione essa opção para exibir o comentário na página</h3>
+
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <div class="col-12 form-check form-switch">
+                                <label for="exibir_coment" class="form-check-label">Mostrar na Página?</label>
+                                <input name="exibir_coment" type="checkbox" class="form-check-input">
+                            </div>
                         </div>
                     </div>
 

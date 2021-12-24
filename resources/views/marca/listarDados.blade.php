@@ -14,7 +14,7 @@
 
             @include('marca/layouts/componentes/errors', [$errors])
 
-            <form action="/marca/{{ $marcaId }}/editar" method="POST">
+            <form action="/marca/{{ $marcaId }}/editar" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
@@ -195,82 +195,6 @@
                     </li>
                 </ul>
 
-                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Benners e Imagens</h5>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="logomarca" type="text" value="{{ $dados->logomarca }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b>{{ $dados->logomarca }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="favicon" type="text" value="{{ $dados->favicon }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Favicon:</b>{{ $dados->favicon }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-                    
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_1" type="text" value="{{ $dados->banner_1 }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 1:</b>{{ $dados->banner_1 }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_2" type="text" value="{{ $dados->banner_2 }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 2:</b>{{ $dados->banner_2 }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="banner_3" type="text" value="{{ $dados->banner_3 }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 3:</b>{{ $dados->banner_3 }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="image_desc" type="text" value="{{ $dados->image_desc }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagen da descrição:</b>{{ $dados->image_desc }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-                </ul>
-
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Itens da Lista de Descrição</h5>
 
                 <ul class="list-group">
@@ -321,6 +245,94 @@
                         <input hidden class="form-control w-25 inputEditar" name="evento" type="text" value="{{ $dados->evento }}">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Marcar evento:</b>{{ $dados->evento }}</span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Benners e Imagens</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="logomarca" type="file">
+                        
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b> <br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->logomarca) ? asset("images/logo.png") : asset("storage/{$dados->logomarca}") }}" alt="Logo {{ $dados->nome_marca }}">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="favicon" type="file">
+                        
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Favicon:</b><br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->favicon) ? asset("images/favicon.png") : asset("storage/{$dados->favicon}") }}" alt="Favicon {{ $dados->nome_marca }}">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="banner_1" type="file" value="{{ $dados->banner_1 }}">
+
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Banner 1:</b><br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_1}") }}" alt="Banner 1">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="banner_2" type="file">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 2:</b><br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_2}") }}" alt="Banner 2">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="banner_3" type="file">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 3:</b><br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_3}") }}" alt="Banner 3">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="image_desc" type="file">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagen da descrição:</b><br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_desc}") }}" alt="Descrição">
+                        </span>
 
                         <span>
                             <a title="Editar" class="btn btn-info btnEditar">

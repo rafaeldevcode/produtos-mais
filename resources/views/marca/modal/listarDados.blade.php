@@ -13,25 +13,12 @@
 
             @include('marca/layouts/componentes/errors', [$errors])
             
-            <form action="/marca/{{ $marcaId }}/modal/editar" method="POST">
+            <form action="/marca/{{ $marcaId }}/modal/editar" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <h5 class="mt-5 mb-3 border-bottom border-info border-2">Informações Principais</h5>
 
                 <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="produto_modal" type="text" value="{{ $dados[0]->produto_modal }}">
-
-
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem de produto:</b>{{ $dados[0]->produto_modal }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="porcentagem" type="text" value="{{ $dados[0]->porcentagem }}">
 
@@ -76,6 +63,24 @@
 
                         <span>
                             <a title="Editar"class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+
+                <h5 class="mt-5 mb-3 border-bottom border-info border-2">Imagens</h5>
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-25 inputEditar" name="produto_modal" type="file">
+
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem do pruduto:</b> <br>
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados[0]->produto_modal}") }}" alt="Produto - {{ $dados[0]->produto_modal }}">
+                        </span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </span>

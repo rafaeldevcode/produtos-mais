@@ -13,13 +13,13 @@
         @include('marca/layouts/componentes/errors', [$errors])
         
         <section class="d-flex flex-wrap">
-            <form method="POST" action="/marca/{{ $marcaId }}/modal/adicionar" class="mb-5 col-12 col-md-6 adiconar-produto">
+            <form method="POST" enctype="multipart/form-data" action="/marca/{{ $marcaId }}/modal/adicionar" class="mb-5 col-12 col-md-6 adiconar-produto">
                 <small class="fs-6 text-secondary mb-5">* Compos obrigatório</small>
                 @csrf
 
                 <div class="mt-5">
                     <label for="produto_modal">Imagen do produto <span class="fs-5 text-danger">*</span></label>
-                    <input type="text" name="produto_modal" class="form-control">
+                    <input type="file" name="produto_modal" class="form-control">
                 </div>
 
                 <div class="mt-5">

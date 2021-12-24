@@ -37,7 +37,7 @@
                 @include('marca/layouts/componentes/errors', [$errors])
                 <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
-                <form action="/adicionar/produto" method="POST" class="border border-2 rounded p-3 my-3 adiconar-produto">
+                <form action="/adicionar/produto" method="POST" enctype="multipart/form-data" class="border border-2 rounded p-3 my-3 adiconar-produto">
                     @csrf
                     <div class="border border-2 rounded p-3 mt-1">
                         <h3>Marca do produto <span class="fs-5 text-danger">*</span></h3>
@@ -74,7 +74,7 @@
 
                             <div class="col-12 col-md-5 mt-5">
                                 <label for="image_produto" class="form-label">Imagem do Produto <span class="fs-5 text-danger">*</span></label>
-                                <input name="image_produto" type="text" class="form-control">
+                                <input name="image_produto" type="file" class="form-control">
                             </div>
                         </div>
                     </div>

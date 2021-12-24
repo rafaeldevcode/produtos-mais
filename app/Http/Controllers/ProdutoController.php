@@ -62,7 +62,7 @@ class ProdutoController extends Controller
     }
 
     ///// GUARDAR PRODUTOS EDITADOS /////
-    public function editarDados(ValidacaoProduto $request, int $produtoId, Editar $editar)
+    public function editarDados(Request $request, int $produtoId, Editar $editar)
     {
         $produto = Produto::find($produtoId);
         $editar->editarProduto($request, $produto);
