@@ -2,14 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\NovoComentario;
+use App\Events\NovoCadastro;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\User;
 use Illuminate\Support\Facades\{Auth, Mail};
-use App\Mail\EnviarEmailComentario;
+use App\Mail\EnviarEmail;
 
-class EnviarEmailNovoComentario implements ShouldQueue
+class EnviarNovoEmail implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -24,25 +24,21 @@ class EnviarEmailNovoComentario implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  \App\Events\NovoComentario  $event
+     * @param  \App\Events\NovoCadastro  $event
      * @return void
      */
-    public function handle(NovoComentario $event)
+    public function handle(NovoCadastro $event)
     {
-        $nome_usuario = Auth::user()->name;
         $usuarios = User::all();
 
         foreach($usuarios as $indice => $usuario){
-            $email = new EnviarEmailComentario(
-                $event->nome_marca,
-                $nome_usuario,
-                $event->nome_cliente, 
-                $event->coment_desc, 
-                $event->image_cliente, 
-                $event->comentario
+            $email = new EnviarEmail(
+                Auth::user()->name,
+                $event->nome,
+                $event->mensagem
             );
-            $email->subject = 'Novo comentário';
-    
+            $email->subject("{$event->mensagem} em produtos +");
+
             Mail::to($usuario)->later(now()->addSeconds(($indice + 1) * 5), $email);
         }
     }

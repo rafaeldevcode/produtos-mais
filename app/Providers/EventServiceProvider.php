@@ -6,8 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-use App\Events\NovoComentario;
-use App\Listeners\{EnviarEmailNovoComentario, LogNovoComentario};
+use App\Events\{NovoComentario, NovoCadastro};
+use App\Listeners\{EnviarNovoEmail, LogNovoCadastro};
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,9 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        NovoComentario::class => [
-            EnviarEmailNovoComentario::class,
-            LogNovoComentario::class
+        NovoCadastro::class => [
+            EnviarNovoEmail::class,
+            LogNovoCadastro::class
         ]
     ];
 

@@ -4,6 +4,9 @@
 
     use App\Models\Marca;
     use Illuminate\Support\Facades\DB;
+    use App\Events\NovoCadastro;
+    use Illuminate\Support\Facades\{Auth, Hash};
+    use App\Models\User;
 
     class Adicionar {
 
@@ -43,6 +46,11 @@
                 ]);
                 $marca->configuracoes()->create();
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_marca,
+                'Nova marca cadastrada!'
+            ));
         }
 
         public function adicionarProduto($request, $marca)
@@ -60,6 +68,11 @@
                     'exibir_produto'  => $request->exibir_produto
                 ]);
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_produto,
+                "Novo produto adicionado a marca {$marca->nome_marca}"
+            ));
         }
 
         public function adicionarComentario($request)
@@ -75,6 +88,11 @@
                     'exibir_coment' => $request->exibir_coment
                 ]);
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_cliente,
+                'Novo comentário adicionado!'
+            ));
         }
 
         public function adicionarModal($request, $marcaId)
@@ -90,6 +108,11 @@
                     'link_compra'        => $request->link_compra
                 ]);
             DB::commit();
+
+            event(new NovoCadastro(
+                'Modal',
+                "Novo modal adicionado a marca {$marca->nome_marca}"
+            ));
         }
 
         public function adicionarCoutdown($marcaId, $request)
@@ -100,5 +123,24 @@
             DB::begintransaction();
                 $marca->coutdown()->create($coutdown);
             DB::commit();
+
+            event(new NovoCadastro(
+                'Coutdown',
+                "Novo coutdown adicionado a marca {$marca->nome_marca}"
+            ));
+        }
+
+        public function adicionarUsuario($request)
+        {
+            $data = $request->except('_token');
+            $data['password'] = Hash::make($data['password']);
+            $user = User::create($data);
+
+            event(new NovoCadastro(
+                $request->name,
+                'Nova usuário adicionado a produtos +!'
+            ));
+    
+            Auth::login($user);
         }
     }

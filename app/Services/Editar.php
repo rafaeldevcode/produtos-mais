@@ -4,6 +4,7 @@
 
     use App\Models\{Marca, Configuracao};
     use Illuminate\Support\Facades\DB;
+    use App\Events\NovoCadastro;
 
     class Editar {
 
@@ -42,10 +43,17 @@
                 $marca->disclaimer    = $request->disclaimer;
                 $marca->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_marca,
+                "A marca {$request->nome_marca} foi atualizada!"
+            ));
         }
 
         public function editarProduto($request, $produto)
         {
+            $marca = Marca::find($request->marca_id)->nome_marca;
+
             DB::beginTransaction();
                 $produto->nome_produto    = $request->nome_produto;
                 $produto->link_compra     = $request->link_compra;
@@ -58,6 +66,11 @@
                 $produto->exibir_produto  = $request->exibir_produto;
                 $produto->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_produto,
+                "O produto da marca {$marca} foi atualizado!"
+            ));
         }
 
         public function editarComentario($request, $comentario)
@@ -70,11 +83,17 @@
                 $comentario->exibir_coment = $request->exibir_coment;
                 $comentario->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                $request->nome_cliente,
+                "O comentário de {$request->nome_cliente} foi atualizado!"
+            ));
         }
 
         public function editarConfiguracao($configId, $request)
         {
             $config = Configuracao::find($configId);
+            $marca = Marca::find($config->marca_id)->nome_marca;
 
             DB::beginTransaction();
                 $config->modal         = $request->modal;
@@ -97,10 +116,16 @@
                 $config->pixel         = $request->pixel;
                 $config->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                'Configurações',
+                "As configurações da marca {$marca} foi atualizada!"
+            ));
         }
 
         public function editarModal($request, $marcaId)
         {
+            $marca = Marca::find($marcaId)->nome_marca;
             $modal = Marca::find($marcaId)->modals()->get();
 
             DB::beginTransaction();
@@ -111,9 +136,16 @@
                 $modal[0]->link_compra        = $request->link_compra;
                 $modal[0]->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                'Modal',
+                "O modal da marca {$marca} foi atualizado!"
+            ));
         }
 
-        public function editarCoutdown($marcaId, $request){
+        public function editarCoutdown($marcaId, $request)
+        {
+            $marca = Marca::find($marcaId)->nome_marca;
             $coutdown = Marca::find($marcaId)->coutdown()->get();
 
             DB::begintransaction();
@@ -122,5 +154,10 @@
                 $coutdown[0]->texto = $request->texto;
                 $coutdown[0]->save();
             DB::commit();
+
+            event(new NovoCadastro(
+                'Coutdown',
+                "O coutdown da marca {$marca} foi atualizado!"
+            ));
         }
     }

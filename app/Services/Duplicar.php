@@ -4,6 +4,7 @@
 
     use App\Models\{Marca, Produto};
     use Illuminate\Support\Facades\DB;
+    use App\Events\NovoCadastro;
 
     class Duplicar {
 
@@ -24,6 +25,11 @@
                     'exibir_produto'  => $produto->exibir_produto
                 ]);
             DB::commit();
+
+            event(new NovoCadastro(
+                $produto->nome_produto,
+                "O produto da marca {$marca} foi clonado!"
+            ));
         }
 
         public function duplicarComentario($comentario)
@@ -39,5 +45,10 @@
                     'exibir_coment' => $comentario->exibir_coment
                 ]);
             DB::commit();
+
+            event(new NovoCadastro(
+                $comentario->nome_produto,
+                "O comentário da marca {$marca} foi clonado!"
+            ));
         }
     }

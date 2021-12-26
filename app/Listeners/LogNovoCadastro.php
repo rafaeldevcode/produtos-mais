@@ -2,13 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\NovoComentario;
+use App\Events\NovoCadastro;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
-class LogNovoComentario implements ShouldQueue
+class LogNovoCadastro implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -23,12 +23,12 @@ class LogNovoComentario implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  \App\Events\NovoComentario  $event
+     * @param  \App\Events\NovoCadastro  $event
      * @return void
      */
-    public function handle(NovoComentario $event)
+    public function handle(NovoCadastro $event)
     {
         $nome_usuario = Auth::user()->name;
-        Log::channel('main')->info("Novo comentario adicionado a [{$event->nome_marca}] por [{$nome_usuario}]");
+        Log::channel('main')->info("[{$event->mensagem}] [{$event->nome}] por [{$nome_usuario}]");
     }
 }

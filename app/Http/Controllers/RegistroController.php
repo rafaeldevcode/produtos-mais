@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth, Hash};
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Services\Remover;
+use App\Services\{Remover, Adicionar};
 use App\Http\Requests\ValidacaoUsuario;
 
 class RegistroController extends Controller
@@ -17,13 +17,9 @@ class RegistroController extends Controller
         return view('registrar/index', compact('usuario'));
     }
 
-    public function store(ValidacaoUsuario $request)
+    public function store(ValidacaoUsuario $request, Adicionar $adicionar)
     {
-        $data = $request->except('_token');
-        $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
-
-        Auth::login($user);
+        $adicionar->adicionarUsuario($request);
 
         return redirect('/marcas');
     }

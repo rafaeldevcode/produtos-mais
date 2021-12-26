@@ -10,28 +10,22 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NovoComentario
+class NovoCadastro
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public string $nome_marca;
-    public string $nome_cliente; 
-    public string $coment_desc; 
-    public string $image_cliente; 
-    public string $comentario;
+    public string $nome;
+    public string $mensagem;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($nome_marca, $nome_cliente, $coment_desc, $image_cliente, $comentario)
+    public function __construct($nome, $mensagem)
     {
-        $this->nome_marca = $nome_marca;
-        $this->nome_cliente = $nome_cliente;
-        $this->coment_desc = $coment_desc;
-        $this->image_cliente = $image_cliente;
-        $this->comentario = $comentario;
+        $this->nome = $nome;
+        $this->mensagem = $mensagem;
     }
 
     /**
