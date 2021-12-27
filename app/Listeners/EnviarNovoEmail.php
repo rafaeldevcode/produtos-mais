@@ -39,7 +39,7 @@ class EnviarNovoEmail implements ShouldQueue
             );
             $email->subject("{$event->mensagem} em produtos +");
 
-            Mail::to($usuario)->later(now()->addSeconds(($indice + 1) * 5), $email);
+            Mail::to($usuario)->later(now()->addSecond(($indice + 1) * 5), $email);
         }
     }
 }

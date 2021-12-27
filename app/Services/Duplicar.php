@@ -47,7 +47,7 @@
             DB::commit();
 
             event(new NovoCadastro(
-                $comentario->nome_produto,
+                $comentario->nome_cliente,
                 "O comentário da marca {$marca} foi clonado!"
             ));
         }

@@ -49,7 +49,7 @@
 
                         <div class="col-12 col-md-5 mt-5">
                             <label for="cnpj" class="form-label">Digite o CNPJ</label>
-                            <input name="cnpj" type="text" class="form-control" placeholder="CNPJ">
+                            <input id="cnpj" maxlength="18" name="cnpj" type="text" class="form-control" placeholder="CNPJ">
                         </div>
 
                         <div class="col-12 col-md-5 mt-5">
@@ -75,7 +75,7 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="telefone" class="form-label">Telefone</label>
-                            <input name="telefone" type="tel" class="form-control" placeholder="Digite o telefone de contato">
+                            <input maxlength="16" id="telefone" name="telefone" type="tel" class="form-control" placeholder="Digite o telefone de contato">
                         </div>
     
                         <div class="col-12 col-md-5 mt-5">
@@ -271,6 +271,26 @@
             btnRemoverErro[i].addEventListener('click', ()=>{
                 removerErro[i].remove(removerErro[i])
             })
+        }
+
+        document.getElementById('cnpj').addEventListener('keyup', ()=>{
+            let cnpj = removerCaracter(document.getElementById('cnpj').value);
+            let mascara = `${cnpj.substr(0, 2)}.${cnpj.substr(2, 3)}.${cnpj.substr(5, 3)}/${cnpj.substr(8, 4)}-${cnpj.substr(12, 2)}`;
+
+            document.getElementById('cnpj').value = mascara;
+        });
+
+        document.getElementById('telefone').addEventListener('keyup', ()=>{
+            let telefone = removerCaracter(document.getElementById('telefone').value);
+            let mascara = `(${telefone.substr(0, 2)}) ${telefone.substr(2, 1)} ${telefone.substr(3, 4)}-${telefone.substr(7, 4)}`;
+
+            document.getElementById('telefone').value = mascara;
+        });
+
+        function removerCaracter(telefone){
+            let regex = /[^0-9]/gi;
+            telefone = telefone.replace(regex, '');
+            return telefone;
         }
     </script>
 

@@ -68,6 +68,7 @@ Route::get('/registrar', [RegistroController::class, 'index']);
 Route::post('/registrar', [RegistroController::class, 'store']);
 Route::get('/usuarios', [RegistroController::class, 'listar']);
 Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy']);
+Route::post('/editar/usuario/{usuarioId}', [RegistroController::class, 'editarUsuario']);
 
 Route::get('/politicas/privacidade/{id}', [PoliticasController::class, 'privacidade']);
 Route::get('/politicas/termos/{id}', [PoliticasController::class, 'termos']);

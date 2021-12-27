@@ -6,7 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-use App\Events\{NovoComentario, NovoCadastro};
+use App\Events\NovoCadastro;
 use App\Listeners\{EnviarNovoEmail, LogNovoCadastro};
 
 class EventServiceProvider extends ServiceProvider

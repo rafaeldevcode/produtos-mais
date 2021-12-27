@@ -36,68 +36,68 @@
                 $marca->delete();
             DB::commit();
 
-            event(new NovoCadastro(
-                $marca,
-                'Marca removida!'
-            ));
+            // event(new NovoCadastro(
+            //     $marca,
+            //     'Marca removida!'
+            // ));
         }
 
         public function removerProduto ($produtoId)
         {
-            $produto = Produto::find($produtoId);
-            $marca = Marca::find($produto->marca_id);
+            // $produto = Produto::find($produtoId);
+            // $marca = Marca::find($produto->marca_id);
 
             DB::beginTransaction();
                 Produto::destroy($produtoId);
             DB::commit();
 
-            event(new NovoCadastro(
-                $produto->nome_produto,
-                "Produto removido da marca {$marca->nome_marca}!"
-            ));
+            // event(new NovoCadastro(
+            //     $produto->nome_produto,
+            //     "Produto removido da marca {$marca->nome_marca}!"
+            // ));
         }
 
         public function removerComentario($request)
         {
-            $comentario = Produto::find($request->comentarioId);
-            $marca = Marca::find($comentario->marca_id);
+            // $comentario = Produto::find($request->comentarioId);
+            // $marca = Marca::find($comentario->marca_id);
 
             DB::beginTransaction();
                 Comentario::destroy($request->comentarioId);
             DB::commit();
 
-            event(new NovoCadastro(
-                $comentario->nome_cliente,
-                "Comentário removido da marca {$marca->nome_marca}!"
-            ));
+            // event(new NovoCadastro(
+            //     $comentario->nome_cliente,
+            //     "Comentário removido da marca {$marca->nome_marca}!"
+            // ));
         }
 
         public function removerModal($request)
         {
-            $modal = Produto::find($request->modalId);
-            $marca = Marca::find($modal->marca_id);
+            // $modal = Produto::find($request->modalId);
+            // $marca = Marca::find($modal->marca_id);
 
             DB::beginTransaction();
                 Modal::destroy($request->modalId);
             DB::commit();
 
-            event(new NovoCadastro(
-                'Modal',
-                "Modal removido da marca {$marca->nome_marca}!"
-            ));
+            // event(new NovoCadastro(
+            //     'Modal',
+            //     "Modal removido da marca {$marca->nome_marca}!"
+            // ));
         }
 
         public function removerUsuario($request)
         {
-            $usuario = User::find($request->usuarioId)->name;
+            // $usuario = User::find($request->usuarioId)->name;
 
             DB::beginTransaction();
                 User::destroy($request->usuarioId);
             DB::commit();
 
-            event(new NovoCadastro(
-                $usuario,
-                'Usuário removido de produtos +!'
-            ));
+            // event(new NovoCadastro(
+            //     $usuario,
+            //     'Usuário removido de produtos +!'
+            // ));
         }
     }

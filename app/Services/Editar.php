@@ -2,9 +2,10 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Configuracao};
+    use App\Models\{Marca, Configuracao, User};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
+    use Illuminate\Support\Facades\Hash;
 
     class Editar {
 
@@ -158,6 +159,22 @@
             event(new NovoCadastro(
                 'Coutdown',
                 "O coutdown da marca {$marca} foi atualizado!"
+            ));
+        }
+
+        public function editarUsuario($usuarioId, $request)
+        {
+            $usuario = User::find($usuarioId);
+
+            DB::beginTransaction();
+                $usuario->name = $request->name;
+                if(!empty($request->password)){$usuario->password = Hash::make($request->password);}
+                $usuario->save();
+            DB::commit();
+
+            event(new NovoCadastro(
+                "{$request->name}",
+                "Usuário atualizado!"
             ));
         }
     }

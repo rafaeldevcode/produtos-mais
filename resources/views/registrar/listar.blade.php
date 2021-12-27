@@ -48,17 +48,18 @@
                         </div>
 
                         @if ($email == $dado->email)
-                            <form action="?" id="formulario" hidden>
+                            <form action="/editar/usuario/{{ $dado->id }}" method="POST" id="formulario" hidden>
+                                @csrf
                                 <span class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                                         <label for="name" class="form-label">Nome</label>
                                         <input type="text" name="name" value="{{ $dado->name }}" class="form-control">
                                     </div>
     
-                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
+                                    {{-- <div class="col-12 col-md-3 mt-3 mt-md-0">
                                         <label for="password_antiga" class="form-label">Senha Antiga</label>
                                         <input type="password" name="password_antiga" class="form-control">
-                                    </div>
+                                    </div> --}}
     
                                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                                         <label for="password" class="form-label">Nova Senha</label>

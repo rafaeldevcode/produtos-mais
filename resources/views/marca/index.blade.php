@@ -42,7 +42,7 @@
                         <div class="image-list">
                             <a title="Ver Página" href="/produto/{{ $marca->id }}">
                                 @if (!empty($marca->logomarca))
-                                    <img src="{{ asset("images/$marca->logomarca") }}" alt="{{ $marca->nome_marca }}">
+                                    <img src="{{ asset("storage/$marca->logomarca") }}" alt="{{ $marca->nome_marca }}">
                                 @else
                                     <img src="{{ asset('images/logo.png') }}" alt="Produtos +">
                                 @endif
