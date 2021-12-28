@@ -212,89 +212,11 @@
     </main>
 
     <script type="text/javascript">
-
-        let indice = 1;
-        
-        document.getElementById('adicionarItem').addEventListener('click', ()=>{
-            document.getElementById('removerItem').classList.remove('disabled');
-
-            let pai = document.getElementById('paiLista');
-            let item = document.querySelectorAll('.item');
-            let avisoItem = document.getElementById('avisoItem');
-
-            if(item.length < 5){
-                let input = document.createElement('input');
-                    input.setAttribute('name', `item_${indice}`);
-                    input.setAttribute('type', 'text');
-                    input.setAttribute('class', 'form-control mx-2 item');
-                    input.setAttribute('placeholder', `Digite o Item ${indice}`)
-            
-                let label = document.createElement('label');
-                    label.setAttribute('class', 'form-label m-0');
-                    label.setAttribute('for', `item_${indice}`)
-                    label.innerHTML = `item_${indice}`;
-            
-                let div = document.createElement('div');
-                    div.setAttribute('class', 'd-flex flex-row align-items-center mb-2 remover');
-                    div.appendChild(label);
-                    div.appendChild(input);
-            
-                pai.appendChild(div);
-            }else if(item.length == 5){
-                avisoItem.removeAttribute('hidden');
-                document.getElementById('adicionarItem').classList.add('disabled');
-            }
-        
-            indice++;
-        })
-
-        document.getElementById('removerItem').addEventListener('click', ()=>{
-            document.getElementById('adicionarItem').classList.remove('disabled');
-            let remover = document.querySelectorAll('.remover');
-            let item = remover[remover.length - 1];
-            avisoItem.hidden = true;
-            item.remove();
-
-            if(remover.length == 1){
-                document.getElementById('removerItem').classList.add('disabled');
-            }else{
-                document.getElementById('removerItem').classList.remove('disabled');
-            }
-            indice--;
-        });
-
-        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
-        let removerErro = document.querySelectorAll('.removerErro');
-        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
-
-        for(let i = 0; i < btnRemoverErro.length; i++){
-            btnRemoverErro[i].addEventListener('click', ()=>{
-                removerErro[i].remove(removerErro[i])
-            })
-        }
-
-        /////// MASCARA PARA CNPJ /////////
-        document.getElementById('cnpj').addEventListener('keyup', ()=>{
-            let cnpj = removerCaracter(document.getElementById('cnpj').value);
-            let mascara = `${cnpj.substr(0, 2)}.${cnpj.substr(2, 3)}.${cnpj.substr(5, 3)}/${cnpj.substr(8, 4)}-${cnpj.substr(12, 2)}`;
-
-            document.getElementById('cnpj').value = mascara;
-        });
-
-        /////// MASCAR PARA TELEFONE ///////
-        document.getElementById('telefone').addEventListener('keyup', ()=>{
-            let telefone = removerCaracter(document.getElementById('telefone').value);
-            let mascara = `(${telefone.substr(0, 2)}) ${telefone.substr(2, 1)} ${telefone.substr(3, 4)}-${telefone.substr(7, 4)}`;
-
-            document.getElementById('telefone').value = mascara;
-        });
-
-        /////// FUNÇÃO PARA REMOVER CARACTERE ///////
-        function removerCaracter(telefone){
-            let regex = /[^0-9]/gi;
-            telefone = telefone.replace(regex, '');
-            return telefone;
-        }
+        adicionarItem();
+        removerItem();
+        removerErroVerificacao();
+        mascaraTelefone();
+        mascaraCnpj();
     </script>
 
 @endsection

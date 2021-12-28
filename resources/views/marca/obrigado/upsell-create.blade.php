@@ -62,14 +62,6 @@
     </main>
 
     <script type="text/javascript">
-        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
-        let removerErro = document.querySelectorAll('.removerErro');
-        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
-
-        for(let i = 0; i < btnRemoverErro.length; i++){
-            btnRemoverErro[i].addEventListener('click', ()=>{
-                removerErro[i].remove(removerErro[i])
-            })
-        }
+        removerErroVerificacao();
     </script>
 @endsection

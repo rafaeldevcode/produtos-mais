@@ -103,86 +103,63 @@
     </main>
 
     <script type="text/javascript">
-        let btnEditar = document.querySelectorAll('.btnEditar');
-        let textEditar = document.querySelectorAll('.textEditar');
-        let inputEditar = document.querySelectorAll('.inputEditar');
+        abilitarInputEditar();
 
-        for(let i = 0; i < btnEditar.length; i++){
-            btnEditar[i].addEventListener('click', ()=>{
+        exibirFormularioExcluir('/modal', 'Certeza que deseja excluir o modal?');
 
-                if(textEditar[i].hasAttribute('hidden')){
-                    textEditar[i].removeAttribute('hidden');
-                    inputEditar[i].hidden = true;
-                }else{
-                    inputEditar[i].removeAttribute('hidden');
-                    textEditar[i].hidden = true;
-                }
+        function exibirFormularioExcluir(url, mensagem) {
+            let remover = document.querySelectorAll('.remover');
 
-            })
-        }
+            for(let i = 0; i < remover.length; i++){
+                let id = remover[i].id;
 
-        document.querySelector('.remover').addEventListener('click', ()=>{
-            let main = document.querySelector('main');
-            let id = document.querySelector('.remover').id;
+                remover[i].addEventListener('click', ()=>{
+                    let main = document.querySelector('main');
 
-            let i = document.createElement('i');
-                i.setAttribute('class', 'fas fa-trash ms-2');
+                    let i = document.createElement('i');
+                        i.setAttribute('class', 'fas fa-trash ms-2');
 
-            let button = document.createElement('button');
-                button.setAttribute('type', 'submit');
-                button.setAttribute('class', 'btn btn-danger');
-                button.innerHTML = 'Excluir';
-                button.appendChild(i);
-            
-            let i_a = document.createElement('i');
-                i_a.setAttribute('class', 'fas fa-ban ms-2');
+                    let button = document.createElement('button');
+                        button.setAttribute('type', 'submit');
+                        button.setAttribute('class', 'btn btn-danger');
+                        button.innerHTML = 'Excluir';
+                        button.appendChild(i);
+                    
+                    let i_a = document.createElement('i');
+                        i_a.setAttribute('class', 'fas fa-ban ms-2');
 
-            let a = document.createElement('a');
-                a.setAttribute('id', 'cancelar');
-                a.setAttribute('class', 'btn btn-primary');
-                a.innerHTML = 'Cancelar';
-                a.appendChild(i_a);
+                    let a = document.createElement('a');
+                        a.setAttribute('id', 'cancelar');
+                        a.setAttribute('class', 'btn btn-primary');
+                        a.innerHTML = 'Cancelar';
+                        a.appendChild(i_a);
 
-            let form = document.createElement('form');
-                form.setAttribute('action', `/modal/${id}/remover`);
-                form.setAttribute('method', 'POST');
-                form.setAttribute('class', 'text-center d-flex justify-content-evenly');
-                form.innerHTML = '@csrf';
-                form.appendChild(a);
-                form.appendChild(button);
+                    let form = document.createElement('form');
+                        form.setAttribute('action', `${url}/${id}/remover`);
+                        form.setAttribute('method', 'POST');
+                        form.setAttribute('class', 'text-center d-flex justify-content-evenly');
+                        form.innerHTML = '@csrf';
+                        form.appendChild(a);
+                        form.appendChild(button);
 
-            let p = document.createElement('p');
-                p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                p.innerHTML = 'Certeza que deseja excluir o modal?';
+                    let p = document.createElement('p');
+                        p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
+                        p.innerHTML = `${mensagem}`;
 
-            let div = document.createElement('div');
-                div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
-                div.appendChild(p);
-                div.appendChild(form);
-            
-            let section = document.createElement('section');
-                section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerMarca');
-                section.appendChild(div);
+                    let div = document.createElement('div');
+                        div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
+                        div.appendChild(p);
+                        div.appendChild(form);
+                    
+                    let section = document.createElement('section');
+                        section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
+                        section.appendChild(div);
 
-            main.appendChild(section);
+                    main.appendChild(section);
 
-            cancelar();
-        })
-
-        function cancelar(){
-            document.getElementById('cancelar').addEventListener('click', ()=>{
-                document.querySelector('.removerMarca').remove('section')
-            })
-        }
-
-        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
-        let removerErro = document.querySelectorAll('.removerErro');
-        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
-
-        for(let i = 0; i < btnRemoverErro.length; i++){
-            btnRemoverErro[i].addEventListener('click', ()=>{
-                removerErro[i].remove(removerErro[i])
-            })
+                    fecharFormularioExcluir();
+                })
+            }
         }
     </script>
 

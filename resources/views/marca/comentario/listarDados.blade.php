@@ -11,8 +11,6 @@
                 </a>
             </div>
 
-            @include('marca/layouts/componentes/errors', [$errors])
-
             <form action="/comentario/{{ $comentarioId }}/editar" method="POST" enctype="multipart/form-data">
                 @csrf
 
@@ -105,33 +103,7 @@
     </main>
 
     <script type="text/javascript">
-        let btnEditar = document.querySelectorAll('.btnEditar');
-        let textEditar = document.querySelectorAll('.textEditar');
-        let inputEditar = document.querySelectorAll('.inputEditar');
-
-        for(let i = 0; i < btnEditar.length; i++){
-            btnEditar[i].addEventListener('click', ()=>{
-
-                if(textEditar[i].hasAttribute('hidden')){
-                    textEditar[i].removeAttribute('hidden');
-                    inputEditar[i].hidden = true;
-                }else{
-                    inputEditar[i].removeAttribute('hidden');
-                    textEditar[i].hidden = true;
-                }
-
-            })
-        }
-
-        ///// REMOVER LISTAS DE ERROS AO ENVIAR COMPOS DO FORM VAZIOS //////
-        let removerErro = document.querySelectorAll('.removerErro');
-        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
-
-        for(let i = 0; i < btnRemoverErro.length; i++){
-            btnRemoverErro[i].addEventListener('click', ()=>{
-                removerErro[i].remove(removerErro[i])
-            })
-        }
+        abilitarInputEditar();
     </script>
 
 @endsection

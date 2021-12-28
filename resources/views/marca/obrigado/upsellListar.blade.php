@@ -95,24 +95,8 @@
         </section>
     </main>
 
-    <script>
-        let btnEditar = document.querySelectorAll('.btnEditar');
-        let textEditar = document.querySelectorAll('.textEditar');
-        let inputEditar = document.querySelectorAll('.inputEditar');
-
-        for(let i = 0; i < btnEditar.length; i++){
-            btnEditar[i].addEventListener('click', ()=>{
-
-                if(textEditar[i].hasAttribute('hidden')){
-                    textEditar[i].removeAttribute('hidden');
-                    inputEditar[i].hidden = true;
-                }else{
-                    inputEditar[i].removeAttribute('hidden');
-                    textEditar[i].hidden = true;
-                }
-
-            })
-        }
+    <script type="text/javascript">
+        abilitarInputEditar();
     </script>
 
 @endsection

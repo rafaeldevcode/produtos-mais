@@ -75,14 +75,9 @@
     <span hidden id="corPrincipal">{{ $marca->cor_principal }}</span>
     <span hidden id="corTitulo">{{ $marca->cor_titulo }}</span>
     <span hidden id="corTexto">{{ $marca->cor_texto }}</span>
-    <script>
-        ////// ALTERAR A COR DA PÁGINA ///////
-        let corPrincipal = document.getElementById('corPrincipal').innerHTML;
-        let corTitulo = document.getElementById('corTitulo').innerHTML;
-        let corTexto = document.getElementById('corTexto').innerHTML;
-        document.body.style.setProperty('--cor-principal', corPrincipal);
-        document.body.style.setProperty('--cor-titulo', corTitulo);
-        document.body.style.setProperty('--cor-texto', corTexto);
+
+    <script type="text/javascript">
+        alterarCorPagina();
     </script>
 </body>
 </html>

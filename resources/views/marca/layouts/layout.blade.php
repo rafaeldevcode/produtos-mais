@@ -19,6 +19,9 @@
     @endif
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
+
+    {{-- ////// SCRIPT PARA CARREGAR AS FUNÇÕES ////// --}}
+    <script type="text/javascript" src="{{ asset('js/funcoes.js') }}"></script>
     <title>{{ $marca->nome_marca }} {{ $politicas == true ? ' | Políticas & Termos' : '' }}</title>
 
     {{-- ////// MARCA TAGMANAGER ////// --}}
@@ -212,41 +215,14 @@
         document.getElementById('ano').innerHTML = data.getFullYear();
 
         ////// ALTERAR A COR DA PÁGINA ///////
-        let corPrincipal = document.getElementById('corPrincipal').innerHTML;
-        let corTitulo = document.getElementById('corTitulo').innerHTML;
-        let corTexto = document.getElementById('corTexto').innerHTML;
-        document.body.style.setProperty('--cor-principal', corPrincipal);
-        document.body.style.setProperty('--cor-titulo', corTitulo);
-        document.body.style.setProperty('--cor-texto', corTexto);
+        alterarCorPagina();
 
         ////// ALTERAR ÍCONES ACIMA DO PRODUTO ///////
         alterarIcones(0, 'Mais Econômico', '<i class="fas fa-hand-holding-usd"></i>', 'bg-danger')
         alterarIcones(1, 'Mais Vendido', '<i class="fas fa-plus-circle"></i>', 'bg-warning');
         alterarIcones(2, 'Frete para todo Brasil', '<i class="fas fa-truck-moving"></i>', 'bg-success');
 
-        function alterarIcones(indice, mensagem, iconeMsg, back){
-            let icone = document.querySelectorAll('.icone');
-            let span = document.querySelectorAll('.span');
-            let background = document.querySelectorAll('.detalhes-produto');
-
-            span[indice].innerHTML = mensagem;
-            icone[indice].innerHTML = iconeMsg;
-            background[indice].classList.add(back);
-        }
-
-        ////// EVITAR ABRIR POPUP AO CLICAR EM LINKS INTERNOS ///////
-        let comprarAgora = document.querySelectorAll('.comprarAgora');
-        let body = document.body.getBoundingClientRect();
-        let elemento = document.getElementById('compra-agora').getBoundingClientRect();
-        let posicao = elemento.top - body.top;
-     
-        for(let i = 0; i < comprarAgora.length; i++){
-            comprarAgora[i].addEventListener('click', (event)=>{
-                event.preventDefault();
-
-                window.scrollTo(0, posicao);
-            })
-        }
+        naoAbrirPopupLinkInterno();
     </script>
 </body>
 </html>

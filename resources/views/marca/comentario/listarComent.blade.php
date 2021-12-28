@@ -59,65 +59,62 @@
     </main>
 
     <script type="text/javascript">
-        let remover = document.querySelectorAll('.remover');
+        exibirFormularioExcluir('/comentario', 'Certeza que deseja excluir o comentário de');
 
-        for(let i = 0; i < remover.length; i++){
-            let id = remover[i].id;
-            let item = document.querySelectorAll('.item')[i].innerHTML;
+        function exibirFormularioExcluir(url, mensagem) {
+            let remover = document.querySelectorAll('.remover');
 
-            remover[i].addEventListener('click', ()=>{
-                let main = document.querySelector('main');
+            for(let i = 0; i < remover.length; i++){
+                let id = remover[i].id;
+                let item = document.querySelectorAll('.item')[i].innerHTML;
 
-                let i = document.createElement('i');
-                    i.setAttribute('class', 'fas fa-trash ms-2');
+                remover[i].addEventListener('click', ()=>{
+                    let main = document.querySelector('main');
 
-                let button = document.createElement('button');
-                    button.setAttribute('type', 'submit');
-                    button.setAttribute('class', 'btn btn-danger');
-                    button.innerHTML = 'Excluir';
-                    button.appendChild(i);
-                
-                let i_a = document.createElement('i');
-                    i_a.setAttribute('class', 'fas fa-ban ms-2');
+                    let i = document.createElement('i');
+                        i.setAttribute('class', 'fas fa-trash ms-2');
 
-                let a = document.createElement('a');
-                    a.setAttribute('id', 'cancelar');
-                    a.setAttribute('class', 'btn btn-primary');
-                    a.innerHTML = 'Cancelar';
-                    a.appendChild(i_a);
+                    let button = document.createElement('button');
+                        button.setAttribute('type', 'submit');
+                        button.setAttribute('class', 'btn btn-danger');
+                        button.innerHTML = 'Excluir';
+                        button.appendChild(i);
+                    
+                    let i_a = document.createElement('i');
+                        i_a.setAttribute('class', 'fas fa-ban ms-2');
 
-                let form = document.createElement('form');
-                    form.setAttribute('action', `/comentario/${id}/remover`);
-                    form.setAttribute('method', 'POST');
-                    form.setAttribute('class', 'text-center d-flex justify-content-evenly');
-                    form.innerHTML = '@csrf';
-                    form.appendChild(a);
-                    form.appendChild(button);
+                    let a = document.createElement('a');
+                        a.setAttribute('id', 'cancelar');
+                        a.setAttribute('class', 'btn btn-primary');
+                        a.innerHTML = 'Cancelar';
+                        a.appendChild(i_a);
 
-                let p = document.createElement('p');
-                    p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                    p.innerHTML = `Certeza que deseja excluir o comentário de \"${item}\"?`;
+                    let form = document.createElement('form');
+                        form.setAttribute('action', `${url}/${id}/remover`);
+                        form.setAttribute('method', 'POST');
+                        form.setAttribute('class', 'text-center d-flex justify-content-evenly');
+                        form.innerHTML = '@csrf';
+                        form.appendChild(a);
+                        form.appendChild(button);
 
-                let div = document.createElement('div');
-                    div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
-                    div.appendChild(p);
-                    div.appendChild(form);
-                
-                let section = document.createElement('section');
-                    section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
-                    section.appendChild(div);
+                    let p = document.createElement('p');
+                        p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
+                        p.innerHTML = `${mensagem} \"${item}\"?`;
 
-                main.appendChild(section);
+                    let div = document.createElement('div');
+                        div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
+                        div.appendChild(p);
+                        div.appendChild(form);
+                    
+                    let section = document.createElement('section');
+                        section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
+                        section.appendChild(div);
 
-                cancelar();
-            })
-        }
+                    main.appendChild(section);
 
-        function cancelar(){
-            document.getElementById('cancelar').addEventListener('click', ()=>{
-                document.querySelector('.removerComentario').remove('section')
-            })
+                    fecharFormularioExcluir();
+                })
+            }
         }
     </script>
-
 @endsection

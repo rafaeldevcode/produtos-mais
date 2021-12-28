@@ -2,7 +2,7 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown};
+    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown, Upsell};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
     
@@ -31,6 +31,10 @@
 
                 $marca->coutdown->each(function(Coutdown $coutdown){
                     $coutdown->delete();
+                });
+
+                $marca->upsell->each(function(Upsell $upsell){
+                    $upsell->delete();
                 });
         
                 $marca->delete();

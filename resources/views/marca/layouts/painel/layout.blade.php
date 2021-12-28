@@ -16,6 +16,8 @@
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
 
+    {{-- ////// SCRIPT PARA CARREGAR AS FUNÇÕES ////// --}}
+    <script type="text/javascript" src="{{ asset('js/funcoes.js') }}"></script>
     <title>Painel | Admin</title>
 </head>
 <body>
@@ -104,23 +106,7 @@
         document.getElementById('ano').innerHTML = data.getFullYear();
 
         let menu = false;
-        document.getElementById('rotacao').addEventListener('click', ()=>{
-            menu = !menu;
-
-            if(menu == true){
-                document.getElementById('rotacao').classList.remove('rotacaoInversa');
-                document.getElementById('rotacao').classList.add('rotacao');
-
-                document.getElementById('navegacao').classList.remove('fecharMenu');
-                document.getElementById('navegacao').classList.add('abrirMenu');
-            }else{
-                document.getElementById('rotacao').classList.remove('rotacao');
-                document.getElementById('rotacao').classList.add('rotacaoInversa');
-
-                document.getElementById('navegacao').classList.remove('abrirMenu');
-                document.getElementById('navegacao').classList.add('fecharMenu');
-            }
-        })
+        abrirMenuMobile(menu);
     </script>
 </body>
 </html>
