@@ -33,8 +33,7 @@ class ProdutoController extends Controller
 
         $marca = Marca::find($request->id);
         $adicionar->adicionarProduto($request, $marca);
-        $nome_produto = $request->nome_produto;
-        $request->session()->flash("mensagem", "{$nome_produto} adicionado com sucesso à {$marca->nome_marca}!");
+        $request->session()->flash("mensagem", "{$request->nome_produto} adicionado com sucesso à {$marca->nome_marca}!");
 
         return redirect('/adicionar/produto');
 

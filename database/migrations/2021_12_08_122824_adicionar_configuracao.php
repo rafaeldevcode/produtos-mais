@@ -35,6 +35,7 @@ class AdicionarConfiguracao extends Migration
             $table->boolean('coutdown')->nullable();
             $table->boolean('tagmanager')->nullable();
             $table->boolean('pixel')->nullable();
+            $table->boolean('exibir_link')->nullable();
             $table->timestamps();
         });
     }

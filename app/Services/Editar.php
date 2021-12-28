@@ -45,10 +45,7 @@
                 $marca->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_marca,
-                "A marca {$request->nome_marca} foi atualizada!"
-            ));
+            $this->dispararEvento($request->nome_marca, "A marca {$request->nome_marca} foi atualizada!");
         }
 
         public function editarProduto($request, $produto)
@@ -68,10 +65,7 @@
                 $produto->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_produto,
-                "O produto da marca {$marca} foi atualizado!"
-            ));
+            $this->dispararEvento($request->nome_produto, "O produto da marca {$marca} foi atualizado!");
         }
 
         public function editarComentario($request, $comentario)
@@ -85,10 +79,7 @@
                 $comentario->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_cliente,
-                "O comentário de {$request->nome_cliente} foi atualizado!"
-            ));
+            $this->dispararEvento($request->nome_cliente,  "O comentário de {$request->nome_cliente} foi atualizado!");
         }
 
         public function editarConfiguracao($configId, $request)
@@ -115,13 +106,11 @@
                 $config->coutdown      = $request->coutdown;
                 $config->tagmanager    = $request->tagmanager;
                 $config->pixel         = $request->pixel;
+                $config->exibir_link   = $request->exibir_link;
                 $config->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                'Configurações',
-                "As configurações da marca {$marca} foi atualizada!"
-            ));
+            $this->dispararEvento('Configurações',  "As configurações da marca {$marca} foi atualizada!");
         }
 
         public function editarModal($request, $marcaId)
@@ -138,10 +127,7 @@
                 $modal[0]->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                'Modal',
-                "O modal da marca {$marca} foi atualizado!"
-            ));
+            $this->dispararEvento('Modal', "O modal da marca {$marca} foi atualizado!");
         }
 
         public function editarCoutdown($marcaId, $request)
@@ -156,10 +142,7 @@
                 $coutdown[0]->save();
             DB::commit();
 
-            event(new NovoCadastro(
-                'Coutdown',
-                "O coutdown da marca {$marca} foi atualizado!"
-            ));
+            $this->dispararEvento('Coutdown', "O coutdown da marca {$marca} foi atualizado!");
         }
 
         public function editarUsuario($usuarioId, $request)
@@ -172,9 +155,29 @@
                 $usuario->save();
             DB::commit();
 
+            $this->dispararEvento($request->name, "Usuário atualizado!");
+        }
+
+        public function editarUpsell($marca, $request)
+        {
+            $upsell = $marca->upsell()->get()[0];
+            DB::beginTransaction();
+                $upsell->nome_produto = $request->nome_produto;
+                $upsell->link_compra = $request->link_compra;
+                $upsell->preco_sem_desconto = $request->preco_sem_desconto;
+                $upsell->preco_com_desconto = $request->preco_com_desconto;
+                if(!empty($request->file('image_produto'))){$upsell->image_produto = $request->file('image_produto')->store('upsell');}
+                $upsell->save();
+            DB::commit();
+
+            // $this->dispararEvento('Upsell', "Upsell da marca {$marca->nome_marca} atualizado!");;
+        }
+
+        private function dispararEvento(string $nome, string $mensagem):void
+        {
             event(new NovoCadastro(
-                "{$request->name}",
-                "Usuário atualizado!"
+                $nome,
+                $mensagem
             ));
         }
     }

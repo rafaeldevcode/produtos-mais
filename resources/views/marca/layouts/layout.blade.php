@@ -37,7 +37,7 @@
 
 </head>
 <body>
-{{$config[0]->tagamanager}}
+
     {{-- ////// MARCA TAGMANAGER NO SCIPT ////// --}}
     @if ($config[0]->tagmanager == 'on')
         @if (!empty($marca->tagmanager))
@@ -53,8 +53,10 @@
     @endif
 
     {{-- ///////// ABILITAR COUTDOWN //////// --}}
-    @if ($config[0]->coutdown == 'on')
-        @include('marca/layouts/componentes/coutdown')
+    @if ($politicas !== true)
+        @if ($config[0]->coutdown == 'on')
+            @include('marca/layouts/componentes/coutdown')
+        @endif
     @endif
 
     <header class="cabecalho">

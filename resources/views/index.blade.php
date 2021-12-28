@@ -161,7 +161,7 @@
                 <div class="d-flex flex-wrap justify-content-evenly">
 
                     @foreach ($comentarios as $comentario)
-                        @if ($produto->exibir_produto == 'on')
+                        @if ($comentario->exibir_coment == 'on')
                             <div class="card shadow d-flex border-0 mb-2 pt-3">
                                 <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
                                     <img src="{{ asset("storage/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">

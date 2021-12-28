@@ -11,7 +11,7 @@ use App\Http\Controllers\{
     PoliticasController, 
     RegistroController,
     CoutdownController,
-    EmailController
+    ObrigadoController
 };
 
 /*
@@ -76,7 +76,12 @@ Route::get('/politicas/termos/{id}', [PoliticasController::class, 'termos']);
 Route::post('/marca/{marcaId}/coutdown', [CoutdownController::class, 'store']);
 Route::post('/marca/{marcaId}/coutdown/editar', [CoutdownController::class, 'editar']);
 
-Route::get('/enviar/email', [EmailController::class, 'index']);
+Route::get('/obrigado/{marcaId}', [ObrigadoController::class, 'obrigado']);
+Route::get('/obrigado/upsell/{marcaId}', [ObrigadoController::class, 'upsell']);
+Route::get('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellCreate']);
+Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellStore']);
+Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar']);
+Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

@@ -144,6 +144,16 @@
                 </div>
 
                 <div class="border border-2 rounded p-3 mt-3">
+                    <h4>Link para mais produtos na página de obrigdo</h4>
+                    <div class="col-12 form-check form-switch">
+                        <label for="exibir_link" class="form-check-label">Abilitar</label>
+                        <input
+                            {{ $config[0]->exibir_link == 'on' ? 'checked' : '' ; }}
+                            name="exibir_link" type="checkbox" class="form-check-input">
+                    </div>
+                </div>
+
+                <div class="border border-2 rounded p-3 mt-3">
                     <h4>Informações da empresa</h4>
                     <div class="col-12 form-check form-switch">
                         <label for="empresa" class="form-check-label">Abilitar</label>
@@ -274,6 +284,45 @@
                     </button>
                 </div>
             </form>
+        </section>
+
+        <section class="container mt-5">
+            <h5>Páginas relacionadas a marca <span class="text-primary">{{ $marca->nome_marca }}</span></h5>
+
+            
+            <div class="border border-secondary border-2 rounded p-3 mt-3">
+                <h6>Páginas de Políticas</h6>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/privacidade/{{ $marca->id }}"> Políticas de privacidade</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/termos/{{ $marca->id }}">Termos de uso</a>
+                    </li>
+                </ul>
+
+                <h6 class="mt-5">Páginas de obrigado/upsell</h6>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/{{ $marca->id }}">Obrigado</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/upsell/{{ $marca->id }}">Upsell</a>
+
+                        @if (empty($upsell[0]))
+                            <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
+                                <i class="fas fa-plus-circle"></i>
+                            </a>
+                        @else
+                            <a href="/obrigado/upsell/{{ $marca->id }}/listar" class="btn btn-success">
+                                <i class="fas fa-pen-square"></i>
+                            </a>
+                        @endif
+                    </li>
+                </ul>
+            </div>
         </section>
     </main>
 

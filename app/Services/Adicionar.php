@@ -47,10 +47,7 @@
                 $marca->configuracoes()->create();
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_marca,
-                'Nova marca cadastrada!'
-            ));
+            $this->dispararEvento($request->nome_marca, 'Nova marca cadastrada!');
         }
 
         public function adicionarProduto($request, $marca)
@@ -69,10 +66,7 @@
                 ]);
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_produto,
-                "Novo produto adicionado a marca {$marca->nome_marca}"
-            ));
+            $this->dispararEvento($request->nome_produto, "Novo produto adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarComentario($request)
@@ -89,10 +83,7 @@
                 ]);
             DB::commit();
 
-            event(new NovoCadastro(
-                $request->nome_cliente,
-                'Novo comentário adicionado!'
-            ));
+            $this->dispararEvento($request->nome_cliente, 'Novo comentário adicionado!');
         }
 
         public function adicionarModal($request, $marcaId)
@@ -109,10 +100,7 @@
                 ]);
             DB::commit();
 
-            event(new NovoCadastro(
-                'Modal',
-                "Novo modal adicionado a marca {$marca->nome_marca}"
-            ));
+            $this->dispararEvento('Modal', "Novo modal adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarCoutdown($marcaId, $request)
@@ -124,10 +112,7 @@
                 $marca->coutdown()->create($coutdown);
             DB::commit();
 
-            event(new NovoCadastro(
-                'Coutdown',
-                "Novo coutdown adicionado a marca {$marca->nome_marca}"
-            ));
+            $this->dispararEvento('Coutdown', "Novo coutdown adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarUsuario($request)
@@ -135,12 +120,32 @@
             $data = $request->except('_token');
             $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
-
-            event(new NovoCadastro(
-                $request->name,
-                'Nova usuário adicionado a produtos +!'
-            ));
     
             Auth::login($user);
+
+            $this->dispararEvento($request->name, 'Nova usuário adicionado a produtos +!');
+        }
+
+        public function adicionarUpsell($marca, $request)
+        {
+            DB::beginTransaction();
+                $marca->upsell()->create([
+                    'nome_produto'       => $request->nome_produto,
+                    'link_compra'        => $request->link_compra,
+                    'preco_sem_desconto' => $request->preco_sem_desconto,
+                    'preco_com_desconto' => $request->preco_com_desconto,
+                    'image_produto'      => $request->file('image_produto')->store('upsell')
+                ]);
+            DB::commit();
+
+            $this->dispararEvento('Upsell', "Upsell adicionado a marca {$marca->nome_marca}");
+        }
+
+        private function dispararEvento(string $nome, string $mensagem):void
+        {
+            event(new NovoCadastro(
+                $nome,
+                $mensagem
+            ));
         }
     }

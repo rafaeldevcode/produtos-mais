@@ -36,10 +36,7 @@
                 $marca->delete();
             DB::commit();
 
-            // event(new NovoCadastro(
-            //     $marca,
-            //     'Marca removida!'
-            // ));
+            // $this->dispararEvento($marca, 'Marca removida!');
         }
 
         public function removerProduto ($produtoId)
@@ -51,10 +48,7 @@
                 Produto::destroy($produtoId);
             DB::commit();
 
-            // event(new NovoCadastro(
-            //     $produto->nome_produto,
-            //     "Produto removido da marca {$marca->nome_marca}!"
-            // ));
+            // $this->dispararEvento($produto->nome_produto, "Produto removido da marca {$marca->nome_marca}!");
         }
 
         public function removerComentario($request)
@@ -66,10 +60,7 @@
                 Comentario::destroy($request->comentarioId);
             DB::commit();
 
-            // event(new NovoCadastro(
-            //     $comentario->nome_cliente,
-            //     "Comentário removido da marca {$marca->nome_marca}!"
-            // ));
+            // $this->dispararEvento($comentario->nome_cliente, "Comentário removido da marca {$marca->nome_marca}!");
         }
 
         public function removerModal($request)
@@ -81,23 +72,24 @@
                 Modal::destroy($request->modalId);
             DB::commit();
 
-            // event(new NovoCadastro(
-            //     'Modal',
-            //     "Modal removido da marca {$marca->nome_marca}!"
-            // ));
+            // $this->dispararEvento('Modal', "Modal removido da marca {$marca->nome_marca}!");
         }
 
         public function removerUsuario($request)
         {
-            // $usuario = User::find($request->usuarioId)->name;
 
             DB::beginTransaction();
                 User::destroy($request->usuarioId);
             DB::commit();
 
-            // event(new NovoCadastro(
-            //     $usuario,
-            //     'Usuário removido de produtos +!'
-            // ));
+            // $this->dispararEvento(User::find($request->usuarioId)->name, 'Usuário removido de produtos +!');
+        }
+
+        private function dispararEvento(string $nome, string $mensagem):void
+        {
+            event(new NovoCadastro(
+                $nome,
+                $mensagem
+            ));
         }
     }

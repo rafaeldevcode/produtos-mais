@@ -51,8 +51,7 @@ input[type="checkbox"]{
     height: auto;
 }
 
-.adiconar-marca span,
-.adiconar-produto span{
+.formulario span{
     font-size: .8em;
     color: rgb(121, 121, 121);
 }

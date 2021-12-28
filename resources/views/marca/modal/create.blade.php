@@ -13,7 +13,7 @@
         @include('marca/layouts/componentes/errors', [$errors])
         
         <section class="d-flex flex-wrap">
-            <form method="POST" enctype="multipart/form-data" action="/marca/{{ $marcaId }}/modal/adicionar" class="mb-5 col-12 col-md-6 adiconar-produto">
+            <form method="POST" enctype="multipart/form-data" action="/marca/{{ $marcaId }}/modal/adicionar" class="mb-5 col-12 col-md-6 formulario">
                 <small class="fs-6 text-secondary mb-5">* Compos obrigatório</small>
                 @csrf
 

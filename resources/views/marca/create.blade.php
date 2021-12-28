@@ -14,7 +14,7 @@
             @include('marca/layouts/componentes/errors', [$errors])
             <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
-            <form action="/adicionar/marca" method="POST" enctype="multipart/form-data" class="adiconar-marca border border-2 rounded p-3 my-3">
+            <form action="/adicionar/marca" method="POST" enctype="multipart/form-data" class="formulario border border-2 rounded p-3 my-3">
                 @csrf
 
                 <div class="border border-2 rounded p-3">
@@ -273,6 +273,7 @@
             })
         }
 
+        /////// MASCARA PARA CNPJ /////////
         document.getElementById('cnpj').addEventListener('keyup', ()=>{
             let cnpj = removerCaracter(document.getElementById('cnpj').value);
             let mascara = `${cnpj.substr(0, 2)}.${cnpj.substr(2, 3)}.${cnpj.substr(5, 3)}/${cnpj.substr(8, 4)}-${cnpj.substr(12, 2)}`;
@@ -280,6 +281,7 @@
             document.getElementById('cnpj').value = mascara;
         });
 
+        /////// MASCAR PARA TELEFONE ///////
         document.getElementById('telefone').addEventListener('keyup', ()=>{
             let telefone = removerCaracter(document.getElementById('telefone').value);
             let mascara = `(${telefone.substr(0, 2)}) ${telefone.substr(2, 1)} ${telefone.substr(3, 4)}-${telefone.substr(7, 4)}`;
@@ -287,6 +289,7 @@
             document.getElementById('telefone').value = mascara;
         });
 
+        /////// FUNÇÃO PARA REMOVER CARACTERE ///////
         function removerCaracter(telefone){
             let regex = /[^0-9]/gi;
             telefone = telefone.replace(regex, '');

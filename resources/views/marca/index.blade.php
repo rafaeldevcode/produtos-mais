@@ -38,7 +38,7 @@
         <section>
             <ul class="list-group mt-5">
                 @foreach ($marcas as $marca)
-                    <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="image-list">
                             <a title="Ver Página" href="/produto/{{ $marca->id }}">
                                 @if (!empty($marca->logomarca))
@@ -48,6 +48,10 @@
                                 @endif
                             </a>
                         </div>
+
+                        @if (!empty($marca->configuracoes()->get()[0]->coutdown))
+                            <p class="m-0 p-2 badge bg-danger">Promoção</p>
+                        @endif
                     </li>
                 @endforeach
             </ul>

@@ -26,10 +26,7 @@
                 ]);
             DB::commit();
 
-            event(new NovoCadastro(
-                $produto->nome_produto,
-                "O produto da marca {$marca} foi clonado!"
-            ));
+            $this->dispararEvento($produto->nome_produto, "O produto da marca {$marca} foi clonado!");
         }
 
         public function duplicarComentario($comentario)
@@ -46,9 +43,14 @@
                 ]);
             DB::commit();
 
+            $this->dispararEvento($comentario->nome_cliente, "O comentário da marca {$marca} foi clonado!");
+        }
+
+        private function dispararEvento(string $nome, string $mensagem):void
+        {
             event(new NovoCadastro(
-                $comentario->nome_cliente,
-                "O comentário da marca {$marca} foi clonado!"
+                $nome,
+                $mensagem
             ));
         }
     }

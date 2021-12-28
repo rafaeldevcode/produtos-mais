@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+:root{
+    --cor-principal: rgb(0, 0, 0);
+    --titulo-rodape: rgb(104, 104, 104);
+    --texto-rodape: #FFF;
+}
+
+html,
+body{
+    min-height: 100%;
+}
+
+body{
+    background: url(../../images/desconto.svg) right bottom no-repeat;
+}
+
+h1{
+    color: var(--titulo-rodape);
+}
+
+.card{
+    background: var(--cor-principal);
+    animation: conteudo .8s linear forwards;
+}
+
+.titulo{
+    animation: titulo .8s linear forwards;
+}
+
+@keyframes titulo {
+    0%{
+        transform: scale(0.5);
+        opacity: .3;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes conteudo {
+    0%{
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

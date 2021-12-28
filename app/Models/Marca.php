@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Produto, Comentario, Configuracao, Modal, Coutdown};
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Marca extends Model
 {
@@ -65,5 +66,10 @@ class Marca extends Model
     public function coutdown()
     {
         return $this->hasMany(Coutdown::class);
+    }
+
+    public function upsell()
+    {
+        return $this->hasMany(Upsell::class);
     }
 }

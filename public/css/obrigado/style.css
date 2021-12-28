@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+:root{
+    --cor-principal: rgb(0, 0, 0);
+    --titulo-rodape: rgb(104, 104, 104);
+    --texto-rodape: #FFF;
+}
+
+body{
+    background: url(../../images/obrigado.svg) left no-repeat;
+    background-size: contain;
+}
+
+main h1{
+    color: var(--titulo-rodape);
+}
+
+.card-obrigado{
+    opacity: 0;
+    background: var(--cor-principal);
+    animation: conteudo .8s linear forwards;
+    animation-delay: .5s;
+}
+
+.card-obrigado p{
+    color: var(--texto-rodape);
+}
+
+.titulo{
+    animation: titulo .8s linear forwards;
+}
+
+@keyframes titulo {
+    0%{
+        transform: scale(0.5);
+        opacity: .3;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes conteudo {
+    0%{
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
