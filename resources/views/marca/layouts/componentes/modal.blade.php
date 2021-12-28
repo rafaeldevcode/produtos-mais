@@ -1,6 +1,6 @@
 <section class="componente-modal" hidden>
-        <div class="conteudo-modal rounded {{ empty($modal[0]) ? 'd-flex align-items-center justify-content-center' : '' }}">
-            @if (empty($modal[0]))
+        <div class="conteudo-modal rounded {{ empty($modal) ? 'd-flex align-items-center justify-content-center' : '' }}">
+            @if (empty($modal))
                 <div class="alert alert-danger">
                     <p class="text-center mb-0">Você apenas abilitou o modal mas não cadastrou nenhum!</p>
                     <p class="text-center">Deseja adicionar um Modal?</p>
@@ -15,11 +15,11 @@
 
                 <div class="header-modal w-100 d-flex justify-content-center align-items-center rounded-top">
                     <i class="fas fa-times-circle fs-3" id="fechar"></i>
-                    <p class="text-center m-0">ESPERE VOCÊ ACABOU DE <br> GANHAR {{ empty($modal[0]->porcentagem) ? 'UM SUPER' : $modal[0]->porcentagem }} DESCONTO</p>
+                    <p class="text-center m-0">ESPERE VOCÊ ACABOU DE <br> GANHAR {{ empty($modal->porcentagem) ? 'UM SUPER' : $modal->porcentagem }} DESCONTO</p>
                 </div>
 
                 <div class="image-modal p-3 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset("storage/{$modal[0]->produto_modal}") }}" alt="Produto Modal">
+                    <img src="{{ asset("storage/{$modal->produto_modal}") }}" alt="Produto Modal">
                 </div>
 
                 <div class="corpo-modal w-100 d-flex">
@@ -30,13 +30,13 @@
                     <div class="preco-btn p-2">
                         <div class="preco d-flex align-items-center justify-content-end">
                             <p class="text-end">
-                                <small>De <span>{{ $modal[0]->preco_sem_desconto }}</span></small> <br>
-                                Por <span>{{ $modal[0]->preco_com_desconto }}</span>
+                                <small>De <span>{{ $modal->preco_sem_desconto }}</span></small> <br>
+                                Por <span>{{ $modal->preco_com_desconto }}</span>
                             </p>
                         </div>
 
                         <div class="btn-modal w-100">
-                            <a title="Comprar Produto" href="{{ $modal[0]->link_compra }}" class="btn w-100 h-100 pulse">
+                            <a title="Comprar Produto" href="{{ $modal->link_compra }}" class="btn w-100 h-100 pulse">
                                 EU QUERO
                             </a>
                         </div>

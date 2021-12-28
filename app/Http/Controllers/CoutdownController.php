@@ -8,6 +8,12 @@ use App\Services\{Adicionar, Editar};
 
 class CoutdownController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('autenticador');
+    }
+    
     public function store(int $marcaId, Request $request, Adicionar $adicionar)
     {
         $adicionar->adicionarCoutdown($marcaId, $request);

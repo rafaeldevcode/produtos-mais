@@ -37,7 +37,7 @@ class ModalController extends Controller
     public function listar(int $marcaId)
     {
         $marca = Marca::find($marcaId);
-        $dados = $marca->modals()->get();
+        $dados = $marca->modals()->get()[0];
         $usuario = Auth::user()->name;
 
         return view('marca/modal/listarDados', compact('marcaId', 'dados', 'usuario'));

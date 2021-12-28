@@ -38,7 +38,7 @@
                         <div class="card-header text-center border-0 p-0 m-0 bg-white">
                             <div class="bg-principal m-0 p-2 fs-4">
                                 <h2 class="fs-4">{{ $produto->quant_produto }} UNIDADES</h2>
-                                @if ($config[0]->icone_produto == 'on')
+                                @if ($config->icone_produto == 'on')
                                     <div class="detalhes-produto px-2 rounded-top w-75 text-end">
                                         <span class="fs-6 span"></span>
                                         <span class="icone"></span>
@@ -155,7 +155,7 @@
             </div>
         </section>
 
-        @if ($config[0]->comentarios == 'on')
+        @if ($config->comentarios == 'on')
             <section class="container-fluid bg-white py-5">
                 <h2 class="display-5 py-5 text-center fw-bolder">Comentários</h2>
                 <div class="d-flex flex-wrap justify-content-evenly">
@@ -203,7 +203,7 @@
                 </div>
             </div>
 
-            @if ($config[0]->disclaimer == 'on')
+            @if ($config->disclaimer == 'on')
                 <div class="col-md-9 col-12 py-3 px-5 my-5 mx-auto border border-2">
                     <p class="text-center m-0">{{ $marca->disclaimer }}</p>
                 </div>
@@ -211,7 +211,7 @@
         </section>
     </main>  
     
-    @if ($config[0]->modal == 'on')
+    @if ($config->modal == 'on')
         @include('marca/layouts/componentes/modal')
     @endif
 @endsection

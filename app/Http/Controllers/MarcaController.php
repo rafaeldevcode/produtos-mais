@@ -86,9 +86,9 @@ class MarcaController extends Controller
         $marca = Marca::find($id);
         $comentarios = $marca->comentarios()->get();
         $produtos = $marca->produtos()->get();
-        $config = $marca->configuracoes()->get();
-        $modal = $marca->modals()->get();
-        $coutdown = $marca->coutdown()->get();
+        $config = $marca->configuracoes()->get()[0];
+        $modal = $marca->modals()->get()[0];
+        $coutdown = $marca->coutdown()->get()[0];
         $pixels = explode(',', $marca->pixel);
 
         return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown'));

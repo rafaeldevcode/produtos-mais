@@ -78,10 +78,10 @@ Route::post('/marca/{marcaId}/coutdown/editar', [CoutdownController::class, 'edi
 
 Route::get('/obrigado/{marcaId}', [ObrigadoController::class, 'obrigado']);
 Route::get('/obrigado/upsell/{marcaId}', [ObrigadoController::class, 'upsell']);
-Route::get('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellCreate']);
-Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellStore']);
-Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar']);
-Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar']);
+Route::get('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellCreate'])->middleware('autenticador');
+Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellStore'])->middleware('autenticador');
+Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar'])->middleware('autenticador');
+Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar'])->middleware('autenticador');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

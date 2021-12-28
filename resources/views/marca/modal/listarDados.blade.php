@@ -20,22 +20,10 @@
 
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="porcentagem" type="text" value="{{ $dados[0]->porcentagem }}">
+                        <input hidden class="form-control w-25 inputEditar" name="porcentagem" type="text" value="{{ $dados->porcentagem }}">
 
 
-                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Porcentagem do desconto:</b>{{ $dados[0]->porcentagem }}</span>
-
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="preco_sem_desconto" type="text" value="{{ $dados[0]->preco_sem_desconto }}">
-
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço sem desconto:</b>{{ $dados[0]->preco_sem_desconto }}</span>
+                        <span class="textEditar"><b class="p-1 alert alert-primary me-2">Porcentagem do desconto:</b>{{ $dados->porcentagem }}</span>
 
                         <span>
                             <a title="Editar" class="btn btn-info btnEditar">
@@ -45,9 +33,9 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-75 inputEditar" name="preco_com_desconto" value="{{ $dados[0]->preco_com_desconto }}">
+                        <input hidden class="form-control w-25 inputEditar" name="preco_sem_desconto" type="text" value="{{ $dados->preco_sem_desconto }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço com desconto:</b>{{ $dados[0]->preco_com_desconto }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço sem desconto:</b>{{ $dados->preco_sem_desconto }}</span>
 
                         <span>
                             <a title="Editar" class="btn btn-info btnEditar">
@@ -57,9 +45,21 @@
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-75 inputEditar" name="link_compra" value="{{ $dados[0]->link_compra }}">
+                        <input hidden class="form-control w-75 inputEditar" name="preco_com_desconto" value="{{ $dados->preco_com_desconto }}">
 
-                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link do checkout:</b>{{ $dados[0]->link_compra }}</span>
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço com desconto:</b>{{ $dados->preco_com_desconto }}</span>
+
+                        <span>
+                            <a title="Editar" class="btn btn-info btnEditar">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <input hidden class="form-control w-75 inputEditar" name="link_compra" value="{{ $dados->link_compra }}">
+
+                        <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link do checkout:</b>{{ $dados->link_compra }}</span>
 
                         <span>
                             <a title="Editar"class="btn btn-info btnEditar">
@@ -76,7 +76,7 @@
                         <input hidden class="form-control w-25 inputEditar" name="produto_modal" type="file">
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem do pruduto:</b> <br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados[0]->produto_modal}") }}" alt="Produto - {{ $dados[0]->produto_modal }}">
+                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->produto_modal}") }}" alt="Produto - {{ $dados->produto_modal }}">
                         </span>
 
                         <span>
@@ -88,7 +88,7 @@
                 </ul>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a title="Remover Modal" id="{{ $dados[0]->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
+                    <a title="Remover Modal" id="{{ $dados->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
                         Remover Modal
                         <i class="fas fa-trash-alt ms-2"></i>
                     </a>

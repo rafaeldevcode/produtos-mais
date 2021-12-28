@@ -16,9 +16,9 @@
 
             <small class="fs-6 text-secondary">* Compos obrigatório</small>
 
-            <form action="/config/{{ $config[0]->id }}/editar" method="POST">
+            <form action="/config/{{ $config->id }}/editar" method="POST">
                 @csrf
-                <input type="hidden" name="marca_id" value="{{ $config[0]->marca_id }}">
+                <input type="hidden" name="marca_id" value="{{ $config->marca_id }}">
                 <input type="hidden" name="nome_marca" value="{{ $marca->nome_marca }}">
 
                 <h3 class="mt-5">Selecione as opções para exibir na página</h3>
@@ -29,16 +29,16 @@
                         <span>
                             <label for="modal" class="form-check-label">Abilitar</label>
                             <input id="modal-config"
-                                {{ $config[0]->modal == 'on' ? 'checked' : '' ; }}
+                                {{ $config->modal == 'on' ? 'checked' : '' ; }}
                                 name="modal" type="checkbox" class="form-check-input">
                         </span>
 
-                        @if (empty($modal[0]))
-                            <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
+                        @if (empty($modal))
+                            <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
                                 <i class="fas fa-plus-square"></i>
                             </a>
                         @else
-                            <a title="Editar Modal" href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config[0]->modal == 'on' ? '' : 'hidden' ; }}>
+                            <a title="Editar Modal" href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
                                 <i class="fas fa-pen-square"></i>
                             </a>
                         @endif
@@ -51,17 +51,17 @@
                         <span>
                             <label for="coutdown" class="form-check-label">Abilitar</label>
                             <input id="coutdown"
-                                {{ $config[0]->coutdown == 'on' ? 'checked' : '' ; }}
+                                {{ $config->coutdown == 'on' ? 'checked' : '' ; }}
                                 name="coutdown" type="checkbox" class="form-check-input">
                         </span>
                     </div>
 
-                    <div class="coutdown mt-4" {{ $config[0]->coutdown == 'on' ? '' : 'hidden' ; }}>
+                    <div class="coutdown mt-4" {{ $config->coutdown == 'on' ? '' : 'hidden' ; }}>
                         <span id="mensagem"></span>
                         @csrf
-                        <input id="marcaId" type="hidden" value="{{ $config[0]->marca_id }}">
+                        <input id="marcaId" type="hidden" value="{{ $config->marca_id }}">
                         
-                        @if (empty($coutdown[0]))
+                        @if (empty($coutdown))
                             <input id="opcao" type="hidden" value="salvar">
                         @else
                             <input id="opcao" type="hidden" value="editar">
@@ -69,18 +69,18 @@
 
                         <span class="col-12">
                             <label for="texto">Texto descritivo <span class="fs-5 text-danger">*</span></label>
-                            <input id="texto" name="texto" placeholder="Texto descritivo" class="form-control" type="text" value="{{ empty($coutdown[0]->texto) ? '' : $coutdown[0]->texto }}">
+                            <input id="texto" name="texto" placeholder="Texto descritivo" class="form-control" type="text" value="{{ empty($coutdown->texto) ? '' : $coutdown->texto }}">
                         </span>
 
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
                             <span class="col-md-3 col-12 mt-4">
                                 <label for="data">Data de expiração <span class="fs-5 text-danger">*</span></label>
-                                <input id="data" name="data" class="form-control" type="date" value="{{ empty($coutdown[0]->data) ? '' : $coutdown[0]->data }}">
+                                <input id="data" name="data" class="form-control" type="date" value="{{ empty($coutdown->data) ? '' : $coutdown->data }}">
                             </span>
     
                             <span class="col-md-3 col-12 mt-4">
                                 <label for="time">Hora da expiração <span class="fs-5 text-danger">*</span></label>
-                                <input id="time" name="time" class="form-control" type="time" value="{{ empty($coutdown[0]->time) ? '' : $coutdown[0]->time }}">
+                                <input id="time" name="time" class="form-control" type="time" value="{{ empty($coutdown->time) ? '' : $coutdown->time }}">
                             </span>
     
                             <span class="col-md-3 col-12 mt-4">
@@ -98,7 +98,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="tagmanager" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->tagmanager == 'on' ? 'checked' : '' ; }}
+                            {{ $config->tagmanager == 'on' ? 'checked' : '' ; }}
                             name="tagmanager" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="pixel" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->pixel == 'on' ? 'checked' : '' ; }}
+                            {{ $config->pixel == 'on' ? 'checked' : '' ; }}
                             name="pixel" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="icone_produto" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->icone_produto == 'on' ? 'checked' : '' ; }}
+                            {{ $config->icone_produto == 'on' ? 'checked' : '' ; }}
                             name="icone_produto" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="comentarios" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->comentarios == 'on' ? 'checked' : '' ; }}
+                            {{ $config->comentarios == 'on' ? 'checked' : '' ; }}
                             name="comentarios" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="disclaimer" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->disclaimer == 'on' ? 'checked' : '' ; }}
+                            {{ $config->disclaimer == 'on' ? 'checked' : '' ; }}
                             name="disclaimer" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="exibir_link" class="form-check-label">Abilitar</label>
                         <input
-                            {{ $config[0]->exibir_link == 'on' ? 'checked' : '' ; }}
+                            {{ $config->exibir_link == 'on' ? 'checked' : '' ; }}
                             name="exibir_link" type="checkbox" class="form-check-input">
                     </div>
                 </div>
@@ -158,18 +158,18 @@
                     <div class="col-12 form-check form-switch">
                         <label for="empresa" class="form-check-label">Abilitar</label>
                         <input id="empresa"
-                            {{ $config[0]->empresa == 'on' ? 'checked' : '' ; }}
+                            {{ $config->empresa == 'on' ? 'checked' : '' ; }}
                             name="empresa" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->empresa == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row empresa" 
-                        {{ $config[0]->empresa == 'on' ? '' : 'hidden' ; }}>
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->empresa == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row empresa" 
+                        {{ $config->empresa == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>CNPJ</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="cnpj" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->cnpj == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->cnpj == 'on' ? 'checked' : '' ; }}
                                     name="cnpj" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="rua" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->rua == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->rua == 'on' ? 'checked' : '' ; }}
                                     name="rua" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="cidade" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->cidade == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->cidade == 'on' ? 'checked' : '' ; }}
                                     name="cidade" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -201,18 +201,18 @@
                     <div class="col-12 form-check form-switch">
                         <label for="atendimento" class="form-check-label">Abilitar</label>
                         <input id="atendimento"
-                            {{ $config[0]->atendimento == 'on' ? 'checked' : '' ; }}
+                            {{ $config->atendimento == 'on' ? 'checked' : '' ; }}
                             name="atendimento" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->atendimento == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row atendimento" 
-                        {{ $config[0]->atendimento == 'on' ? '' : 'hidden' ; }}>
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->atendimento == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row atendimento" 
+                        {{ $config->atendimento == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>TELEFONE</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="telefone" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->telefone == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->telefone == 'on' ? 'checked' : '' ; }}
                                     name="telefone" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="email" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->email == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->email == 'on' ? 'checked' : '' ; }}
                                     name="email" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -234,18 +234,18 @@
                     <div class="col-12 form-check form-switch">
                         <label for="social" class="form-check-label">Abilitar</label>
                         <input id="social"
-                            {{ $config[0]->social == 'on' ? 'checked' : '' ; }}
+                            {{ $config->social == 'on' ? 'checked' : '' ; }}
                             name="social" type="checkbox" class="form-check-input">
                     </div>
 
-                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config[0]->social == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row social" 
-                        {{ $config[0]->social == 'on' ? '' : 'hidden' ; }}>
+                    <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->social == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row social" 
+                        {{ $config->social == 'on' ? '' : 'hidden' ; }}>
                         <div>
                             <h6>FACEBOOK</h6>
                             <div class="col-12 form-check form-switch">
                                 <label for="facebook" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->facebook == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->facebook == 'on' ? 'checked' : '' ; }}
                                     name="facebook" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -255,7 +255,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="instagram" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->instagram == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->instagram == 'on' ? 'checked' : '' ; }}
                                     name="instagram" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -265,7 +265,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="twitter" class="form-check-label">Abilitar</label>
                                 <input
-                                    {{ $config[0]->twitter == 'on' ? 'checked' : '' ; }}
+                                    {{ $config->twitter == 'on' ? 'checked' : '' ; }}
                                     name="twitter" type="checkbox" class="form-check-input">
                             </div>
                         </div>
@@ -311,7 +311,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/upsell/{{ $marca->id }}">Upsell</a>
 
-                        @if (empty($upsell[0]))
+                        @if (empty($upsell))
                             <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
                                 <i class="fas fa-plus-circle"></i>
                             </a>

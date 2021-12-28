@@ -1,6 +1,6 @@
 <section class="container-fluid bg-danger py-2 px-3 d-flex flex-md-row flex-column  justify-content-between text-warning align-items-center">
     <div>
-        <p class="m-0fw-bolder fs-4 text-center text-md-left" id="texto-desc">{{ $coutdown[0]->texto }}</p>
+        <p class="m-0fw-bolder fs-4 text-center text-md-left" id="texto-desc">{{ $coutdown->texto }}</p>
     </div>
 
     <div>
@@ -37,8 +37,8 @@
     </div>
 </section>
 
-<span id="data" hidden>{{ $coutdown[0]->data }}</span>
-<span id="time" hidden>{{ $coutdown[0]->time }}</span>
+<span id="data" hidden>{{ $coutdown->data }}</span>
+<span id="time" hidden>{{ $coutdown->time }}</span>
 
 <script type="text/javascript">
     coutdown(document.getElementById('data').innerHTML, document.getElementById('time').innerHTML);
