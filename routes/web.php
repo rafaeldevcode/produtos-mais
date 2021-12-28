@@ -60,11 +60,11 @@ Route::get('/marca/{marcaId}/modal/listarDados', [ModalController::class, 'lista
 Route::post('/marca/{marcaId}/modal/editar', [ModalController::class, 'editar']);
 Route::post('/modal/{modalId}/remover', [ModalController::class, 'destroy']);
 
-Route::get('/entrar', [EntrarController::class, 'index']);
-Route::post('/entrar', [EntrarController::class, 'entrar']);
+Route::get('/entrar', [EntrarController::class, 'create']);
+Route::post('/entrar', [EntrarController::class, 'store']);
 Route::get('/sair', [EntrarController::class, 'logout']);
 
-Route::get('/registrar', [RegistroController::class, 'index'])->middleware('autenticador');
+Route::get('/registrar', [RegistroController::class, 'create'])->middleware('autenticador');
 Route::post('/registrar', [RegistroController::class, 'store']);
 Route::get('/usuarios', [RegistroController::class, 'listar'])->middleware('autenticador');
 Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy']);
@@ -83,6 +83,10 @@ Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 
 Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar'])->middleware('autenticador');
 Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar'])->middleware('autenticador');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');
+
+Route::get('/login', [EntrarController::class, 'create'])->middleware('autenticador')->name('login');;
+Route::post('/login', [EntrarController::class, 'store'])->middleware('autenticador');
+
+Route::get('/register', [RegistroController::class, 'create'])->middleware('autenticador');
+Route::post('/register', [RegistroController::class, 'store'])->middleware('autenticador');

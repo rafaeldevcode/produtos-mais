@@ -121,7 +121,9 @@
             $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
     
-            Auth::login($user);
+            if(!Auth::user()){
+                Auth::login($user);
+            }
 
             $this->dispararEvento($request->name, 'Nova usuário adicionado a produtos +!');
         }

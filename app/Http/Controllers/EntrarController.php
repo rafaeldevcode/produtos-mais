@@ -7,14 +7,18 @@ use Illuminate\Support\Facades\Auth;
 
 class EntrarController extends Controller
 {
-    public function index()
+    public function create()
     {
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         
-        return view('entrar/index', compact('usuario'));
+        if(Auth::user()){
+            return redirect('/marcas');
+        }else{
+            return view('entrar/index', compact('usuario'));
+        }
     }
 
-    public function entrar(Request $request)
+    public function store(Request $request)
     {
         if(!Auth::attempt($request->only(['email', 'password']))){
             return redirect()->back()->withErrors('Usuário e/ou senhas incorretos!');

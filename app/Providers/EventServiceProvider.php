@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         NovoCadastro::class => [
-            EnviarNovoEmail::class,
+            // EnviarNovoEmail::class,
             LogNovoCadastro::class
         ]
     ];

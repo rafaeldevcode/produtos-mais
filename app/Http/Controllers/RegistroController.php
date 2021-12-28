@@ -10,7 +10,7 @@ use App\Http\Requests\ValidacaoUsuario;
 
 class RegistroController extends Controller
 {
-    public function index(Request $request)
+    public function create(Request $request)
     {
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         $mensagem = $request->session()->get('mensagem');
@@ -22,7 +22,11 @@ class RegistroController extends Controller
     {
         $adicionar->adicionarUsuario($request);
 
-        return redirect('/marcas');
+        if(Auth::user()){
+            return redirect('/usuarios');
+        }else{
+            return redirect('/marcas');
+        }
     }
 
     public function listar(Request $request)

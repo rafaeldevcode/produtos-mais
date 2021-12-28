@@ -1,4 +1,6 @@
+{{-- @extends('marca/layouts/painel/layout')
 
+@section('conteudo') --}}
 
     <section class="col-12 col-lg-5 m-auto py-4">
         <div class="bg-light rounded p-5 shedow">
@@ -49,3 +51,5 @@
             </form>
         </div>
     </section>
+
+{{-- @endsection --}}
