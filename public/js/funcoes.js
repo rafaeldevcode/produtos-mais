@@ -142,7 +142,8 @@ function chamarFuncaoAbilitarConfig() {
 function abilitarConfig(elemento){
 
     if((elemento.classList.value == 'btn btn-warning modal-config')
-        || (elemento.classList.value == 'coutdown mt-4')) {
+        || (elemento.classList.value == 'coutdown mt-4')
+        || (elemento.classList.value == '')) {
         if(elemento.hasAttribute('hidden')){
             elemento.removeAttribute('hidden');
         }else{

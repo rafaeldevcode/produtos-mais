@@ -64,9 +64,9 @@ Route::get('/entrar', [EntrarController::class, 'index']);
 Route::post('/entrar', [EntrarController::class, 'entrar']);
 Route::get('/sair', [EntrarController::class, 'logout']);
 
-Route::get('/registrar', [RegistroController::class, 'index']);
+Route::get('/registrar', [RegistroController::class, 'index'])->middleware('autenticador');
 Route::post('/registrar', [RegistroController::class, 'store']);
-Route::get('/usuarios', [RegistroController::class, 'listar']);
+Route::get('/usuarios', [RegistroController::class, 'listar'])->middleware('autenticador');
 Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy']);
 Route::post('/editar/usuario/{usuarioId}', [RegistroController::class, 'editarUsuario']);
 

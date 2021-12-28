@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacaoMarca;
+use App\Models\User;
 use App\Services\{Adicionar, Remover, Editar};
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +19,9 @@ class MarcaController extends Controller
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
+        $usuarios = User::all();
 
-        return view('marca/index', compact('marcas', 'nome_marca', 'usuario'));
+        return view('marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios'));
     }
 
     ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 

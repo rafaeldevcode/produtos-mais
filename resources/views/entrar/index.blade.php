@@ -22,12 +22,7 @@
                     <input type="password" name="password" id="password" placeholder="Senha" class="form-control">
                 </div>
 
-                <div class="d-flex flex-wrap justify-content-between mt-2 flex-column-reverse flex-sm-row">
-                    <a title="Registrar Usuário" href="/registrar" class="btn btn-secondary py-2 px-5 col-12 col-sm-4 mt-2 mt-sm-0">
-                        Registrar
-                        <i class="fas fa-plus-circle"></i>
-                    </a>
-
+                <div class="d-flex justify-content-end mt-2">
                     <button title="Entrar" type="submit" class="py-2 px-5 btn btn-primary col-12 col-sm-4">
                         Entrar
                         <i class="fas fa-sign-in-alt"></i>
@@ -38,13 +33,6 @@
     </main>
 
     <script type="text/javascript">
-        let removerErro = document.querySelectorAll('.removerErro');
-        let btnRemoverErro = document.querySelectorAll('.btnRemoverErro');
-
-        for(let i = 0; i < btnRemoverErro.length; i++){
-            btnRemoverErro[i].addEventListener('click', ()=>{
-                removerErro[i].remove(removerErro[i])
-            })
-        }
+        removerErroVerificacao();
     </script>
 @endsection
