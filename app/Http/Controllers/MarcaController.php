@@ -14,14 +14,16 @@ class MarcaController extends Controller
 {
 
     ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////
-    public function index()
+    public function index(Request $request)
     {
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         $usuarios = User::all();
+        $mensagem = $request->session()->get('mensagem');
+        $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
 
-        return view('painel/marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios'));
+        return view('painel/marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios', 'aviso', 'mensagem'));
     }
 
     ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 

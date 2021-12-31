@@ -87,6 +87,7 @@ Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'd
 
 Route::post('/marca/{marcaId}/pesquisar/comentario', [PesquisarController::class, 'pesquisarComentario']);
 Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, 'pesquisarProduto']);
+Route::post('/marca/painel/pesquisar', [PesquisarController::class, 'pesquisarPainelMarca']);
 Route::post('/marca/pesquisar', [PesquisarController::class, 'pesquisarMarca']);
 
 Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');

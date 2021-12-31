@@ -6,7 +6,7 @@
 
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Marcas Cadastradas</h2>
-            <form action="/marca/pesquisar" method="POST" class="d-flex mb-3 ms-1">
+            <form action="/marca/painel/pesquisar" method="POST" class="d-flex mb-3 ms-1">
                 @csrf
                 <input type="search" name="pesquisa" class="form-control rounded-0 rounded-start" placeholder="Pesquisar marca">
                 <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end">
@@ -14,12 +14,6 @@
                 </button>
             </form>
         </div>
-
-        {{-- @if (empty($nome_marca))
-            <section class="alert alert-danger mt-5">
-                <h2 class="fs-4 text-center">{{ $aviso }}</h2>
-            </section>
-        @endif --}}
 
         <section>
             <ul class="list-group mt-5">

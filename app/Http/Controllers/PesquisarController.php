@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marca;
+use App\Models\{Marca, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +40,7 @@ class PesquisarController extends Controller
         return view('/painel/produto/listarProdutos', compact('produtos', 'resultadoPesquisa', 'usuario', 'mensagem', 'marca', 'aviso'));
     }
 
-    public function pesquisarMarca(Request $request)
+    public function pesquisarPainelMarca(Request $request)
     {
         $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();
         $resultadoPesquisa = $request->pesquisa;
@@ -49,5 +49,17 @@ class PesquisarController extends Controller
         $aviso = $this->aviso;
 
         return view('/painel/marca/listarMarcas', compact('marcas', 'resultadoPesquisa', 'usuario', 'mensagem', 'aviso'));
+    }
+
+    public function pesquisarMarca(Request $request)
+    {
+        $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();
+        $resultadoPesquisa = $request->pesquisa;
+        $usuario = Auth::user()->name;
+        $usuarios = User::all();
+        $mensagem = $this->mensagem . $request->pesquisa;
+        $aviso = $this->aviso;
+
+        return view('/painel/marca/index', compact('marcas', 'resultadoPesquisa', 'usuario', 'mensagem', 'aviso', 'usuarios'));
     }
 }
