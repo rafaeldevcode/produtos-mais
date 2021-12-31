@@ -1,20 +1,21 @@
 @extends('painel/layouts/painel/layout')
 
 @section('conteudo')
-
+    
     <main class="container bg-white my-5 rounded p-3">
         @include('painel/layouts/componentes/mensagem', [$mensagem])
+
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
-            <h2>Usuários</h2>
+            <h2>Comentários <span class="text-primary">{{ $nome_marca }}</span></h2>
 
             <span class="d-flex mb-3">
                 <form action="?" class="d-flex ms-1">
-                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar usuário">
+                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar comentario">
                     <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-
+    
                 <a title="Voltar" href="/painel" class="btn btn-info d-flex align-items-center ms-2 py-2">
                     <i class="fas fa-reply"></i>
                 </a>
@@ -23,73 +24,42 @@
 
         <section>
             <ul class="list-group mt-5">
-                @foreach ($dados as $dado)
-                    <li class="list-group-item">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="item d-flex">
-                                <h5>{{ $dado->name }}</h5>
-    
-                                @if ($email == $dado->email)
-                                    <h6 class="ms-2 badge bg-success">Logado</h6>
-                                @endif
-                            </span>
-    
+                @if (empty($comentarios[0]))
+                    <li class="alert alert-danger text-center">Não exite nenhum comentário cadastrado para essa marca!</li>
+                @else
+                    @foreach ($comentarios as $comentario)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h5 class="item">{{ $comentario->nome_cliente }}</h5>
+
                             <span>
-                                @if ($email == $dado->email)
-                                    <a id="editar" title="Editar usuário" class="btn btn-success" >
-                                        <i class="fas fa-key"></i>
-                                    </a>
-                                @else
-                                    <a title="Remover Usuário" id="{{ $dado->id }}" class="btn btn-danger remover">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                @endif
+                                <a title="Duplicar Comentário" href="/comentario/{{ $comentario->id }}/duplicar" class="btn btn-warning">
+                                    <i class="fas fa-copy"></i>
+                                </a>
+
+                                <a title="Listar Comentários" href="/comentario/{{ $comentario->id }}/listarDados" class="btn btn-success">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+            
+                                <a title="Remover Comntário" id="{{ $comentario->id }}" class="btn btn-danger remover">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </span>
-                        </div>
-
-                        @if ($email == $dado->email)
-                            <form action="/editar/usuario/{{ $dado->id }}" method="POST" id="formulario" hidden>
-                                @csrf
-                                <span class="d-flex flex-wrap justify-content-between">
-                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
-                                        <label for="name" class="form-label">Nome</label>
-                                        <input type="text" name="name" value="{{ $dado->name }}" class="form-control">
-                                    </div>
-    
-                                    {{-- <div class="col-12 col-md-3 mt-3 mt-md-0">
-                                        <label for="password_antiga" class="form-label">Senha Antiga</label>
-                                        <input type="password" name="password_antiga" class="form-control">
-                                    </div> --}}
-    
-                                    <div class="col-12 col-md-3 mt-3 mt-md-0">
-                                        <label for="password" class="form-label">Nova Senha</label>
-                                        <input type="password" name="password" class="form-control">
-                                    </div>
-                                </span>
-
-                                <span class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-success mt-3">
-                                        Salvar
-                                        <i class="fas fa-save"></i>
-                                    </button>
-                                </span>
-                            </form>
-                        @endif
-                    </li>
-                @endforeach
+                        </li>
+                    @endforeach
+                @endif
             </ul>
+        </section>
+
+        <section class="border-top border-success border-2 mt-5 d-flex justify-content-between">
+            <a title="Adicionar Comentário" href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                Novo Comentário
+                <i class="fas fa-plus-circle ms-2"></i>
+            </a>
         </section>
     </main>
 
-    <script  type="text/javascript">
-        ///// ABILITAR FORMULÁRIO /////
-        document.getElementById('editar').addEventListener('click', ()=>{
-            let formulario = document.getElementById('formulario');
-
-            abilitarConfig(formulario);
-        })
-
-        exibirFormularioExcluir('/usuario', 'Certeza que deseja excluir o usuário');
+    <script type="text/javascript">
+        exibirFormularioExcluir('/comentario', 'Certeza que deseja excluir o comentário de');
 
         function exibirFormularioExcluir(url, mensagem) {
             let remover = document.querySelectorAll('.remover');
@@ -147,5 +117,4 @@
             }
         }
     </script>
-
 @endsection

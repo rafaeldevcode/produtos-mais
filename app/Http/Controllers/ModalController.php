@@ -21,7 +21,7 @@ class ModalController extends Controller
     {
         $usuario = Auth::user()->name;
 
-        return view('marca/modal/create', compact('marcaId', 'usuario'));
+        return view('painel/modal/create', compact('marcaId', 'usuario'));
     }
 
     ///// GUARDAR DADOS DO MODAL NO BANCO /////
@@ -40,7 +40,7 @@ class ModalController extends Controller
         $dados = $marca->modals()->get()[0];
         $usuario = Auth::user()->name;
 
-        return view('marca/modal/listarDados', compact('marcaId', 'dados', 'usuario'));
+        return view('painel/modal/listarDados', compact('marcaId', 'dados', 'usuario'));
     }
 
     ////// GUARDADR DADOS EDITADO /////

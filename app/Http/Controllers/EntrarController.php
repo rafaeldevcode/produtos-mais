@@ -12,7 +12,7 @@ class EntrarController extends Controller
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         
         if(Auth::user()){
-            return redirect('/marcas');
+            return redirect('/painel');
         }else{
             return view('entrar/index', compact('usuario'));
         }
@@ -24,7 +24,7 @@ class EntrarController extends Controller
             return redirect()->back()->withErrors('Usuário e/ou senhas incorretos!');
         };
 
-        return redirect('/marcas');
+        return redirect('/painel');
     }
 
     public function logout()

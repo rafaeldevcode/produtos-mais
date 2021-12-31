@@ -13,7 +13,7 @@ class PoliticasController extends Controller
         $marca = Marca::find($id);
         $config = $marca->configuracoes()->get();
 
-        return view('marca/politicas/privacidade', compact('marca', 'config', 'politicas'));
+        return view('painel/politicas/privacidade', compact('marca', 'config', 'politicas'));
     }
 
     public function termos(int $id)
@@ -22,6 +22,6 @@ class PoliticasController extends Controller
         $marca = Marca::find($id);
         $config = $marca->configuracoes()->get();
 
-        return view('marca/politicas/termos', compact('marca', 'config', 'politicas'));
+        return view('painel/politicas/termos', compact('marca', 'config', 'politicas'));
     }
 }

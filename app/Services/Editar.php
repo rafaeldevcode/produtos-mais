@@ -2,7 +2,7 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Configuracao, User};
+    use App\Models\{Marca, Configuracao, Produto, User};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
     use Illuminate\Support\Facades\Hash;
@@ -50,7 +50,7 @@
 
         public function editarProduto($request, $produto)
         {
-            $marca = Marca::find($request->marca_id)->nome_marca;
+            $marca = Marca::find(Produto::find($request->id)->marca_id)->nome_marca;
 
             DB::beginTransaction();
                 $produto->nome_produto    = $request->nome_produto;

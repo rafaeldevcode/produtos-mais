@@ -24,7 +24,7 @@ class ProdutoController extends Controller
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $usuario = Auth::user()->name;
 
-        return view('marca/produto/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
+        return view('painel/produto/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// GIARDAR PRODUTOS NO BANCO /////
@@ -48,7 +48,7 @@ class ProdutoController extends Controller
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
 
-        return view('/marca/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem', 'usuario'));
+        return view('/painel/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem', 'usuario'));
     }
 
         ///// LISTAR PRODUTOS PARA EDIÇÃO /////
@@ -57,7 +57,7 @@ class ProdutoController extends Controller
         $dados = Produto::find($produtoId);
         $usuario = Auth::user()->name;
         
-        return view('marca/produto/listarDados', compact('dados', 'produtoId', 'usuario'));
+        return view('painel/produto/listarDados', compact('dados', 'produtoId', 'usuario'));
     }
 
     ///// GUARDAR PRODUTOS EDITADOS /////

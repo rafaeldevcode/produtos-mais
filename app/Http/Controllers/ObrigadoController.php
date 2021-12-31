@@ -6,6 +6,7 @@ use App\Http\Requests\ValidacaoUpsell;
 use App\Models\Marca;
 use App\Services\Adicionar;
 use App\Services\Editar;
+use App\Services\Remover;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,16 +17,16 @@ class ObrigadoController extends Controller
         $marca = Marca::find($marcaId);
         $config = $marca->configuracoes()->get();
 
-        return view('marca/obrigado/obrigado', compact('marca', 'config'));
+        return view('painel/obrigado/obrigado', compact('marca', 'config'));
     }
 
     public function upsell(int $marcaId)
     {
         $marca = Marca::find($marcaId);
         $config = $marca->configuracoes()->get();
-        $upsell = $marca->upsell()->get()[0];
+        $upsell = empty($marca->upsell()->get()[0]) ? '' : $marca->upsell()->get()[0];
 
-        return view('marca/obrigado/upsell', compact('marca', 'config', 'upsell'));
+        return view('painel/obrigado/upsell', compact('marca', 'config', 'upsell'));
     }
 
     public function upsellCreate(int $marcaId)
@@ -33,7 +34,7 @@ class ObrigadoController extends Controller
         $marca = Marca::find($marcaId);
         $usuario = Auth::user()->name;
 
-        return view('marca/obrigado/upsell-create', compact('marca', 'usuario'));
+        return view('painel/obrigado/upsell-create', compact('marca', 'usuario'));
     }
 
     public function upsellStore(int $marcaId, ValidacaoUpsell $request, Adicionar $adicionar)
@@ -51,7 +52,7 @@ class ObrigadoController extends Controller
         $marca = Marca::find($marcaId);
         $dados = $marca->upsell()->get()[0];
 
-        return view('marca/obrigado/upsellListar', compact('marca', 'dados', 'usuario'));
+        return view('painel/obrigado/upsellListar', compact('marca', 'dados', 'usuario'));
     }
 
     public function upsellEditar(Request $request, Editar $editar, int $marcaId)
@@ -61,5 +62,13 @@ class ObrigadoController extends Controller
         $request->session()->flash("mensagem", "Upsel da marca {$marca->nome_marca} atualizado cim sucesso!");
 
         return redirect("/marca/{$marca->id}/config");
+    }
+
+    public function destroyUpsell(int $marcaId, Remover $remover, Request $request)
+    {
+        $remover->removerUpsell($marcaId);
+        $request->session()->flash("mensagem", "Upsell removido com sucesso!");
+
+        return redirect("/marca/{$marcaId}/config");
     }
 }

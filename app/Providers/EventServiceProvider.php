@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         NovoCadastro::class => [
             // EnviarNovoEmail::class,
-            LogNovoCadastro::class
+            // LogNovoCadastro::class
         ]
     ];
 

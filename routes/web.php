@@ -28,7 +28,7 @@ use App\Http\Controllers\{
 Route::get('/produto/{id}', [MarcaController::class, 'produto']);
 
 Route::get('/', [MarcaController::class, 'index']);
-Route::get('/marcas', [MarcaController::class, 'listarMarcas'])->middleware('autenticador');
+Route::get('/painel', [MarcaController::class, 'listarMarcas'])->middleware('autenticador');
 Route::get('/adicionar/marca', [MarcaController::class, 'create'])->middleware('autenticador');
 Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('autenticador');
 Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('autenticador');
@@ -67,8 +67,8 @@ Route::get('/sair', [EntrarController::class, 'logout']);
 Route::get('/registrar', [RegistroController::class, 'create'])->middleware('autenticador');
 Route::post('/registrar', [RegistroController::class, 'store']);
 Route::get('/usuarios', [RegistroController::class, 'listar'])->middleware('autenticador');
-Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy']);
-Route::post('/editar/usuario/{usuarioId}', [RegistroController::class, 'editarUsuario']);
+Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy'])->middleware('autenticador');
+Route::post('/editar/usuario/{usuarioId}', [RegistroController::class, 'editarUsuario'])->middleware('autenticador');
 
 Route::get('/politicas/privacidade/{id}', [PoliticasController::class, 'privacidade']);
 Route::get('/politicas/termos/{id}', [PoliticasController::class, 'termos']);
@@ -82,6 +82,7 @@ Route::get('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, '
 Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellStore'])->middleware('autenticador');
 Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar'])->middleware('autenticador');
 Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar'])->middleware('autenticador');
+Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'destroyUpsell'])->middleware('autenticador');
 
 Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');
 

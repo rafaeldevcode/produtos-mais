@@ -21,7 +21,7 @@ class MarcaController extends Controller
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         $usuarios = User::all();
 
-        return view('marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios'));
+        return view('painel/marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios'));
     }
 
     ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 
@@ -32,7 +32,7 @@ class MarcaController extends Controller
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
 
-        return view('marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
+        return view('painel/marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// CHARMAR ARQUIVO PARA ADICIONAR MARCA AO BONCO /////
@@ -40,7 +40,7 @@ class MarcaController extends Controller
     {
         $usuario = Auth::user()->name;
 
-        return view('marca/create', compact('usuario'));
+        return view('painel/marca/create', compact('usuario'));
     }
 
     ///// GUARDAR DADOS NO BANCO /////
@@ -59,7 +59,7 @@ class MarcaController extends Controller
         $dados = Marca::find($marcaId);
         $usuario = Auth::user()->name;
 
-        return view('marca/listarDados' , compact('dados', 'marcaId', 'usuario'));
+        return view('painel/marca/listarDados' , compact('dados', 'marcaId', 'usuario'));
     }
 
     ///// ENVIAR DADOS EDITADO /////
@@ -68,7 +68,7 @@ class MarcaController extends Controller
         $editar->editarMarca($request, $marcaId);
         $request->session()->flash("mensagem", "Marca {$request->nome_marca} atualizado com sucesso!");
 
-        return redirect('/marcas');
+        return redirect('/painel');
     }
 
     ///// REMOVER A TABELA MARCA /////
@@ -78,7 +78,7 @@ class MarcaController extends Controller
         $remover->removerMarca($marcaId);
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 
-        return redirect('/marcas');
+        return redirect('/painel');
     }
 
     ///// EXIBIR A PAGINA DA MARCA /////

@@ -89,6 +89,17 @@
             // $this->dispararEvento(User::find($request->usuarioId)->name, 'Usuário removido de produtos +!');
         }
 
+        public function removerUpsell($marcaId)
+        {
+            // $nome_marca = Marca::find($marcaId)->nome_marca;
+
+            DB::beginTransaction();
+                Upsell::destroy($marcaId);
+            DB::commit();
+
+            // $this->dispararEvento('Upsell', "Upsell removida da marca {$nome_marca}");
+        }
+
         private function dispararEvento(string $nome, string $mensagem):void
         {
             event(new NovoCadastro(

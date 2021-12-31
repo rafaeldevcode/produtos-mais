@@ -1,4 +1,4 @@
-@extends('marca/layouts/painel/layout')
+@extends('painel/layouts/painel/layout')
 
 @section('conteudo')
 
@@ -8,7 +8,7 @@
                 <i class="fas fa-user-shield display-1"></i>
             </div>
 
-            @include('marca/layouts/componentes/errors', [$errors])
+            @include('painel/layouts/componentes/errors', [$errors])
 
             <form method="POST">
                 @csrf

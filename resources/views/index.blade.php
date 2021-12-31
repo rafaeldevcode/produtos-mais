@@ -1,4 +1,4 @@
-@extends('marca/layouts/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     <main class="my-5">
@@ -212,6 +212,6 @@
     </main>  
     
     @if ($config->modal == 'on')
-        @include('marca/layouts/componentes/modal')
+        @include('painel/layouts/componentes/modal')
     @endif
 @endsection

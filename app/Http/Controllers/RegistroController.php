@@ -25,7 +25,7 @@ class RegistroController extends Controller
         if(Auth::user()){
             return redirect('/usuarios');
         }else{
-            return redirect('/marcas');
+            return redirect('/painel');
         }
     }
 

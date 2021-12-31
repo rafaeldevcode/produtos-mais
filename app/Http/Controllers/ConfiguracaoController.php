@@ -20,13 +20,13 @@ class ConfiguracaoController extends Controller
     {
         $marca  = Marca::find($marcaId);
         $config = $marca->configuracoes()->get()[0];
-        $modal = $marca->modals()->get()[0];
-        $coutdown = $marca->coutdown()->get()[0];
-        $upsell = $marca->upsell()->get()[0];
+        $modal = empty($marca->modals()->get()[0]) ? '' : $marca->modals()->get()[0];
+        $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
+        $upsell = empty($marca->upsell()->get()[0]) ? '' : $marca->upsell()->get()[0];
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
 
-        return view('marca/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario', 'coutdown', 'upsell'));
+        return view('painel/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario', 'coutdown', 'upsell'));
     }
 
     ///// EDITAR CONFIGURAÇÕES //////
