@@ -6,48 +6,53 @@
 
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
             <h2>Marcas Cadastradas</h2>
-            <form action="?" class="d-flex mb-3 ms-1">
-                <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar marca">
-                <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
+            <form action="/marca/pesquisar" method="POST" class="d-flex mb-3 ms-1">
+                @csrf
+                <input type="search" name="pesquisa" class="form-control rounded-0 rounded-start" placeholder="Pesquisar marca">
+                <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
         </div>
 
-        @if (empty($nome_marca))
+        {{-- @if (empty($nome_marca))
             <section class="alert alert-danger mt-5">
-                <h2 class="fs-4 text-center">Você ainda não tem nenhuma marca cadastrada!</h2>
+                <h2 class="fs-4 text-center">{{ $aviso }}</h2>
             </section>
-        @endif
+        @endif --}}
 
         <section>
             <ul class="list-group mt-5">
-                @foreach ($marcas as $marca)
-                    <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
-                        <h5 class="item">{{ $marca->nome_marca }}</h5>
+                @if (empty($marcas[0]))
+                    <li class="alert alert-danger text-center">{{ $aviso }}</li>
+                @else
+                    @foreach ($marcas as $marca)
+                        <li class="list-group-item d-flex flex-wrap justify-content-evenly justify-content-sm-between align-items-center">
+                            <h5 class="item">{{ $marca->nome_marca }}</h5>
 
-                        <span>
-                            <a title="Ver Página" href="/produto/{{ $marca->id }}" class="btn btn-info">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a title="Configurações da Página" href="/marca/{{ $marca->id }}/config" class="btn btn-warning">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                            <a title="Produtos da Página" href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
-                                <i class="fas fa-external-link-square-alt"></i>
-                            </a>
-                            <a title="Editar Dados" href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
-                            <a title="Comentários da Página" href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
-                                <i class="fas fa-comments"></i>
-                            </a>
-                            <a title="Remover Página" id="{{ $marca->id }}" class="btn btn-danger remover">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </span>
-                    </li>
-                @endforeach
+                            <span>
+                                <a title="Ver Página" href="/produto/{{ $marca->id }}" class="btn btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a title="Configurações da Página" href="/marca/{{ $marca->id }}/config" class="btn btn-warning">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                                <a title="Produtos da Página" href="/marca/{{ $marca->id }}/produtos" class="btn btn-primary">
+                                    <i class="fas fa-external-link-square-alt"></i>
+                                </a>
+                                <a title="Editar Dados" href="/marca/{{ $marca->id }}/listarDados" class="btn btn-success">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                                <a title="Comentários da Página" href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
+                                    <i class="fas fa-comments"></i>
+                                </a>
+                                <a title="Remover Página" id="{{ $marca->id }}" class="btn btn-danger remover">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </span>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
         </section>
 

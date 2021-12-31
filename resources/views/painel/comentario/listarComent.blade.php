@@ -6,12 +6,13 @@
         @include('painel/layouts/componentes/mensagem', [$mensagem])
 
         <div class="border-bottom border-success border-2 d-flex flex-column-reverse flex-md-row justify-content-md-between align-items-center">
-            <h2>Comentários <span class="text-primary">{{ $nome_marca }}</span></h2>
+            <h2>Comentários <span class="text-primary">{{ $marca->nome_marca }}</span></h2>
 
             <span class="d-flex mb-3">
-                <form action="?" class="d-flex ms-1">
-                    <input type="search" class="form-control rounded-0 rounded-start" disabled placeholder="Pesquisar comentario">
-                    <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end" disabled>
+                <form action="/marca/{{ $marca->id }}/pesquisar/comentario" method="POST" class="d-flex ms-1">
+                    @csrf
+                    <input type="search" name="pesquisa" class="form-control rounded-0 rounded-start" placeholder="Pesquisar comentario">
+                    <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -25,7 +26,7 @@
         <section>
             <ul class="list-group mt-5">
                 @if (empty($comentarios[0]))
-                    <li class="alert alert-danger text-center">Não exite nenhum comentário cadastrado para essa marca!</li>
+                    <li class="alert alert-danger text-center">{{ $aviso }}</li>
                 @else
                     @foreach ($comentarios as $comentario)
                         <li class="list-group-item d-flex justify-content-between align-items-center">

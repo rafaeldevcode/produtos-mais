@@ -43,12 +43,12 @@ class ProdutoController extends Controller
     public function listarProdutos(Request $request, int $marcaId)
     {
         $marca = Marca::find($marcaId);
-        $nome_marca = $marca->nome_marca;
         $produtos = $marca->produtos()->get();
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
+        $aviso = 'Não exite nenhum produto cadastrado para essa marca!';
 
-        return view('/painel/produto/listarProdutos', compact('produtos', 'nome_marca', 'mensagem', 'usuario'));
+        return view('/painel/produto/listarProdutos', compact('produtos', 'marca', 'mensagem', 'usuario', 'aviso'));
     }
 
         ///// LISTAR PRODUTOS PARA EDIÇÃO /////

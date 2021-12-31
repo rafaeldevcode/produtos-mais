@@ -25,14 +25,14 @@
     <title>{{ $marca->nome_marca }} {{ $politicas == true ? ' | Políticas & Termos' : '' }}</title>
 
     {{-- ////// MARCA TAGMANAGER ////// --}}
-    @if ($config[0]->tagmanager == 'on')
+    @if ($config->tagmanager == 'on')
         @if (!empty($marca->tagmanager))
             @include('painel/layouts/componentes/tagmanagerHeader', [$marca->tagmanager])
         @endif
     @endif
     
     {{-- ////// MARCA PIXEL ////// --}}
-    @if ($config[0]->pixel == 'on')
+    @if ($config->pixel == 'on')
         @if (!empty($marca->pixel))
             @include('painel/layouts/componentes/pixelHeader', [$pixels, $marca->evento])
         @endif
@@ -42,14 +42,14 @@
 <body>
 
     {{-- ////// MARCA TAGMANAGER NO SCIPT ////// --}}
-    @if ($config[0]->tagmanager == 'on')
+    @if ($config->tagmanager == 'on')
         @if (!empty($marca->tagmanager))
             @include('painel/layouts/componentes/tagmanagerBody', [$marca->tagmanager])
         @endif
     @endif
 
     {{-- ////// MARCA PIXEL NO SCIPT ////// --}}
-    @if ($config[0]->pixel == 'on')
+    @if ($config->pixel == 'on')
         @if (!empty($marca->pixel))
             @include('painel/layouts/componentes/pixelBody', [$pixels])
         @endif
@@ -57,7 +57,7 @@
 
     {{-- ///////// ABILITAR COUTDOWN //////// --}}
     @if ($politicas !== true)
-        @if ($config[0]->coutdown == 'on')
+        @if ($config->coutdown == 'on')
             @include('painel/layouts/componentes/coutdown')
         @endif
     @endif
@@ -83,7 +83,7 @@
 
     <footer class="container-fluid pb-1 bg-principal">
         <section class="links-rodape container d-flex flex-wrap justify-content-between">
-            @if ($config[0]->empresa == 'on')
+            @if ($config->empresa == 'on')
                 <div class="m-3">
                     <h5 class="fw-bolder">EMPRESA</h5>
 
@@ -92,19 +92,19 @@
                             <li class="list-group-item border-0 p-0">{{ $marca->nome_marca }}</li>
                         @endif
                         
-                        @if ($config[0]->cnpj == 'on')
+                        @if ($config->cnpj == 'on')
                             @if (!empty($marca->cnpj))
                                 <li class="list-group-item border-0 p-0">CNPJ: {{ $marca->cnpj }}</li>
                             @endif
                         @endif
                         
-                        @if ($config[0]->rua == 'on')
+                        @if ($config->rua == 'on')
                             @if (!empty($marca->rua))
                                 <li class="list-group-item border-0 p-0">Rua: {{ $marca->rua }}</li>
                             @endif
                         @endif
                         
-                        @if ($config[0]->cidade == 'on')
+                        @if ($config->cidade == 'on')
                             @if (!empty($marca->cidade))
                                 <li class="list-group-item border-0 p-0">Cidade: {{ $marca->cidade }}</li>
                             @endif
@@ -113,12 +113,12 @@
                 </div>
             @endif
 
-            @if ($config[0]->atendimento == 'on')
+            @if ($config->atendimento == 'on')
                 <div class="m-3">
                     <h5 class="fw-bolder">ATENDIMENTO</h5>
 
                     <ul class="list-group">
-                        @if ($config[0]->telefone == 'on')
+                        @if ($config->telefone == 'on')
                             @if (!empty($marca->telefone))
                                 <li class="list-group-item border-0 p-0">
                                     <i class="fas fa-phone-square"></i>
@@ -127,7 +127,7 @@
                             @endif
                         @endif
 
-                        @if ($config[0]->email == 'on')
+                        @if ($config->email == 'on')
                             @if (!empty($marca->email))
                                 <li class="list-group-item border-0 p-0">
                                     <i class="fas fa-envelope-square"></i>
@@ -139,12 +139,12 @@
                 </div>
             @endif
 
-            @if ($config[0]->social == 'on')
+            @if ($config->social == 'on')
                 <div class="m-3">
                     <h5 class="fw-bolder">SOCIAL</h5>
 
                     <ul class="list-group">
-                        @if ($config[0]->facebook == 'on')
+                        @if ($config->facebook == 'on')
                             @if (!empty($marca->facebook))
                                 <li class="list-group-item border-0 p-0">
                                     <a title="Facebook" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->facebook }}">
@@ -155,7 +155,7 @@
                             @endif
                         @endif
 
-                        @if ($config[0]->instagram == 'on')
+                        @if ($config->instagram == 'on')
                             @if (!empty($marca->instagram))
                                 <li class="list-group-item border-0 p-0">
                                     <a title="Instagram" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->instagram }}">
@@ -166,7 +166,7 @@
                             @endif
                         @endif
 
-                        @if ($config[0]->twitter == 'on')
+                        @if ($config->twitter == 'on')
                             @if (!empty($marca->twitter))
                                 <li class="list-group-item border-0 p-0">
                                     <a title="Twitter" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->twitter }}">

@@ -11,7 +11,8 @@ use App\Http\Controllers\{
     PoliticasController, 
     RegistroController,
     CoutdownController,
-    ObrigadoController
+    ObrigadoController,
+    PesquisarController
 };
 
 /*
@@ -83,6 +84,10 @@ Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 
 Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar'])->middleware('autenticador');
 Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar'])->middleware('autenticador');
 Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'destroyUpsell'])->middleware('autenticador');
+
+Route::post('/marca/{marcaId}/pesquisar/comentario', [PesquisarController::class, 'pesquisarComentario']);
+Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, 'pesquisarProduto']);
+Route::post('/marca/pesquisar', [PesquisarController::class, 'pesquisarMarca']);
 
 Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');
 

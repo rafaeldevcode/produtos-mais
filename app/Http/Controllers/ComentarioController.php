@@ -23,8 +23,9 @@ class ComentarioController extends Controller
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $usuario = Auth::user()->name;
+        $aviso = 'Não exite nenhum comentário cadastrado para essa marca!';
 
-        return view('painel/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
+        return view('painel/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario', 'aviso'));
     }
 
     ///// GUARDAR COMENTÁRIOS NO BANCO /////
@@ -41,12 +42,11 @@ class ComentarioController extends Controller
     public function listarComentarios(Request $request, int $comentarioId)
     {
         $marca = Marca::find($comentarioId);
-        $nome_marca = $marca->nome_marca;
         $comentarios = $marca->comentarios()->get();
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
 
-        return view('/painel/comentario/listarComent', compact('comentarios', 'nome_marca', 'mensagem', 'usuario'));
+        return view('/painel/comentario/listarComent', compact('comentarios', 'marca', 'mensagem', 'usuario'));
     }
 
     ///// LISTAR COMENTÁRIOS PARA EDIÇÃO /////
