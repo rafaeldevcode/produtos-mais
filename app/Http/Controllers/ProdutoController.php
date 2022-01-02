@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 { 
+    private $aviso = 'Não exite nenhum produto cadastrado para essa marca!';
 
     public function __construct()
     {
@@ -46,7 +47,7 @@ class ProdutoController extends Controller
         $produtos = $marca->produtos()->get();
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
-        $aviso = 'Não exite nenhum produto cadastrado para essa marca!';
+        $aviso = $this->aviso;
 
         return view('/painel/produto/listarProdutos', compact('produtos', 'marca', 'mensagem', 'usuario', 'aviso'));
     }
@@ -79,6 +80,15 @@ class ProdutoController extends Controller
         $request->session()->flash("mensagem", "{$produto} removido com sucesso!");
         
         return redirect("/marca/{$marca_id}/produtos");
+    }
+
+    ///// REMOVER TODOS OS PRODUTOS //////
+    public function removerTodos(int $marcaId, Remover $remover, Request $request)
+    {
+        $remover->removerTodosProdutos($marcaId);
+        $request->session()->flash('mensagem', 'Todos os produtos removidos com sucesso!');
+
+        return redirect("/marca/{$marcaId}/produtos");
     }
 
     ////// DUPLICAR PRODUTO /////

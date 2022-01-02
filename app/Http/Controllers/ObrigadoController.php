@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ObrigadoController extends Controller
 {
+
+    ///// EXIBIR PÁGINA DE OBRIGADO /////
     public function obrigado(int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -20,6 +22,7 @@ class ObrigadoController extends Controller
         return view('painel/obrigado/obrigado', compact('marca', 'config'));
     }
 
+        ///// EXIBIR PÁGINA DE UPSELL /////
     public function upsell(int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -29,6 +32,7 @@ class ObrigadoController extends Controller
         return view('painel/obrigado/upsell', compact('marca', 'config', 'upsell'));
     }
 
+        ///// CRIAR PÁGINA DE UPSELL /////
     public function upsellCreate(int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -37,6 +41,7 @@ class ObrigadoController extends Controller
         return view('painel/obrigado/upsell-create', compact('marca', 'usuario'));
     }
 
+    ///// GUARDAR PÁGINA DE UPSELL /////
     public function upsellStore(int $marcaId, ValidacaoUpsell $request, Adicionar $adicionar)
     {
         $marca = Marca::find($marcaId);
@@ -46,6 +51,7 @@ class ObrigadoController extends Controller
         return redirect("/marca/{$marcaId}/config");
     }
 
+    ///// LISTAR DADOS PÁGINA DE UPSELL PARA EDIÇÃO /////
     public function upsellListar(int $marcaId)
     {
         $usuario = Auth::user()->name;
@@ -55,6 +61,7 @@ class ObrigadoController extends Controller
         return view('painel/obrigado/upsellListar', compact('marca', 'dados', 'usuario'));
     }
 
+    ///// GUARDAR PÁGINA DE UPSELL EDITADA /////
     public function upsellEditar(Request $request, Editar $editar, int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -64,6 +71,7 @@ class ObrigadoController extends Controller
         return redirect("/marca/{$marca->id}/config");
     }
 
+    ///// REMOVER PÁGINA DE UPSELL /////
     public function destroyUpsell(int $marcaId, Remover $remover, Request $request)
     {
         $remover->removerUpsell($marcaId);

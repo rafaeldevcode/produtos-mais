@@ -51,9 +51,15 @@
             </ul>
         </section>
 
-        <section class="border-top border-success border-2 mt-5 d-flex justify-content-between">
-            <a title="Novo Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                Novo Produto
+        <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
+            <a id="remover" title="Remover todos os produtos" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-5 col-md-3 {{ empty($produtos[0]) ? 'disabled' : '' }}">
+                Excluir Todos
+                <i class="fas fa-trash ms-2"></i>
+                <span hidden id="marcaId">{{ $marca->id }}</span>
+            </a>
+
+            <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-5 col-md-3">
+                Novo Comentário
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
         </section>
@@ -61,6 +67,11 @@
 
     <script type="text/javascript">
         exibirFormularioExcluir('/produto', 'Certeza que deseja excluir o produto');
+
+        document.getElementById('remover').addEventListener('click', ()=>{
+            let id = document.getElementById('marcaId').innerText;
+            criarFormulario(`/marca/${id}/produtos/remover/todos`, 'Certeza que deseja excluir todos os produtos?', '', ''); 
+        });
 
         function exibirFormularioExcluir(url, mensagem) {
             let remover = document.querySelectorAll('.remover');
@@ -70,52 +81,56 @@
                 let item = document.querySelectorAll('.item')[i].innerHTML;
 
                 remover[i].addEventListener('click', ()=>{
-                    let main = document.querySelector('main');
-
-                    let i = document.createElement('i');
-                        i.setAttribute('class', 'fas fa-trash ms-2');
-
-                    let button = document.createElement('button');
-                        button.setAttribute('type', 'submit');
-                        button.setAttribute('class', 'btn btn-danger');
-                        button.innerHTML = 'Excluir';
-                        button.appendChild(i);
-                    
-                    let i_a = document.createElement('i');
-                        i_a.setAttribute('class', 'fas fa-ban ms-2');
-
-                    let a = document.createElement('a');
-                        a.setAttribute('id', 'cancelar');
-                        a.setAttribute('class', 'btn btn-primary');
-                        a.innerHTML = 'Cancelar';
-                        a.appendChild(i_a);
-
-                    let form = document.createElement('form');
-                        form.setAttribute('action', `${url}/${id}/remover`);
-                        form.setAttribute('method', 'POST');
-                        form.setAttribute('class', 'text-center d-flex justify-content-evenly');
-                        form.innerHTML = '@csrf';
-                        form.appendChild(a);
-                        form.appendChild(button);
-
-                    let p = document.createElement('p');
-                        p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                        p.innerHTML = `${mensagem} \"${item}\"?`;
-
-                    let div = document.createElement('div');
-                        div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
-                        div.appendChild(p);
-                        div.appendChild(form);
-                    
-                    let section = document.createElement('section');
-                        section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
-                        section.appendChild(div);
-
-                    main.appendChild(section);
-
-                    fecharFormularioExcluir();
+                    criarFormulario(url, mensagem, id, item);
                 })
             }
+        }
+
+        function criarFormulario(url, mensagem, id, item){
+            let main = document.querySelector('main');
+
+            let i = document.createElement('i');
+                i.setAttribute('class', 'fas fa-trash ms-2');
+
+            let button = document.createElement('button');
+                button.setAttribute('type', 'submit');
+                button.setAttribute('class', 'btn btn-danger');
+                button.innerHTML = 'Excluir';
+                button.appendChild(i);
+            
+            let i_a = document.createElement('i');
+                i_a.setAttribute('class', 'fas fa-ban ms-2');
+
+            let a = document.createElement('a');
+                a.setAttribute('id', 'cancelar');
+                a.setAttribute('class', 'btn btn-primary');
+                a.innerHTML = 'Cancelar';
+                a.appendChild(i_a);
+
+            let form = document.createElement('form');
+                if(id == ''){form.setAttribute('action', `${url}`)}else{form.setAttribute('action', `${url}/${id}/remover`)};
+                form.setAttribute('method', 'POST');
+                form.setAttribute('class', 'text-center d-flex justify-content-evenly');
+                form.innerHTML = '@csrf';
+                form.appendChild(a);
+                form.appendChild(button);
+
+            let p = document.createElement('p');
+                p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
+                if(item == ''){p.innerHTML = `${mensagem}`}else{p.innerHTML = `${mensagem} \"${item}\"?`};
+
+            let div = document.createElement('div');
+                div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
+                div.appendChild(p);
+                div.appendChild(form);
+            
+            let section = document.createElement('section');
+                section.setAttribute('class', 'sessao-excluir w-100 h-100 d-flex justify-content-center align-items-center fixed-top removerComentario');
+                section.appendChild(div);
+
+            main.appendChild(section);
+
+            fecharFormularioExcluir();
         }
     </script>
 

@@ -14,11 +14,13 @@ class CoutdownController extends Controller
         $this->middleware('autenticador');
     }
     
+    ////// ADICIONAR COUTDOWN //////
     public function store(int $marcaId, Request $request, Adicionar $adicionar)
     {
         $adicionar->adicionarCoutdown($marcaId, $request);
     }
 
+    ////// EDITAR COUTDOWN ///////
     public function editar(int $marcaId, Request $request, Editar $editar)
     {
         $editar->editarCoutdown($marcaId, $request);

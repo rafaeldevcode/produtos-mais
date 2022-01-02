@@ -10,22 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
+    private $aviso = 'Não exite nenhum comentário cadastrado para essa marca!';
 
     public function __construct()
     {
         $this->middleware('autenticador');
     }
 
-    ///// LISTAR COMENTÁRIOS COM ÍCONES DE OPÇÕES /////
+    ///// ADICIONAR COMENTÁRIO /////
     public function create(Request $request)
     {
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $usuario = Auth::user()->name;
-        $aviso = 'Não exite nenhum comentário cadastrado para essa marca!';
 
-        return view('painel/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario', 'aviso'));
+        return view('painel/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
 
     ///// GUARDAR COMENTÁRIOS NO BANCO /////
@@ -45,8 +45,9 @@ class ComentarioController extends Controller
         $comentarios = $marca->comentarios()->get();
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
+        $aviso = $this->aviso;
 
-        return view('/painel/comentario/listarComent', compact('comentarios', 'marca', 'mensagem', 'usuario'));
+        return view('/painel/comentario/listarComent', compact('comentarios', 'marca', 'mensagem', 'usuario', 'aviso'));
     }
 
     ///// LISTAR COMENTÁRIOS PARA EDIÇÃO /////
@@ -77,6 +78,15 @@ class ComentarioController extends Controller
         $request->session()->flash("mensagem", "Comentário de {$nome_cliente} removido com sucesso!");
 
         return redirect("/marca/{$marca_id}/comentarios");
+    }
+
+    ///// REMOVER TODOS OS COMENTÁRIOS //////
+    public function removerTodos(int $marcaId, Remover $remover, Request $request)
+    {
+        $remover->removerTodosComentarios($marcaId);
+        $request->session()->flash('mensagem', 'Todos os comentários removidos com sucesso!');
+
+        return redirect("/marca/{$marcaId}/comentarios");
     }
 
     ///// DUPLICAR COMENTÁRIO /////

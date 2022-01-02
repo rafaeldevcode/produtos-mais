@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class PoliticasController extends Controller
 {
+
+    ////// EXIBIR PÁGINA DE PRIVACIDADE ///////
     public function privacidade(int $id)
     {
         $politicas = true;
@@ -16,6 +18,7 @@ class PoliticasController extends Controller
         return view('painel/politicas/privacidade', compact('marca', 'config', 'politicas'));
     }
 
+    ////// EXIBIR PÁGINA DE TERMOS DE USO ///////
     public function termos(int $id)
     {
         $politicas = true;

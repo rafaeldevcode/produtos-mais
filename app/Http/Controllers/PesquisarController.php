@@ -16,6 +16,7 @@ class PesquisarController extends Controller
         $this->middleware('autenticador');
     }
 
+    ///// PESQUISAR POR COMENTARIOS //////
     public function pesquisarComentario(Request $request, int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -28,6 +29,7 @@ class PesquisarController extends Controller
         return view('/painel/comentario/listarComent', compact('comentarios', 'resultadoPesquisa', 'usuario', 'mensagem', 'marca', 'aviso'));
     }
 
+    ///// PESQUISAR POR PRODUTOS //////
     public function pesquisarProduto(Request $request, int $marcaId)
     {
         $marca = Marca::find($marcaId);
@@ -40,6 +42,7 @@ class PesquisarController extends Controller
         return view('/painel/produto/listarProdutos', compact('produtos', 'resultadoPesquisa', 'usuario', 'mensagem', 'marca', 'aviso'));
     }
 
+    ///// PESQUISAR POR MARCAS NO PAINEL DE ADMIN //////
     public function pesquisarPainelMarca(Request $request)
     {
         $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();
@@ -51,6 +54,7 @@ class PesquisarController extends Controller
         return view('/painel/marca/listarMarcas', compact('marcas', 'resultadoPesquisa', 'usuario', 'mensagem', 'aviso'));
     }
 
+    ///// PESQUISAR POR MARCAS NA EXIBIÇÃO FINAL //////
     public function pesquisarMarca(Request $request)
     {
         $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();

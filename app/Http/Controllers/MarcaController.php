@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MarcaController extends Controller
 {
+    private $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
 
     ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////
     public function index(Request $request)
@@ -21,7 +22,7 @@ class MarcaController extends Controller
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
         $usuarios = User::all();
         $mensagem = $request->session()->get('mensagem');
-        $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
+        $aviso = $this->aviso;
 
         return view('painel/marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios', 'aviso', 'mensagem'));
     }
@@ -33,7 +34,7 @@ class MarcaController extends Controller
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $mensagem = $request->session()->get('mensagem');
         $usuario = Auth::user()->name;
-        $aviso = 'Desculpe, não foi encontrado nada relacionado a sua pesquisa!';
+        $aviso = $this->aviso;
 
         return view('painel/marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca', 'usuario', 'aviso'));
     }

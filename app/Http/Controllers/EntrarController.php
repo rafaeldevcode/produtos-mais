@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class EntrarController extends Controller
 {
+
+    ////// EXIBIR FORMULÁRIO DE LOGIN ///////
     public function create()
     {
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
@@ -18,6 +20,7 @@ class EntrarController extends Controller
         }
     }
 
+    ////// LOGAR USUÁRIO
     public function store(Request $request)
     {
         if(!Auth::attempt($request->only(['email', 'password']))){
@@ -27,6 +30,7 @@ class EntrarController extends Controller
         return redirect('/painel');
     }
 
+    /////// DESLOGAR USUÁRIO //////
     public function logout()
     {
         Auth::logout();

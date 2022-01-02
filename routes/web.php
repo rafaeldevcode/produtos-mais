@@ -43,6 +43,7 @@ Route::get('/produto/{produtoId}/listarDados', [ProdutoController::class, 'lista
 Route::post('/produto/{produtoId}/editar', [ProdutoController::class, 'editarDados']);
 Route::post('/produto/{produtoId}/remover', [ProdutoController::class, 'destroy']);
 Route::get('/produto/{produtoId}/duplicar', [ProdutoController::class, 'duplicar']);
+Route::post('/marca/{marcaId}/produtos/remover/todos', [ProdutoController::class, 'removerTodos']);
 
 Route::get('/adicionar/comentario', [ComentarioController::class, 'create']);
 Route::post('/adicionar/comentario', [ComentarioController::class, 'store']);
@@ -51,6 +52,7 @@ Route::get('/comentario/{comentarioId}/listarDados', [ComentarioController::clas
 Route::post('/comentario/{comentarioId}/editar', [ComentarioController::class, 'editarDados']);
 Route::post('/comentario/{comentarioId}/remover', [ComentarioController::class, 'destroy']);
 Route::get('/comentario/{comentarioId}/duplicar', [ComentarioController::class, 'duplicar']);
+Route::post('/marca/{marcaId}/comentarios/remover/todos', [ComentarioController::class, 'removerTodos']);
 
 Route::get('/marca/{marcaId}/config', [ConfiguracaoController::class, 'index']);
 Route::post('/config/{configId}/editar', [ConfiguracaoController::class, 'editarDados']);

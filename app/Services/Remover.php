@@ -55,6 +55,18 @@
             // $this->dispararEvento($produto->nome_produto, "Produto removido da marca {$marca->nome_marca}!");
         }
 
+        public function removerTodosProdutos($marcaId)
+        {
+            DB::beginTransaction();
+                $marca = Marca::find($marcaId);
+                $marca->produtos->each(function(Produto $produto){
+                    $produto->delete();
+                });
+            DB::commit();
+
+            // $this->dispararEvento("Comentários", "Todos os produtos removidos da marca {$marca->nome_marca}");
+        }
+
         public function removerComentario($request)
         {
             // $comentario = Produto::find($request->comentarioId);
@@ -65,6 +77,18 @@
             DB::commit();
 
             // $this->dispararEvento($comentario->nome_cliente, "Comentário removido da marca {$marca->nome_marca}!");
+        }
+
+        public function removerTodosComentarios($marcaId)
+        {
+            DB::beginTransaction();
+                $marca = Marca::find($marcaId);
+                $marca->comentarios->each(function(Comentario $comentario){
+                    $comentario->delete();
+                });
+            DB::commit();
+
+            // $this->dispararEvento("Comentários", "Todos os comenários removidos da marca {$marca->nome_marca}");
         }
 
         public function removerModal($request)

@@ -10,6 +10,8 @@ use App\Http\Requests\ValidacaoUsuario;
 
 class RegistroController extends Controller
 {
+
+    ///// ADICIONAR USUÁRIO /////
     public function create(Request $request)
     {
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
@@ -18,6 +20,7 @@ class RegistroController extends Controller
         return view('registrar/index', compact('usuario', 'mensagem'));
     }
 
+    /////// GUARDAR USUÁRIOS CADASTRADO //////
     public function store(ValidacaoUsuario $request, Adicionar $adicionar)
     {
         $adicionar->adicionarUsuario($request);
@@ -29,6 +32,7 @@ class RegistroController extends Controller
         }
     }
 
+    ///// LISTAR TODOS OS USUÁRIOS ///////
     public function listar(Request $request)
     {
         $dados = User::all();
@@ -39,6 +43,7 @@ class RegistroController extends Controller
         return view('registrar/listar', compact('usuario', 'dados', 'mensagem', 'email'));
     }
 
+    ///// GUARDAR USUÁRIOS EDITADO //////
     public function editarUsuario(int $usuarioId, Request $request, Editar $editar)
     {
         $editar->editarUsuario($usuarioId, $request);
@@ -47,6 +52,7 @@ class RegistroController extends Controller
         return redirect(!empty($request->password) ? '/entrar' : '/usuarios');
     }
 
+    ///// REMOVER USUÁRIO //////////
     public function destroy(int $usuarioId, Request $request, Remover $remover)
     {
         $usuario = User::find($usuarioId)->name;
