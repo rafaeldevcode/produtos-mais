@@ -15,15 +15,15 @@
                 $marca = Marca::find($marcaId);
                 $marca->nome_marca    = $request->nome_marca;
                 $marca->slug_marca    = $request->slug_marca;
-                if(!empty($request->file('logomarca'))){$marca->logomarca = $request->file('logomarca')->store('marca');};
-                if(!empty($request->file('favicon'))){$marca->favicon = $request->file('favicon')->store('marca');};
+                if(!empty($request->file('logomarca'))){$marca->logomarca = $request->file('logomarca')->store('galeria');};
+                if(!empty($request->file('favicon'))){$marca->favicon = $request->file('favicon')->store('galeria');};
                 $marca->cor_principal = $request->cor_principal;
                 $marca->cor_titulo    = $request->cor_titulo;
                 $marca->cor_texto     = $request->cor_texto;
-                if(!empty($request->file('banner_1'))){$marca->banner_1 = $request->file('banner_1')->store('marca');};
-                if(!empty($request->file('banner_2'))){$marca->banner_2 = $request->file('banner_2')->store('marca');};
-                if(!empty($request->file('banner_3'))){$marca->banner_3 = $request->file('banner_3')->store('marca');};
-                if(!empty($request->file('image_desc'))){$marca->image_desc = $request->file('image_desc')->store('marca');};
+                if(!empty($request->file('banner_1'))){$marca->banner_1 = $request->file('banner_1')->store('galeria');};
+                if(!empty($request->file('banner_2'))){$marca->banner_2 = $request->file('banner_2')->store('galeria');};
+                if(!empty($request->file('banner_3'))){$marca->banner_3 = $request->file('banner_3')->store('galeria');};
+                if(!empty($request->file('image_desc'))){$marca->image_desc = $request->file('image_desc')->store('galeria');};
                 $marca->titulo_desc   = $request->titulo_desc;
                 $marca->item_1        = $request->item_1;
                 $marca->item_2        = $request->item_2;
@@ -56,7 +56,7 @@
                 $produto->nome_produto    = $request->nome_produto;
                 $produto->link_compra     = $request->link_compra;
                 $produto->quant_produto   = $request->quant_produto;
-                if(!empty($request->file('image_produto'))){$produto->image_produto = $request->file('image_produto')->store('produtos');};
+                if(!empty($request->file('image_produto'))){$produto->image_produto = $request->file('image_produto')->store('galeria');};
                 $produto->valor_unit      = $request->valor_unit;
                 $produto->valor_cheio     = $request->valor_cheio;
                 $produto->valor_parcelado = $request->valor_parcelado;
@@ -65,7 +65,7 @@
                 $produto->save();
             DB::commit();
 
-            $this->dispararEvento($request->nome_produto, "O produto da marca {$marca} foi atualizado!");
+            // $this->dispararEvento($request->nome_produto, "O produto da marca {$marca} foi atualizado!");
         }
 
         public function editarComentario($request, $comentario)
@@ -73,13 +73,13 @@
             DB::beginTransaction();
                 $comentario->nome_cliente  = $request->nome_cliente;
                 $comentario->coment_desc   = $request->coment_desc;
-                if(!empty($request->file('image_cliente'))){$comentario->image_cliente = $request->file('image_cliente')->store('comentario');};
+                if(!empty($request->file('image_cliente'))){$comentario->image_cliente = $request->file('image_cliente')->store('galeria');};
                 $comentario->comentario    = $request->comentario;
                 $comentario->exibir_coment = $request->exibir_coment;
                 $comentario->save();
             DB::commit();
 
-            $this->dispararEvento($request->nome_cliente,  "O comentário de {$request->nome_cliente} foi atualizado!");
+            // $this->dispararEvento($request->nome_cliente,  "O comentário de {$request->nome_cliente} foi atualizado!");
         }
 
         public function editarConfiguracao($configId, $request)
@@ -110,7 +110,7 @@
                 $config->save();
             DB::commit();
 
-            $this->dispararEvento('Configurações',  "As configurações da marca {$marca} foi atualizada!");
+            // $this->dispararEvento('Configurações',  "As configurações da marca {$marca} foi atualizada!");
         }
 
         public function editarModal($request, $marcaId)
@@ -119,7 +119,7 @@
             $modal = Marca::find($marcaId)->modals()->get();
 
             DB::beginTransaction();
-                if(!empty($request->file('produto_modal'))){$modal[0]->produto_modal = $request->file('produto_modal')->store('modal');};
+                if(!empty($request->file('produto_modal'))){$modal[0]->produto_modal = $request->file('produto_modal')->store('galeria');};
                 $modal[0]->porcentagem        = $request->porcentagem;
                 $modal[0]->preco_sem_desconto = $request->preco_sem_desconto;
                 $modal[0]->preco_com_desconto = $request->preco_com_desconto;
@@ -127,7 +127,7 @@
                 $modal[0]->save();
             DB::commit();
 
-            $this->dispararEvento('Modal', "O modal da marca {$marca} foi atualizado!");
+            // $this->dispararEvento('Modal', "O modal da marca {$marca} foi atualizado!");
         }
 
         public function editarCoutdown($marcaId, $request)
@@ -142,7 +142,7 @@
                 $coutdown[0]->save();
             DB::commit();
 
-            $this->dispararEvento('Coutdown', "O coutdown da marca {$marca} foi atualizado!");
+            // $this->dispararEvento('Coutdown', "O coutdown da marca {$marca} foi atualizado!");
         }
 
         public function editarUsuario($usuarioId, $request)
@@ -155,7 +155,7 @@
                 $usuario->save();
             DB::commit();
 
-            $this->dispararEvento($request->name, "Usuário atualizado!");
+            // $this->dispararEvento($request->name, "Usuário atualizado!");
         }
 
         public function editarUpsell($marca, $request)
@@ -166,7 +166,7 @@
                 $upsell->link_compra = $request->link_compra;
                 $upsell->preco_sem_desconto = $request->preco_sem_desconto;
                 $upsell->preco_com_desconto = $request->preco_com_desconto;
-                if(!empty($request->file('image_produto'))){$upsell->image_produto = $request->file('image_produto')->store('upsell');}
+                if(!empty($request->file('image_produto'))){$upsell->image_produto = $request->file('image_produto')->store('galeria');}
                 $upsell->save();
             DB::commit();
 

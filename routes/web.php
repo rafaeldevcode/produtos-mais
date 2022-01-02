@@ -12,7 +12,8 @@ use App\Http\Controllers\{
     RegistroController,
     CoutdownController,
     ObrigadoController,
-    PesquisarController
+    PesquisarController,
+    GaleriaController
 };
 
 /*
@@ -35,6 +36,9 @@ Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('
 Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('autenticador');
 Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])->middleware('autenticador');
 Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('autenticador');
+
+Route::get('/galeria', [GaleriaController::class, 'index']);
+Route::post('/galeria/imagen/remover', [GaleriaController::class, 'destroy']);
 
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
 Route::post('/adicionar/produto', [ProdutoController::class, 'store']);

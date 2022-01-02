@@ -49,6 +49,10 @@
                             </li>
 
                             <li class="list-group-item nav-item">
+                                <a title="Inicio" class="nav-link p-0" href="/galeria">Galeria</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
                                 <a title="Listar Usuários" class="nav-link p-0" href="/usuarios">Usuarios</a>
                             </li>
 

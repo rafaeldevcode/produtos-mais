@@ -59,7 +59,7 @@
             </a>
 
             <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-5 col-md-3">
-                Novo Comentário
+                Novo Produto
                 <i class="fas fa-plus-circle ms-2"></i>
             </a>
         </section>

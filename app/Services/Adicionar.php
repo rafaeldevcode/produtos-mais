@@ -16,15 +16,15 @@
                 $marca = Marca::create([
                     'nome_marca'    => $request->nome_marca,
                     'slug_marca'    => $request->slug_marca,
-                    'logomarca'     => empty($request->file('logomarca')) ? null : $request->file('logomarca')->store('marca'),
-                    'favicon'       => empty($request->file('favicon')) ? null : $request->file('favicon')->store('marca'),
+                    'logomarca'     => empty($request->file('logomarca')) ? null : $request->file('logomarca')->store('galeria'),
+                    'favicon'       => empty($request->file('favicon')) ? null : $request->file('favicon')->store('galeria'),
                     'cor_principal' => $request->cor_principal,
                     'cor_titulo'    => $request->cor_titulo,
                     'cor_texto'     => $request->cor_texto,
-                    'banner_1'      => $request->file('banner_1')->store('marca'),
-                    'banner_2'      => $request->file('banner_2')->store('marca'),
-                    'banner_3'      => $request->file('banner_3')->store('marca'),
-                    'image_desc'    => $request->file('image_desc')->store('marca'),
+                    'banner_1'      => $request->file('banner_1')->store('galeria'),
+                    'banner_2'      => $request->file('banner_2')->store('galeria'),
+                    'banner_3'      => $request->file('banner_3')->store('galeria'),
+                    'image_desc'    => $request->file('image_desc')->store('galeria'),
                     'titulo_desc'   => $request->titulo_desc,
                     'item_1'        => $request->item_1,
                     'item_2'        => $request->item_2,
@@ -47,7 +47,7 @@
                 $marca->configuracoes()->create();
             DB::commit();
 
-            $this->dispararEvento($request->nome_marca, 'Nova marca cadastrada!');
+            // $this->dispararEvento($request->nome_marca, 'Nova marca cadastrada!');
         }
 
         public function adicionarProduto($request, $marca)
@@ -57,7 +57,7 @@
                     'nome_produto'    => $request->nome_produto,
                     'link_compra'     => $request->link_compra,
                     'quant_produto'   => $request->quant_produto,
-                    'image_produto'   => $request->file('image_produto')->store('produtos'),
+                    'image_produto'   => $request->file('image_produto')->store('galeria'),
                     'valor_unit'      => $request->valor_unit,
                     'valor_cheio'     => $request->valor_cheio,
                     'valor_parcelado' => $request->valor_parcelado,
@@ -66,7 +66,7 @@
                 ]);
             DB::commit();
 
-            $this->dispararEvento($request->nome_produto, "Novo produto adicionado a marca {$marca->nome_marca}");
+            // $this->dispararEvento($request->nome_produto, "Novo produto adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarComentario($request)
@@ -77,13 +77,13 @@
                 $marca->comentarios()->create([
                     'nome_cliente'  => $request->nome_cliente,
                     'coment_desc'   => $request->coment_desc,
-                    'image_cliente' => $request->file('image_cliente')->store('comentario'),
+                    'image_cliente' => $request->file('image_cliente')->store('galeria'),
                     'comentario'    => $request->comentario,
                     'exibir_coment' => $request->exibir_coment
                 ]);
             DB::commit();
 
-            $this->dispararEvento($request->nome_cliente, 'Novo comentário adicionado!');
+            // $this->dispararEvento($request->nome_cliente, 'Novo comentário adicionado!');
         }
 
         public function adicionarModal($request, $marcaId)
@@ -92,7 +92,7 @@
 
             DB::beginTransaction();
                 $marca->modals()->create([
-                    'produto_modal'      => $request->file('produto_modal')->store('modal'),
+                    'produto_modal'      => $request->file('produto_modal')->store('galeria'),
                     'porcentagem'        => $request->porcentagem,
                     'preco_sem_desconto' => $request->preco_sem_desconto,
                     'preco_com_desconto' => $request->preco_com_desconto,
@@ -100,7 +100,7 @@
                 ]);
             DB::commit();
 
-            $this->dispararEvento('Modal', "Novo modal adicionado a marca {$marca->nome_marca}");
+            // $this->dispararEvento('Modal', "Novo modal adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarCoutdown($marcaId, $request)
@@ -125,7 +125,7 @@
                 Auth::login($user);
             }
 
-            $this->dispararEvento($request->name, 'Nova usuário adicionado a produtos +!');
+            // $this->dispararEvento($request->name, 'Nova usuário adicionado a produtos +!');
         }
 
         public function adicionarUpsell($marca, $request)
@@ -136,11 +136,11 @@
                     'link_compra'        => $request->link_compra,
                     'preco_sem_desconto' => $request->preco_sem_desconto,
                     'preco_com_desconto' => $request->preco_com_desconto,
-                    'image_produto'      => $request->file('image_produto')->store('upsell')
+                    'image_produto'      => $request->file('image_produto')->store('galeria')
                 ]);
             DB::commit();
 
-            $this->dispararEvento('Upsell', "Upsell adicionado a marca {$marca->nome_marca}");
+            // $this->dispararEvento('Upsell', "Upsell adicionado a marca {$marca->nome_marca}");
         }
 
         private function dispararEvento(string $nome, string $mensagem):void
