@@ -5,7 +5,8 @@
     use App\Models\Marca;
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
-    use Illuminate\Support\Facades\{Auth, Hash};
+use App\Models\Imagen;
+use Illuminate\Support\Facades\{Auth, Hash};
     use App\Models\User;
 
     class Adicionar {
@@ -141,6 +142,17 @@
             DB::commit();
 
             // $this->dispararEvento('Upsell', "Upsell adicionado a marca {$marca->nome_marca}");
+        }
+
+        public function adicionarImagen($request)
+        {
+            DB::beginTransaction();
+                Imagen::create([
+                    'imagen' => $request->file('imagen')->store('galeria')
+                ]);
+            DB::commit();
+
+            // $this->dispararEvento('Imagen', "Upload de uma nova imagen!");
         }
 
         private function dispararEvento(string $nome, string $mensagem):void

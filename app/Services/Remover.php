@@ -2,7 +2,7 @@
 
     namespace App\Services;
 
-    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown, Upsell};
+    use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown, Imagen, Upsell};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
     
@@ -122,6 +122,15 @@
             DB::commit();
 
             // $this->dispararEvento('Upsell', "Upsell removida da marca {$nome_marca}");
+        }
+
+        public function removerImagen($id)
+        {
+            DB::beginTransaction();
+                Imagen::destroy($id);
+            DB::commit();
+
+            // $this->dispararEvento('Imagen', "Imagen removida do banco de dados!");
         }
 
         private function dispararEvento(string $nome, string $mensagem):void

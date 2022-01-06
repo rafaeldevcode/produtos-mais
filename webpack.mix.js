@@ -17,7 +17,7 @@ mix
     //     require('postcss-import'),
     //     require('tailwindcss'),
     // ])
-    .sass('resources/scss/style.scss', 'public/css/bootstrap/bootstrap.css')
+    .sass('resources/sass/style.scss', 'public/css/bootstrap/bootstrap.css')
 
     // .scripts('node_modules/jquery/dist/jquery.js', 'public/js/jquery/jquery.js')
     .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/js/bootstrap/bootstrap.js')

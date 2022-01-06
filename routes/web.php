@@ -38,7 +38,8 @@ Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])-
 Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('autenticador');
 
 Route::get('/galeria', [GaleriaController::class, 'index']);
-Route::post('/galeria/imagen/remover', [GaleriaController::class, 'destroy']);
+Route::post('/galeria/imagen/remover/{id}', [GaleriaController::class, 'destroy']);
+Route::post('/galeria/imegen/adicionar', [GaleriaController::class, 'store']);
 
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
 Route::post('/adicionar/produto', [ProdutoController::class, 'store']);

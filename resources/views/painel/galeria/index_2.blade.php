@@ -1,6 +1,18 @@
 @extends('painel/layouts/painel/layout')
 
 @section('conteudo')
+
+<style>
+    .cartao-imagen{
+        width: 150px;
+        height: 185px;
+    }
+
+    .cartao-imagen img,
+    .cartao-imagen a{
+        cursor: pointer;
+    }
+</style>
     <main class="container bg-white my-5 rounded p-3">
         @include('painel/layouts/componentes/mensagem', [$mensagem])
         @include('painel/layouts/componentes/errors', [$errors])
@@ -12,30 +24,21 @@
         </div>
 
         <div>
-            <div class="border border-2 rounded p-3 mt-3 d-flex flex-wrap justify-content-evenly">
-                <?php
-                    $diretorio = 'storage/galeria/';
-
-                    if(is_dir($diretorio)){
-
-                        $imagens = scandir($diretorio);
-
-                        if(count($imagens) == 2) { ?>
-                            <div class="alert alert-danger col-12 text-center m-0">
-                                Não foi feito nenhum upload!
-                            </div>
-                        <?php }else{
-                            foreach ($imagens as $indice => $imagen) { ?>
-                                <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end">
-                                    <img class="w-100 h-100 imagen" src="<?php echo $diretorio . $imagen; ?>" alt="imagen-<?php echo ($indice - 1) ?>">
-                                    <a hidden class="text-danger text-decoration-none mt-3 remover">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
-                                </div>
-                            <?php }
-                        }
-                    }
-                ?>
+            <div class="border border-2 rounded p-3 mt-3 d-flex flex-wrap justify-content-start">
+                @if(empty($imagens[0]))
+                    <div class="alert alert-danger col-12 text-center m-0">
+                        Não foi feito nenhum upload!
+                    </div>
+                @else
+                    @foreach ($imagens as $imagen)
+                        <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end">
+                            <img class="w-100 h-100" src="{{ asset("storage/$imagen->imagen") }}" alt="imagen-{{ $imagen->id }}">
+                            <a class="text-danger text-decoration-none mt-3 remover" id="{{ $imagen->id }}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
 
@@ -59,20 +62,16 @@
     <script type="text/javascript">
         abrirCarrosselGaleria();
         removerErroVerificacao();
-        exibirFormularioExcluir('/galeria/imagen/remover', 'Certeza que deseja excluir esta imagen?');
 
-        function exibirFormularioExcluir(url, mensagem) {
-            let remover = document.querySelectorAll('.remover');
-            let imagen = document.querySelectorAll('.imagen');
+        let remover = document.querySelectorAll('.remover');
+        let imagen = document.querySelectorAll('.imagen');
 
-            for(let i = 0; i < remover.length; i++){
-                let id = imagen[i].src.replace(`http://${window.location.hostname}:8000/storage/galeria/`, '');
-                // let item = document.querySelectorAll('.item')[i].innerHTML;
+        for(let i = 0; i < remover.length; i++){
+            let id = remover[i].id;
 
-                remover[i].addEventListener('click', ()=>{
-                    criarFormulario(url, mensagem, id, '');
-                })
-            }
+            remover[i].addEventListener('click', ()=>{
+                criarFormulario(`/galeria/imagen/remover/${id}`, 'Certeza que deseja excluir esta imagen?');
+            })
         }
 
         function criarFormulario(url, mensagem, id, item){
@@ -96,25 +95,17 @@
                 a.innerHTML = 'Cancelar';
                 a.appendChild(i_a);
 
-            let input = document.createElement('input');
-                input.setAttribute('type', 'text');
-                input.setAttribute('value', id);
-                input.setAttribute('name', 'id');
-                input.setAttribute('hidden', '');
-
-
             let form = document.createElement('form');
                 form.setAttribute('action', url);
                 form.setAttribute('method', 'POST');
                 form.setAttribute('class', 'text-center d-flex justify-content-evenly');
                 form.innerHTML = '@csrf';
-                form.appendChild(input);
                 form.appendChild(a);
                 form.appendChild(button);
 
             let p = document.createElement('p');
                 p.setAttribute('class', 'fs-5 text-center lh-1 py-1');
-                if(item == ''){p.innerHTML = `${mensagem}`}else{p.innerHTML = `${mensagem} \"${item}\"?`};
+                p.innerHTML = mensagem;
 
             let div = document.createElement('div');
                 div.setAttribute('class', 'alert alert-danger col-12 col-sm-6 col-md-4 border-danger border-1');
