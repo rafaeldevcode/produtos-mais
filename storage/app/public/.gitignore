@@ -1,3 +1,8 @@
 *
-/galeria/*
+/galeria/*.png
+/galeria/*.jpg
+/galeria/*.JPEG
+/galeria/*jpeg
+/galeria/*.gif
+/galeria/*.webp
 !.gitignore
