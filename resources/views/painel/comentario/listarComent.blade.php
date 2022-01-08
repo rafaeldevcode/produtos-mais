@@ -30,7 +30,18 @@
                 @else
                     @foreach ($comentarios as $comentario)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <h5 class="item">{{ $comentario->nome_cliente }}</h5>
+                            <h5 class="item">
+                                {{ $comentario->nome_cliente }}
+                                @if ($comentario->exibir_coment == 'on')
+                                    <button class="btn text-success">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                @else
+                                    <button class="btn text-secondary">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button> 
+                                @endif
+                            </h5>
 
                             <span>
                                 <a title="Duplicar Comentário" href="/comentario/{{ $comentario->id }}/duplicar" class="btn btn-warning">

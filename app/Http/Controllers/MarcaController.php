@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Marca;
 use Illuminate\Http\Request;
 use App\Http\Requests\ValidacaoMarca;
-use App\Models\User;
 use App\Services\{Adicionar, Remover, Editar};
 use Illuminate\Support\Facades\Auth;
 
@@ -14,17 +13,9 @@ class MarcaController extends Controller
 {
     private $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
 
-    ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////
-    public function index(Request $request)
+    public function __construct()
     {
-        $marcas = Marca::all();
-        $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
-        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
-        $usuarios = User::all();
-        $mensagem = $request->session()->get('mensagem');
-        $aviso = $this->aviso;
-
-        return view('painel/marca/index', compact('marcas', 'nome_marca', 'usuario', 'usuarios', 'aviso', 'mensagem'));
+        $this->middleware('autenticador');
     }
 
     ///// LISTAR MARCAS COM ÍCONES DE OPÇÕES ///// 
@@ -83,20 +74,5 @@ class MarcaController extends Controller
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 
         return redirect('/painel');
-    }
-
-    ///// EXIBIR A PAGINA DA MARCA /////
-    public function produto(int $id)
-    {
-        $politicas = false;
-        $marca = Marca::find($id);
-        $comentarios = $marca->comentarios()->get();
-        $produtos = $marca->produtos()->get();
-        $config = $marca->configuracoes()->get()[0];
-        $modal = empty($marca->modals()->get()[0]) ? '' : $marca->modals()->get()[0];
-        $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
-        $pixels = explode(',', $marca->pixel);
-
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown'));
     }
 }

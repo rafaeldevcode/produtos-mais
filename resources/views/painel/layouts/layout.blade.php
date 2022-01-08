@@ -224,5 +224,12 @@
 
         naoAbrirPopupLinkInterno();
     </script>
+
+    @if ($config->comentarios == 'on')
+        <script type="text/javascript">
+            /////// CARREGAR MAIS COMENTÁRIOS
+            carregarMaisComentario(document.getElementById('id').innerText);
+        </script>
+    @endif
 </body>
 </html>

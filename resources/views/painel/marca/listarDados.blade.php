@@ -83,7 +83,7 @@
 
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="cnpj" type="text" value="{{ $dados->cnpj }}">
+                        <input hidden class="form-control w-25 inputEditar" maxlength="18" id="cnpj" name="cnpj" type="text" value="{{ $dados->cnpj }}">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cnpj:</b>{{ $dados->cnpj }}</span>
 
@@ -135,7 +135,7 @@
 
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-25 inputEditar" name="telefone" type="text" value="{{ $dados->telefone }}">
+                        <input hidden class="form-control w-25 inputEditar" maxlength="16" id="telefone" name="telefone" type="text" value="{{ $dados->telefone }}">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Telefone:</b>{{ $dados->telefone }}</span>
 
@@ -359,6 +359,8 @@
 
     <script type="text/javascript">
         abilitarInputEditar();
+        mascaraTelefone();
+        mascaraCnpj();
     </script>
 
 @endsection

@@ -50,7 +50,7 @@
 
         public function editarProduto($request, $produto)
         {
-            $marca = Marca::find(Produto::find($request->id)->marca_id)->nome_marca;
+            // $marca = Marca::find(Produto::find($request->id)->marca_id)->nome_marca;
 
             DB::beginTransaction();
                 $produto->nome_produto    = $request->nome_produto;

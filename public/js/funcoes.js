@@ -385,3 +385,125 @@ function naoAbrirPopupLinkInterno() {
         })
     }
 }
+
+///////// ABRIR CARROSEL DE IMAGENS DA GALERIA //////////////
+function abrirCarrosselGaleria(){
+    let imagen = document.querySelectorAll('.imagen');
+    let sessaoGaleria = document.getElementsByClassName('sessao-carrosel')[0];
+    let imagenPopupGaleria = document.getElementById('imagen-carrosel-galeria');
+    let body = document.querySelector('body');
+
+    for(let i = 0; i < imagen.length; i++){
+        imagen[i].addEventListener('click', ()=>{
+            imagenPopupGaleria.src = imagen[i].src;
+            sessaoGaleria.classList.remove('fecharCarrosel');
+            sessaoGaleria.removeAttribute('hidden');
+            sessaoGaleria.classList.add('d-flex', 'abrirCarrosel');
+            body.style.overflow = 'hidden';
+
+            fecharCarroselGaleria(sessaoGaleria, body);
+            slide(i, imagen, imagenPopupGaleria);
+        });
+    }
+}
+
+///////// FECHAR CARROSEL DE IMAGENS DA GALERIA //////////////
+function fecharCarroselGaleria(sessaoGaleria, body){
+    document.getElementById('fechar').addEventListener('click', ()=>{
+        sessaoGaleria.classList.remove('abrirCarrosel');
+        sessaoGaleria.classList.add('fecharCarrosel');
+        body.style.overflow = 'auto';
+
+        setTimeout(() => {
+            sessaoGaleria.classList.remove('d-flex');
+            sessaoGaleria.hidden = true;
+        }, 800);
+    });
+}
+
+///////// FUNÇÃO PARA PASSAR E VOLTAR AS IMAGENS //////////////
+function slide(i, imagen, imagenPopupGaleria){
+    document.getElementById('proximo').addEventListener('click', ()=>{
+        i++;
+        i = (i == imagen.length) ? 2 : i++;
+        imagenPopupGaleria.src = imagen[i].src;
+    });
+
+    document.getElementById('anterior').addEventListener('click', ()=>{
+        i--;
+        i = (i == 1) ? imagen.length-1 : i--;
+        imagenPopupGaleria.src = imagen[i].src;
+    });
+}
+
+///////// CARREGAR MAIS COMENTÁRIOS ///////
+function carregarMaisComentario(id) {
+    let inicio = 3;
+    let max = 3;
+    let url = `/carregar/comentario/${id}`;
+
+    console.log(`Todos os personagens de Star Wars.`)
+    document.getElementById('carregar-mais').addEventListener('click', ()=>{
+
+        document.getElementById('carregar').removeAttribute('hidden');
+        document.getElementById('carregar-mais').innerHTML = '';
+
+        fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+
+            setTimeout(() => {
+                for (let index = 0; index < max; index++) {
+                    if(inicio == data.length){
+
+                        document.getElementById('carregar-mais').classList.add('disabled');
+                        document.getElementById('carregar').hidden = true;
+                        document.getElementById('carregar-mais').innerHTML = 'Não exitem mais comentários!';
+                        return
+                    }else{
+                    
+                        exibirComentarios(data, inicio++);
+                    }
+                }
+            }, 2000);
+        })
+        .catch((error) => console.error('Whoops! Erro:', error.message || error))
+    });
+}
+
+/////// CRIAR ELEMENTOS PARA EXIBIR COMENTÁRIO ////////
+function exibirComentarios(data, inicio) {
+    let p_1 = document.createElement('p')
+        p_1.innerHTML = data[inicio].comentario;
+
+    let div_1 = document.createElement('div');
+        div_1.setAttribute('class', 'card-body text-center');
+        div_1.appendChild(p_1);
+
+    let span = document.createElement('span');
+        span.setAttribute('class', 'fw-bolder');
+        span.innerHTML = data[inicio].coment_desc;
+
+    let p_2 = document.createElement('p');
+        p_2.setAttribute('class', 'my-2 fs-6 fw-bolder');
+        p_2.innerHTML = data[inicio].nome_cliente;
+
+    let img = document.createElement('img');
+        img.setAttribute('src', `http://127.0.0.1:8000/storage/${data[inicio].image_cliente}`);
+        img.setAttribute('alt', data[inicio].nome_cliente);
+
+    let div_2 = document.createElement('div');
+        div_2.setAttribute('class', 'comentario card-header text-center border-0 p-0 m-0 bg-white lh-1');
+        div_2.appendChild(img);
+        div_2.appendChild(p_2);
+        div_2.appendChild(span);
+
+    let div_3 = document.createElement('div');
+        div_3.setAttribute('class', 'card shadow d-flex border-0 mb-2 pt-3');
+        div_3.appendChild(div_2);
+        div_3.appendChild(div_1);
+
+    document.getElementById('carregar').hidden = true;
+    document.getElementById('carregar-mais').innerHTML = 'Carregar mais comentários';
+    document.getElementById('exibir-mais-comentario').appendChild(div_3);
+}

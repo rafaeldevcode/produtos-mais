@@ -13,7 +13,8 @@ use App\Http\Controllers\{
     CoutdownController,
     ObrigadoController,
     PesquisarController,
-    GaleriaController
+    GaleriaController,
+    ExibirPaginaController
 };
 
 /*
@@ -27,18 +28,19 @@ use App\Http\Controllers\{
 |
 */
 
-Route::get('/produto/{id}', [MarcaController::class, 'produto']);
+Route::get('/produto/{id}', [ExibirPaginaController::class, 'index']);
+Route::get('/', [ExibirPaginaController::class, 'listarMarcas']);
+Route::get('/carregar/comentario/{marcaId}', [ExibirPaginaController::class, 'carregarMais']);
 
-Route::get('/', [MarcaController::class, 'index']);
-Route::get('/painel', [MarcaController::class, 'listarMarcas'])->middleware('autenticador');
-Route::get('/adicionar/marca', [MarcaController::class, 'create'])->middleware('autenticador');
-Route::post('/adicionar/marca', [MarcaController::class, 'store'])->middleware('autenticador');
-Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados'])->middleware('autenticador');
-Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca'])->middleware('autenticador');
-Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy'])->middleware('autenticador');
+Route::get('/painel', [MarcaController::class, 'listarMarcas']);
+Route::get('/adicionar/marca', [MarcaController::class, 'create']);
+Route::post('/adicionar/marca', [MarcaController::class, 'store']);
+Route::get('/marca/{marcaId}/listarDados', [MarcaController::class, 'listarDados']);
+Route::post('/marca/{marcaId}/editar', [MarcaController::class, 'editarMarca']);
+Route::post('/marca/{marcaId}/remover', [MarcaController::class, 'destroy']);
 
 Route::get('/galeria', [GaleriaController::class, 'index']);
-Route::post('/galeria/imagen/remover/{id}', [GaleriaController::class, 'destroy']);
+Route::post('/galeria/imagen/remover', [GaleriaController::class, 'destroy']);
 Route::post('/galeria/imegen/adicionar', [GaleriaController::class, 'store']);
 
 Route::get('/adicionar/produto', [ProdutoController::class, 'create']);
@@ -95,6 +97,7 @@ Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'd
 Route::post('/marca/{marcaId}/pesquisar/comentario', [PesquisarController::class, 'pesquisarComentario']);
 Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, 'pesquisarProduto']);
 Route::post('/marca/painel/pesquisar', [PesquisarController::class, 'pesquisarPainelMarca']);
+
 Route::post('/marca/pesquisar', [PesquisarController::class, 'pesquisarMarca']);
 
 Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');

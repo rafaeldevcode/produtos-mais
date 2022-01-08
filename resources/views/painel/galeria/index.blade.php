@@ -28,7 +28,7 @@
                             foreach ($imagens as $indice => $imagen) { ?>
                                 <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end">
                                     <img class="w-100 h-100 imagen" src="<?php echo $diretorio . $imagen; ?>" alt="imagen-<?php echo ($indice - 1) ?>">
-                                    <a hidden class="text-danger text-decoration-none mt-3 remover">
+                                    <a class="text-danger text-decoration-none mt-3 remover">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </div>
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-end">
+        <section hidden class="border-top border-success border-2 mt-5 flex-wrap justify-content-end">
             <form action="/galeria/imegen/adicionar" method="POST" enctype="multipart/form-data" class="col-12 d-flex flex-wrap justify-content-between align-items-center mt-3">
                 @csrf
                 <div class="col-12 col-sm-6 col-md-8">

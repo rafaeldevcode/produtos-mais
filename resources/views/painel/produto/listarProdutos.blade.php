@@ -30,7 +30,18 @@
                 @else
                     @foreach ($produtos as $produto)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <h5 class="item">{{ $produto->nome_produto }}</h5>
+                            <h5 class="item">
+                                {{ $produto->nome_produto }}
+                                @if ($produto->exibir_produto == 'on')
+                                    <button class="btn text-success">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                @else
+                                    <button class="btn text-secondary">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </button> 
+                                @endif
+                            </h5>
 
                             <span>
                                 <a title="Duplicar Produto" href="/produto/{{ $produto->id }}/duplicar" class="btn btn-warning">

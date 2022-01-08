@@ -156,30 +156,34 @@
         </section>
 
         @if ($config->comentarios == 'on')
+            <span hidden id="id">{{ $marca->id }}</span>
             <section class="container-fluid bg-white py-5">
                 <h2 class="display-5 py-5 text-center fw-bolder">Comentários</h2>
-                <div class="d-flex flex-wrap justify-content-evenly">
+                <div class="d-flex flex-wrap justify-content-evenly" id="exibir-mais-comentario">
 
-                    @foreach ($comentarios as $comentario)
-                        @if ($comentario->exibir_coment == 'on')
-                            <div class="card shadow d-flex border-0 mb-2 pt-3">
-                                <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
-                                    <img src="{{ asset("storage/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
-                                    <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
-                                    <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                    @foreach ($comentarios as $indice => $comentario)
+                        {{-- @if ($comentario->exibir_coment == 'on') --}}
+                            @if ($indice < 3)
+                                <div class="card shadow d-flex border-0 mb-2 pt-3">
+                                    <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
+                                        <img src="{{ asset("storage/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
+                                        <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
+                                        <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
+                                    </div>
+                    
+                                    <div class="card-body text-center">
+                                        <p>{{ $comentario->comentario }}</p>
+                                    </div>
                                 </div>
-                
-                                <div class="card-body text-center">
-                                    <p>{{ $comentario->comentario }}</p>
-                                </div>
-                            </div>
-                        @endif
+                            @endif
+                        {{-- @endif --}}
                     @endforeach
-        
+
                 </div>
 
-                <div class="text-center">
-                    <a title="Mais Comentários" class="btn mt-5 py-3 px-5 btn-comentarios disabled">Carregar mais comentários</a>
+                <div class="text-center mt-5 d-flex justify-content-center align-items-center flex-nowrap position-relative">
+                    <div hidden id="carregar" class="carregar position-absolute"></div>
+                    <a id="carregar-mais" title="Mais Comentários" class="btn py-4 px-5 btn-comentarios">Carregar mais comentários</a>
                 </div>
             </section>
         @endif
