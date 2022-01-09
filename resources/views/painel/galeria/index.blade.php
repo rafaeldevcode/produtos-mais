@@ -22,15 +22,17 @@
 
                         if(count($imagens) == 2) { ?>
                             <div class="alert alert-danger col-12 text-center m-0">
-                                Não foi feito nenhum upload!
+                                Nenhuma imagen disponível!
                             </div>
                         <?php }else{
                             foreach ($imagens as $indice => $imagen) { ?>
                                 <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end">
                                     <img class="w-100 h-100 imagen" src="<?php echo $diretorio . $imagen; ?>" alt="imagen-<?php echo ($indice - 1) ?>">
-                                    <a class="text-danger text-decoration-none mt-3 remover">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </a>
+                                    @if ($usuario->autorizacao !== 'Leitor')
+                                        <a class="text-danger text-decoration-none mt-3 remover">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    @endif
                                 </div>
                             <?php }
                         }
