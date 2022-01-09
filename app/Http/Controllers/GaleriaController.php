@@ -20,7 +20,7 @@ class GaleriaController extends Controller
     ///// EXIBIR GALERIA DE IMAGENS //////
     public function index(Request $request)
     {
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $mensagem = $request->session()->get('mensagem');
         // $imagens = Imagen::all();
 

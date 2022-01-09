@@ -44,17 +44,19 @@
                             </h5>
 
                             <span>
-                                <a title="Duplicar Produto" href="/produto/{{ $produto->id }}/duplicar" class="btn btn-warning">
-                                    <i class="fas fa-copy"></i>
-                                </a>
-
                                 <a title="Listar Produtos" href="/produto/{{ $produto->id }}/listarDados" class="btn btn-success">
                                     <i class="fas fa-pen-square"></i>
                                 </a>
-            
-                                <a title="REmover Produto" id="{{ $produto->id }}" class="btn btn-danger remover">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+
+                                @if ($usuario->autorizacao !== 'Leitor')
+                                    <a title="Duplicar Produto" href="/produto/{{ $produto->id }}/duplicar" class="btn btn-warning">
+                                        <i class="fas fa-copy"></i>
+                                    </a>
+                
+                                    <a title="REmover Produto" id="{{ $produto->id }}" class="btn btn-danger remover">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                @endif
                             </span>
                         </li>
                     @endforeach
@@ -62,18 +64,20 @@
             </ul>
         </section>
 
-        <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-            <a id="remover" title="Remover todos os produtos" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-5 col-md-3 {{ empty($produtos[0]) ? 'disabled' : '' }}">
-                Excluir Todos
-                <i class="fas fa-trash ms-2"></i>
-                <span hidden id="marcaId">{{ $marca->id }}</span>
-            </a>
+        @if ($usuario->autorizacao !== 'Leitor')
+            <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
+                <a id="remover" title="Remover todos os produtos" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-5 col-md-3 {{ empty($produtos[0]) ? 'disabled' : '' }}">
+                    Excluir Todos
+                    <i class="fas fa-trash ms-2"></i>
+                    <span hidden id="marcaId">{{ $marca->id }}</span>
+                </a>
 
-            <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-5 col-md-3">
-                Novo Produto
-                <i class="fas fa-plus-circle ms-2"></i>
-            </a>
-        </section>
+                <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-5 col-md-3">
+                    Novo Produto
+                    <i class="fas fa-plus-circle ms-2"></i>
+                </a>
+            </section>
+        @endif
     </main>
 
     <script type="text/javascript">

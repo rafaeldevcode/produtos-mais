@@ -11,7 +11,7 @@ class EntrarController extends Controller
     ////// EXIBIR FORMULÁRIO DE LOGIN ///////
     public function create()
     {
-        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
+        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user();
         
         if(Auth::user()){
             return redirect('/painel');

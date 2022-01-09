@@ -27,7 +27,7 @@
                     <li class="list-group-item">
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="item d-flex">
-                                <h5>{{ $dado->name }}</h5>
+                                <h5>{{ $dado->name }} <span class="text-secondary fs-6">{{ $dado->autorizacao }}</span></h5>
     
                                 @if ($email == $dado->email)
                                     <h6 class="ms-2 badge bg-success">Logado</h6>
@@ -39,7 +39,7 @@
                                     <a id="editar" title="Editar usuário" class="btn btn-success" >
                                         <i class="fas fa-key"></i>
                                     </a>
-                                @else
+                                @elseif(($email !== $dado->email) && ($usuario->autorizacao == 'Admin'))
                                     <a title="Remover Usuário" id="{{ $dado->id }}" class="btn btn-danger remover">
                                         <i class="fas fa-trash"></i>
                                     </a>

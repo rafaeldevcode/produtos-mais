@@ -40,9 +40,11 @@
                                 <a title="Comentários da Página" href="/marca/{{ $marca->id }}/comentarios" class="btn btn-secondary">
                                     <i class="fas fa-comments"></i>
                                 </a>
-                                <a title="Remover Página" id="{{ $marca->id }}" class="btn btn-danger remover">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                                @if ($usuario->autorizacao !== 'Leitor')
+                                    <a title="Remover Página" id="{{ $marca->id }}" class="btn btn-danger remover">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                @endif
                             </span>
                         </li>
                     @endforeach
@@ -50,22 +52,24 @@
             </ul>
         </section>
 
-        <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-evenly justify-content-lg-between">
-            <a title="Adicionar Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
-                Nova Marca
-                <i class="fas fa-plus-circle ms-2"></i>
-            </a>
+        @if ($usuario->autorizacao !== 'Leitor')
+            <section class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-evenly justify-content-lg-between">
+                <a title="Adicionar Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+                    Nova Marca
+                    <i class="fas fa-plus-circle ms-2"></i>
+                </a>
 
-            <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
-                Novo Produto
-                <i class="fas fa-plus-circle ms-2"></i>
-            </a>
+                <a title="Adicionar Produto" href="/adicionar/produto" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+                    Novo Produto
+                    <i class="fas fa-plus-circle ms-2"></i>
+                </a>
 
-            <a title="Adicionar Comantário" href="/adicionar/comentario" class="btn btn-info mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
-                Novo Comentário
-                <i class="fas fa-plus-circle ms-2"></i>
-            </a>
-        </section>
+                <a title="Adicionar Comantário" href="/adicionar/comentario" class="btn btn-info mt-2 py-3 px-5 col-12 col-sm-7 col-md-5 col-lg-3">
+                    Novo Comentário
+                    <i class="fas fa-plus-circle ms-2"></i>
+                </a>
+            </section>
+        @endif
     </main>
 
     <script type="text/javascript">

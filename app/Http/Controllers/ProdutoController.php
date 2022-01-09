@@ -23,7 +23,7 @@ class ProdutoController extends Controller
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/produto/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
@@ -46,7 +46,7 @@ class ProdutoController extends Controller
         $marca = Marca::find($marcaId);
         $produtos = $marca->produtos()->get();
         $mensagem = $request->session()->get('mensagem');
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $aviso = $this->aviso;
 
         return view('/painel/produto/listarProdutos', compact('produtos', 'marca', 'mensagem', 'usuario', 'aviso'));
@@ -56,7 +56,7 @@ class ProdutoController extends Controller
     public function listarDados(int $produtoId)
     {
         $dados = Produto::find($produtoId);
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         
         return view('painel/produto/listarDados', compact('dados', 'produtoId', 'usuario'));
     }

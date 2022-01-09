@@ -29,18 +29,21 @@
                         <span>
                             <label for="modal" class="form-check-label">Abilitar</label>
                             <input id="modal-config"
+                                {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $config->modal == 'on' ? 'checked' : '' ; }}
                                 name="modal" type="checkbox" class="form-check-input">
                         </span>
 
-                        @if (empty($modal))
-                            <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
-                                <i class="fas fa-plus-square"></i>
-                            </a>
-                        @else
-                            <a title="Editar Modal" href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
-                                <i class="fas fa-pen-square"></i>
-                            </a>
+                        @if ($usuario->autorizacao !== 'Leitor')
+                            @if (empty($modal))
+                                <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
+                                    <i class="fas fa-plus-square"></i>
+                                </a>
+                            @else
+                                <a title="Editar Modal" href="/marca/{{ $marca->id }}/modal/listarDados" class="btn btn-success modal-config" {{ $config->modal == 'on' ? '' : 'hidden' ; }}>
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -51,6 +54,7 @@
                         <span>
                             <label for="coutdown" class="form-check-label">Abilitar</label>
                             <input id="coutdown"
+                                {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $config->coutdown == 'on' ? 'checked' : '' ; }}
                                 name="coutdown" type="checkbox" class="form-check-input">
                         </span>
@@ -69,26 +73,34 @@
 
                         <span class="col-12">
                             <label for="texto">Texto descritivo <span class="fs-5 text-danger">*</span></label>
-                            <input id="texto" name="texto" placeholder="Texto descritivo" class="form-control" type="text" value="{{ empty($coutdown->texto) ? '' : $coutdown->texto }}">
+                            <input
+                                {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }} 
+                                id="texto" name="texto" placeholder="Texto descritivo" class="form-control" type="text" value="{{ empty($coutdown->texto) ? '' : $coutdown->texto }}">
                         </span>
 
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-end">
                             <span class="col-md-3 col-12 mt-4">
                                 <label for="data">Data de expiração <span class="fs-5 text-danger">*</span></label>
-                                <input id="data" name="data" class="form-control" type="date" value="{{ empty($coutdown->data) ? '' : $coutdown->data }}">
+                                <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
+                                    id="data" name="data" class="form-control" type="date" value="{{ empty($coutdown->data) ? '' : $coutdown->data }}">
                             </span>
     
                             <span class="col-md-3 col-12 mt-4">
                                 <label for="time">Hora da expiração <span class="fs-5 text-danger">*</span></label>
-                                <input id="time" name="time" class="form-control" type="time" value="{{ empty($coutdown->time) ? '' : $coutdown->time }}">
+                                <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }} 
+                                    id="time" name="time" class="form-control" type="time" value="{{ empty($coutdown->time) ? '' : $coutdown->time }}">
                             </span>
     
-                            <span class="col-md-3 col-12 mt-4">
-                                <a id="salvar" class="btn btn-success py-2 px-5 w-100">
-                                    Salvar
-                                    <i class="fas fa-save ms-2"></i>
-                                </a>
-                            </span>
+                            @if ($usuario->autorizacao !== 'Leitor')
+                                <span class="col-md-3 col-12 mt-4">
+                                    <a id="salvar" class="btn btn-success py-2 px-5 w-100">
+                                        Salvar
+                                        <i class="fas fa-save ms-2"></i>
+                                    </a>
+                                </span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -98,6 +110,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="tagmanager" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->tagmanager == 'on' ? 'checked' : '' ; }}
                             name="tagmanager" type="checkbox" class="form-check-input">
                     </div>
@@ -108,6 +121,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="pixel" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->pixel == 'on' ? 'checked' : '' ; }}
                             name="pixel" type="checkbox" class="form-check-input">
                     </div>
@@ -118,6 +132,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="icone_produto" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->icone_produto == 'on' ? 'checked' : '' ; }}
                             name="icone_produto" type="checkbox" class="form-check-input">
                     </div>
@@ -128,6 +143,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="comentarios" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->comentarios == 'on' ? 'checked' : '' ; }}
                             name="comentarios" type="checkbox" class="form-check-input">
                     </div>
@@ -138,6 +154,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="disclaimer" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->disclaimer == 'on' ? 'checked' : '' ; }}
                             name="disclaimer" type="checkbox" class="form-check-input">
                     </div>
@@ -148,6 +165,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="exibir_link" class="form-check-label">Abilitar</label>
                         <input
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->exibir_link == 'on' ? 'checked' : '' ; }}
                             name="exibir_link" type="checkbox" class="form-check-input">
                     </div>
@@ -158,6 +176,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="empresa" class="form-check-label">Abilitar</label>
                         <input id="empresa"
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->empresa == 'on' ? 'checked' : '' ; }}
                             name="empresa" type="checkbox" class="form-check-input">
                     </div>
@@ -179,6 +198,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="rua" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->rua == 'on' ? 'checked' : '' ; }}
                                     name="rua" type="checkbox" class="form-check-input">
                             </div>
@@ -189,6 +209,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="cidade" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->cidade == 'on' ? 'checked' : '' ; }}
                                     name="cidade" type="checkbox" class="form-check-input">
                             </div>
@@ -201,6 +222,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="atendimento" class="form-check-label">Abilitar</label>
                         <input id="atendimento"
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->atendimento == 'on' ? 'checked' : '' ; }}
                             name="atendimento" type="checkbox" class="form-check-input">
                     </div>
@@ -212,6 +234,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="telefone" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->telefone == 'on' ? 'checked' : '' ; }}
                                     name="telefone" type="checkbox" class="form-check-input">
                             </div>
@@ -222,6 +245,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="email" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->email == 'on' ? 'checked' : '' ; }}
                                     name="email" type="checkbox" class="form-check-input">
                             </div>
@@ -234,6 +258,7 @@
                     <div class="col-12 form-check form-switch">
                         <label for="social" class="form-check-label">Abilitar</label>
                         <input id="social"
+                            {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->social == 'on' ? 'checked' : '' ; }}
                             name="social" type="checkbox" class="form-check-input">
                     </div>
@@ -245,6 +270,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="facebook" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->facebook == 'on' ? 'checked' : '' ; }}
                                     name="facebook" type="checkbox" class="form-check-input">
                             </div>
@@ -255,6 +281,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="instagram" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->instagram == 'on' ? 'checked' : '' ; }}
                                     name="instagram" type="checkbox" class="form-check-input">
                             </div>
@@ -265,6 +292,7 @@
                             <div class="col-12 form-check form-switch">
                                 <label for="twitter" class="form-check-label">Abilitar</label>
                                 <input
+                                    {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->twitter == 'on' ? 'checked' : '' ; }}
                                     name="twitter" type="checkbox" class="form-check-input">
                             </div>
@@ -272,17 +300,19 @@
                     </div>
                 </div>
 
-                <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                        Nova Marca
-                        <i class="fas fa-plus-circle ms-2"></i>
-                    </a>
+                @if ($usuario->autorizacao !== 'Leitor')
+                    <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
+                        <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                            Nova Marca
+                            <i class="fas fa-plus-circle ms-2"></i>
+                        </a>
 
-                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
-                        Salvar
-                        <i class="fas fa-save ms-2"></i>
-                    </button>
-                </div>
+                        <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                            Salvar
+                            <i class="fas fa-save ms-2"></i>
+                        </button>
+                    </div>
+                @endif
             </form>
         </section>
 
@@ -311,14 +341,16 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/upsell/{{ $marca->id }}">Upsell</a>
 
-                        @if (empty($upsell))
-                            <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
-                                <i class="fas fa-plus-circle"></i>
-                            </a>
-                        @else
-                            <a href="/obrigado/upsell/{{ $marca->id }}/listar" class="btn btn-success">
-                                <i class="fas fa-pen-square"></i>
-                            </a>
+                        @if ($usuario->autorizacao !== 'Leitor')
+                            @if (empty($upsell))
+                                <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
+                                    <i class="fas fa-plus-circle"></i>
+                                </a>
+                            @else
+                                <a href="/obrigado/upsell/{{ $marca->id }}/listar" class="btn btn-success">
+                                    <i class="fas fa-pen-square"></i>
+                                </a>
+                            @endif
                         @endif
                     </li>
                 </ul>

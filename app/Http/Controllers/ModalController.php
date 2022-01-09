@@ -19,7 +19,7 @@ class ModalController extends Controller
     ///// ROTA PARA EDITAR MODAL /////
     public function create(int $marcaId)
     {
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/modal/create', compact('marcaId', 'usuario'));
     }
@@ -38,7 +38,7 @@ class ModalController extends Controller
     {
         $marca = Marca::find($marcaId);
         $dados = $marca->modals()->get()[0];
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/modal/listarDados', compact('marcaId', 'dados', 'usuario'));
     }

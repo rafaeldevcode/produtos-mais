@@ -1,15 +1,28 @@
 <section class="componente-modal" hidden>
         <div class="conteudo-modal rounded {{ empty($modal) ? 'd-flex align-items-center justify-content-center' : '' }}">
             @if (empty($modal))
-                <div class="alert alert-danger">
+                <div class="alert alert-danger d-flex flex-column">
                     <p class="text-center mb-0">Você apenas abilitou o modal mas não cadastrou nenhum!</p>
-                    <p class="text-center">Deseja adicionar um Modal?</p>
-        
-                    <div class="d-flex justify-content-evenly">
-                        <button title="Fechar Modal" id="fechar" class="btn btn-danger py-2 px-5">Não</button>
-                        <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary py-2 px-5">Sim</a>
-                    </div>
+
+                    @auth
+                        @if ($usuario->autorizacao !== 'Leitor')
+                            <p class="text-center">Deseja adicionar um Modal?</p>
+                        @endif
+            
+                        <div class="d-flex justify-content-evenly">
+                            @if ($usuario->autorizacao !== 'Leitor')
+                                <button title="Fechar Modal" id="fechar" class="btn btn-danger py-2 px-5">Não</button>
+                                <a title="Adicionar Modal" href="/marca/{{ $marca->id }}/modal/adicionar" class="btn btn-primary py-2 px-5">Sim</a>
+                            @else
+                                <button title="Fechar Modal" id="fechar" class="btn btn-danger py-2 px-5">Fechar</button>
+                            @endif
+                        </div>
+                    @endauth
                     <span class="row text-center m-auto">Para evitar exibir essa mensagem ao cliente final, dasbilite o modal em configurações!</span>
+                    
+                    @guest
+                        <button title="Fechar Modal" id="fechar" class="btn btn-danger py-2 px-5">Fechar</button>
+                    @endguest
                 </div>
             @else
 

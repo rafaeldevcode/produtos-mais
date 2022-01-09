@@ -62,18 +62,27 @@
             <section class="card col-12 col-md-10 col-lg-8 p-5">
                 <div class="card-header">
                     <h2 class="text-center">Você ainda não cadastrou nenhuma upsell!</h2>
-                    <p class="text-center fw-bolder">Deseja adicionar uma?</p>
+
+                    @auth
+                        @if ($usuario->autorizacao !== 'Leitor')
+                            <p class="text-center fw-bolder">Deseja adicionar uma?</p>
+                        @endif
+                    @endauth
                 </div>
 
-                <div class="card-body text-center">
-                    <a href="/marca/{{ $marca->id }}/config" class="btn btn-danger py-2 px-5">
-                        Não
-                    </a>
+                @auth
+                    @if ($usuario->autorizacao !== 'Leitor')
+                        <div class="card-body text-center">
+                            <a href="/marca/{{ $marca->id }}/config" class="btn btn-danger py-2 px-5">
+                                Não
+                            </a>
 
-                    <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary py-2 px-5">
-                        Sim
-                    </a>
-                </div>
+                            <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary py-2 px-5">
+                                Sim
+                            </a>
+                        </div>
+                    @endif
+                @endauth
             </section>
         @else
             <section class="card d-flex flex-column flex-lg-row col-12 col-md-10 col-lg-8">

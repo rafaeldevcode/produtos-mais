@@ -28,15 +28,16 @@ class ObrigadoController extends Controller
         $marca = Marca::find($marcaId);
         $config = $marca->configuracoes()->get();
         $upsell = empty($marca->upsell()->get()[0]) ? '' : $marca->upsell()->get()[0];
+        $usuario = Auth::user();
 
-        return view('painel/obrigado/upsell', compact('marca', 'config', 'upsell'));
+        return view('painel/obrigado/upsell', compact('marca', 'config', 'upsell', 'usuario'));
     }
 
         ///// CRIAR PÁGINA DE UPSELL /////
     public function upsellCreate(int $marcaId)
     {
         $marca = Marca::find($marcaId);
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/obrigado/upsell-create', compact('marca', 'usuario'));
     }
@@ -54,7 +55,7 @@ class ObrigadoController extends Controller
     ///// LISTAR DADOS PÁGINA DE UPSELL PARA EDIÇÃO /////
     public function upsellListar(int $marcaId)
     {
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $marca = Marca::find($marcaId);
         $dados = $marca->upsell()->get()[0];
 

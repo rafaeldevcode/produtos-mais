@@ -24,6 +24,15 @@
                 </div>
 
                 <div class="mt-3">
+                    <label for="autorizacao">Selecione o tipo de usuário</label>
+                    <select class="form-select" name="autorizacao">
+                        <option value="Admin">Admin</option>
+                        <option value="Editor">Editor</option>
+                        <option value="Leitor">Leitor</option>
+                    </select>
+                </div>
+
+                <div class="mt-3">
                     <label for="password" class="form-label">Senha <span class="fs-5 text-danger">*</span></label>
                     <input type="password" name="password" id="password" placeholder="Senha" class="form-control">
                 </div>

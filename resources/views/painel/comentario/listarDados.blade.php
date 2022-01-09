@@ -23,24 +23,15 @@
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome do cliente:</b>{{ $dados->nome_cliente }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="coment_desc" type="text" value="{{ $dados->coment_desc }}">
 
-
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Descrição do comentário:</b>{{ $dados->coment_desc }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -48,11 +39,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Comentário:</b>{{ $dados->comentario }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -66,11 +53,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_cliente}") }}" alt="{{ $dados->nome_cliente }}">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -81,23 +64,26 @@
                         <div class="col-12 form-check form-switch">
                             <label for="exibir_coment" class="form-check-label">Mostrar na Página?</label>
                             <input
+                                {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $dados->exibir_coment == 'on' ? 'checked' : '' ; }}
                              name="exibir_coment" type="checkbox" class="form-check-input">
                         </div>
                     </div>
                 </div>
 
-                <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a title="Novo Comentário" href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                        Novo Comentário
-                        <i class="fas fa-plus-circle ms-2"></i>
-                    </a>
+                @if ($usuario->autorizacao !== 'Leitor')
+                    <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
+                        <a title="Novo Comentário" href="/adicionar/comentario" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                            Novo Comentário
+                            <i class="fas fa-plus-circle ms-2"></i>
+                        </a>
 
-                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
-                        Salvar
-                        <i class="fas fa-save ms-2"></i>
-                    </button>
-                </div>
+                        <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                            Salvar
+                            <i class="fas fa-save ms-2"></i>
+                        </button>
+                    </div>
+                @endif
             </form>
         </section>
     </main>

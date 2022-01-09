@@ -23,7 +23,7 @@ class ComentarioController extends Controller
         $marcas = Marca::all();
         $mensagem = $request->session()->get('mensagem');
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/comentario/create', compact('marcas', 'mensagem', 'nome_marca', 'usuario'));
     }
@@ -44,7 +44,7 @@ class ComentarioController extends Controller
         $marca = Marca::find($comentarioId);
         $comentarios = $marca->comentarios()->get();
         $mensagem = $request->session()->get('mensagem');
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $aviso = $this->aviso;
 
         return view('/painel/comentario/listarComent', compact('comentarios', 'marca', 'mensagem', 'usuario', 'aviso'));
@@ -54,7 +54,7 @@ class ComentarioController extends Controller
     public function listarDados(int $comentarioId)
     {
         $dados = Comentario::find($comentarioId);
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('/painel/comentario/listarDados', compact('dados', 'comentarioId', 'usuario'));
     }

@@ -22,8 +22,9 @@ class ExibirPaginaController extends Controller
         $modal = empty($marca->modals()->get()[0]) ? '' : $marca->modals()->get()[0];
         $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
         $pixels = explode(',', $marca->pixel);
+        $usuario = Auth::user();
 
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario'));
     }
 
     ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////
@@ -31,7 +32,7 @@ class ExibirPaginaController extends Controller
     {
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
-        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
+        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user();
         $usuarios = User::all();
         $mensagem = $request->session()->get('mensagem');
         $aviso = $this->aviso;

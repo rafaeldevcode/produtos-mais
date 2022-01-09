@@ -35,10 +35,17 @@
                     <i class="fas fa-arrow-circle-left fs-2 text-dark" id="rotacao"></i>
                 </div>
     
-                <div class="text-end usuario p-2">
+                <div class="d-flex flex-column justify-content-center align-items-center usuario p-2">
                     <i class="fas fa-user-circle fs-1"></i>
 
-                    <p>{{ $usuario }}</p>
+                    @auth
+                        <span class="fs-6 text-secondary">{{ $usuario->autorizacao }}</span>
+                        <p>{{ $usuario->name }}</p>
+                    @endauth
+
+                    @guest
+                        <p>{{ $usuario }}</p>
+                    @endguest
                 </div>
     
                 <nav class="text-end">
@@ -52,13 +59,18 @@
                                 <a title="Inicio" class="nav-link p-0" href="/galeria">Galeria</a>
                             </li>
 
-                            <li class="list-group-item nav-item">
-                                <a title="Listar Usuários" class="nav-link p-0" href="/usuarios">Usuarios</a>
-                            </li>
+                            
+                            @if ($usuario->autorizacao !== 'Leitor')
+                                <li class="list-group-item nav-item">
+                                    <a title="Listar Usuários" class="nav-link p-0" href="/usuarios">Usuarios</a>
+                                </li>
+                            @endif
 
-                            <li class="list-group-item nav-item">
-                                <a title="Adicionar Usuário" class="nav-link p-0" href="/registrar">Novo usuário</a>
-                            </li>
+                            @if ($usuario->autorizacao == 'Admin')
+                                <li class="list-group-item nav-item">
+                                    <a title="Adicionar Usuário" class="nav-link p-0" href="/registrar">Novo usuário</a>
+                                </li>
+                            @endif
 
                             <li class="list-group-item nav-item">
                                 <a title="Adicionar Marca" class="nav-link p-0" href="/adicionar/marca">Nova marca</a>

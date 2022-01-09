@@ -22,7 +22,7 @@ class PesquisarController extends Controller
         $marca = Marca::find($marcaId);
         $comentarios = $marca->comentarios()->where('nome_cliente', 'LIKE', "%{$request->pesquisa}%")->get();
         $resultadoPesquisa = $request->pesquisa;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $mensagem = $this->mensagem . $request->pesquisa;
         $aviso = $this->aviso;
 
@@ -35,7 +35,7 @@ class PesquisarController extends Controller
         $marca = Marca::find($marcaId);
         $produtos = $marca->produtos()->where('nome_produto', 'LIKE', "%{$request->pesquisa}%")->get();
         $resultadoPesquisa = $request->pesquisa;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $mensagem = $this->mensagem . $request->pesquisa;
         $aviso = $this->aviso;
 
@@ -47,7 +47,7 @@ class PesquisarController extends Controller
     {
         $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();
         $resultadoPesquisa = $request->pesquisa;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $mensagem = $this->mensagem . $request->pesquisa;
         $aviso = $this->aviso;
 
@@ -59,7 +59,7 @@ class PesquisarController extends Controller
     {
         $marcas = Marca::where('nome_marca', 'LIKE', "%{$request->pesquisa}%")->get();
         $resultadoPesquisa = $request->pesquisa;
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $usuarios = User::all();
         $mensagem = $this->mensagem . $request->pesquisa;
         $aviso = $this->aviso;

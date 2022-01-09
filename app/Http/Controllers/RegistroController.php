@@ -14,7 +14,7 @@ class RegistroController extends Controller
     ///// ADICIONAR USUÁRIO /////
     public function create(Request $request)
     {
-        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user()->name;
+        $usuario = Auth::user() == null ? 'Deslogado' : Auth::user();
         $mensagem = $request->session()->get('mensagem');
 
         return view('registrar/index', compact('usuario', 'mensagem'));
@@ -36,7 +36,7 @@ class RegistroController extends Controller
     public function listar(Request $request)
     {
         $dados = User::all();
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $email = Auth::user()->email;
         $mensagem = $request->session()->get('mensagem');
 
@@ -55,7 +55,7 @@ class RegistroController extends Controller
     ///// REMOVER USUÁRIO //////////
     public function destroy(int $usuarioId, Request $request, Remover $remover)
     {
-        $usuario = User::find($usuarioId)->name;
+        $usuario = User::find($usuarioId);
         $remover->removerUsuario($request);
         $request->session()->flash('mensagem', "{$usuario} removido com sucesso!");
 

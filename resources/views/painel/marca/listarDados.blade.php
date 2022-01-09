@@ -26,11 +26,7 @@
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados->nome_marca }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -38,11 +34,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Slug:</b>{{ $dados->slug_marca }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -50,11 +42,7 @@
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Cor principal da página:</b>{{ $dados->cor_principal }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -62,11 +50,7 @@
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Cor principal dos títulos do rodapé:</b>{{ $dados->cor_titulo }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -74,11 +58,7 @@
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Cor principal dos textos do rodapé:</b>{{ $dados->cor_texto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
 
@@ -87,11 +67,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cnpj:</b>{{ $dados->cnpj }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -99,11 +75,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Cidade:</b>{{ $dados->cidade }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -111,11 +83,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Rua:</b>{{ $dados->rua }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -123,11 +91,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Disclaimer:</b>{{ $dados->disclaimer }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -139,11 +103,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Telefone:</b>{{ $dados->telefone }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -151,11 +111,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">E-mail:</b>{{ $dados->email }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -163,11 +119,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Facebook:</b>{{ $dados->facebook }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -175,11 +127,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Instagram:</b>{{ $dados->instagram }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -187,11 +135,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Twitter:</b>{{ $dados->twitter }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -203,11 +147,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Título da descrição:</b>{{ $dados->titulo_desc }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     @include('painel/layouts/componentes/itensLista', [$dados])
@@ -222,11 +162,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Tagmanager:</b>{{ $dados->tagmanager }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -234,11 +170,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Pixel:</b>{{ $dados->pixel }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -246,11 +178,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Marcar evento:</b>{{ $dados->evento }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -264,11 +192,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->logomarca) ? asset("images/logo.png") : asset("storage/{$dados->logomarca}") }}" alt="Logo {{ $dados->nome_marca }}">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -278,11 +202,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->favicon) ? asset("images/favicon.png") : asset("storage/{$dados->favicon}") }}" alt="Favicon {{ $dados->nome_marca }}">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
                     
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -292,11 +212,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_1}") }}" alt="Banner 1">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -306,11 +222,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_2}") }}" alt="Banner 2">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -320,11 +232,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_3}") }}" alt="Banner 3">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+@include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -334,25 +242,23 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_desc}") }}" alt="Descrição">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
-                <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
-                        Nova Marca
-                        <i class="fas fa-plus-circle ms-2"></i>
-                    </a>
+                @if ($usuario->autorizacao !== 'Leitor')
+                    <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
+                        <a title="Nova Marca" href="/adicionar/marca" class="btn btn-primary mt-2 py-3 px-5 col-12 col-sm-3">
+                            Nova Marca
+                            <i class="fas fa-plus-circle ms-2"></i>
+                        </a>
 
-                    <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
-                        Salvar
-                        <i class="fas fa-save ms-2"></i>
-                    </button>
-                </div>
+                        <button title="Salvar" type="submit" class="btn btn-success mt-2 py-3 px-5 col-12 col-sm-3">
+                            Salvar
+                            <i class="fas fa-save ms-2"></i>
+                        </button>
+                    </div>
+                @endif
             </form>
         </section>
     </main>

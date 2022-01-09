@@ -24,7 +24,7 @@ class MarcaController extends Controller
         $marcas = Marca::all();
         $nome_marca = empty($marcas[0]->nome_marca) ? '' : $marcas[0]->nome_marca;
         $mensagem = $request->session()->get('mensagem');
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
         $aviso = $this->aviso;
 
         return view('painel/marca/listarMarcas', compact('marcas', 'mensagem', 'nome_marca', 'usuario', 'aviso'));
@@ -33,7 +33,7 @@ class MarcaController extends Controller
     ///// CHARMAR ARQUIVO PARA ADICIONAR MARCA AO BONCO /////
     public function create()
     {
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/marca/create', compact('usuario'));
     }
@@ -52,7 +52,7 @@ class MarcaController extends Controller
     public function listarDados(int $marcaId)
     {
         $dados = Marca::find($marcaId);
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/marca/listarDados' , compact('dados', 'marcaId', 'usuario'));
     }

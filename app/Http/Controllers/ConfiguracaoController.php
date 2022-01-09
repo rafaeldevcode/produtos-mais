@@ -24,7 +24,7 @@ class ConfiguracaoController extends Controller
         $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
         $upsell = empty($marca->upsell()->get()[0]) ? '' : $marca->upsell()->get()[0];
         $mensagem = $request->session()->get('mensagem');
-        $usuario = Auth::user()->name;
+        $usuario = Auth::user();
 
         return view('painel/configuracao/index', compact('marca', 'config', 'modal', 'mensagem', 'usuario', 'coutdown', 'upsell'));
     }
