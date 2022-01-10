@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\{Comentario, Marca, User};
 use App\Services\ExibirComentario;
 use Illuminate\Support\Facades\Auth;
+use App\Services\RecuperaParametro;
 
 class ExibirPaginaController extends Controller
 {
     private $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
     
     ///// EXIBIR A PAGINA DA MARCA /////
-    public function index(int $id, ExibirComentario $exibirComentario)
+    public function index(int $id, ExibirComentario $exibirComentario, Request $request, RecuperaParametro $paramentro)
     {
         $politicas = false;
         $marca = Marca::find($id);
@@ -23,8 +24,9 @@ class ExibirPaginaController extends Controller
         $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
         $pixels = explode(',', $marca->pixel);
         $usuario = Auth::user();
+        $paramentros = $paramentro->parametro($request);
 
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario', 'paramentros'));
     }
 
     ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////

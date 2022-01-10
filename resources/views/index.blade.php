@@ -59,7 +59,7 @@
                             </ul>
 
                             <div class="row px-3 pt-3">
-                                <a title="Comprar Agora" href="{{ $produto->link_compra }}" class="btn btn-comprar">
+                                <a title="Comprar Agora" href="{{ $produto->link_compra.$parametros }}" class="btn btn-comprar">
                                     <i class="fas fa-arrow-circle-right"></i>
                                     Comprar Agora
                                 </a>

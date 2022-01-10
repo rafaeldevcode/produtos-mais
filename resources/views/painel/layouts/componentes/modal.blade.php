@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="btn-modal w-100">
-                            <a title="Comprar Produto" href="{{ $modal->link_compra }}" class="btn w-100 h-100 pulse">
+                            <a title="Comprar Produto" href="{{ $modal->link_compra.$parametros }}" class="btn w-100 h-100 pulse">
                                 EU QUERO
                             </a>
                         </div>
