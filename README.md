@@ -1,3 +1,14 @@
+## Comandos para inicializar o projeto
+
+# Primeiro configurar o banco de dados no .env na raiz do projeto
+# e os servicos de email
+
+### 1- nmp intall
+### 2- npm rud dev
+### 3- php artisan storage:link
+### 4- php artisan migrate
+### 5- depois de tudo configurarado rodar o comando - php queue:work --tries=2 para executar os processos em fila
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

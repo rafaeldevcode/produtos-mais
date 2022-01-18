@@ -99,11 +99,3 @@ Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, '
 Route::post('/marca/painel/pesquisar', [PesquisarController::class, 'pesquisarPainelMarca']);
 
 Route::post('/marca/pesquisar', [PesquisarController::class, 'pesquisarMarca']);
-
-Route::get('/dashboard', [MarcaController::class, 'listarMarcas'])->middleware('autenticador')->name('dashboard');
-
-Route::get('/login', [EntrarController::class, 'create'])->middleware('autenticador')->name('login');;
-Route::post('/login', [EntrarController::class, 'store'])->middleware('autenticador');
-
-Route::get('/register', [RegistroController::class, 'create'])->middleware('autenticador');
-Route::post('/register', [RegistroController::class, 'store'])->middleware('autenticador');

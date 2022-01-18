@@ -145,7 +145,7 @@
                     <div class="d-flex flex-wrap justify-content-between">
                         <div class="col-12 col-md-5 mt-5">
                             <label for="titulo_desc" class="form-label">Título da descrição <span class="fs-5 text-danger">*</span></label>
-                            <input name="titulo_desc" type="text" class="form-control">
+                            <input name="titulo_desc" type="text" class="form-control" placeholder="Título da descrção">
                         </div>
                     </div>
 
