@@ -15,7 +15,7 @@ class PoliticasController extends Controller
         $marca = Marca::find($id);
         $config = $marca->configuracoes()->get();
 
-        return view('painel/politicas/privacidade', compact('marca', 'config', 'politicas'));
+        return view('politicas/privacidade', compact('marca', 'config', 'politicas'));
     }
 
     ////// EXIBIR PÁGINA DE TERMOS DE USO ///////
@@ -25,6 +25,6 @@ class PoliticasController extends Controller
         $marca = Marca::find($id);
         $config = $marca->configuracoes()->get();
 
-        return view('painel/politicas/termos', compact('marca', 'config', 'politicas'));
+        return view('politicas/termos', compact('marca', 'config', 'politicas'));
     }
 }

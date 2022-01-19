@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
 
@@ -53,7 +53,7 @@
                                 <span class="d-flex flex-wrap justify-content-between">
                                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                                         <label for="name" class="form-label">Nome</label>
-                                        <input type="text" name="name" value="{{ $dado->name }}" class="form-control">
+                                        <input type="text" name="name" value="{{ $dado->name }}" class="form-control" placeholder="Editar usuário">
                                     </div>
     
                                     {{-- <div class="col-12 col-md-3 mt-3 mt-md-0">
@@ -63,7 +63,7 @@
     
                                     <div class="col-12 col-md-3 mt-3 mt-md-0">
                                         <label for="password" class="form-label">Nova Senha</label>
-                                        <input type="password" name="password" class="form-control">
+                                        <input type="password" name="password" class="form-control" placeholder="Nova senha">
                                     </div>
                                 </span>
 

@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     
@@ -20,14 +20,9 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="nome_produto" type="text" value="{{ $dados->nome_produto }}">
 
-
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Nome:</b>{{ $dados->nome_produto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -35,11 +30,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link de checkout:</b>{{ $dados->link_compra }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -47,11 +38,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço sem desconto:</b>{{ $dados->preco_sem_desconto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -59,11 +46,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço com desconto:</b>{{ $dados->preco_com_desconto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -77,17 +60,13 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_produto}") }}" alt="Produto - {{ $dados->image_produto }}">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
                 <div class="border-top border-success border-2 mt-5 d-flex flex-wrap justify-content-between">
-                    <a title="Remover Modal" id="{{ $dados->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
-                        Remover Upsells
+                    <a title="Remover Upsell" id="{{ $dados->id }}" class="btn btn-danger mt-2 py-3 px-5 col-12 col-sm-3 remover">
+                        Remover Upsell
                         <i class="fas fa-trash-alt ms-2"></i>
                     </a>
 
@@ -120,6 +99,7 @@
                     let button = document.createElement('button');
                         button.setAttribute('type', 'submit');
                         button.setAttribute('class', 'btn btn-danger');
+                        button.setAttribute('title', 'Remover Upsell');
                         button.innerHTML = 'Excluir';
                         button.appendChild(i);
                     
@@ -129,6 +109,7 @@
                     let a = document.createElement('a');
                         a.setAttribute('id', 'cancelar');
                         a.setAttribute('class', 'btn btn-primary');
+                        a.setAttribute('title', 'Cancelar');
                         a.innerHTML = 'Cancelar';
                         a.appendChild(i_a);
 

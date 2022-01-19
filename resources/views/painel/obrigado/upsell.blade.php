@@ -24,14 +24,14 @@
     {{-- ////// MARCA TAGMANAGER ////// --}}
     @if ($config[0]->tagmanager == 'on')
         @if (!empty($marca->tagmanager))
-            @include('painel/layouts/componentes/tagmanagerHeader', [$marca->tagmanager])
+            @include('layouts/componentes/tagmanagerHeader', [$marca->tagmanager])
         @endif
     @endif
     
     {{-- ////// MARCA PIXEL ////// --}}
     @if ($config[0]->pixel == 'on')
         @if (!empty($marca->pixel))
-            @include('painel/layouts/componentes/pixelHeader', [$pixels, $marca->evento])
+            @include('layouts/componentes/pixelHeader', [$pixels, $marca->evento])
         @endif
     @endif
 </head>
@@ -40,14 +40,14 @@
     {{-- ////// MARCA TAGMANAGER NO SCIPT ////// --}}
     @if ($config[0]->tagmanager == 'on')
         @if (!empty($marca->tagmanager))
-            @include('painel/layouts/componentes/tagmanagerBody', [$marca->tagmanager])
+            @include('layouts/componentes/tagmanagerBody', [$marca->tagmanager])
         @endif
     @endif
 
     {{-- ////// MARCA PIXEL NO SCIPT ////// --}}
     @if ($config[0]->pixel == 'on')
         @if (!empty($marca->pixel))
-            @include('painel/layouts/componentes/pixelBody', [$pixels])
+            @include('layouts/componentes/pixelBody', [$pixels])
         @endif
     @endif
     

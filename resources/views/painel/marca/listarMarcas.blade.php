@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     <main class="container bg-white my-5 rounded p-3">
@@ -91,6 +91,7 @@
                     let button = document.createElement('button');
                         button.setAttribute('type', 'submit');
                         button.setAttribute('class', 'btn btn-danger');
+                        button.setAttribute('title', 'Remover Marca');
                         button.innerHTML = 'Excluir';
                         button.appendChild(i);
                     
@@ -100,6 +101,7 @@
                     let a = document.createElement('a');
                         a.setAttribute('id', 'cancelar');
                         a.setAttribute('class', 'btn btn-primary');
+                        a.setAttribute('title', 'Cancelar');
                         a.innerHTML = 'Cancelar';
                         a.appendChild(i_a);
 

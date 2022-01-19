@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     
@@ -12,7 +12,7 @@
                 <form action="/marca/{{ $marca->id }}/pesquisar/produto" method="POST" class="d-flex ms-1">
                     @csrf
                     <input type="search" name="pesquisa" class="form-control rounded-0 rounded-start" placeholder="Pesquisar produto">
-                    <button type="submit" class="btn btn-primary rounded-0 rounded-end">
+                    <button title="Pesquisar" type="submit" class="btn btn-primary rounded-0 rounded-end">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -110,6 +110,7 @@
             let button = document.createElement('button');
                 button.setAttribute('type', 'submit');
                 button.setAttribute('class', 'btn btn-danger');
+                button.setAttribute('title', 'Remover Produto');
                 button.innerHTML = 'Excluir';
                 button.appendChild(i);
             
@@ -119,6 +120,7 @@
             let a = document.createElement('a');
                 a.setAttribute('id', 'cancelar');
                 a.setAttribute('class', 'btn btn-primary');
+                a.setAttribute('title', 'Cancelar');
                 a.innerHTML = 'Cancelar';
                 a.appendChild(i_a);
 

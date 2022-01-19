@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     

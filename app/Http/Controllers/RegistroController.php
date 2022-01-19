@@ -17,7 +17,7 @@ class RegistroController extends Controller
         $usuario = Auth::user() == null ? 'Deslogado' : Auth::user();
         $mensagem = $request->session()->get('mensagem');
 
-        return view('registrar/index', compact('usuario', 'mensagem'));
+        return view('painel/registrar/index', compact('usuario', 'mensagem'));
     }
 
     /////// GUARDAR USUÁRIOS CADASTRADO //////
@@ -40,7 +40,7 @@ class RegistroController extends Controller
         $email = Auth::user()->email;
         $mensagem = $request->session()->get('mensagem');
 
-        return view('registrar/listar', compact('usuario', 'dados', 'mensagem', 'email'));
+        return view('painel/registrar/listar', compact('usuario', 'dados', 'mensagem', 'email'));
     }
 
     ///// GUARDAR USUÁRIOS EDITADO //////
@@ -48,6 +48,7 @@ class RegistroController extends Controller
     {
         $editar->editarUsuario($usuarioId, $request);
         $request->session()->flash("mensagem", "Usuário {$request->name} atualizado com sucesso!");
+        !empty($request->password) ? Auth::logout() : '';
 
         return redirect(!empty($request->password) ? '/entrar' : '/usuarios');
     }

@@ -1,4 +1,4 @@
-@extends('painel/layouts/layout')
+@extends('layouts/layout')
 
 @section('conteudo')
     <main class="my-5">
@@ -59,7 +59,7 @@
                             </ul>
 
                             <div class="row px-3 pt-3">
-                                <a title="Comprar Agora" href="{{ $produto->link_compra.$parametros }}" class="btn btn-comprar">
+                                <a title="Comprar Agora" href="{{ $produto->link_compra . $parametros }}" class="btn btn-comprar">
                                     <i class="fas fa-arrow-circle-right"></i>
                                     Comprar Agora
                                 </a>
@@ -216,6 +216,6 @@
     </main>  
     
     @if ($config->modal == 'on')
-        @include('painel/layouts/componentes/modal')
+        @include('layouts/componentes/modal')
     @endif
 @endsection

@@ -1,4 +1,4 @@
-@extends('painel/layouts/layout')
+@extends('layouts/layout')
 
 @section('conteudo')
     <main class="container bg-light p-0 politicas">

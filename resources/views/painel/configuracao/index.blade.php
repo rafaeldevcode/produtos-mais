@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     
@@ -95,7 +95,7 @@
     
                             @if ($usuario->autorizacao !== 'Leitor')
                                 <span class="col-md-3 col-12 mt-4">
-                                    <a id="salvar" class="btn btn-success py-2 px-5 w-100">
+                                    <a title="Salvar" id="salvar" class="btn btn-success py-2 px-5 w-100">
                                         Salvar
                                         <i class="fas fa-save ms-2"></i>
                                     </a>
@@ -325,10 +325,10 @@
 
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/privacidade/{{ $marca->id }}"> Políticas de privacidade</a>
+                        <a title="Politicas de Privacidade" class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/privacidade/{{ $marca->id }}"> Políticas de privacidade</a>
                     </li>
                     <li class="list-group-item">
-                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/termos/{{ $marca->id }}">Termos de uso</a>
+                        <a title="Termos de Uso" class="text-decoration-none" target="_blank" rel="noopener" href="/politicas/termos/{{ $marca->id }}">Termos de uso</a>
                     </li>
                 </ul>
 
@@ -336,18 +336,18 @@
 
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/{{ $marca->id }}">Obrigado</a>
+                        <a title="Página de Obrigado" class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/{{ $marca->id }}">Obrigado</a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/upsell/{{ $marca->id }}">Upsell</a>
+                        <a title="Página de Upsell" class="text-decoration-none" target="_blank" rel="noopener" href="/obrigado/upsell/{{ $marca->id }}">Upsell</a>
 
                         @if ($usuario->autorizacao !== 'Leitor')
                             @if (empty($upsell))
-                                <a href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
+                                <a title="Adicionar Upsell" href="/obrigado/upsell/{{ $marca->id }}/adicionar" class="btn btn-primary">
                                     <i class="fas fa-plus-circle"></i>
                                 </a>
                             @else
-                                <a href="/obrigado/upsell/{{ $marca->id }}/listar" class="btn btn-success">
+                                <a title="Editar Upsell" href="/obrigado/upsell/{{ $marca->id }}/listar" class="btn btn-success">
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             @endif

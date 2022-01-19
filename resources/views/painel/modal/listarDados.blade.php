@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     
@@ -22,14 +22,9 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <input hidden class="form-control w-25 inputEditar" name="porcentagem" type="text" value="{{ $dados->porcentagem }}">
 
-
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Porcentagem do desconto:</b>{{ $dados->porcentagem }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -37,11 +32,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço sem desconto:</b>{{ $dados->preco_sem_desconto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -49,11 +40,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Preço com desconto:</b>{{ $dados->preco_com_desconto }}</span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -61,11 +48,7 @@
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Link do checkout:</b>{{ $dados->link_compra }}</span>
 
-                        <span>
-                            <a title="Editar"class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -79,11 +62,7 @@
                             <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->produto_modal}") }}" alt="Produto - {{ $dados->produto_modal }}">
                         </span>
 
-                        <span>
-                            <a title="Editar" class="btn btn-info btnEditar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </span>
+                        @include('painel/layouts/componentes/btneditar')
                     </li>
                 </ul>
 
@@ -122,6 +101,7 @@
                     let button = document.createElement('button');
                         button.setAttribute('type', 'submit');
                         button.setAttribute('class', 'btn btn-danger');
+                        button.setAttribute('title', 'Remover Modal');
                         button.innerHTML = 'Excluir';
                         button.appendChild(i);
                     
@@ -131,6 +111,7 @@
                     let a = document.createElement('a');
                         a.setAttribute('id', 'cancelar');
                         a.setAttribute('class', 'btn btn-primary');
+                        a.setAttribute('title', 'Cancelar');
                         a.innerHTML = 'Cancelar';
                         a.appendChild(i_a);
 

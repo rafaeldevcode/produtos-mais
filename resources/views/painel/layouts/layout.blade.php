@@ -10,226 +10,123 @@
     
     {{-- ///////// FONTAWESOME ///////// --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/painel/style.css')}}">
 
-    @if (!empty($marca->favicon))
-        <link rel="shortcut icon" href="{{ asset("storage/$marca->favicon") }}" type="image/x-icon">
-    @else
-        <link rel="shortcut icon" href="{{ asset("images/favicon.png") }}" type="image/x-icon">
-    @endif
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
 
     {{-- ////// SCRIPT PARA CARREGAR AS FUNÇÕES ////// --}}
     <script type="text/javascript" src="{{ asset('js/funcoes.js') }}"></script>
-    <title>{{ $marca->nome_marca }} {{ $politicas == true ? ' | Políticas & Termos' : '' }}</title>
-
-    {{-- ////// MARCA TAGMANAGER ////// --}}
-    @if ($config->tagmanager == 'on')
-        @if (!empty($marca->tagmanager))
-            @include('painel/layouts/componentes/tagmanagerHeader', [$marca->tagmanager])
-        @endif
-    @endif
-    
-    {{-- ////// MARCA PIXEL ////// --}}
-    @if ($config->pixel == 'on')
-        @if (!empty($marca->pixel))
-            @include('painel/layouts/componentes/pixelHeader', [$pixels, $marca->evento])
-        @endif
-    @endif
-
+    <title>Painel | Admin</title>
 </head>
 <body>
-
-    {{-- ////// MARCA TAGMANAGER NO SCIPT ////// --}}
-    @if ($config->tagmanager == 'on')
-        @if (!empty($marca->tagmanager))
-            @include('painel/layouts/componentes/tagmanagerBody', [$marca->tagmanager])
-        @endif
-    @endif
-
-    {{-- ////// MARCA PIXEL NO SCIPT ////// --}}
-    @if ($config->pixel == 'on')
-        @if (!empty($marca->pixel))
-            @include('painel/layouts/componentes/pixelBody', [$pixels])
-        @endif
-    @endif
-
-    {{-- ///////// ABILITAR COUTDOWN //////// --}}
-    @if ($politicas !== true)
-        @if ($config->coutdown == 'on')
-            @include('painel/layouts/componentes/coutdown')
-        @endif
-    @endif
-
-    <header class="cabecalho">
-        <section class="container d-flex justify-content-sm-between justify-content-center align-items-center p-3 ">
-            <div class="image-header">
-                @if (!empty($marca->logomarca))
-                    <img src="{{ asset("storage/$marca->logomarca") }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
-                @else
-                    <img src="{{ asset("images/logo.png") }}" alt="Logo Produtos +">
-                @endif
-            </div>
     
-            <a title="Comprar Agora" href="{{ $politicas == true ? "/produto/{$marca->id}" : "#compra-agora" }}" class="btn px-4 pt-2 d-sm-block d-none btn-principal comprarAgora">
-                <i class="fas fa-arrow-circle-right"></i>
-                Comprar Agora
+    <header class="container-fluid bg-white p-3 d-flex align-items-center justify-content-between">
+        <div class="image-header">
+            <a title="Listar Marcas" href="/painel">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
             </a>
-        </section>
-    </header>
+        </div>
+        
+        <div class="navegacao d-flex flex-column justify-content-between p-0" id="navegacao">
+            <span>
+                <div class="menu">
+                    <i class="fas fa-arrow-circle-left fs-2 text-dark" id="rotacao"></i>
+                </div>
     
+                <div class="d-flex flex-column justify-content-center align-items-center usuario p-2">
+                    <i class="fas fa-user-circle fs-1"></i>
+
+                    @auth
+                        <span class="fs-6 text-secondary">{{ $usuario->autorizacao }}</span>
+                        <p>{{ $usuario->name }}</p>
+                    @endauth
+
+                    @guest
+                        <p>{{ $usuario }}</p>
+                    @endguest
+                </div>
+    
+                <nav class="text-end">
+                    <ul class="list-group">
+                        @auth
+                            <li class="list-group-item nav-item">
+                                <a title="Inicio" class="nav-link p-0" href="/painel">Inicio</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Inicio" class="nav-link p-0" href="/galeria">Galeria</a>
+                            </li>
+
+                            
+                            @if ($usuario->autorizacao !== 'Leitor')
+                                <li class="list-group-item nav-item">
+                                    <a title="Listar Usuários" class="nav-link p-0" href="/usuarios">Usuarios</a>
+                                </li>
+                            @endif
+
+                            @if ($usuario->autorizacao == 'Admin')
+                                <li class="list-group-item nav-item">
+                                    <a title="Adicionar Usuário" class="nav-link p-0" href="/registrar">Novo usuário</a>
+                                </li>
+                            @endif
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Marca" class="nav-link p-0" href="/adicionar/marca">Nova marca</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Produto" class="nav-link p-0" href="/adicionar/produto">Novo produto</a>
+                            </li>
+
+                            <li class="list-group-item nav-item">
+                                <a title="Adicionar Comentário" class="nav-link p-0" href="/adicionar/comentario">Novo comentário</a>
+                            </li>
+                        @endauth
+
+                        <li class="list-group-item nav-item">
+                            @auth
+                                <a title="Sair" class="text-danger nav-link p-0" href="/sair">
+                                    Sair
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                            @endauth
+            
+                            @guest
+                                <a title="Entrar" class="text-info nav-link p-0" href="/entrar">
+                                    Entrar
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </a>
+                            @endguest
+                        </li>
+                    </ul>
+                </nav>
+            </span>
+
+            <span>
+                <p class="m-0 text-center"><b><a title="Perfil Git Hub" class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
+            </span>
+        </div>
+    </header>
+
     @yield('conteudo')
 
-    <footer class="container-fluid pb-1 bg-principal">
-        <section class="links-rodape container d-flex flex-wrap justify-content-between">
-            @if ($config->empresa == 'on')
-                <div class="m-3">
-                    <h5 class="fw-bolder">EMPRESA</h5>
-
-                    <ul class="list-group">
-                        @if (!empty($marca->nome_marca))
-                            <li class="list-group-item border-0 p-0">{{ $marca->nome_marca }}</li>
-                        @endif
-                        
-                        @if ($config->cnpj == 'on')
-                            @if (!empty($marca->cnpj))
-                                <li class="list-group-item border-0 p-0">CNPJ: {{ $marca->cnpj }}</li>
-                            @endif
-                        @endif
-                        
-                        @if ($config->rua == 'on')
-                            @if (!empty($marca->rua))
-                                <li class="list-group-item border-0 p-0">Rua: {{ $marca->rua }}</li>
-                            @endif
-                        @endif
-                        
-                        @if ($config->cidade == 'on')
-                            @if (!empty($marca->cidade))
-                                <li class="list-group-item border-0 p-0">Cidade: {{ $marca->cidade }}</li>
-                            @endif
-                        @endif
-                    </ul>
-                </div>
-            @endif
-
-            @if ($config->atendimento == 'on')
-                <div class="m-3">
-                    <h5 class="fw-bolder">ATENDIMENTO</h5>
-
-                    <ul class="list-group">
-                        @if ($config->telefone == 'on')
-                            @if (!empty($marca->telefone))
-                                <li class="list-group-item border-0 p-0">
-                                    <i class="fas fa-phone-square"></i>
-                                    Telefone: {{ $marca->telefone }}
-                                </li>
-                            @endif
-                        @endif
-
-                        @if ($config->email == 'on')
-                            @if (!empty($marca->email))
-                                <li class="list-group-item border-0 p-0">
-                                    <i class="fas fa-envelope-square"></i>
-                                    <a title="E-mail" href="mailto:{{ $marca->email }}" class="text-decoration-none">E-mail: {{ $marca->email }} </a>
-                                </li>
-                            @endif
-                        @endif
-                    </ul>
-                </div>
-            @endif
-
-            @if ($config->social == 'on')
-                <div class="m-3">
-                    <h5 class="fw-bolder">SOCIAL</h5>
-
-                    <ul class="list-group">
-                        @if ($config->facebook == 'on')
-                            @if (!empty($marca->facebook))
-                                <li class="list-group-item border-0 p-0">
-                                    <a title="Facebook" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->facebook }}">
-                                        <i class="fab fa-facebook-square"></i>
-                                        Facebook
-                                    </a>
-                                </li>
-                            @endif
-                        @endif
-
-                        @if ($config->instagram == 'on')
-                            @if (!empty($marca->instagram))
-                                <li class="list-group-item border-0 p-0">
-                                    <a title="Instagram" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->instagram }}">
-                                        <i class="fab fa-instagram-square"></i>
-                                        Instagram
-                                    </a>
-                                </li>
-                            @endif
-                        @endif
-
-                        @if ($config->twitter == 'on')
-                            @if (!empty($marca->twitter))
-                                <li class="list-group-item border-0 p-0">
-                                    <a title="Twitter" target="_blank" rel="noopener" class="text-decoration-none" href="{{ $marca->twitter }}">
-                                        <i class="fab fa-twitter-square"></i>
-                                        Twitter
-                                    </a>
-                                </li>
-                            @endif
-                        @endif
-                    </ul>
-                </div>
-            @endif
-        </section>
-
-        <section class="text-center links">
-            <div class="m-3 pb-3">
-                <h5 class="fw-bolder">LINKS</h5>
-
-                <ul class="list-group d-flex flex-row justify-content-center">
-                    <li class="list-group-item border-0 p-0">
-                        <a title="Políticas de Privacidade" target="{{ $politicas == true ? '_self' : '_blank' }}" rel="noopener" class="text-decoration-none" href="/politicas/privacidade/{{ $marca->id }}">Políticas de Privacidade</a>
-                    </li>
-                    <li class="list-group-item border-0 px-2 py-0">
-                        |
-                    </li>
-                    <li class="list-group-item border-0 p-0">
-                        <a title="Termos de Uso" target="{{ $politicas == true ? '_self' : '_blank' }}" rel="noopener" class="text-decoration-none" href="/politicas/termos/{{ $marca->id }}">Termos de Uso</a>
-                    </li>
-                </ul>
-            </div>
-
-            <p class="text-center">&copy; <span id="ano"></span> {{ $marca->nome_marca }} - Todos os direitos reservados</p>
-        </section>
-
+    <footer class="container-fluid bg-white p-3 d-flex flex-column justify-content-center align-items-center">
+        <p class="m-0 text-center">&copy; <span id="ano"></span> Produtos + | Todos os direitos reservados</p>
+        <p class="m-0">Developer | <b><a title="Perfil Git Hub" class="hover-secondary text-decoration-none" target="_blank" rel="noopener" href="https://github.com/rafaeldevcode"><i class="fab fa-github"></i> Rafael Vieira </a></b></p>
     </footer>
-    <span hidden id="corPrincipal">{{ $marca->cor_principal }}</span>
-    <span hidden id="corTitulo">{{ $marca->cor_titulo }}</span>
-    <span hidden id="corTexto">{{ $marca->cor_texto }}</span>
-
-
-    <script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
 
     <script type="text/javascript">
-        ////// EXIBIR O ANO /////////
         let data = new Date();
         document.getElementById('ano').innerHTML = data.getFullYear();
 
-        ////// ALTERAR A COR DA PÁGINA ///////
-        alterarCorPagina();
+        let menu = false;
+        abrirMenuMobile(menu);
 
-        ////// ALTERAR ÍCONES ACIMA DO PRODUTO ///////
-        alterarIcones(0, 'Mais Econômico', '<i class="fas fa-hand-holding-usd"></i>', 'bg-danger')
-        alterarIcones(1, 'Mais Vendido', '<i class="fas fa-plus-circle"></i>', 'bg-warning');
-        alterarIcones(2, 'Frete para todo Brasil', '<i class="fas fa-truck-moving"></i>', 'bg-success');
-
-        naoAbrirPopupLinkInterno();
+        /////// ADICIONAR FOOTER NO FINAL DA PAGINA ////////////
+        if (document.querySelector('body').offsetHeight > window.innerHeight)
+        document.querySelector('footer').classList.add('footer-relative');
     </script>
-
-    @if ($config->comentarios == 'on')
-        <script type="text/javascript">
-            /////// CARREGAR MAIS COMENTÁRIOS
-            carregarMaisComentario(document.getElementById('id').innerText);
-        </script>
-    @endif
 </body>
 </html>

@@ -47,6 +47,7 @@
             $marca = Marca::find($request->id);
             $data = $request->except('id');
             $data['image_cliente'] = $request->file('image_cliente')->store('galeria');
+            $data['slug'] = str_replace(array(' ', '-', '_'), '', strtolower($request->slug));
 
             DB::beginTransaction();
                 $marca->comentarios()->create($data);

@@ -24,9 +24,9 @@ class ExibirPaginaController extends Controller
         $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
         $pixels = explode(',', $marca->pixel);
         $usuario = Auth::user();
-        $paramentros = $paramentro->parametro($request);
+        $parametros = $paramentro->parametro($request);
 
-        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario', 'paramentros'));
+        return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario', 'parametros'));
     }
 
     ///// LISTAR LINKS COM AS MARCAS CADASTRADAS /////

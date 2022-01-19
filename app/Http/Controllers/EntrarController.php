@@ -16,7 +16,7 @@ class EntrarController extends Controller
         if(Auth::user()){
             return redirect('/painel');
         }else{
-            return view('entrar/index', compact('usuario'));
+            return view('painel/entrar/index', compact('usuario'));
         }
     }
 

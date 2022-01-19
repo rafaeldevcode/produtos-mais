@@ -1,4 +1,4 @@
-@extends('painel/layouts/painel/layout')
+@extends('painel/layouts/layout')
 
 @section('conteudo')
     
@@ -33,13 +33,13 @@
                             <h5 class="item">
                                 {{ $comentario->nome_cliente }}
                                 @if ($comentario->exibir_coment == 'on')
-                                    <button class="btn text-success">
+                                    <span class="btn text-success">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </span>
                                 @else
-                                    <button class="btn text-secondary">
+                                    <span class="btn text-secondary">
                                         <i class="fas fa-eye-slash"></i>
-                                    </button> 
+                                    </span> 
                                 @endif
                             </h5>
 
@@ -53,7 +53,7 @@
                                         <i class="fas fa-copy"></i>
                                     </a>
                 
-                                    <a title="Remover Comntário" id="{{ $comentario->id }}" class="btn btn-danger remover">
+                                    <a title="Remover Comentário" id="{{ $comentario->id }}" class="btn btn-danger remover">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 @endif
@@ -110,6 +110,7 @@
             let button = document.createElement('button');
                 button.setAttribute('type', 'submit');
                 button.setAttribute('class', 'btn btn-danger');
+                button.setAttribute('title', 'Remover Comentario');
                 button.innerHTML = 'Excluir';
                 button.appendChild(i);
             
@@ -119,6 +120,7 @@
             let a = document.createElement('a');
                 a.setAttribute('id', 'cancelar');
                 a.setAttribute('class', 'btn btn-primary');
+                a.setAttribute('title', 'Cancelar');
                 a.innerHTML = 'Cancelar';
                 a.appendChild(i_a);
 
