@@ -11,13 +11,13 @@
                 </div>
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset("storage/$marca->banner_1") }}" class="d-block w-100" alt="Banner 1">
+                    <img src="{{ $marca->imagem_banner_one }}" class="d-block w-100" alt="Banner 1">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("storage/$marca->banner_2") }}" class="d-block w-100" alt="Banner 2">
+                    <img src="{{ $marca->imagem_banner_two }}" class="d-block w-100" alt="Banner 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset("storage/$marca->banner_2") }}" class="d-block w-100" alt="Banner 3">
+                    <img src="{{ $marca->imagem_banner_tree }}" class="d-block w-100" alt="Banner 3">
                 </div>
                 </div>
                 <button title="Anterior" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -33,40 +33,38 @@
 
         <section class="container d-flex justify-content-evenly flex-wrap" id="compra-agora">
             @foreach ($produtos as $produto)
-                @if ($produto->exibir_produto == 'on')
-                    <div class="card shadow d-flex border-0 mb-5">
-                        <div class="card-header text-center border-0 p-0 m-0 bg-white">
-                            <div class="bg-principal m-0 p-2 fs-4">
-                                <h2 class="fs-4">{{ $produto->quant_produto }} UNIDADES</h2>
-                                @if ($config->icone_produto == 'on')
-                                    <div class="detalhes-produto px-2 rounded-top w-75 text-end">
-                                        <span class="fs-6 span"></span>
-                                        <span class="icone"></span>
-                                    </div>
-                                @endif
-                            </div>
-                            <p class="my-2 fs-6">Cada unidade sai por <b class="texto-cor-principal">R${{ $produto->valor_unit }}</b></p>
+                <div class="card shadow d-flex border-0 mb-5">
+                    <div class="card-header text-center border-0 p-0 m-0 bg-white">
+                        <div class="bg-principal m-0 p-2 fs-4">
+                            <h2 class="fs-4">{{ $produto->quant_produto }} UNIDADES</h2>
+                            @if ($config->icone_produto == 'on')
+                                <div class="detalhes-produto px-2 rounded-top w-75 text-end">
+                                    <span class="fs-6 span"></span>
+                                    <span class="icone"></span>
+                                </div>
+                            @endif
+                        </div>
+                        <p class="my-2 fs-6">Cada unidade sai por <b class="texto-cor-principal">R${{ $produto->valor_unit }}</b></p>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <div>
+                            <img class="img-fluid" src="{{ $produto->imagem_produto }}" alt="{{ $produto->nome_produto }}">
                         </div>
 
-                        <div class="card-body text-center">
-                            <div>
-                                <img class="img-fluid" src="{{ asset("storage/$produto->image_produto") }}" alt="{{ $produto->nome_produto }}">
-                            </div>
+                        <ul class="list-group mt-4">
+                            <li class="list-group-item border-0 p-0">à vista R${{ $produto->valor_cheio }}</li>
+                            <li class="list-group-item border-0 p-0 fw-bolder fs-3 texto-cor-principal">{{ $produto->parcelas }}x R${{ $produto->valor_parcelado }}</li>
+                        </ul>
 
-                            <ul class="list-group mt-4">
-                                <li class="list-group-item border-0 p-0">à vista R${{ $produto->valor_cheio }}</li>
-                                <li class="list-group-item border-0 p-0 fw-bolder fs-3 texto-cor-principal">{{ $produto->parcelas }}x R${{ $produto->valor_parcelado }}</li>
-                            </ul>
-
-                            <div class="row px-3 pt-3">
-                                <a title="Comprar Agora" href="{{ $produto->link_compra . $parametros }}" class="btn btn-comprar">
-                                    <i class="fas fa-arrow-circle-right"></i>
-                                    Comprar Agora
-                                </a>
-                            </div>
+                        <div class="row px-3 pt-3">
+                            <a title="Comprar Agora" href="{{ $produto->link_compra . $parametros }}" class="btn btn-comprar">
+                                <i class="fas fa-arrow-circle-right"></i>
+                                Comprar Agora
+                            </a>
                         </div>
                     </div>
-                @endif
+                </div>
             @endforeach
         </section>
 
@@ -143,7 +141,7 @@
                 </div>
 
                 <div class="container-fluid col-xl-6 col-md-6 col-sm-12">
-                    <img class="img-fluid" src="{{ asset("storage/$marca->image_desc") }}" alt="Produto {{ $marca->nome_marca }}">
+                    <img class="img-fluid" src="{{ $marca->imagem_desc }}" alt="Produto {{ $marca->nome_marca }}">
                 </div>
             </div>
 
@@ -162,21 +160,19 @@
                 <div class="d-flex flex-wrap justify-content-evenly" id="exibir-mais-comentario">
 
                     @foreach ($comentarios as $indice => $comentario)
-                        {{-- @if ($comentario->exibir_coment == 'on') --}}
-                            @if ($indice < 3)
-                                <div class="card shadow d-flex border-0 mb-2 pt-3">
-                                    <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
-                                        <img src="{{ asset("storage/$comentario->image_cliente") }}" alt="{{ $comentario->nome_cliente }}">
-                                        <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
-                                        <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
-                                    </div>
-                    
-                                    <div class="card-body text-center">
-                                        <p>{{ $comentario->comentario }}</p>
-                                    </div>
+                        @if ($indice < 3)
+                            <div class="card shadow d-flex border-0 mb-2 pt-3">
+                                <div class="comentario card-header text-center border-0 p-0 m-0 bg-white lh-1">
+                                    <img src="{{ $comentario->imagem_cliente }}" alt="{{ $comentario->nome_cliente }}">
+                                    <p class="my-2 fs-6 fw-bolder">{{ $comentario->nome_cliente }}</p>
+                                    <span class="fw-bolder">{{ $comentario->coment_desc }}</span>
                                 </div>
-                            @endif
-                        {{-- @endif --}}
+                
+                                <div class="card-body text-center">
+                                    <p>{{ $comentario->comentario }}</p>
+                                </div>
+                            </div>
+                        @endif
                     @endforeach
 
                 </div>

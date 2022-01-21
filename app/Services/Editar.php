@@ -14,7 +14,7 @@
             DB::beginTransaction();
                 $marca = Marca::find($marcaId);
                 $marca->nome_marca    = $request->nome_marca;
-                $marca->slug_marca    = $request->slug_marca;
+                $marca->slug_marca    = strtolower(str_replace(' ', '-', $request->slug_marca));
                 if(!empty($request->file('logomarca'))){$marca->logomarca = $request->file('logomarca')->store('galeria');};
                 if(!empty($request->file('favicon'))){$marca->favicon = $request->file('favicon')->store('galeria');};
                 $marca->cor_principal = $request->cor_principal;

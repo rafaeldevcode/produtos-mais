@@ -189,7 +189,7 @@
                         <input hidden class="form-control w-75 inputEditar" name="logomarca" type="file">
                         
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Logo:</b> <br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->logomarca) ? asset("images/logo.png") : asset("storage/{$dados->logomarca}") }}" alt="Logo {{ $dados->nome_marca }}">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_logomarca }}">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')
@@ -199,17 +199,17 @@
                         <input hidden class="form-control w-75 inputEditar" name="favicon" type="file">
                         
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Favicon:</b><br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ empty($dados->favicon) ? asset("images/favicon.png") : asset("storage/{$dados->favicon}") }}" alt="Favicon {{ $dados->nome_marca }}">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_favicon }}">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')
                     </li>
                     
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <input hidden class="form-control w-75 inputEditar" name="banner_1" type="file" value="{{ $dados->banner_1 }}">
+                        <input hidden class="form-control w-75 inputEditar" name="banner_1" type="file">
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Banner 1:</b><br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_1}") }}" alt="Banner 1">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_banner_one }}" alt="Banner 1">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')
@@ -219,7 +219,7 @@
                         <input hidden class="form-control w-75 inputEditar" name="banner_2" type="file">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 2:</b><br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_2}") }}" alt="Banner 2">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_banner_two }}" alt="Banner 2">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')
@@ -229,7 +229,7 @@
                         <input hidden class="form-control w-75 inputEditar" name="banner_3" type="file">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Banner 3:</b><br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->banner_3}") }}" alt="Banner 3">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_banner_tree }}" alt="Banner 3">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')
@@ -239,7 +239,7 @@
                         <input hidden class="form-control w-75 inputEditar" name="image_desc" type="file">
 
                         <span class=" textEditar"><b class="p-1 alert alert-primary me-2">Imagen da descrição:</b><br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_desc}") }}" alt="Descrição">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_desc }}" alt="Descrição">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')

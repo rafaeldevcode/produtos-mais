@@ -20,6 +20,7 @@
             $data['banner_2']   = $request->file('banner_2')->store('galeria');
             $data['banner_3']   = $request->file('banner_3')->store('galeria');
             $data['image_desc'] = $request->file('image_desc')->store('galeria');
+            $data['slug_marca'] = strtolower(str_replace($request->slug_marca, ' ', '-'));
 
             DB::beginTransaction();
                 $marca = Marca::create($data);

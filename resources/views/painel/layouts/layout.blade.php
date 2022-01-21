@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/painel/style.css')}}">
 
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('storage/galeria/favicon.png') }}" type="image/png">
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
 
@@ -25,7 +25,7 @@
     <header class="container-fluid bg-white p-3 d-flex align-items-center justify-content-between">
         <div class="image-header">
             <a title="Listar Marcas" href="/painel">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo Produtos +">
+                <img src="{{ asset('storage/galeria/logo.png') }}" alt="Logo Produtos +">
             </a>
         </div>
         

@@ -5,6 +5,7 @@ use App\Models\Marca;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Produto extends Model
 {
@@ -20,6 +21,11 @@ class Produto extends Model
         'parcelas',
         'exibir_produto',
     ];
+
+    public function getImagemProdutoAttribute()
+    {
+        return Storage::url($this->image_produto);
+    }
 
     public function marca()
     {

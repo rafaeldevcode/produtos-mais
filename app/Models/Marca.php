@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\{Produto, Comentario, Configuracao, Modal, Coutdown};
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 class Marca extends Model
 {
@@ -42,6 +43,45 @@ class Marca extends Model
         'cor_texto',
         'disclaimer'
     ];
+
+    public function getImagemLogomarcaAttribute()
+    {
+        if($this->logomarca){
+            return Storage::url($this->logomarca);
+        }else{
+            return str_replace('/storage', '', Storage::url('/images/logo.png'));
+        }
+        
+    }
+
+    public function getImagemFaviconAttribute()
+    {
+        if($this->favicon){
+            return Storage::url($this->favicon);
+        }else{
+            return str_replace('/storage', '', Storage::url('/images/favicon.png'));
+        }
+    }
+
+    public function getImagemBannerOneAttribute()
+    {
+        return Storage::url($this->banner_1);
+    }
+
+    public function getImagemBannerTwoAttribute()
+    {
+        return Storage::url($this->banner_2);
+    }
+
+    public function getImagemBannerTreeAttribute()
+    {
+        return Storage::url($this->banner_3);
+    }
+
+    public function getImagemDescAttribute()
+    {
+        return Storage::url($this->image_desc);
+    }
 
     public function produtos()
     {

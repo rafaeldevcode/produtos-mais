@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="image-modal p-3 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset("storage/{$modal->produto_modal}") }}" alt="Produto Modal">
+                    <img src="{{ $modal->imagem_produto }}" alt="Produto Modal">
                 </div>
 
                 <div class="corpo-modal w-100 d-flex">

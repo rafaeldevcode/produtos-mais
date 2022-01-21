@@ -5,8 +5,9 @@
     use App\Models\{Marca, Comentario, Produto, Configuracao, Modal, User, Coutdown, Imagen, Upsell};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
-    
-    class Remover {
+use Illuminate\Support\Facades\Storage;
+
+class Remover {
 
         public function removerMarca($marcaId)
         {
@@ -124,11 +125,17 @@
             // $this->dispararEvento('Upsell', "Upsell removida da marca {$nome_marca}");
         }
 
-        public function removerImagen($id)
+        public function removerImagen($request)
         {
+            $imagen = "galeria/{$request->id}";
+
             DB::beginTransaction();
-                Imagen::destroy($id);
+                if(!empty(Imagen::where('imagen', 'LIKE', $imagen)->get()[0])){
+                    Imagen::destroy(Imagen::where('imagen', 'LIKE', $imagen)->get());
+                }
             DB::commit();
+
+            Storage::delete($imagen);
 
             // $this->dispararEvento('Imagen', "Imagen removida do banco de dados!");
         }

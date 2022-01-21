@@ -12,11 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
-    @if (!empty($marca->favicon))
-        <link rel="shortcut icon" href="{{ asset("storage/$marca->favicon") }}" type="image/x-icon">
-    @else
-        <link rel="shortcut icon" href="{{ asset("images/favicon.png") }}" type="image/x-icon">
-    @endif
+    <link rel="shortcut icon" href="{{ $marca->imagem_favicon }}" type="image/x-icon">
     <meta name="description" content="">
     <meta name="author" content="Rafael Vieira">
 
@@ -65,11 +61,7 @@
     <header class="cabecalho">
         <section class="container d-flex justify-content-sm-between justify-content-center align-items-center p-3 ">
             <div class="image-header">
-                @if (!empty($marca->logomarca))
-                    <img src="{{ asset("storage/$marca->logomarca") }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
-                @else
-                    <img src="{{ asset("images/logo.png") }}" alt="Logo Produtos +">
-                @endif
+                <img src="{{ $marca->imagem_logomarca }}" alt="Logo {{ asset("images/$marca->nome_marca") }}">
             </div>
     
             <a title="Comprar Agora" href="{{ $politicas == true ? "/produto/{$marca->id}" : "#compra-agora" }}" class="btn px-4 pt-2 d-sm-block d-none btn-principal comprarAgora">

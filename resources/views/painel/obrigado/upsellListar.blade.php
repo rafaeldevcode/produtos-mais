@@ -57,7 +57,7 @@
                         <input hidden class="form-control w-75 inputEditar" name="image_produto" type="file">
 
                         <span class="textEditar"><b class="p-1 alert alert-primary me-2">Imagem do pruduto:</b> <br>
-                            <img class="mt-4" width="100px" height="auto" src="{{ asset("storage/{$dados->image_produto}") }}" alt="Produto - {{ $dados->image_produto }}">
+                            <img class="mt-4" width="100px" height="auto" src="{{ $dados->imagem_produto }}" alt="Produto - {{ $dados->image_produto }}">
                         </span>
 
                         @include('painel/layouts/componentes/btneditar')

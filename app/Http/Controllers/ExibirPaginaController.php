@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Comentario, Marca, User};
-use App\Services\ExibirComentario;
+use App\Models\{Marca, User};
+use App\Services\Retornar;
 use Illuminate\Support\Facades\Auth;
 use App\Services\RecuperaParametro;
 
@@ -13,18 +13,18 @@ class ExibirPaginaController extends Controller
     private $aviso = 'Você ainda não tem nenhuma marca cadastrada!';
     
     ///// EXIBIR A PAGINA DA MARCA /////
-    public function index(int $id, ExibirComentario $exibirComentario, Request $request, RecuperaParametro $paramentro)
+    public function index(int $id, Retornar $retornar, Request $request)
     {
         $politicas = false;
         $marca = Marca::find($id);
-        $comentarios = $exibirComentario->retornarComentario($marca);
-        $produtos = $marca->produtos()->get();
+        $comentarios = $retornar->retornarComentario($marca);
+        $produtos = $retornar->retornarProdutos($marca);
         $config = $marca->configuracoes()->get()[0];
         $modal = empty($marca->modals()->get()[0]) ? '' : $marca->modals()->get()[0];
         $coutdown = empty($marca->coutdown()->get()[0]) ? '' : $marca->coutdown()->get()[0];
         $pixels = explode(',', $marca->pixel);
         $usuario = Auth::user();
-        $parametros = $paramentro->parametro($request);
+        $parametros = $retornar->retornarParametro($request);
 
         return view('index', compact('marca', 'comentarios', 'produtos', 'config', 'modal', 'politicas', 'pixels', 'coutdown', 'usuario', 'parametros'));
     }
@@ -43,10 +43,10 @@ class ExibirPaginaController extends Controller
     }
 
     /////// CARREGAR MAIS COMENTÁRIOS VIA AJAX ///////
-    public function carregarMais(int $marcaId, ExibirComentario $exibirComentario)
+    public function carregarMais(int $marcaId, Retornar $retornar)
     {
         $marca = Marca::find($marcaId);
-        $comentarios = $exibirComentario->retornarComentario($marca);
+        $comentarios = $retornar->retornarComentario($marca);
 
         return $comentarios;
     }

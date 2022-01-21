@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Comentario extends Model
 {
@@ -15,6 +16,11 @@ class Comentario extends Model
         'comentario',
         'exibir_coment'
     ];
+
+    public function getImagemClienteAttribute()
+    {
+        return Storage::url($this->image_cliente);
+    }
 
     public function marca()
     {

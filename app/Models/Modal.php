@@ -5,6 +5,7 @@ use App\Models\Marca;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Modal extends Model
 {
@@ -18,6 +19,11 @@ class Modal extends Model
         'preco_com_desconto',
         'link_compra',
     ];
+
+    public function getImagemProdutoAttribute()
+    {
+        return Storage::url($this->produto_modal);
+    }
 
     public function marca()
     {

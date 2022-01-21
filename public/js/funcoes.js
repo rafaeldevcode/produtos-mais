@@ -425,13 +425,13 @@ function fecharCarroselGaleria(sessaoGaleria, body){
 function slide(i, imagen, imagenPopupGaleria){
     document.getElementById('proximo').addEventListener('click', ()=>{
         i++;
-        i = (i == imagen.length) ? 2 : i++;
+        i = (i == imagen.length) ? 0 : i++;
         imagenPopupGaleria.src = imagen[i].src;
     });
 
     document.getElementById('anterior').addEventListener('click', ()=>{
         i--;
-        i = (i == 1) ? imagen.length-1 : i--;
+        i = (i == -1) ? imagen.length-1 : i--;
         imagenPopupGaleria.src = imagen[i].src;
     });
 }

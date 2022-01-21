@@ -17,8 +17,8 @@
                     $diretorio = 'storage/galeria/';
 
                     if(is_dir($diretorio)){
-
-                        $imagens = scandir($diretorio);
+                        
+                        $imagens = array_diff(scandir($diretorio), array('.', '..'));
 
                         if(count($imagens) == 2) { ?>
                             <div class="alert alert-danger col-12 text-center m-0">
@@ -26,7 +26,7 @@
                             </div>
                         <?php }else{
                             foreach ($imagens as $indice => $imagen) { ?>
-                                <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end">
+                                <div class="card cartao-imagen p-2 m-2 d-flex flex-column justify-content-between align-items-end position-relative">
                                     <img class="w-100 h-100 imagen" src="<?php echo $diretorio . $imagen; ?>" alt="imagen-<?php echo ($indice - 1) ?>">
                                     @if ($usuario->autorizacao !== 'Leitor')
                                         <a class="text-danger text-decoration-none mt-3 remover">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <section hidden class="border-top border-success border-2 mt-5 flex-wrap justify-content-end">
+        <section class="border-top border-success border-2 mt-5 flex-wrap justify-content-end">
             <form action="/galeria/imegen/adicionar" method="POST" enctype="multipart/form-data" class="col-12 d-flex flex-wrap justify-content-between align-items-center mt-3">
                 @csrf
                 <div class="col-12 col-sm-6 col-md-8">
@@ -86,6 +86,7 @@
             let button = document.createElement('button');
                 button.setAttribute('type', 'submit');
                 button.setAttribute('class', 'btn btn-danger');
+                button.setAttribute('title', 'Remover Imagem');
                 button.innerHTML = 'Excluir';
                 button.appendChild(i);
             
@@ -95,6 +96,7 @@
             let a = document.createElement('a');
                 a.setAttribute('id', 'cancelar');
                 a.setAttribute('class', 'btn btn-primary');
+                a.setAttribute('title', 'Cancelar');
                 a.innerHTML = 'Cancelar';
                 a.appendChild(i_a);
 

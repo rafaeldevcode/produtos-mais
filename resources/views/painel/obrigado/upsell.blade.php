@@ -87,7 +87,7 @@
         @else
             <section class="card d-flex flex-column flex-lg-row col-12 col-md-10 col-lg-8">
                 <div class="card-header col-12 col-lg-6 d-flex align-items-center">
-                    <img class="w-100" src="{{ asset("storage/{$upsell->image_produto}") }}" alt="">
+                    <img class="w-100" src="{{ $upsell->imagem_produto }}" alt="">
                 </div>
 
                 <div class="card-body col-12 col-lg-6 d-flex flex-column justify-content-between">

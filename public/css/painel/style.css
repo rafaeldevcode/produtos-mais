@@ -109,7 +109,7 @@ input[type="checkbox"]{
 /* /////// GALERIA /////// */
 .cartao-imagen{
     width: 120px;
-    height: 150px;
+    height: 120px;
 }
 
 .cartao-imagen img{
@@ -123,9 +123,13 @@ input[type="checkbox"]{
     cursor: pointer;
 }
 
-.cartao-imagen:nth-child(1),
-.cartao-imagen:nth-child(2){
-    display: none !important;
+.cartao-imagen a{
+    background: #FFF;
+    border-radius: 5px;
+    padding: 0 3px;
+    position: absolute;
+    bottom: 0;
+    right: 2px;
 }
 
 .cartao-popup{
