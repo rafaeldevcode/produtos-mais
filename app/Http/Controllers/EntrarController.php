@@ -23,17 +23,21 @@ class EntrarController extends Controller
     ////// LOGAR USUÁRIO
     public function store(Request $request)
     {
-        if(!Auth::attempt($request->only(['email', 'password']))){
+        $usuario = $request->only(['email', 'password']);
+        if(!Auth::attempt($usuario)){
             return redirect()->back()->withErrors('Usuário e/ou senhas incorretos!');
         };
 
-        return redirect('/painel');
+        $request->session()->regenerate();
+        return redirect()->intended('/painel');
     }
 
     /////// DESLOGAR USUÁRIO //////
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect('/entrar');
     }

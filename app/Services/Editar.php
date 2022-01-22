@@ -150,7 +150,8 @@
             $usuario = User::find($usuarioId);
 
             DB::beginTransaction();
-                $usuario->name = $request->name;
+                if(!empty($request->nome)){$usuario->name = $request->name;};
+                if(!empty($request->file('image_usuario'))){$usuario->image_usuario = $request->file('image_usuario')->store('galeria');};
                 if(!empty($request->password)){$usuario->password = Hash::make($request->password);}
                 $usuario->save();
             DB::commit();
@@ -171,6 +172,15 @@
             DB::commit();
 
             // $this->dispararEvento('Upsell', "Upsell da marca {$marca->nome_marca} atualizado!");;
+        }
+
+        public function redefinirPermicoes($ID, $request)
+        {
+            $usuario = User::find($ID);
+            DB::beginTransaction();
+                $usuario->autorizacao = $request->autorizacao;
+                $usuario->save();
+            DB::commit();
         }
 
         private function dispararEvento(string $nome, string $mensagem):void

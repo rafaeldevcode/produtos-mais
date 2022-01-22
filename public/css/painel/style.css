@@ -14,7 +14,7 @@ html{
     background: rgb(190, 190, 190);
 }
 
-footer{
+/* footer{
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -22,10 +22,33 @@ footer{
 
 .footer-relative{
     position: relative;
-}
+} */
 
 input[type="checkbox"]{
     cursor: pointer;
+}
+
+/* ///////// PAGINA DE USUARIO ////////// */
+.imagen-usuario{
+    width: 150px;
+    height: 150px;
+}
+
+.imagen-usuario img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.imagen-usuario-menu{
+    width: 70px;
+    height: 70px;
+}
+
+.imagen-usuario-menu img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
 
 /* ////// MENU DE NAVEGAÇÃO ////// */

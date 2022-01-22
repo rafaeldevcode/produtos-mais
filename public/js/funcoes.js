@@ -1,3 +1,5 @@
+const { replace } = require("lodash");
+
 function abrirMenuMobile(menu) {
     document.getElementById('rotacao').addEventListener('click', ()=>{
         menu = !menu;
@@ -88,16 +90,17 @@ function salvarCoutdown() {
             document.getElementById('mensagem').innerHTML = '';
             adicionarAlerta(mensagem, 'success');
         })
-
-        function adicionarAlerta(texto, cor){
-            document.getElementById('mensagem').innerHTML = '';
-
-            let div = document.createElement('div');
-                div.setAttribute('class', `alert alert-${cor}`);
-                div.innerHTML = texto;
-                document.getElementById('mensagem').appendChild(div);
-        }
     });
+}
+
+//////// EXIBIR MENSAGEM ////////
+function adicionarAlerta(texto, cor){
+    document.getElementById('mensagem').innerHTML = '';
+
+    let div = document.createElement('div');
+        div.setAttribute('class', `alert alert-${cor}`);
+        div.innerHTML = texto;
+        document.getElementById('mensagem').appendChild(div);
 }
 
 ////// FUNÇÃO PARA CHAMAR ABILITAR CONFIGURAÇÕES //////
@@ -506,4 +509,30 @@ function exibirComentarios(data, inicio) {
     document.getElementById('carregar').hidden = true;
     document.getElementById('carregar-mais').innerHTML = 'Carregar mais comentários';
     document.getElementById('exibir-mais-comentario').appendChild(div_3);
+}
+
+///////// REMOVER A IMAGEN DE USUÁRIO ////////
+function removerImagemUsuario() {
+    document.getElementById('remover-imagem').addEventListener('click', (event)=>{
+        event.preventDefault();
+
+        let formData = new FormData();
+        let imagem = document.getElementById('imagem-usuario');
+        let location = window.location.href;
+        let id = document.getElementById('id-usuario').value;
+        let token = document.querySelector('input[name="_token"]').value;
+        let url = `/usuario/${id}/remover/imagem`;
+
+            formData.append('_token', token);
+            formData.append('image_usuario', '');
+
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            }).then(()=>{
+                imagem.src = location.replace('usuarios', 'images/avatar.png');
+                adicionarAlerta('Imagem removida com sucesso!', 'success');
+            });
+
+    });
 }

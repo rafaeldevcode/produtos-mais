@@ -79,6 +79,8 @@ Route::post('/registrar', [RegistroController::class, 'store']);
 Route::get('/usuarios', [RegistroController::class, 'listar'])->middleware('autenticador');
 Route::post('/usuario/{usuarioId}/remover', [RegistroController::class, 'destroy'])->middleware('autenticador');
 Route::post('/editar/usuario/{usuarioId}', [RegistroController::class, 'editarUsuario'])->middleware('autenticador');
+Route::post('/usuario/{ID}/remover/imagem', [RegistroController::class, 'removerImagem']);
+Route::post('/usuario/{ID}/redefinir', [RegistroController::class, 'redefinirPermicoes']);
 
 Route::get('/politicas/privacidade/{id}', [PoliticasController::class, 'privacidade']);
 Route::get('/politicas/termos/{id}', [PoliticasController::class, 'termos']);
@@ -97,5 +99,5 @@ Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'd
 Route::post('/marca/{marcaId}/pesquisar/comentario', [PesquisarController::class, 'pesquisarComentario']);
 Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, 'pesquisarProduto']);
 Route::post('/marca/painel/pesquisar', [PesquisarController::class, 'pesquisarPainelMarca']);
-
+Route::post('/usuario/pesquisar', [PesquisarController::class, 'pesquisarUsuario']);
 Route::post('/marca/pesquisar', [PesquisarController::class, 'pesquisarMarca']);

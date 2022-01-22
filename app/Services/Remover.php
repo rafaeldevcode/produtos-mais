@@ -140,6 +140,15 @@ class Remover {
             // $this->dispararEvento('Imagen', "Imagen removida do banco de dados!");
         }
 
+        public function removerImagenUsuario($ID, $request)
+        {
+            $usuario = User::find($ID);;
+            DB::beginTransaction();
+                $usuario->image_usuario = $request->image_usuario;
+                $usuario->save();
+            DB::commit();
+        }
+
         private function dispararEvento(string $nome, string $mensagem):void
         {
             event(new NovoCadastro(
