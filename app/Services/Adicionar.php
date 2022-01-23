@@ -78,8 +78,6 @@
             DB::begintransaction();
                 $marca->coutdown()->create($coutdown);
             DB::commit();
-
-            $this->dispararEvento('Coutdown', "Novo coutdown adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarUsuario($request)
@@ -91,8 +89,6 @@
             if(!Auth::user()){
                 Auth::login($user);
             }
-
-            // $this->dispararEvento($request->name, 'Nova usuário adicionado a produtos +!');
         }
 
         public function adicionarUpsell($marca, $request)
@@ -102,8 +98,6 @@
             DB::beginTransaction();
                 $marca->upsell()->create($data);
             DB::commit();
-
-            // $this->dispararEvento('Upsell', "Upsell adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarImagen($request)
@@ -113,8 +107,6 @@
                     'imagen' => $request->file('imagen')->store('galeria')
                 ]);
             DB::commit();
-
-            // $this->dispararEvento('Imagen', "Upload de uma nova imagen!");
         }
 
         private function dispararEvento(string $nome, string $mensagem):void

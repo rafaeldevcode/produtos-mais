@@ -25,8 +25,6 @@
                     'exibir_produto'  => $produto->exibir_produto
                 ]);
             DB::commit();
-
-            $this->dispararEvento($produto->nome_produto, "O produto da marca {$marca} foi clonado!");
         }
 
         public function duplicarComentario($comentario)
@@ -42,8 +40,6 @@
                     'exibir_coment' => $comentario->exibir_coment
                 ]);
             DB::commit();
-
-            $this->dispararEvento($comentario->nome_cliente, "O comentário da marca {$marca} foi clonado!");
         }
 
         private function dispararEvento(string $nome, string $mensagem):void

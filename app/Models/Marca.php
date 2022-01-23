@@ -44,6 +44,10 @@ class Marca extends Model
         'disclaimer'
     ];
 
+    // protected $primaryKey = 'slug_marca';
+    // protected $keyType = 'string';
+    // public $incrementing = false;
+
     public function getImagemLogomarcaAttribute()
     {
         if($this->logomarca){

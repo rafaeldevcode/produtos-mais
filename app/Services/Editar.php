@@ -44,13 +44,10 @@
                 $marca->disclaimer    = $request->disclaimer;
                 $marca->save();
             DB::commit();
-
-            $this->dispararEvento($request->nome_marca, "A marca {$request->nome_marca} foi atualizada!");
         }
 
         public function editarProduto($request, $produto)
         {
-            // $marca = Marca::find(Produto::find($request->id)->marca_id)->nome_marca;
 
             DB::beginTransaction();
                 $produto->nome_produto    = $request->nome_produto;
@@ -64,8 +61,6 @@
                 $produto->exibir_produto  = $request->exibir_produto;
                 $produto->save();
             DB::commit();
-
-            // $this->dispararEvento($request->nome_produto, "O produto da marca {$marca} foi atualizado!");
         }
 
         public function editarComentario($request, $comentario)
@@ -78,8 +73,6 @@
                 $comentario->exibir_coment = $request->exibir_coment;
                 $comentario->save();
             DB::commit();
-
-            // $this->dispararEvento($request->nome_cliente,  "O comentário de {$request->nome_cliente} foi atualizado!");
         }
 
         public function editarConfiguracao($configId, $request)
@@ -109,8 +102,6 @@
                 $config->exibir_link   = $request->exibir_link;
                 $config->save();
             DB::commit();
-
-            // $this->dispararEvento('Configurações',  "As configurações da marca {$marca} foi atualizada!");
         }
 
         public function editarModal($request, $marcaId)
@@ -126,8 +117,6 @@
                 $modal[0]->link_compra        = $request->link_compra;
                 $modal[0]->save();
             DB::commit();
-
-            // $this->dispararEvento('Modal', "O modal da marca {$marca} foi atualizado!");
         }
 
         public function editarCoutdown($marcaId, $request)
@@ -141,8 +130,6 @@
                 $coutdown[0]->texto = $request->texto;
                 $coutdown[0]->save();
             DB::commit();
-
-            // $this->dispararEvento('Coutdown', "O coutdown da marca {$marca} foi atualizado!");
         }
 
         public function editarUsuario($usuarioId, $request)
@@ -155,8 +142,6 @@
                 if(!empty($request->password)){$usuario->password = Hash::make($request->password);}
                 $usuario->save();
             DB::commit();
-
-            // $this->dispararEvento($request->name, "Usuário atualizado!");
         }
 
         public function editarUpsell($marca, $request)
@@ -170,8 +155,6 @@
                 if(!empty($request->file('image_produto'))){$upsell->image_produto = $request->file('image_produto')->store('galeria');}
                 $upsell->save();
             DB::commit();
-
-            // $this->dispararEvento('Upsell', "Upsell da marca {$marca->nome_marca} atualizado!");;
         }
 
         public function redefinirPermicoes($ID, $request)
