@@ -26,8 +26,6 @@
                 $marca = Marca::create($data);
                 $marca->configuracoes()->create();
             DB::commit();
-
-            // $this->dispararEvento($request->nome_marca, 'Nova marca cadastrada!');
         }
 
         public function adicionarProduto($request, $marca)
@@ -39,8 +37,6 @@
             DB::beginTransaction();
                 $marca->produtos()->create($data);
             DB::commit();
-
-            // $this->dispararEvento($request->nome_produto, "Novo produto adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarComentario($request)
@@ -48,13 +44,10 @@
             $marca = Marca::find($request->id);
             $data = $request->except('id');
             $data['image_cliente'] = $request->file('image_cliente')->store('galeria');
-            $data['slug'] = str_replace(array(' ', '-', '_'), '', strtolower($request->slug));
 
             DB::beginTransaction();
                 $marca->comentarios()->create($data);
             DB::commit();
-
-            // $this->dispararEvento($request->nome_cliente, 'Novo comentário adicionado!');
         }
 
         public function adicionarModal($request, $marcaId)
@@ -66,8 +59,6 @@
             DB::beginTransaction();
                 $marca->modals()->create($data);
             DB::commit();
-
-            // $this->dispararEvento('Modal', "Novo modal adicionado a marca {$marca->nome_marca}");
         }
 
         public function adicionarCoutdown($marcaId, $request)
