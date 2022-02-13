@@ -15,7 +15,7 @@ class AdicionarUpsell extends Migration
     {
         Schema::create('upsell', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('marca_id');
+            $table->integer('marca_id')->unsigned();
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->string('nome_produto');
             $table->string('link_compra');

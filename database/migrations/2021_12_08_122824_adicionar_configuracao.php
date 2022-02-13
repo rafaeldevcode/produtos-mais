@@ -15,7 +15,7 @@ class AdicionarConfiguracao extends Migration
     {
         Schema::create('configuracoes', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('marca_id');
+            $table->integer('marca_id')->unsigned();
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->boolean('modal')->nullable();
             $table->boolean('icone_produto')->nullable();

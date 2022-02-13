@@ -15,7 +15,7 @@ class AdicionarCoutdown extends Migration
     {
         Schema::create('coutdowns', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('marca_id');
+            $table->integer('marca_id')->unsigned();
             $table->foreign('marca_id')->references('id')->on('marcas');
             $table->string('data');
             $table->string('time');
