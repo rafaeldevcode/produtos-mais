@@ -66,7 +66,7 @@
                             <input
                                 {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $dados->exibir_coment == 'on' ? 'checked' : '' ; }}
-                             name="exibir_coment" type="checkbox" class="form-check-input">
+                             name="exibir_coment" type="checkbox" id="exibir_coment" class="form-check-input">
                         </div>
                     </div>
                 </div>

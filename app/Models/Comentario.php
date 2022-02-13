@@ -19,7 +19,9 @@ class Comentario extends Model
 
     public function getImagemClienteAttribute()
     {
-        return Storage::url($this->image_cliente);
+        $protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+        $url = "{$protocolo}://{$_SERVER['HTTP_HOST']}/storage/";
+        return $url.$this->image_cliente;
     }
 
     public function marca()

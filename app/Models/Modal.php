@@ -22,7 +22,9 @@ class Modal extends Model
 
     public function getImagemProdutoAttribute()
     {
-        return Storage::url($this->produto_modal);
+        $protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+        $url = "{$protocolo}://{$_SERVER['HTTP_HOST']}/storage/";
+        return $url.$this->produto_modal;
     }
 
     public function marca()

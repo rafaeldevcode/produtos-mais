@@ -111,7 +111,7 @@
                         <div class="d-flex flex-wrap justify-content-between">
                             <div class="col-12 form-check form-switch">
                                 <label for="exibir_produto" class="form-check-label">Mostrar na Página?</label>
-                                <input name="exibir_produto" type="checkbox" class="form-check-input">
+                                <input name="exibir_produto" id="exibir_produto" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>

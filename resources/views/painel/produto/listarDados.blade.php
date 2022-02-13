@@ -106,7 +106,7 @@
                             <input
                                 {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $dados->exibir_produto == 'on' ? 'checked' : '' ; }}
-                             name="exibir_produto" type="checkbox" class="form-check-input">
+                             name="exibir_produto" id="exibir_produto" type="checkbox" class="form-check-input">
                         </div>
                     </div>
                 </div>

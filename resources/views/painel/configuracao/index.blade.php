@@ -27,7 +27,7 @@
                     <h4>Modal</h4>
                     <div class="col-12 form-check form-switch d-flex justify-content-between align-items-center">
                         <span>
-                            <label for="modal" class="form-check-label">Abilitar</label>
+                            <label for="modal-config" class="form-check-label">Abilitar</label>
                             <input id="modal-config"
                                 {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $config->modal == 'on' ? 'checked' : '' ; }}
@@ -56,7 +56,7 @@
                             <input id="coutdown"
                                 {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                 {{ $config->coutdown == 'on' ? 'checked' : '' ; }}
-                                name="coutdown" type="checkbox" class="form-check-input">
+                                name="coutdown" id="coutdown" type="checkbox" class="form-check-input">
                         </span>
                     </div>
 
@@ -112,7 +112,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->tagmanager == 'on' ? 'checked' : '' ; }}
-                            name="tagmanager" type="checkbox" class="form-check-input">
+                            name="tagmanager" id="tagmanager" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -123,7 +123,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->pixel == 'on' ? 'checked' : '' ; }}
-                            name="pixel" type="checkbox" class="form-check-input">
+                            name="pixel" id="pixel" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->icone_produto == 'on' ? 'checked' : '' ; }}
-                            name="icone_produto" type="checkbox" class="form-check-input">
+                            name="icone_produto" id="icone_produto" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->comentarios == 'on' ? 'checked' : '' ; }}
-                            name="comentarios" type="checkbox" class="form-check-input">
+                            name="comentarios" id="comentarios" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -156,7 +156,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->disclaimer == 'on' ? 'checked' : '' ; }}
-                            name="disclaimer" type="checkbox" class="form-check-input">
+                            name="disclaimer" id="disclaimer" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -167,7 +167,7 @@
                         <input
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->exibir_link == 'on' ? 'checked' : '' ; }}
-                            name="exibir_link" type="checkbox" class="form-check-input">
+                            name="exibir_link" id="exibir_link" type="checkbox" class="form-check-input">
                     </div>
                 </div>
 
@@ -178,7 +178,7 @@
                         <input id="empresa"
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->empresa == 'on' ? 'checked' : '' ; }}
-                            name="empresa" type="checkbox" class="form-check-input">
+                            name="empresa" id="empresa" type="checkbox" class="form-check-input">
                     </div>
 
                     <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->empresa == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row empresa" 
@@ -189,7 +189,7 @@
                                 <label for="cnpj" class="form-check-label">Abilitar</label>
                                 <input
                                     {{ $config->cnpj == 'on' ? 'checked' : '' ; }}
-                                    name="cnpj" type="checkbox" class="form-check-input">
+                                    name="cnpj" id="cnpj" type="checkbox" class="form-check-input">
                             </div>
                         </div>
 
@@ -200,7 +200,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->rua == 'on' ? 'checked' : '' ; }}
-                                    name="rua" type="checkbox" class="form-check-input">
+                                    name="rua" id="rua" type="checkbox" class="form-check-input">
                             </div>
                         </div>
 
@@ -211,7 +211,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->cidade == 'on' ? 'checked' : '' ; }}
-                                    name="cidade" type="checkbox" class="form-check-input">
+                                    name="cidade" id="cidade" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>
@@ -224,7 +224,7 @@
                         <input id="atendimento"
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->atendimento == 'on' ? 'checked' : '' ; }}
-                            name="atendimento" type="checkbox" class="form-check-input">
+                            name="atendimento" id="atendimento" type="checkbox" class="form-check-input">
                     </div>
 
                     <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->atendimento == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row atendimento" 
@@ -236,7 +236,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->telefone == 'on' ? 'checked' : '' ; }}
-                                    name="telefone" type="checkbox" class="form-check-input">
+                                    name="telefone" id="telefone" type="checkbox" class="form-check-input">
                             </div>
                         </div>
 
@@ -247,7 +247,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->email == 'on' ? 'checked' : '' ; }}
-                                    name="email" type="checkbox" class="form-check-input">
+                                    name="email" id="email" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                         <input id="social"
                             {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                             {{ $config->social == 'on' ? 'checked' : '' ; }}
-                            name="social" type="checkbox" class="form-check-input">
+                            name="social" id="social" type="checkbox" class="form-check-input">
                     </div>
 
                     <div class="border border-2 rounded py-3 px-5 mt-3 {{ $config->social == 'on' ? 'd-flex' : '' ; }} justify-content-between flex-column flex-sm-row social" 
@@ -272,7 +272,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->facebook == 'on' ? 'checked' : '' ; }}
-                                    name="facebook" type="checkbox" class="form-check-input">
+                                    name="facebook" id="facebook" type="checkbox" class="form-check-input">
                             </div>
                         </div>
 
@@ -283,7 +283,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->instagram == 'on' ? 'checked' : '' ; }}
-                                    name="instagram" type="checkbox" class="form-check-input">
+                                    name="instagram" id="instagram" type="checkbox" class="form-check-input">
                             </div>
                         </div>
 
@@ -294,7 +294,7 @@
                                 <input
                                     {{ $usuario->autorizacao !== 'Leitor' ? '' : 'disabled'; }}
                                     {{ $config->twitter == 'on' ? 'checked' : '' ; }}
-                                    name="twitter" type="checkbox" class="form-check-input">
+                                    name="twitter" id="twitter" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>

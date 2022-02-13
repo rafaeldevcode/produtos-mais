@@ -12,6 +12,8 @@ class Imagen extends Model
 
     public function getImagemAttribute()
     {
-        return Storage::url($this->imagen);
+        $protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+        $url = "{$protocolo}://{$_SERVER['HTTP_HOST']}/storage/";
+        return $url.$this->imagen;
     }
 }

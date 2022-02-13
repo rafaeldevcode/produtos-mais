@@ -24,7 +24,9 @@ class Produto extends Model
 
     public function getImagemProdutoAttribute()
     {
-        return Storage::url($this->image_produto);
+        $protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+        $url = "{$protocolo}://{$_SERVER['HTTP_HOST']}/storage/";
+        return $url.$this->image_produto;
     }
 
     public function marca()

@@ -88,7 +88,7 @@
                         <div class="d-flex flex-wrap justify-content-between">
                             <div class="col-12 form-check form-switch">
                                 <label for="exibir_coment" class="form-check-label">Mostrar na Página?</label>
-                                <input name="exibir_coment" type="checkbox" class="form-check-input">
+                                <input name="exibir_coment" id="exibir_coment" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>

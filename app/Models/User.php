@@ -47,10 +47,13 @@ class User extends Authenticatable
 
     public function getImagemUsuarioAttribute()
     {
+        $protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+        $url = "{$protocolo}://{$_SERVER['HTTP_HOST']}/storage/";
+
         if(($this->image_usuario) || (!empty($this->image_usuario))){
-            return Storage::url($this->image_usuario);
+            return $url.$this->image_usuario;
         }else{
-            return str_replace('/storage', '', Storage::url('/images/avatar.png'));
+            return str_replace('/storage', '', $url).'images/avatar.png';
         }
     }
 }

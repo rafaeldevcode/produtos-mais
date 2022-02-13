@@ -135,8 +135,8 @@
         abrirMenuMobile(menu);
 
         /////// ADICIONAR FOOTER NO FINAL DA PAGINA ////////////
-        // if (document.querySelector('body').offsetHeight > window.innerHeight)
-        // document.querySelector('footer').classList.add('footer-relative');
+        if (document.querySelector('body').offsetHeight > window.innerHeight)
+        document.querySelector('footer').classList.add('footer-relative');
     </script>
 </body>
 </html>
