@@ -94,7 +94,7 @@ Route::get('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, '
 Route::post('/obrigado/upsell/{marcaId}/adicionar', [ObrigadoController::class, 'upsellStore'])->middleware('autenticador');
 Route::get('/obrigado/upsell/{marcaId}/listar', [ObrigadoController::class, 'upsellListar'])->middleware('autenticador');
 Route::post('/obrigado/upsell/{marcaId}/editar', [ObrigadoController::class, 'upsellEditar'])->middleware('autenticador');
-Route::post('/obrigado/upsell/{marcaId}/remover', [ObrigadoController::class, 'destroyUpsell'])->middleware('autenticador');
+Route::post('/obrigado/upsell/{upsellId}/remover', [ObrigadoController::class, 'destroyUpsell'])->middleware('autenticador');
 
 Route::post('/marca/{marcaId}/pesquisar/comentario', [PesquisarController::class, 'pesquisarComentario']);
 Route::post('/marca/{marcaId}/pesquisar/produto', [PesquisarController::class, 'pesquisarProduto']);

@@ -76,7 +76,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($produtoId)->nome_produto;
         $marca_id = Produto::find($produtoId)->marca_id;
-        $remover->removerProduto($produtoId);
+        $remover->removerProduto($produtoId, $produto);
         $request->session()->flash("mensagem", "{$produto} removido com sucesso!");
         
         return redirect("/marca/{$marca_id}/produtos");

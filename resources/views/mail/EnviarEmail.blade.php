@@ -1,10 +1,9 @@
 @component('mail::message')
 
-    # {{ mensagem }}
-
-    # Usuário: {{ $nome_usuario }}
+    # {{ $mensagem }}
 
     ---- Dados do cadastro ----
-    ## Nome: {{ $nomme }}
+    ## Usuário Responssável: {{ $nome_usuario }}
+    ## {{ $nome }}
 
 @endcomponent

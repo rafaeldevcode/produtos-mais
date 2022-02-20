@@ -28,7 +28,6 @@ class LogNovoCadastro implements ShouldQueue
      */
     public function handle(NovoCadastro $event)
     {
-        $nome_usuario = Auth::user()->name;
-        Log::channel('main')->info("[{$event->mensagem}] [{$event->nome}] por [{$nome_usuario}]");
+        Log::channel('produtos_mais')->info("['{$event->mensagem}'] ['{$event->nome}'] por ['{$event->nome_usuario}']");
     }
 }

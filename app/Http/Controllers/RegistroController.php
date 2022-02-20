@@ -64,7 +64,7 @@ class RegistroController extends Controller
     public function destroy(int $usuarioId, Request $request, Remover $remover)
     {
         $usuario = User::find($usuarioId)->name;
-        $remover->removerUsuario($request);
+        $remover->removerUsuario($request, $usuario);
         $request->session()->flash('mensagem', "{$usuario} removido com sucesso!");
 
         return redirect('/usuarios');

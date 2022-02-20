@@ -5,7 +5,8 @@
     use App\Models\{Marca, Configuracao, Produto, User};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
-    use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
     class Editar {
 
@@ -44,10 +45,13 @@
                 $marca->disclaimer    = $request->disclaimer;
                 $marca->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome da marca: {$request->nome_marca}", "Uma marca foi editada");
         }
 
         public function editarProduto($request, $produto)
         {
+            $marca = Marca::find($produto->marca_id)->nome_marca;
 
             DB::beginTransaction();
                 $produto->nome_produto    = $request->nome_produto;
@@ -61,10 +65,14 @@
                 $produto->exibir_produto  = $request->exibir_produto;
                 $produto->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do produto: {$produto->nome_produto}", "Produto editado em {$marca}");
         }
 
         public function editarComentario($request, $comentario)
         {
+            $marca = Marca::find($comentario->marca_id)->nome_marca;
+
             DB::beginTransaction();
                 $comentario->nome_cliente  = $request->nome_cliente;
                 $comentario->coment_desc   = $request->coment_desc;
@@ -73,6 +81,8 @@
                 $comentario->exibir_coment = $request->exibir_coment;
                 $comentario->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do cliente: {$comentario->nome_cliente}", "Comentário editado em {$marca}");
         }
 
         public function editarConfiguracao($configId, $request)
@@ -102,6 +112,8 @@
                 $config->exibir_link   = $request->exibir_link;
                 $config->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Configurações", "Configurações foram editadas em {$marca}");
         }
 
         public function editarModal($request, $marcaId)
@@ -117,6 +129,8 @@
                 $modal[0]->link_compra        = $request->link_compra;
                 $modal[0]->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Modal", "Modal editado em {$marca}");
         }
 
         public function editarCoutdown($marcaId, $request)
@@ -130,6 +144,8 @@
                 $coutdown[0]->texto = $request->texto;
                 $coutdown[0]->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Coutdown", "Coutdown editado em {$marca}");
         }
 
         public function editarUsuario($usuarioId, $request)
@@ -137,11 +153,13 @@
             $usuario = User::find($usuarioId);
 
             DB::beginTransaction();
-                if(!empty($request->nome)){$usuario->name = $request->name;};
+                if(!empty($request->name)){$usuario->name = $request->name;};
                 if(!empty($request->file('image_usuario'))){$usuario->image_usuario = $request->file('image_usuario')->store('galeria');};
                 if(!empty($request->password)){$usuario->password = Hash::make($request->password);}
                 $usuario->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do usuário editado: {$usuario->name}", "Um usuário foi editado");
         }
 
         public function editarUpsell($marca, $request)
@@ -155,6 +173,8 @@
                 if(!empty($request->file('image_produto'))){$upsell->image_produto = $request->file('image_produto')->store('galeria');}
                 $upsell->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Upsell", "Upsell editada em {$marca->nome_marca}");
         }
 
         public function redefinirPermicoes($ID, $request)
@@ -164,11 +184,14 @@
                 $usuario->autorizacao = $request->autorizacao;
                 $usuario->save();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do usuário: {$usuario->name}", "Permisãoes de usuário atualizados");
         }
 
-        private function dispararEvento(string $nome, string $mensagem):void
+        private function dispararEvento(string $nome_usuario, string $nome, string $mensagem):void
         {
             event(new NovoCadastro(
+                $nome_usuario,
                 $nome,
                 $mensagem
             ));

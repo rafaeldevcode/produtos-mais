@@ -70,7 +70,7 @@ class MarcaController extends Controller
     public function destroy(int $marcaId, Request $request, Remover $remover)
     {
         $nome_marca = Marca::find($marcaId)->nome_marca;
-        $remover->removerMarca($marcaId);
+        $remover->removerMarca($marcaId, $nome_marca);
         $request->session()->flash("mensagem", "{$nome_marca} removida com sucesso!");
 
         return redirect('/painel');

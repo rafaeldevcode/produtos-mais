@@ -33,11 +33,11 @@ class EnviarNovoEmail implements ShouldQueue
 
         foreach($usuarios as $indice => $usuario){
             $email = new EnviarEmail(
-                Auth::user()->name,
+                $event->nome_usuario,
                 $event->nome,
                 $event->mensagem
             );
-            $email->subject("{$event->mensagem} em produtos +");
+            $email->subject("{$event->mensagem}");
 
             Mail::to($usuario)->later(now()->addSecond(($indice + 1) * 5), $email);
         }

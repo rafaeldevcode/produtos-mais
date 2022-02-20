@@ -26,6 +26,8 @@
                 $marca = Marca::create($data);
                 $marca->configuracoes()->create();
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome da marca: {$request->nome_marca}", 'Uma nova marca foi cadastrada em Produtos+');
         }
 
         public function adicionarProduto($request, $marca)
@@ -37,6 +39,8 @@
             DB::beginTransaction();
                 $marca->produtos()->create($data);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do produto: {$request->nome_produto}", "Um novo produto foi adicionado em {$marca->nome_marca}");
         }
 
         public function adicionarComentario($request)
@@ -48,6 +52,8 @@
             DB::beginTransaction();
                 $marca->comentarios()->create($data);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do cliente: {$request->nome_cliente}", "Um novo comentário foi adicionado em {$marca->nome_marca}");
         }
 
         public function adicionarModal($request, $marcaId)
@@ -59,6 +65,8 @@
             DB::beginTransaction();
                 $marca->modals()->create($data);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Modal", "Um novo modal foi adicionado em {$marca->nome_marca}");
         }
 
         public function adicionarCoutdown($marcaId, $request)
@@ -69,6 +77,8 @@
             DB::begintransaction();
                 $marca->coutdown()->create($coutdown);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Coutdown", "Um novo coutdown foi adicionado em {$marca->nome_marca}");
         }
 
         public function adicionarUsuario($request)
@@ -80,6 +90,8 @@
             if(!Auth::user()){
                 Auth::login($user);
             }
+
+            $this->dispararEvento(Auth::user()->name, "Nome do usuário: {$request->name}", "Um novo usuário foi adicionado com permisões de {$request->autorizacao}");
         }
 
         public function adicionarUpsell($marca, $request)
@@ -89,6 +101,8 @@
             DB::beginTransaction();
                 $marca->upsell()->create($data);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome: Upsell ", "Uma nova upsell foi adicionada em {$marca->nome_marca}");
         }
 
         public function adicionarImagen($request)
@@ -98,11 +112,14 @@
                     'imagen' => $request->file('imagen')->store('galeria')
                 ]);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, 'Adicionada em: Galeria', 'Uma nova imagem foi adicionada');
         }
 
-        private function dispararEvento(string $nome, string $mensagem):void
+        private function dispararEvento(string $nome_usuario, string $nome, string $mensagem):void
         {
             event(new NovoCadastro(
+                $nome_usuario,
                 $nome,
                 $mensagem
             ));

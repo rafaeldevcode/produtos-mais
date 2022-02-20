@@ -73,11 +73,11 @@ class ObrigadoController extends Controller
     }
 
     ///// REMOVER PÁGINA DE UPSELL /////
-    public function destroyUpsell(int $marcaId, Remover $remover, Request $request)
+    public function destroyUpsell(int $upsellId, Remover $remover, Request $request)
     {
-        $remover->removerUpsell($marcaId);
+        $remover->removerUpsell($upsellId);
         $request->session()->flash("mensagem", "Upsell removido com sucesso!");
 
-        return redirect("/marca/{$marcaId}/config");
+        return redirect("/marca/{$upsellId}/config");
     }
 }

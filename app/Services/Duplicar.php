@@ -5,6 +5,7 @@
     use App\Models\{Marca, Produto};
     use Illuminate\Support\Facades\DB;
     use App\Events\NovoCadastro;
+use Illuminate\Support\Facades\Auth;
 
     class Duplicar {
 
@@ -25,6 +26,8 @@
                     'exibir_produto'  => $produto->exibir_produto
                 ]);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do produto: {$produto->nome_produto}", "Um produto foi duplicado em {$marca->nome_marca}");
         }
 
         public function duplicarComentario($comentario)
@@ -40,11 +43,14 @@
                     'exibir_coment' => $comentario->exibir_coment
                 ]);
             DB::commit();
+
+            $this->dispararEvento(Auth::user()->name, "Nome do cliente: {$comentario->nome_cliente}", "Um comentário foi duplicado em {$marca->nome_marca}");
         }
 
-        private function dispararEvento(string $nome, string $mensagem):void
+        private function dispararEvento(string $nome_usuario, string $nome, string $mensagem):void
         {
             event(new NovoCadastro(
+                $nome_usuario,
                 $nome,
                 $mensagem
             ));

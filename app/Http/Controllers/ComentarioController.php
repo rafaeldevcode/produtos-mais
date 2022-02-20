@@ -74,7 +74,7 @@ class ComentarioController extends Controller
     {
         $nome_cliente = Comentario::find($request->comentarioId)->nome_cliente;
         $marca_id = Comentario::find($request->comentarioId)->marca_id;
-        $remover->removerComentario($request);
+        $remover->removerComentario($request, $nome_cliente);
         $request->session()->flash("mensagem", "Comentário de {$nome_cliente} removido com sucesso!");
 
         return redirect("/marca/{$marca_id}/comentarios");

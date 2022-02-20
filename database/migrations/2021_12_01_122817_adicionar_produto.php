@@ -26,7 +26,7 @@ class AdicionarProduto extends Migration
             $table->string('valor_cheio');
             $table->string('valor_parcelado');
             $table->integer('parcelas');
-            $table->boolean('exibir_produto')->nullable();
+            $table->string('exibir_produto')->nullable();
             $table->timestamps();
         });
     }

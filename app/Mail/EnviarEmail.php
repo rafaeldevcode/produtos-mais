@@ -11,19 +11,19 @@ class EnviarEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public string $nome_usuario;
-    public string $nome;
-    public string $mensagem;
+    public $nome_usuario;
+    public $nome;
+    public $mensagem;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($nome_usuario, $nome, $mensagem)
+    public function __construct(string $nome_usuario, string $nome, string $mensagem)
     {
         $this->nome_usuario = $nome_usuario;
-        $this->nome_marca = $nome;
+        $this->nome = $nome;
         $this->mensagem = $mensagem;
     }
 

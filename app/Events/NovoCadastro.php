@@ -14,6 +14,7 @@ class NovoCadastro
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public string $nome_usuario;
     public string $nome;
     public string $mensagem;
 
@@ -22,8 +23,9 @@ class NovoCadastro
      *
      * @return void
      */
-    public function __construct($nome, $mensagem)
+    public function __construct($nome_usuario, $nome, $mensagem)
     {
+        $this->nome_usuario = $nome_usuario;
         $this->nome = $nome;
         $this->mensagem = $mensagem;
     }
