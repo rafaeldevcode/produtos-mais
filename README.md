@@ -66,7 +66,7 @@ Projeto desenvolvido para fazer cadastro de produtos e exibi-los em uma landpage
 # Imagens
 
 <div align="center" style="dispaly: inline-block;">
-    <img align="center" alt="rafaeldevcode-login" height="auto" width="400" src="https://raw.githubusercontent.com/rafaeldevcode/produtos-mais/main/public/images/painel-login.png"><br><br>
+    <img align="center" alt="rafaeldevcode-login" height="auto" width="800" src="https://raw.githubusercontent.com/rafaeldevcode/produtos-mais/main/public/images/painel-login.png"><br><br>
 </div>
 
 <div align="center">
